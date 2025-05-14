@@ -3,7 +3,7 @@ extends CharacterBody2D
 var pos:Vector2
 var dir:float
 var rota: float
-var speed = 800
+var speed = 200
 
 
 func _ready() -> void:

@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("shoot"):
 		fire()
+		print("shoot pressed")
 		
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -40,5 +41,7 @@ func fire() -> void:
 	bullet.dir = get_angle_to(get_global_mouse_position())
 	bullet.pos = gun.global_position
 	bullet.rota = global_rotation
-	$bullets.add_child(bullet)
+	add_child(bullet)
+	await get_tree().create_timer(.8).timeout
+	bullet.queue_free()
 	
