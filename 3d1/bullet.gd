@@ -3,10 +3,11 @@ extends CharacterBody2D
 var pos:Vector2
 var dir:float
 var rota: float
-var speed = 200
+var speed = 800
 
 
 func _ready() -> void:
+	top_level = true
 	global_position = pos
 	global_rotation = rota
 	

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://drhq6gxwrpafr"]
+[gd_scene load_steps=6 format=3 uid="uid://drhq6gxwrpafr"]
 
 [ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
 [ext_resource type="AudioStream" uid="uid://c82ldmaikyjxb" path="res://assets/BluePortal.mp3" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://d0k1a6sp617ph" path="res://scenes/bullet.tscn" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://c6lxgto7y61i5" path="res://scenes/gun.tscn" id="5_qlg0r"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpSFX", "gun")]
 script = ExtResource("1_g2els")
@@ -26,5 +27,6 @@ stream = ExtResource("3_qhqgy")
 
 [node name="bullets" type="Node2D" parent="."]
 
-[node name="gun" type="Node2D" parent="."]
-position = Vector2(108, 0)
+[node name="gun" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_qlg0r")]
+position = Vector2(120, 1)
+player = NodePath("..")

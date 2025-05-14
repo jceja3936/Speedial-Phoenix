@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cr3u30rrbym7b" path="res://assets/OSIRIS_Mars_true_color.jpg" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://dtqs3nyg0h1fm" path="res://bullet.gd" id="1_y25gk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mkf8s"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
+size = Vector2(14, 8)
 
 [node name="bullet" type="CharacterBody2D"]
 collision_layer = 2
@@ -17,4 +17,4 @@ scale = Vector2(0.00680272, 0.00362812)
 texture = ExtResource("1_v7oki")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_mkf8s")
+shape = SubResource("RectangleShape2D_y25gk")
