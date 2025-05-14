@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://e64wgf8otggf"]
+
+[ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/basicSquare.svg" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://be6urb1y6j6q4" path="res://scenes/death_box.tscn" id="3_w8frs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
+size = Vector2(50, 1071.5)
+
+[node name="Level" type="Node2D"]
+
+[node name="Walls" type="Node2D" parent="."]
+position = Vector2(40, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(1954, 324)
+shape = SubResource("RectangleShape2D_w7c3h")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+position = Vector2(958, -14)
+rotation = 1.5708
+scale = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_w7c3h")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2(920.5, 660.001)
+rotation = 1.5708
+scale = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_w7c3h")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D4"]
+position = Vector2(923, 663.5)
+scale = Vector2(35.4, 1.12963)
+texture = ExtResource("1_w7c3h")
+
+[node name="Player" parent="." instance=ExtResource("2_w8frs")]
+position = Vector2(147, 445)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(0, -100)
+
+[node name="Death box" parent="." instance=ExtResource("3_w8frs")]
+position = Vector2(-774, 824)
+respawnPnt = Vector2(147, 445)

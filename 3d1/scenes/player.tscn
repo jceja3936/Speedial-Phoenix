@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://drhq6gxwrpafr"]
+
+[ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
+[ext_resource type="AudioStream" uid="uid://c82ldmaikyjxb" path="res://assets/BluePortal.mp3" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://d0k1a6sp617ph" path="res://scenes/bullet.tscn" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://db36jxfuh4ote" path="res://scenes/gun.gd" id="5_qlg0r"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jumpSFX", "gun")]
+script = ExtResource("1_g2els")
+speed = 800
+jumpSFX = NodePath("AudioStreamPlayer2D")
+bullet = ExtResource("4_dqkch")
+gun = NodePath("gun")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("1_4flbx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(107, 74)
+scale = Vector2(6.05, 5.75)
+polygon = PackedVector2Array(-28.0992, -23.6522, -7.43802, -23.6522, -7.60331, -1.73913, -28.2645, -1.91304)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qhqgy")
+
+[node name="bullets" type="Node2D" parent="."]
+
+[node name="gun" type="Node2D" parent="."]
+position = Vector2(108, 0)
+script = ExtResource("5_qlg0r")
