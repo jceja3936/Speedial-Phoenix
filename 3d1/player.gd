@@ -6,37 +6,29 @@ const GRAVITY = 1000
 @export var jumpSFX : AudioStreamPlayer2D
 @export var bullet : PackedScene = load("res://scenes/bullet.tscn")
 @export var gun : Node2D
+var canFire : bool
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	pass # Replace with function body.
-
-
+	canFire = true
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	if Input.is_action_just_pressed("shoot"):
-		fire()
-		print("shoot pressed")
+	if Input.is_action_pressed("shoot"):
+		if canFire:
+			fire()
 		
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
-		
-	if Input.is_action_just_released("jump") and velocity.y < 0:
-		velocity.y = jump / 4
-	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump
-		jumpSFX.play()
-	var dir = Input.get_axis("Left","Right")
+
+	var dir = Input.get_vector("Left","Right", "Up", "Down")
 	if dir:
-		velocity.x = dir * speed
+		velocity = dir * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-	
+		velocity = Vector2(0,0)
 	move_and_slide()
 	
 func fire() -> void:
+	canFire = false
 	var bullet = bullet.instantiate()
 	bullet.dir = get_angle_to(get_global_mouse_position())
 	bullet.pos = gun.global_position
@@ -45,3 +37,6 @@ func fire() -> void:
 	await get_tree().create_timer(.8).timeout
 	bullet.queue_free()
 	
+
+func _on_timer_timeout() -> void:
+	canFire = true

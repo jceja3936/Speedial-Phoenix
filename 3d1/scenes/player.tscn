@@ -30,3 +30,9 @@ stream = ExtResource("3_qhqgy")
 [node name="gun" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_qlg0r")]
 position = Vector2(120, 1)
 player = NodePath("..")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
