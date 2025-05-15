@@ -7,6 +7,7 @@ const GRAVITY = 1000
 @export var bullet : PackedScene = load("res://scenes/bullet.tscn")
 @export var gun : Node2D
 var canFire : bool
+var rng = RandomNumberGenerator.new()
 
 
 func _ready() -> void:
@@ -22,6 +23,7 @@ func _physics_process(delta: float) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _process(delta: float) -> void:
+	look_at(get_global_mouse_position())
 	var dir = Input.get_vector("Left","Right", "Up", "Down")
 	if dir:
 		position += dir * speed * delta
@@ -32,7 +34,7 @@ func _process(delta: float) -> void:
 func fire() -> void:
 	canFire = false
 	var bullet = bullet.instantiate()
-	bullet.dir = get_angle_to(get_global_mouse_position())
+	bullet.dir = rotation + rng.randf_range(-.08, .08)
 	bullet.pos = gun.global_position
 	bullet.rota = global_rotation
 	add_child(bullet)

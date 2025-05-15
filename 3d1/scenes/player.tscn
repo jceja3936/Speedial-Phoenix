@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://d0k1a6sp617ph" path="res://scenes/bullet.tscn" id="4_dqkch"]
-[ext_resource type="PackedScene" uid="uid://c6lxgto7y61i5" path="res://scenes/gun.tscn" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/basicSquare.svg" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cadwgeq4p65vl" path="res://assets/9mm.wav" id="5_tuyoq"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shootSFX", "gun")]
@@ -15,18 +15,15 @@ gun = NodePath("gun")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
+scale = Vector2(1, 0.600001)
 texture = ExtResource("1_4flbx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(107, 74)
 scale = Vector2(6.05, 5.75)
-polygon = PackedVector2Array(-28.0992, -23.6522, -7.43802, -23.6522, -7.60331, -1.73913, -28.2645, -1.91304)
+polygon = PackedVector2Array(-27.6033, -19.3043, -8.09917, -18.9565, -7.93388, -6.43478, -27.9339, -6.26087)
 
 [node name="bullets" type="Node2D" parent="."]
-
-[node name="gun" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_qlg0r")]
-position = Vector2(120, 1)
-player = NodePath("..")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
@@ -34,5 +31,13 @@ autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_tuyoq")
+
+[node name="gun" type="Node2D" parent="."]
+position = Vector2(131, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="gun"]
+position = Vector2(-27, 0)
+scale = Vector2(1, 0.360002)
+texture = ExtResource("5_qlg0r")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
