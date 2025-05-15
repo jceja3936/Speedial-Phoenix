@@ -3,7 +3,7 @@ extends CharacterBody2D
 const GRAVITY = 1000
 @export var speed = 200
 @export var jump = -800
-@export var jumpSFX : AudioStreamPlayer2D
+@export var shootSFX :  AudioStreamPlayer2D
 @export var bullet : PackedScene = load("res://scenes/bullet.tscn")
 @export var gun : Node2D
 var canFire : bool
@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("shoot"):
 		if canFire:
+			shootSFX.play()
 			fire()
 		
 
@@ -34,8 +35,6 @@ func fire() -> void:
 	bullet.pos = gun.global_position
 	bullet.rota = global_rotation
 	add_child(bullet)
-	await get_tree().create_timer(.8).timeout
-	bullet.queue_free()
 	
 
 func _on_timer_timeout() -> void:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=14 format=3 uid="uid://e64wgf8otggf"]
 
 [ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/basicSquare.svg" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://be6urb1y6j6q4" path="res://scenes/death_box.tscn" id="3_w8frs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(57.5, 49.4118)
@@ -49,6 +50,8 @@ scale = Vector2(3.28417, 0.119149)
 [node name="StaticBody2D" type="StaticBody2D" parent="walls"]
 position = Vector2(-128.5, -3140.63)
 scale = Vector2(0.5, 53.125)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D"]
 texture = ExtResource("1_w7c3h")
@@ -60,6 +63,8 @@ shape = SubResource("RectangleShape2D_w7c3h")
 [node name="StaticBody2D2" type="StaticBody2D" parent="walls"]
 position = Vector2(-219, -4656.25)
 scale = Vector2(0.5, 15.625)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D2"]
 scale = Vector2(11.64, 0.76)
@@ -73,6 +78,8 @@ shape = SubResource("RectangleShape2D_w8frs")
 [node name="StaticBody2D3" type="StaticBody2D" parent="walls"]
 position = Vector2(201.5, -4656.25)
 scale = Vector2(0.5, 15.625)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D3"]
 scale = Vector2(11.64, 0.76)
@@ -85,6 +92,8 @@ shape = SubResource("RectangleShape2D_mx8sn")
 [node name="StaticBody2D4" type="StaticBody2D" parent="walls"]
 position = Vector2(104.5, -2031.25)
 scale = Vector2(0.5, 88.125)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D4"]
 texture = ExtResource("1_w7c3h")
@@ -96,6 +105,8 @@ shape = SubResource("RectangleShape2D_ppgk2")
 [node name="StaticBody2D5" type="StaticBody2D" parent="walls"]
 position = Vector2(-379, -843.75)
 scale = Vector2(0.5, 133.125)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D5"]
 position = Vector2(0, 15.5493)
@@ -110,6 +121,8 @@ shape = SubResource("RectangleShape2D_2r41h")
 position = Vector2(-253.5, 2281.25)
 rotation = 1.5708
 scale = Vector2(15.625, 4.26)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D6"]
 texture = ExtResource("1_w7c3h")
@@ -121,6 +134,8 @@ shape = SubResource("RectangleShape2D_klq6b")
 [node name="StaticBody2D7" type="StaticBody2D" parent="walls"]
 position = Vector2(-128.5, 1312.5)
 scale = Vector2(0.5, 53.125)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D7"]
 texture = ExtResource("1_w7c3h")
@@ -132,6 +147,8 @@ shape = SubResource("RectangleShape2D_b121j")
 [node name="StaticBody2D8" type="StaticBody2D" parent="walls"]
 position = Vector2(364.5, 1250)
 scale = Vector2(0.5, 209.375)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D8"]
 scale = Vector2(1, 1.1)
@@ -144,6 +161,8 @@ shape = SubResource("RectangleShape2D_8c41q")
 [node name="StaticBody2D9" type="StaticBody2D" parent="walls"]
 position = Vector2(-12.5, 7203.12)
 scale = Vector2(1.14, 15.625)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D9"]
 scale = Vector2(11.64, 0.76)
@@ -156,6 +175,8 @@ shape = SubResource("RectangleShape2D_olg7q")
 [node name="StaticBody2D11" type="StaticBody2D" parent="walls"]
 position = Vector2(104.5, 4937.5)
 scale = Vector2(0.5, 88.125)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D11"]
 texture = ExtResource("1_w7c3h")
@@ -163,3 +184,25 @@ texture = ExtResource("1_w7c3h")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D11"]
 position = Vector2(0, -0.177307)
 shape = SubResource("RectangleShape2D_t1rx8")
+
+[node name="Death box" parent="." instance=ExtResource("3_w8frs")]
+position = Vector2(953, -629)
+scale = Vector2(1.97971, 1.08173)
+respawnPnt = Vector2(964, 0)
+
+[node name="Death box2" parent="." instance=ExtResource("3_w8frs")]
+position = Vector2(926, 1848)
+scale = Vector2(1.99924, 1.17014)
+respawnPnt = Vector2(964, 0)
+
+[node name="Death box3" parent="." instance=ExtResource("3_w8frs")]
+position = Vector2(-945, 414)
+rotation = 1.56772
+scale = Vector2(1.99924, 1.17014)
+respawnPnt = Vector2(964, 0)
+
+[node name="Death box4" parent="." instance=ExtResource("3_w8frs")]
+position = Vector2(2691, 710)
+rotation = 1.56772
+scale = Vector2(1.99924, 1.17014)
+respawnPnt = Vector2(964, 0)
