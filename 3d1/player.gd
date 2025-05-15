@@ -35,6 +35,9 @@ func fire() -> void:
 	bullet.pos = gun.global_position
 	bullet.rota = global_rotation
 	add_child(bullet)
+	await get_tree().create_timer(1).timeout
+	if bullet:
+		bullet.queue_free()
 	
 
 func _on_timer_timeout() -> void:
