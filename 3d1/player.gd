@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const GRAVITY = 1000
-@export var speed = 200
+@export var speed = 800
 @export var jump = -800
 @export var shootSFX :  AudioStreamPlayer2D
 @export var bullet : PackedScene = load("res://scenes/bullet.tscn")
@@ -12,18 +12,19 @@ var canFire : bool
 func _ready() -> void:
 	canFire = true
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	
+func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		if canFire:
 			shootSFX.play()
 			fire()
-		
+	
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 
+func _process(delta: float) -> void:
 	var dir = Input.get_vector("Left","Right", "Up", "Down")
 	if dir:
-		velocity = dir * speed
+		position += dir * speed * delta
 	else:
 		velocity = Vector2(0,0)
 	move_and_slide()

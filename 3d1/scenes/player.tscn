@@ -8,7 +8,7 @@
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shootSFX", "gun")]
 script = ExtResource("1_g2els")
-speed = 800
+speed = 1000
 shootSFX = NodePath("AudioStreamPlayer2D")
 bullet = ExtResource("4_dqkch")
 gun = NodePath("gun")
