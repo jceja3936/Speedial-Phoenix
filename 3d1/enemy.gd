@@ -2,11 +2,14 @@ extends CharacterBody2D
 
 @export var player : CharacterBody2D
 @export var shootSFX :  AudioStreamPlayer2D
-@export var bullet : PackedScene = load("res://scenes/bullet.tscn")
+var bullet : PackedScene = load("res://scenes/bullet.tscn")
 @export var gun : Node2D
+@export var ray : RayCast2D
+
 var canFire = true
 var rng = RandomNumberGenerator.new()
 var seen = false
+var lastKnown
 
 func _ready() -> void:
 	_fireRateControll()
@@ -15,16 +18,19 @@ func _process(delta: float) -> void:
 	var wherePlayer = player.global_position - global_position
 	
 	if wherePlayer.length() < 1200:
-		$ray.target_position = $ray.to_local(player.global_position)
-		$ray.force_raycast_update()
-		if $ray.is_colliding():
-			var hit = $ray.get_collider()
+		ray.target_position = ray.to_local(player.global_position)
+		ray.force_raycast_update()
+		if ray.is_colliding():
+			var hit = ray.get_collider()
 			if hit == player:
 				look_at(player.global_position)
 				await attackPlayer()
 				seen = true
+				lastKnown = player.global_position
 			if hit != player:
 				seen = false
+				if lastKnown != null:
+					search()
 				
 #await get_tree().create_timer(1).timeout
 func attackPlayer() -> bool:
@@ -33,7 +39,14 @@ func attackPlayer() -> bool:
 	fire()
 	return true;
 	
-	
+func search() -> bool:
+	var direction = (lastKnown - global_position).normalized()
+	if global_position.distance_to(lastKnown) > 10:
+		velocity = direction * 800
+	else:
+		velocity = Vector2.ZERO
+	move_and_slide()
+	return true
 
 func fire() -> void:
 	if canFire:
