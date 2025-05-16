@@ -41,7 +41,6 @@ func fire() -> void:
 	await get_tree().create_timer(1).timeout
 	if bullet:
 		bullet.queue_free()
-	
 
 func _on_timer_timeout() -> void:
 	canFire = true

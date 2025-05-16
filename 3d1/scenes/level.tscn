@@ -15,7 +15,7 @@ size = Vector2(333.018, 2.48405)
 size = Vector2(702, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppgk2"]
-size = Vector2(57, 54.7872)
+size = Vector2(57, 93.9341)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2r41h"]
 size = Vector2(49, 88.7324)
@@ -33,7 +33,7 @@ size = Vector2(56, 57.2388)
 size = Vector2(696.491, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1rx8"]
-size = Vector2(58, 54.2553)
+size = Vector2(58, 19.1753)
 
 [node name="Level" type="Node2D"]
 
@@ -97,10 +97,12 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D4"]
+position = Vector2(0, 19.4058)
+scale = Vector2(1, 1.71873)
 texture = ExtResource("1_w7c3h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D4"]
-position = Vector2(-0.5, -0.443264)
+position = Vector2(-0.5, 19.1302)
 shape = SubResource("RectangleShape2D_ppgk2")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="walls"]
@@ -174,16 +176,18 @@ position = Vector2(0.438629, 0)
 shape = SubResource("RectangleShape2D_olg7q")
 
 [node name="StaticBody2D11" type="StaticBody2D" parent="walls"]
-position = Vector2(104.5, 4937.5)
+position = Vector2(106.267, 5849.82)
 scale = Vector2(0.5, 88.125)
 collision_layer = 3
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D11"]
+position = Vector2(-1.3372, 2.67147)
+scale = Vector2(1, 0.356439)
 texture = ExtResource("1_w7c3h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D11"]
-position = Vector2(0, -0.177307)
+position = Vector2(-1.94629, 2.44478)
 shape = SubResource("RectangleShape2D_t1rx8")
 
 [node name="Death box" parent="." instance=ExtResource("3_w8frs")]
