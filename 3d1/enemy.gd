@@ -3,18 +3,38 @@ extends CharacterBody2D
 @export var player : CharacterBody2D
 @export var shootSFX :  AudioStreamPlayer2D
 var bullet : PackedScene = load("res://scenes/bullet.tscn")
+var deathTexture : Texture = load("res://assets/icon.svg")
 @export var gun : Node2D
 @export var ray : RayCast2D
 
 var canFire = true
 var rng = RandomNumberGenerator.new()
 var seen = false
+var enemy = true
 var lastKnown
+var health = 200
+var dead = false
+var speed = 800
 
 func _ready() -> void:
 	_fireRateControll()
+	
+func die() -> void:
+	$Sprite2D.texture = deathTexture
+	$Sprite2D.scale.x = 1
+	$Sprite2D.scale.y = 1
+	$CollisionShape2D.queue_free()
+	dead = true;
+	
+func hit() -> void:
+	health -= 100
+	if health <= 0:
+		die()
 
 func _process(delta: float) -> void:
+	if dead:
+		return
+	
 	var wherePlayer = player.global_position - global_position
 	
 	if wherePlayer.length() < 1200:
@@ -31,7 +51,8 @@ func _process(delta: float) -> void:
 				seen = false
 				if lastKnown != null:
 					search()
-				
+	
+			
 #await get_tree().create_timer(1).timeout
 func attackPlayer() -> bool:
 	if !seen:
@@ -62,6 +83,8 @@ func fire() -> void:
 			bullet.queue_free()
 
 func _fireRateControll() -> void:
+	if dead:
+		return
 	canFire = true
 	await get_tree().create_timer(.2).timeout
 	_fireRateControll()

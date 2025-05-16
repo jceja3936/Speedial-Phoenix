@@ -6,17 +6,20 @@
 [ext_resource type="AudioStream" uid="uid://cadwgeq4p65vl" path="res://assets/9mm.wav" id="4_5uy6h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
-radius = 31.0243
-height = 172.12
+radius = 50.0633
+height = 196.063
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("shootSFX", "gun", "ray")]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_4ra3w")
 shootSFX = NodePath("AudioStreamPlayer2D")
 gun = NodePath("gun")
 ray = NodePath("ray")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.440005, 0.239999)
+position = Vector2(-4.68954, -4.46008)
+scale = Vector2(0.465286, 0.266706)
 texture = ExtResource("1_7k104")
 
 [node name="gun" type="Node2D" parent="."]
@@ -28,6 +31,7 @@ scale = Vector2(1, 0.360002)
 texture = ExtResource("2_md0e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
 rotation = -1.55722
 shape = SubResource("CapsuleShape2D_md0e3")
 

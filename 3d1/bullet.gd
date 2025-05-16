@@ -4,6 +4,7 @@ var pos:Vector2
 var dir:float
 var rota: float
 var speed = 1800
+var bullet = true
 
 
 func _ready() -> void:
@@ -15,7 +16,14 @@ func _physics_process(delta: float) -> void:
 	velocity = Vector2(speed, 0).rotated(dir) 
 	move_and_slide()
 	
-	for i in get_slide_collision_count():
-		if get_slide_collision(i).get_collider().get("speed") != 200:
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if not collider.has_method("hit"):
+			queue_free()
+			
+		if collider.get("enemy") == true:
+			collider.call("hit")
 			queue_free()
 	
