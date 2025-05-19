@@ -3,9 +3,12 @@ extends CharacterBody2D
 const GRAVITY = 1000
 @export var speed = 800
 @export var jump = -800
+@export var health = 200
 @export var shootSFX :  AudioStreamPlayer2D
 @export var bullet : PackedScene = load("res://scenes/bullet.tscn")
 @export var gun : Node2D
+var dead = false
+var deathTexture : Texture = load("res://assets/icon.svg")
 var canFire : bool
 var rng = RandomNumberGenerator.new()
 
@@ -14,15 +17,32 @@ func _ready() -> void:
 	canFire = true
 	
 func _physics_process(delta: float) -> void:
+	
+	if dead:
+		return
+	
 	if Input.is_action_pressed("shoot"):
 		if canFire:
 			shootSFX.play()
 			fire()
+
+func hit() -> void:
+	health -= 100
+	if health <= 0:
+		die()
 	
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func die() -> void:
+	$Sprite2D.texture = deathTexture
+	$Sprite2D.scale.x = 1
+	$Sprite2D.scale.y = 1
+	$CollisionPolygon2D.queue_free()
+	dead = true;
 
 func _process(delta: float) -> void:
+	
+	if dead:
+		return
+	
 	look_at(get_global_mouse_position())
 	var dir = Input.get_vector("Left","Right", "Up", "Down")
 	if dir:
@@ -43,4 +63,6 @@ func fire() -> void:
 		bullet.queue_free()
 
 func _on_timer_timeout() -> void:
+	if dead:
+		return
 	canFire = true

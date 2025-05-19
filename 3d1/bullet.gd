@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 		if not collider.has_method("hit"):
 			queue_free()
 			
-		if collider.get("enemy") == true:
+		if collider.get("dead") == false:
 			collider.call("hit")
 			queue_free()
 	
