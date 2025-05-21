@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-@export var player : CharacterBody2D
-@export var shootSFX :  AudioStreamPlayer2D
-var bullet : PackedScene = load("res://scenes/bullet.tscn")
-var deathTexture : Texture = load("res://assets/icon.svg")
-@export var gun : Node2D
-@export var ray : RayCast2D
+@export var player: CharacterBody2D
+@export var shootSFX: AudioStreamPlayer2D
+var bullet: PackedScene = load("res://scenes/bullet.tscn")
+var deathTexture: Texture = load("res://assets/icon.svg")
+@export var gun: Node2D
+@export var ray: RayCast2D
 
 var canFire = true
 var rng = RandomNumberGenerator.new()
@@ -31,7 +31,7 @@ func hit() -> void:
 	if health <= 0:
 		die()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if dead:
 		return
 	
@@ -41,13 +41,13 @@ func _process(delta: float) -> void:
 		ray.target_position = ray.to_local(player.global_position)
 		ray.force_raycast_update()
 		if ray.is_colliding():
-			var hit = ray.get_collider()
-			if hit == player:
+			var collider = ray.get_collider()
+			if collider == player:
 				look_at(player.global_position)
 				await attackPlayer()
 				seen = true
 				lastKnown = player.global_position
-			if hit != player:
+			if collider != player:
 				seen = false
 				if lastKnown != null:
 					search()
