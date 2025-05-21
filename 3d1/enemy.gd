@@ -62,7 +62,7 @@ func attackPlayer() -> bool:
 	
 func search() -> bool:
 	var direction = (lastKnown - global_position).normalized()
-	if global_position.distance_to(lastKnown) > 10:
+	if global_position.distance_to(lastKnown) > 20:
 		velocity = direction * 800
 	else:
 		velocity = Vector2.ZERO
@@ -74,6 +74,7 @@ func fire() -> void:
 		shootSFX.play()
 		canFire = false
 		var bullet = bullet.instantiate()
+		bullet.set("fromWho", "enemy")
 		bullet.dir = rotation + rng.randf_range(-.08, .08)
 		bullet.pos = gun.global_position
 		bullet.rota = global_rotation

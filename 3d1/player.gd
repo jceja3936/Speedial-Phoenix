@@ -7,9 +7,11 @@ const GRAVITY = 1000
 @export var shootSFX :  AudioStreamPlayer2D
 @export var bullet : PackedScene = load("res://scenes/bullet.tscn")
 @export var gun : Node2D
+
 var dead = false
 var deathTexture : Texture = load("res://assets/icon.svg")
 var canFire : bool
+var playa = true
 var rng = RandomNumberGenerator.new()
 
 
@@ -32,6 +34,7 @@ func hit() -> void:
 		die()
 	
 func die() -> void:
+	return
 	$Sprite2D.texture = deathTexture
 	$Sprite2D.scale.x = 1
 	$Sprite2D.scale.y = 1
