@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=17 format=3 uid="uid://e64wgf8otggf"]
 
 [ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/basicSquare.svg" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="2_w8frs"]
 [ext_resource type="PackedScene" uid="uid://be6urb1y6j6q4" path="res://scenes/death_box.tscn" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/enemy.tscn" id="4_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://byqq6tb73yo2i" path="res://scenes/pistol.tscn" id="5_ppgk2"]
+[ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://scenes/camera_2d.gd" id="6_2r41h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(57.5, 49.4118)
@@ -38,12 +39,9 @@ size = Vector2(58, 19.1753)
 
 [node name="Level" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("2_w8frs")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_w8frs")]
 position = Vector2(964, -239)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-offset = Vector2(0, -100)
-zoom = Vector2(0.6, 0.6)
+camera = NodePath("../Camera2D")
 
 [node name="walls" type="Node2D" parent="."]
 position = Vector2(978, 441)
@@ -229,5 +227,20 @@ player = NodePath("../Player")
 position = Vector2(1075, -237)
 collision_layer = 2
 collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(964, -239)
+offset = Vector2(0, -100)
+zoom = Vector2(0.6, 0.6)
+script = ExtResource("6_2r41h")
+player = NodePath("../Player")
+
+[node name="AmAm" type="Label" parent="Camera2D"]
+offset_left = -933.0
+offset_top = 331.0
+offset_right = -864.0
+offset_bottom = 354.0
+scale = Vector2(3.27999, 4.28)
+text = "Ammo: 0"
 
 [connection signal="pickedUp" from="pistol" to="Player" method="_on_pistol_picked_up"]

@@ -21,3 +21,4 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Pick up") and closeEnough:
 		if lastEntered.has_method("weaponGrabbed"):
 			lastEntered.call("weaponGrabbed", .2, "bruh")
+			queue_free()

@@ -6,8 +6,7 @@ const GRAVITY = 1000
 @export var health = 200
 @export var shootSFX: AudioStreamPlayer2D
 @export var bullet: PackedScene = load("res://scenes/bullet.tscn")
-
-var gunTexture: Texture = load("res://assets/basicSquare.svg")
+@export var camera: Camera2D
 
 var dead = false
 var deathTexture: Texture = load("res://assets/icon.svg")
@@ -16,10 +15,13 @@ var playa = true
 var rng = RandomNumberGenerator.new()
 var fireRate = .2
 var gunPickedUp = false
+var ammo = 21
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("shoot") and canFire:
+	if Input.is_action_pressed("shoot") and canFire and ammo > 0:
 		fire()
+		ammo -= 1
+		camera.get_child(0).text = "Ammo: " + str(ammo)
 
 	
 func hit() -> void:
@@ -70,8 +72,9 @@ func weaponGrabbed(value: float, sprite: String) -> void:
 	fireRate = value
 	gunPickedUp = true
 	_fireRateControll()
-	print("Yeah babsy")
-	$hun.texture = gunTexture
-	if sprite == "bruh":
-		$hun.scale.x = .9
-		$hun.scale.y = .25
+	camera.get_child(0).show()
+	camera.get_child(0).text = "Ammo: " + str(ammo)
+	$hun.update_values(1)
+
+func getAmmo():
+	return ammo
