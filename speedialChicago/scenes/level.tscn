@@ -87,6 +87,7 @@ texture = ExtResource("1_w7c3h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D3"]
 position = Vector2(2, -0.5)
+scale = Vector2(0.94753, 1.0292)
 shape = SubResource("RectangleShape2D_mx8sn")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="walls"]
@@ -242,5 +243,3 @@ offset_right = -864.0
 offset_bottom = 354.0
 scale = Vector2(3.27999, 4.28)
 text = "Ammo: 0"
-
-[connection signal="pickedUp" from="pistol" to="Player" method="_on_pistol_picked_up"]

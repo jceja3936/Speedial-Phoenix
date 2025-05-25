@@ -11,13 +11,29 @@ const GRAVITY = 1000
 var dead = false
 var deathTexture: Texture = load("res://assets/icon.svg")
 var canFire = false
-var playa = true
+
 var rng = RandomNumberGenerator.new()
 var fireRate = .2
+var playa = true
 var gunPickedUp = false
-var ammo = 21
+var ammo = 0
+var gunType = 0
+
+func _ready():
+	_fireRateControll()
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
+
+	if Input.is_action_just_pressed("Drop") and gunPickedUp:
+		$hun.set("ammo", ammo)
+		$hun.dropWeapon(gunType)
+		camera.get_child(0).hide()
+		$hun.update_values(0)
+		ammo = 0
+		gunPickedUp = false
+
 	if Input.is_action_pressed("shoot") and canFire and ammo > 0:
 		fire()
 		ammo -= 1
@@ -64,17 +80,19 @@ func fire() -> void:
 func _fireRateControll() -> void:
 	if dead:
 		return
-	canFire = true
+	if !gunPickedUp:
+		canFire = false
+	else:
+		canFire = true
 	await get_tree().create_timer(fireRate).timeout
 	_fireRateControll()
 
-func weaponGrabbed(value: float, sprite: String) -> void:
+
+func weaponGrabbed(value: float, gun: int, currentAmmo: int) -> void:
 	fireRate = value
 	gunPickedUp = true
-	_fireRateControll()
 	camera.get_child(0).show()
+	ammo = currentAmmo
 	camera.get_child(0).text = "Ammo: " + str(ammo)
-	$hun.update_values(1)
-
-func getAmmo():
-	return ammo
+	$hun.update_values(gun)
+	gunType = gun

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var pos:Vector2
-var dir:float
+var pos: Vector2
+var dir: float
 var rota: float
 var speed = 1800
 var bullet = true
@@ -13,7 +13,7 @@ func _ready() -> void:
 	global_rotation = rota
 
 func _physics_process(delta: float) -> void:
-	velocity = Vector2(speed, 0).rotated(dir) 
+	velocity = Vector2(speed, 0).rotated(dir)
 	move_and_slide()
 	
 	for i in range(get_slide_collision_count()):
@@ -31,4 +31,3 @@ func _physics_process(delta: float) -> void:
 		if collider.get("playa") == true:
 			collider.call("hit")
 			queue_free()
-	
