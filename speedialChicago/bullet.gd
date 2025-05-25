@@ -6,13 +6,13 @@ var rota: float
 var speed = 1800
 var bullet = true
 var fromWho = ""
-
+var damage = 100
 func _ready() -> void:
 	top_level = true
 	global_position = pos
 	global_rotation = rota
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = Vector2(speed, 0).rotated(dir)
 	move_and_slide()
 	
@@ -25,9 +25,9 @@ func _physics_process(delta: float) -> void:
 			
 		if collider.get("enemy") == true:
 			if fromWho != "enemy":
-				collider.call("hit")
+				collider.call("hit", 100)
 			queue_free()
 			
 		if collider.get("playa") == true:
-			collider.call("hit")
+			collider.call("hit", 100)
 			queue_free()

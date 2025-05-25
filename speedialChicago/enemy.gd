@@ -26,8 +26,8 @@ func die() -> void:
 	$CollisionShape2D.queue_free()
 	dead = true;
 	
-func hit() -> void:
-	health -= 100
+func hit(damage: int) -> void:
+	health -= damage
 	if health <= 0:
 		die()
 
@@ -73,15 +73,15 @@ func fire() -> void:
 	if canFire:
 		shootSFX.play()
 		canFire = false
-		var bullet = bullet.instantiate()
-		bullet.set("fromWho", "enemy")
-		bullet.dir = rotation + rng.randf_range(-.08, .08)
-		bullet.pos = gun.global_position
-		bullet.rota = global_rotation
-		add_child(bullet)
+		var bull = bullet.instantiate()
+		bull.set("fromWho", "enemy")
+		bull.dir = rotation + rng.randf_range(-.08, .08)
+		bull.pos = gun.global_position
+		bull.rota = global_rotation
+		add_child(bull)
 		await get_tree().create_timer(1).timeout
-		if bullet:
-			bullet.queue_free()
+		if bull:
+			bull.queue_free()
 
 func _fireRateControll() -> void:
 	if dead:

@@ -22,7 +22,7 @@ var gunType = 0
 func _ready():
 	_fireRateControll()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if dead:
 		return
 
@@ -40,8 +40,8 @@ func _physics_process(delta: float) -> void:
 		camera.get_child(0).text = "Ammo: " + str(ammo)
 
 	
-func hit() -> void:
-	health -= 100
+func hit(damage: int) -> void:
+	health -= damage
 	if health <= 0:
 		die()
 	
@@ -67,14 +67,14 @@ func _process(delta: float) -> void:
 func fire() -> void:
 	shootSFX.play()
 	canFire = false
-	var bullet = bullet.instantiate()
-	bullet.dir = rotation + rng.randf_range(-.08, .08)
-	bullet.pos = $hun.global_position
-	bullet.rota = global_rotation
-	add_child(bullet)
+	var bull = bullet.instantiate()
+	bull.dir = rotation + rng.randf_range(-.08, .08)
+	bull.pos = $hun.global_position
+	bull.rota = global_rotation
+	add_child(bull)
 	await get_tree().create_timer(1).timeout
-	if bullet:
-		bullet.queue_free()
+	if bull:
+		bull.queue_free()
 
 
 func _fireRateControll() -> void:

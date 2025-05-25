@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://d0k1a6sp617ph" path="res://scenes/bullet.tscn" id="4_dqkch"]
-[ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://scenes/hun.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://hun.gd" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cadwgeq4p65vl" path="res://assets/9mm.wav" id="5_tuyoq"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shootSFX")]
