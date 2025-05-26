@@ -226,12 +226,12 @@ collision_mask = 1
 player = NodePath("../Player")
 
 [node name="Rifle" parent="." instance=ExtResource("7_klq6b")]
-position = Vector2(1075, -291)
+position = Vector2(1183, 21)
 collision_layer = 2
 collision_mask = 2
 
 [node name="pistol" parent="." instance=ExtResource("5_ppgk2")]
-position = Vector2(1082, -274)
+position = Vector2(776, 40.9999)
 collision_layer = 2
 collision_mask = 2
 
@@ -249,3 +249,13 @@ offset_right = -864.0
 offset_bottom = 354.0
 scale = Vector2(3.27999, 4.28)
 text = "Ammo: 0"
+
+[node name="Respawn" type="Label" parent="Camera2D"]
+modulate = Color(0.928705, 0.202404, 0, 1)
+offset_left = -170.0
+offset_top = -223.0
+offset_right = -87.0
+offset_bottom = -174.0
+scale = Vector2(4, 4)
+text = " You Died!
+(Hit Space)"

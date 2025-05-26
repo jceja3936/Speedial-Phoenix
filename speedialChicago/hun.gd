@@ -24,23 +24,19 @@ func update_values(value: int):
 
 	texture = currentSprite
 
+func instantiate(type: PackedScene):
+	var instance = type.instantiate()
+	instance.setAmmo(ammo)
+	instance.set_collision_layer_value(2, true)
+	instance.set_collision_mask_value(2, true)
+	instance.set_collision_layer_value(1, false)
+	instance.set_collision_mask_value(1, false)
+	instance.position = global_position
+	get_tree().root.add_child(instance)
+
 func dropWeapon(gun: int):
 	match gun:
 		1:
-			var pistolInstance = pistol.instantiate()
-			pistolInstance.setAmmo(ammo)
-			pistolInstance.set_collision_layer_value(2, true)
-			pistolInstance.set_collision_mask_value(2, true)
-			pistolInstance.set_collision_layer_value(1, false)
-			pistolInstance.set_collision_mask_value(1, false)
-			pistolInstance.position = global_position
-			get_tree().root.add_child(pistolInstance)
+			instantiate(pistol)
 		2:
-			var rifleInstance = rifle.instantiate()
-			rifleInstance.setAmmo(ammo)
-			rifleInstance.set_collision_layer_value(2, true)
-			rifleInstance.set_collision_mask_value(2, true)
-			rifleInstance.set_collision_layer_value(1, false)
-			rifleInstance.set_collision_mask_value(1, false)
-			rifleInstance.position = global_position
-			get_tree().root.add_child(rifleInstance)
+			instantiate(rifle)

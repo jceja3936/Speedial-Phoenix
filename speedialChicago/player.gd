@@ -5,11 +5,12 @@ const GRAVITY = 1000
 @export var jump = -800
 @export var health = 200
 @export var shootSFX: AudioStreamPlayer2D
-@export var bullet: PackedScene = load("res://scenes/bullet.tscn")
 @export var camera: Camera2D
 
-var dead = false
+var bullet: PackedScene = load("res://scenes/bullet.tscn")
 var deathTexture: Texture = load("res://assets/icon.svg")
+
+var dead = false
 var canFire = false
 
 var rng = RandomNumberGenerator.new()
@@ -24,6 +25,9 @@ func _ready():
 	_fireRateControll()
 
 func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed("Respawn") and dead:
+		get_tree().change_scene_to_file("res://scenes/level.tscn")
+
 	if dead:
 		return
 
@@ -51,6 +55,7 @@ func die() -> void:
 	$Sprite2D.scale.x = 1
 	$Sprite2D.scale.y = 1
 	$CollisionShape2D.queue_free()
+	camera.get_child(1).show()
 	dead = true;
 
 func _process(delta: float) -> void:

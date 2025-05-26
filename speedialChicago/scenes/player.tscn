@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://drhq6gxwrpafr"]
+[gd_scene load_steps=6 format=3 uid="uid://drhq6gxwrpafr"]
 
 [ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
-[ext_resource type="PackedScene" uid="uid://d0k1a6sp617ph" path="res://scenes/bullet.tscn" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://hun.gd" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cadwgeq4p65vl" path="res://assets/9mm.wav" id="5_tuyoq"]
 
@@ -13,7 +12,6 @@ radius = 40.0125
 script = ExtResource("1_g2els")
 speed = 1000
 shootSFX = NodePath("AudioStreamPlayer2D")
-bullet = ExtResource("4_dqkch")
 metadata/pla = "fe"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
