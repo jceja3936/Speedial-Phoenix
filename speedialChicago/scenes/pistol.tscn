@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/basicSquare.svg" id="1_igbvm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_buff3"]
-radius = 152.191
+radius = 107.65
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buff3"]
 size = Vector2(110.048, 50)

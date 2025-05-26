@@ -18,7 +18,7 @@ func _on_area_2d_body_exited(_body: Node2D) -> void:
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Pick up") and closeEnough:
 		if lastEntered.has_method("weaponGrabbed"):
-			lastEntered.call("weaponGrabbed", .2, 1, currentAmmo)
+			lastEntered.call("weaponGrabbed", .2, 1, currentAmmo, 100)
 			queue_free()
 
 func setAmmo(amount: int):

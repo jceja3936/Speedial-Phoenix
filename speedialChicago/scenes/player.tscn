@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://drhq6gxwrpafr"]
+[gd_scene load_steps=7 format=3 uid="uid://drhq6gxwrpafr"]
 
 [ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://d0k1a6sp617ph" path="res://scenes/bullet.tscn" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://hun.gd" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cadwgeq4p65vl" path="res://assets/9mm.wav" id="5_tuyoq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
+radius = 40.0125
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shootSFX")]
 script = ExtResource("1_g2els")
@@ -18,11 +21,6 @@ position = Vector2(-1, 0)
 scale = Vector2(1, 0.600001)
 texture = ExtResource("1_4flbx")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(107, 74)
-scale = Vector2(6.05, 5.75)
-polygon = PackedVector2Array(-27.6033, -19.3043, -8.09917, -18.9565, -7.93388, -6.43478, -27.9339, -6.26087)
-
 [node name="bullets" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
@@ -33,8 +31,12 @@ autostart = true
 stream = ExtResource("5_tuyoq")
 
 [node name="hun" type="Sprite2D" parent="."]
-position = Vector2(98, 0)
-scale = Vector2(0.9, 0.25)
+position = Vector2(112.024, 2.64657)
+rotation = 1.27299
+scale = Vector2(0.611769, 0.622459)
 script = ExtResource("5_qlg0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qlg0r")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

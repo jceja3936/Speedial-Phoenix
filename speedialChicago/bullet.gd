@@ -3,14 +3,16 @@ extends CharacterBody2D
 var pos: Vector2
 var dir: float
 var rota: float
+var damage: int
 var speed = 1800
 var bullet = true
 var fromWho = ""
-var damage = 100
+
 func _ready() -> void:
 	top_level = true
 	global_position = pos
 	global_rotation = rota
+
 
 func _physics_process(_delta: float) -> void:
 	velocity = Vector2(speed, 0).rotated(dir)
@@ -25,9 +27,9 @@ func _physics_process(_delta: float) -> void:
 			
 		if collider.get("enemy") == true:
 			if fromWho != "enemy":
-				collider.call("hit", 100)
+				collider.call("hit", damage)
 			queue_free()
 			
 		if collider.get("playa") == true:
-			collider.call("hit", 100)
+			collider.call("hit", damage)
 			queue_free()

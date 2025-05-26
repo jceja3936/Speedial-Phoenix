@@ -18,6 +18,7 @@ var playa = true
 var gunPickedUp = false
 var ammo = 0
 var gunType = 0
+var dammage = 100
 
 func _ready():
 	_fireRateControll()
@@ -49,7 +50,7 @@ func die() -> void:
 	$Sprite2D.texture = deathTexture
 	$Sprite2D.scale.x = 1
 	$Sprite2D.scale.y = 1
-	$CollisionPolygon2D.queue_free()
+	$CollisionShape2D.queue_free()
 	dead = true;
 
 func _process(delta: float) -> void:
@@ -71,6 +72,7 @@ func fire() -> void:
 	bull.dir = rotation + rng.randf_range(-.08, .08)
 	bull.pos = $hun.global_position
 	bull.rota = global_rotation
+	bull.damage = dammage
 	add_child(bull)
 	await get_tree().create_timer(1).timeout
 	if bull:
@@ -87,11 +89,13 @@ func _fireRateControll() -> void:
 	await get_tree().create_timer(fireRate).timeout
 	_fireRateControll()
 
+#value is fire rate, gun is guntype, bulldam is bullet damage
 
-func weaponGrabbed(value: float, gun: int, currentAmmo: int) -> void:
+func weaponGrabbed(value: float, gun: int, currentAmmo: int, bullDam: int) -> void:
 	fireRate = value
 	gunPickedUp = true
 	camera.get_child(0).show()
+	dammage = bullDam
 	ammo = currentAmmo
 	camera.get_child(0).text = "Ammo: " + str(ammo)
 	$hun.update_values(gun)

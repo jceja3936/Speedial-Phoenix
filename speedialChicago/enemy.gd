@@ -77,6 +77,7 @@ func fire() -> void:
 		bull.set("fromWho", "enemy")
 		bull.dir = rotation + rng.randf_range(-.08, .08)
 		bull.pos = gun.global_position
+		bull.damage = 100
 		bull.rota = global_rotation
 		add_child(bull)
 		await get_tree().create_timer(1).timeout
