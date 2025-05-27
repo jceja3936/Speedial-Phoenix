@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=19 format=3 uid="uid://e64wgf8otggf"]
 
 [ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/basicSquare.svg" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="2_w8frs"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://byqq6tb73yo2i" path="res://scenes/pistol.tscn" id="5_ppgk2"]
 [ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://camera_2d.gd" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://bfkltf78e2mmp" path="res://scenes/rifle.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://dowe60l1v3rl6" path="res://scenes/shotgun.tscn" id="8_b121j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(57.5, 49.4118)
@@ -238,7 +239,6 @@ collision_mask = 2
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(964, -239)
 offset = Vector2(0, -100)
-zoom = Vector2(0.6, 0.6)
 script = ExtResource("6_2r41h")
 player = NodePath("../Player")
 
@@ -259,3 +259,8 @@ offset_bottom = -174.0
 scale = Vector2(4, 4)
 text = " You Died!
 (Hit Space)"
+
+[node name="shotgun" parent="." instance=ExtResource("8_b121j")]
+position = Vector2(1162, -130)
+collision_layer = 2
+collision_mask = 2

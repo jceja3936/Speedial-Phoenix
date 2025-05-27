@@ -4,7 +4,7 @@ var pos: Vector2
 var dir: float
 var rota: float
 var damage: int
-var speed = 1800
+var speed = 2500
 var bullet = true
 var fromWho = ""
 
@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 		var collider = collision.get_collider()
 		
 	#If the collided object doesn't have method "hit", the bullet can safely delete.
-		if not collider.has_method("hit"):
+		if not collider.has_method("hit") and not collider.get("bullet"):
 			queue_free()
 			
 	#If that if was passed, it either hit an enemy or a player

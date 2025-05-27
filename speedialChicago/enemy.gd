@@ -26,6 +26,7 @@ func die() -> void:
 	$Sprite2D.scale.y = 1
 	$CollisionShape2D.queue_free()
 	dead = true;
+	set_script(null)
 	
 func hit(damage: int) -> void:
 	health -= damage
@@ -40,7 +41,7 @@ func _process(_delta: float) -> void:
 	
 	#This mess handles the main decision making of the enemy
 	#If player is within the sight range
-	if wherePlayer.length() < 1200:
+	if wherePlayer.length() < 1600:
 		#Raycays to their position
 		ray.target_position = ray.to_local(player.global_position)
 		ray.force_raycast_update()

@@ -8,6 +8,7 @@ size = Vector2(14, 8)
 
 [node name="bullet" type="CharacterBody2D"]
 scale = Vector2(2.8, 1.92)
+collision_layer = 0
 script = ExtResource("1_y25gk")
 metadata/_edit_group_ = true
 
@@ -17,4 +18,5 @@ scale = Vector2(0.04, 0.03)
 texture = ExtResource("2_y25gk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_y25gk")

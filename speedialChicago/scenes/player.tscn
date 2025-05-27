@@ -1,17 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://drhq6gxwrpafr"]
+[gd_scene load_steps=7 format=3 uid="uid://drhq6gxwrpafr"]
 
 [ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
+[ext_resource type="AudioStream" uid="uid://dwyqm1dw0vmv8" path="res://assets/Big Boing.wav" id="5_fjrip"]
 [ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://hun.gd" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cadwgeq4p65vl" path="res://assets/9mm.wav" id="5_tuyoq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
 radius = 40.0125
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shootSFX")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shootSFX", "shotgunSFX")]
 script = ExtResource("1_g2els")
-speed = 1000
 shootSFX = NodePath("AudioStreamPlayer2D")
+shotgunSFX = NodePath("AudioStreamPlayer2D2")
 metadata/pla = "fe"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -29,12 +30,14 @@ autostart = true
 stream = ExtResource("5_tuyoq")
 
 [node name="hun" type="Sprite2D" parent="."]
-position = Vector2(112.024, 2.64657)
-rotation = 1.27299
-scale = Vector2(0.611769, 0.622459)
+position = Vector2(128, -4.52995e-06)
 script = ExtResource("5_qlg0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qlg0r")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fjrip")
+volume_db = 7.658
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

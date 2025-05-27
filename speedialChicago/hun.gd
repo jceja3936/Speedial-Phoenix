@@ -5,6 +5,7 @@ var mags = 0;
 var currentSprite: Texture
 var pistol: PackedScene = load("res://scenes/pistol.tscn")
 var rifle: PackedScene = load("res://scenes/rifle.tscn")
+var shotgun: PackedScene = load("res://scenes/shotgun.tscn")
 
 
 func update_values(value: int):
@@ -20,6 +21,11 @@ func update_values(value: int):
 			scale.x = 0.612
 			scale.y = 0.622
 			rotation_degrees = 72.9
+		3:
+			currentSprite = load("res://assets/Frog 2-c.svg")
+			rotation_degrees = 17.0
+			scale.x = 0.612
+			scale.y = 0.289
 
 
 	texture = currentSprite
@@ -40,3 +46,5 @@ func dropWeapon(gun: int):
 			instantiate(pistol)
 		2:
 			instantiate(rifle)
+		3:
+			instantiate(shotgun)
