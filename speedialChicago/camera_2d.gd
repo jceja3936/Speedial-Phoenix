@@ -9,6 +9,11 @@ func _process(_delta: float) -> void:
 		get_tree().change_scene_to_file("res://scenes/level.tscn")
 
 
+func updateAmmo(amount: int):
+	$AmAm.show()
+	$AmAm.text = "Ammo: " + str(amount)
+
+
 func _ready() -> void:
 	$AmAm.hide()
 	$Respawn.hide()

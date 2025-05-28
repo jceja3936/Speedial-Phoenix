@@ -9,10 +9,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
 radius = 40.0125
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shootSFX", "shotgunSFX")]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
-shootSFX = NodePath("AudioStreamPlayer2D")
-shotgunSFX = NodePath("AudioStreamPlayer2D2")
 metadata/pla = "fe"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

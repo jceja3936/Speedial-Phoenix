@@ -1,0 +1,10 @@
+Scratch Paper:
+func _fireRateControll() -> void:
+	if dead:
+		return
+	if !gunPickedUp:
+		canFire = false
+	else:
+		canFire = true
+	await get_tree().create_timer(fireRate).timeout
+	_fireRateControll()

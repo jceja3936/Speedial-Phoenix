@@ -1,15 +1,79 @@
 extends Sprite2D
 
-var ammo = 21;
-var mags = 0;
 var currentSprite: Texture
+var bullet: PackedScene = load("res://scenes/bullet.tscn")
+var rng = RandomNumberGenerator.new()
+
 var pistol: PackedScene = load("res://scenes/pistol.tscn")
 var rifle: PackedScene = load("res://scenes/rifle.tscn")
 var shotgun: PackedScene = load("res://scenes/shotgun.tscn")
 
+var pSound = load("res://assets/9mm.wav")
 
-func update_values(value: int):
+var gunPickedUp = false
+
+var canFire = false
+var ammo = 10;
+var gunType = 1
+var dammage = 100
+var fireRate = .2
+
+#Updates Player on current ammo amount:
+func getAmmo() -> int:
+	return ammo
+
+
+#Functions that Shoot the gun
+func _process(_delta: float) -> void:
+	if Input.is_action_pressed("shoot") and canFire and ammo > 0:
+		fire()
+		ammo -= 1
+		get_node("/root/Level/Camera2D/AmAm").text = "Ammo:" + str(ammo)
+
+	if Input.is_action_just_pressed("Drop") and gunPickedUp:
+		dropWeapon(gunType)
+		get_node("/root/Level/Camera2D/AmAm").hide()
+		update_values(0, 0)
+		
+
+func fire() -> void:
+	if gunType == 3:
+		for i in range(6):
+			canFire = false
+			var bull = bullet.instantiate()
+			bull.dir = get_parent().rotation + rng.randf_range(-.18, .18)
+			bull.pos = global_position
+			bull.rota = global_rotation
+			bull.damage = dammage
+			get_tree().root.add_child(bull)
+		Manager.playSound("sSound")
+		wait()
+	else:
+		wait()
+		canFire = false
+		Manager.playSound("pSound")
+		var bull = bullet.instantiate()
+		bull.dir = get_parent().rotation + rng.randf_range(-.08, .08)
+		bull.pos = global_position
+		bull.rota = global_rotation
+		bull.damage = dammage
+		get_tree().root.add_child(bull)
+		await get_tree().create_timer(1).timeout
+		if bull:
+			bull.queue_free()
+
+func wait() -> bool:
+	await get_tree().create_timer(fireRate).timeout
+	canFire = true
+	return true
+
+#Functions Called on Weapon pick up
+func update_values(value: int, currentAmmo: int):
 	currentSprite = null
+	ammo = currentAmmo
+	get_node("/root/Level/Camera2D/AmAm").text = "Ammo:" + str(ammo)
+	canFire = true
+	gunPickedUp = true
 	match value:
 		1:
 			currentSprite = load("res://assets/basicSquare.svg")
@@ -26,10 +90,10 @@ func update_values(value: int):
 			rotation_degrees = 17.0
 			scale.x = 0.612
 			scale.y = 0.289
-
-
 	texture = currentSprite
 
+
+#Functions that handle Dropping a weapon
 func instantiate(type: PackedScene):
 	var instance = type.instantiate()
 	instance.setAmmo(ammo)
@@ -38,9 +102,11 @@ func instantiate(type: PackedScene):
 	instance.set_collision_layer_value(1, false)
 	instance.set_collision_mask_value(1, false)
 	instance.position = global_position
+	instance.rotation = get_parent().rotation
 	get_tree().root.add_child(instance)
 
 func dropWeapon(gun: int):
+	get_parent().set("gunPickedUp", false)
 	match gun:
 		1:
 			instantiate(pistol)
