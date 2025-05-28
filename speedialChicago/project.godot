@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Speedial Chicago"
+config/name="Speedial Phoenix"
 run/main_scene="uid://e64wgf8otggf"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/icon.svg"
