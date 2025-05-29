@@ -41,7 +41,7 @@ func fire() -> void:
 		for i in range(6):
 			canFire = false
 			var bull = bullet.instantiate()
-			bull.dir = get_parent().rotation + rng.randf_range(-.18, .18)
+			bull.dir = get_parent().rotation + rng.randf_range(-.24, .24)
 			bull.pos = global_position
 			bull.rota = global_rotation
 			bull.damage = dammage
@@ -53,7 +53,7 @@ func fire() -> void:
 		canFire = false
 		Manager.playSound("pSound")
 		var bull = bullet.instantiate()
-		bull.dir = get_parent().rotation + rng.randf_range(-.08, .08)
+		bull.dir = get_parent().rotation + rng.randf_range(-.1, .1)
 		bull.pos = global_position
 		bull.rota = global_rotation
 		bull.damage = dammage
@@ -70,6 +70,7 @@ func wait() -> bool:
 #Functions Called on Weapon pick up
 func update_values(value: int, currentAmmo: int):
 	currentSprite = null
+	gunType = value
 	ammo = currentAmmo
 	get_node("/root/Level/Camera2D/AmAm").text = "Ammo:" + str(ammo)
 	canFire = true
@@ -80,16 +81,22 @@ func update_values(value: int, currentAmmo: int):
 			rotation = 0
 			scale.x = .9
 			scale.y = .25
+			dammage = 100
+			fireRate = .2
 		2:
 			currentSprite = load("res://assets/Guitar-b.svg")
 			scale.x = 0.612
 			scale.y = 0.622
 			rotation_degrees = 72.9
+			dammage = 80
+			fireRate = .1
 		3:
 			currentSprite = load("res://assets/Frog 2-c.svg")
 			rotation_degrees = 17.0
 			scale.x = 0.612
 			scale.y = 0.289
+			dammage = 50
+			fireRate = .8
 	texture = currentSprite
 
 

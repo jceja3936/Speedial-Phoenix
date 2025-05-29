@@ -6,7 +6,7 @@ extends Camera2D
 func _process(_delta: float) -> void:
 	position = player.get_global_position()
 	if Input.is_action_just_pressed("Respawn") and player.get("dead") == null:
-		get_tree().change_scene_to_file("res://scenes/level.tscn")
+		get_tree().reload_current_scene()
 
 
 func updateAmmo(amount: int):

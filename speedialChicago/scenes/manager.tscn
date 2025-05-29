@@ -1,11 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnps4e6e3y45x"]
+[gd_scene load_steps=2 format=3 uid="uid://dnps4e6e3y45x"]
 
-[ext_resource type="AudioStream" uid="uid://cadwgeq4p65vl" path="res://assets/9mm.wav" id="1_bdh1m"]
 [ext_resource type="Script" uid="uid://dmb22a2o2vpp6" path="res://manager.gd" id="1_bgrh2"]
 
 [node name="manager" type="AudioStreamPlayer"]
 script = ExtResource("1_bgrh2")
-
-[node name="sound" type="AudioStreamPlayer2D" parent="."]
-scale = Vector2(1, 1)
-stream = ExtResource("1_bdh1m")
