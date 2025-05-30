@@ -6,12 +6,13 @@ var item_sounds = {
 	# Add more as needed or load dynamically
 }
 
-func playSound(item_name: String):
+func playSound(item_name: String, pos: Vector2):
 	var sound = item_sounds.get(item_name)
 	if sound:
 		var player = AudioStreamPlayer2D.new()
 		player.stream = sound
 		get_tree().current_scene.add_child(player)
+		player.position = pos
 		player.play()
 		await get_tree().create_timer(sound.get_length()).timeout
 		if player:

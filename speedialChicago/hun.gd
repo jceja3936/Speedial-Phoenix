@@ -46,12 +46,12 @@ func fire() -> void:
 			bull.rota = global_rotation
 			bull.damage = dammage
 			get_tree().root.add_child(bull)
-		Manager.playSound("sSound")
+		Manager.playSound("sSound", global_position)
 		wait()
 	else:
 		wait()
 		canFire = false
-		Manager.playSound("pSound")
+		Manager.playSound("pSound", global_position)
 		var bull = bullet.instantiate()
 		bull.dir = get_parent().rotation + rng.randf_range(-.1, .1)
 		bull.pos = global_position
