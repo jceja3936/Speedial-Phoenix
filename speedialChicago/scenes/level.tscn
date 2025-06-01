@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=23 format=3 uid="uid://e64wgf8otggf"]
 
 [ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/basicSquare.svg" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="2_w8frs"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bfkltf78e2mmp" path="res://scenes/rifle.tscn" id="7_klq6b"]
 [ext_resource type="PackedScene" uid="uid://dowe60l1v3rl6" path="res://scenes/shotgun.tscn" id="8_b121j"]
 [ext_resource type="Texture2D" uid="uid://crl0dhm2sike5" path="res://assets/costume2.svg" id="9_8c41q"]
+[ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="10_olg7q"]
+[ext_resource type="Script" uid="uid://bcod3t6amax7l" path="res://pathfinding.gd" id="10_t1rx8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7c3h"]
 size = Vector2(57.5, 49.4118)
@@ -46,7 +48,7 @@ size = Vector2(57.4609, 53.7143)
 [node name="Level" type="Node2D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("2_w8frs")]
-position = Vector2(-217, -239)
+position = Vector2(465, -855)
 collision_layer = 3
 collision_mask = 3
 cam = NodePath("../Camera2D")
@@ -82,8 +84,8 @@ scale = Vector2(2.10199, -16.9079)
 shape = SubResource("RectangleShape2D_w8frs")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="walls"]
-position = Vector2(144.633, -4758.75)
-scale = Vector2(0.158973, 15.625)
+position = Vector2(106.572, -4656.25)
+scale = Vector2(0.219868, 15.625)
 collision_layer = 3
 collision_mask = 3
 metadata/_edit_group_ = true
@@ -99,9 +101,10 @@ shape = SubResource("RectangleShape2D_mx8sn")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="walls"]
 position = Vector2(104.5, -2031.25)
-scale = Vector2(0.5, 88.125)
+scale = Vector2(0.5, 84.0964)
 collision_layer = 3
 collision_mask = 3
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D4"]
 position = Vector2(0, 19.4058)
@@ -183,10 +186,11 @@ position = Vector2(0.438629, 0)
 shape = SubResource("RectangleShape2D_olg7q")
 
 [node name="StaticBody2D11" type="StaticBody2D" parent="walls"]
-position = Vector2(106.267, 5849.82)
+position = Vector2(106.267, 6319.82)
 scale = Vector2(0.5, 88.125)
 collision_layer = 3
 collision_mask = 3
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D11"]
 position = Vector2(-1.3372, 2.67147)
@@ -198,10 +202,11 @@ position = Vector2(-1.94629, 2.44478)
 shape = SubResource("RectangleShape2D_t1rx8")
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="walls"]
-position = Vector2(9.53674e-07, -11162.5)
+position = Vector2(47.8051, -16668.2)
 scale = Vector2(1.14, 15.625)
 collision_layer = 3
 collision_mask = 3
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D10"]
 scale = Vector2(11.64, 0.76)
@@ -212,7 +217,7 @@ position = Vector2(0.438629, 0)
 shape = SubResource("RectangleShape2D_olg7q")
 
 [node name="StaticBody2D12" type="StaticBody2D" parent="walls"]
-position = Vector2(337.071, -4775.53)
+position = Vector2(318.497, -4632.85)
 scale = Vector2(0.158973, 15.625)
 collision_layer = 3
 collision_mask = 3
@@ -227,51 +232,19 @@ position = Vector2(0, -0.5)
 scale = Vector2(0.94753, 1.0292)
 shape = SubResource("RectangleShape2D_mx8sn")
 
-[node name="Death box2" parent="." instance=ExtResource("3_w8frs")]
-position = Vector2(926, 1848)
-scale = Vector2(1.99924, 1.17014)
-respawnPnt = Vector2(964, 0)
-
-[node name="Death box3" parent="." instance=ExtResource("3_w8frs")]
-position = Vector2(-945, 414)
-rotation = 1.56772
-scale = Vector2(1.99924, 1.17014)
-respawnPnt = Vector2(964, 0)
-
-[node name="Death box4" parent="." instance=ExtResource("3_w8frs")]
-position = Vector2(2691, 710)
-rotation = 1.56772
-scale = Vector2(1.99924, 1.17014)
-respawnPnt = Vector2(964, 0)
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
-position = Vector2(14, 1042)
-collision_layer = 3
-player = NodePath("../Player")
-
-[node name="Enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
-position = Vector2(134, 342)
-collision_layer = 3
-player = NodePath("../Player")
-
-[node name="Enemy3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
-position = Vector2(1762, 90)
-collision_layer = 3
-player = NodePath("../Player")
-
 [node name="Rifle" parent="." instance=ExtResource("7_klq6b")]
 position = Vector2(926, -400)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="pistol" parent="." instance=ExtResource("5_ppgk2")]
 position = Vector2(6.10352e-05, -399)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="shotgun" parent="." instance=ExtResource("8_b121j")]
 position = Vector2(556, -404)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
@@ -299,7 +272,7 @@ text = " You Died!
 (Hit Space)"
 
 [node name="glass" type="StaticBody2D" parent="."]
-position = Vector2(1771, -127)
+position = Vector2(1718, -113)
 scale = Vector2(4.68209, 1.5017)
 collision_layer = 2
 collision_mask = 2
@@ -312,3 +285,135 @@ texture = ExtResource("9_8c41q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="glass"]
 position = Vector2(-0.000488281, 0)
 shape = SubResource("RectangleShape2D_8iemx")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
+position = Vector2(14, 1042)
+collision_layer = 3
+player = NodePath("../../Player")
+
+[node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
+position = Vector2(17, 334)
+collision_layer = 3
+player = NodePath("../../Player")
+
+[node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
+position = Vector2(1762, 90)
+collision_layer = 3
+player = NodePath("../../Player")
+
+[node name="Death zone" type="Node" parent="."]
+
+[node name="Death box2" parent="Death zone" instance=ExtResource("3_w8frs")]
+position = Vector2(926, 1848)
+scale = Vector2(1.99924, 1.17014)
+respawnPnt = Vector2(964, 0)
+
+[node name="Death box3" parent="Death zone" instance=ExtResource("3_w8frs")]
+position = Vector2(-945, 414)
+rotation = 1.56772
+scale = Vector2(1.99924, 1.17014)
+respawnPnt = Vector2(964, 0)
+
+[node name="Death box4" parent="Death zone" instance=ExtResource("3_w8frs")]
+position = Vector2(2691, 710)
+rotation = 1.56772
+scale = Vector2(1.99924, 1.17014)
+respawnPnt = Vector2(964, 0)
+
+[node name="Walk" type="Node" parent="."]
+
+[node name="A" type="Node2D" parent="Walk" node_paths=PackedStringArray("A")]
+position = Vector2(969, -242)
+script = ExtResource("10_t1rx8")
+A = NodePath("../B")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walk/A"]
+position = Vector2(2, 2)
+scale = Vector2(0.539063, 0.453125)
+texture = ExtResource("10_olg7q")
+
+[node name="B" type="Node2D" parent="Walk" node_paths=PackedStringArray("A", "B")]
+position = Vector2(967, -17)
+script = ExtResource("10_t1rx8")
+A = NodePath("../A")
+B = NodePath("../C")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walk/B"]
+position = Vector2(2, 2)
+scale = Vector2(0.539063, 0.453125)
+texture = ExtResource("10_olg7q")
+
+[node name="C" type="Node2D" parent="Walk" node_paths=PackedStringArray("A", "B", "C")]
+position = Vector2(936, 329)
+script = ExtResource("10_t1rx8")
+A = NodePath("../B")
+B = NodePath("../D")
+C = NodePath("../E")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walk/C"]
+position = Vector2(2, 2)
+scale = Vector2(0.539063, 0.453125)
+texture = ExtResource("10_olg7q")
+
+[node name="D" type="Node2D" parent="Walk" node_paths=PackedStringArray("A")]
+position = Vector2(406, 345)
+script = ExtResource("10_t1rx8")
+A = NodePath("../C")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walk/D"]
+position = Vector2(2, 2)
+scale = Vector2(0.539063, 0.453125)
+texture = ExtResource("10_olg7q")
+
+[node name="E" type="Node2D" parent="Walk" node_paths=PackedStringArray("A", "B", "C")]
+position = Vector2(949, 990)
+script = ExtResource("10_t1rx8")
+A = NodePath("../C")
+B = NodePath("../H")
+C = NodePath("../F")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walk/E"]
+position = Vector2(2, 2)
+scale = Vector2(0.539063, 0.453125)
+texture = ExtResource("10_olg7q")
+
+[node name="F" type="Node2D" parent="Walk" node_paths=PackedStringArray("A", "B")]
+position = Vector2(1454, 983)
+script = ExtResource("10_t1rx8")
+A = NodePath("../G")
+B = NodePath("../E")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walk/F"]
+position = Vector2(2, 2)
+scale = Vector2(0.539063, 0.453125)
+texture = ExtResource("10_olg7q")
+
+[node name="G" type="Node2D" parent="Walk" node_paths=PackedStringArray("A")]
+position = Vector2(1754, 364)
+script = ExtResource("10_t1rx8")
+A = NodePath("../F")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walk/G"]
+position = Vector2(2, 2)
+scale = Vector2(0.539063, 0.453125)
+texture = ExtResource("10_olg7q")
+
+[node name="H" type="Node2D" parent="Walk" node_paths=PackedStringArray("A")]
+position = Vector2(302, 1030)
+script = ExtResource("10_t1rx8")
+A = NodePath("../E")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Walk/H"]
+position = Vector2(2, 2)
+scale = Vector2(0.539063, 0.453125)
+texture = ExtResource("10_olg7q")

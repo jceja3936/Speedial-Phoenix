@@ -1,10 +1,8 @@
 Scratch Paper:
-func _fireRateControll() -> void:
-	if dead:
-		return
-	if !gunPickedUp:
-		canFire = false
+	var direction = (lastKnown - global_position).normalized()
+	if global_position.distance_to(lastKnown) > 20:
+		velocity = direction * 800
 	else:
-		canFire = true
-	await get_tree().create_timer(fireRate).timeout
-	_fireRateControll()
+		velocity = Vector2.ZERO
+	move_and_slide()
+	return true
