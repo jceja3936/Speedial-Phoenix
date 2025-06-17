@@ -48,9 +48,9 @@ size = Vector2(57.4609, 53.7143)
 [node name="Level" type="Node2D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("2_w8frs")]
-position = Vector2(465, -855)
+position = Vector2(205, -285)
 collision_layer = 3
-collision_mask = 3
+collision_mask = 4
 cam = NodePath("../Camera2D")
 
 [node name="walls" type="Node2D" parent="."]
@@ -60,6 +60,7 @@ scale = Vector2(3.28417, 0.119149)
 [node name="StaticBody2D" type="StaticBody2D" parent="walls"]
 position = Vector2(-128.5, -3140.63)
 scale = Vector2(0.5, 53.125)
+collision_layer = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D"]
 texture = ExtResource("1_w7c3h")
@@ -71,7 +72,7 @@ shape = SubResource("RectangleShape2D_w7c3h")
 [node name="StaticBody2D2" type="StaticBody2D" parent="walls"]
 position = Vector2(-219, -4656.25)
 scale = Vector2(0.5, 15.625)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D2"]
@@ -86,7 +87,7 @@ shape = SubResource("RectangleShape2D_w8frs")
 [node name="StaticBody2D3" type="StaticBody2D" parent="walls"]
 position = Vector2(106.572, -4656.25)
 scale = Vector2(0.219868, 15.625)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 metadata/_edit_group_ = true
 
@@ -102,7 +103,7 @@ shape = SubResource("RectangleShape2D_mx8sn")
 [node name="StaticBody2D4" type="StaticBody2D" parent="walls"]
 position = Vector2(104.5, -2031.25)
 scale = Vector2(0.5, 84.0964)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 metadata/_edit_group_ = true
 
@@ -118,7 +119,7 @@ shape = SubResource("RectangleShape2D_ppgk2")
 [node name="StaticBody2D5" type="StaticBody2D" parent="walls"]
 position = Vector2(-379, -843.75)
 scale = Vector2(0.5, 133.125)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D5"]
@@ -134,7 +135,7 @@ shape = SubResource("RectangleShape2D_2r41h")
 position = Vector2(-253.5, 2281.25)
 rotation = 1.5708
 scale = Vector2(15.625, 4.26)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D6"]
@@ -147,7 +148,7 @@ shape = SubResource("RectangleShape2D_klq6b")
 [node name="StaticBody2D7" type="StaticBody2D" parent="walls"]
 position = Vector2(-128.5, 1312.5)
 scale = Vector2(0.5, 53.125)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D7"]
@@ -160,7 +161,7 @@ shape = SubResource("RectangleShape2D_b121j")
 [node name="StaticBody2D8" type="StaticBody2D" parent="walls"]
 position = Vector2(364.5, 1250)
 scale = Vector2(0.5, 209.375)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D8"]
@@ -174,7 +175,7 @@ shape = SubResource("RectangleShape2D_8c41q")
 [node name="StaticBody2D9" type="StaticBody2D" parent="walls"]
 position = Vector2(-12.5, 7203.12)
 scale = Vector2(1.14, 15.625)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="walls/StaticBody2D9"]
@@ -188,7 +189,7 @@ shape = SubResource("RectangleShape2D_olg7q")
 [node name="StaticBody2D11" type="StaticBody2D" parent="walls"]
 position = Vector2(106.267, 6319.82)
 scale = Vector2(0.5, 88.125)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 metadata/_edit_group_ = true
 
@@ -204,7 +205,7 @@ shape = SubResource("RectangleShape2D_t1rx8")
 [node name="StaticBody2D10" type="StaticBody2D" parent="walls"]
 position = Vector2(47.8051, -16668.2)
 scale = Vector2(1.14, 15.625)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 metadata/_edit_group_ = true
 
@@ -219,7 +220,7 @@ shape = SubResource("RectangleShape2D_olg7q")
 [node name="StaticBody2D12" type="StaticBody2D" parent="walls"]
 position = Vector2(318.497, -4632.85)
 scale = Vector2(0.158973, 15.625)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 metadata/_edit_group_ = true
 
@@ -274,8 +275,8 @@ text = " You Died!
 [node name="glass" type="StaticBody2D" parent="."]
 position = Vector2(1718, -113)
 scale = Vector2(4.68209, 1.5017)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 6
+collision_mask = 0
 metadata/_edit_group_ = true
 metadata/glass = false
 
@@ -289,18 +290,21 @@ shape = SubResource("RectangleShape2D_8iemx")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
-position = Vector2(14, 1042)
+position = Vector2(44, 1058)
 collision_layer = 3
+collision_mask = 0
 player = NodePath("../../Player")
 
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
 position = Vector2(17, 334)
 collision_layer = 3
+collision_mask = 0
 player = NodePath("../../Player")
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
-position = Vector2(1762, 90)
+position = Vector2(1713, 169)
 collision_layer = 3
+collision_mask = 0
 player = NodePath("../../Player")
 
 [node name="Death zone" type="Node" parent="."]
@@ -325,6 +329,7 @@ respawnPnt = Vector2(964, 0)
 [node name="Walk" type="Node" parent="."]
 
 [node name="A" type="Node2D" parent="Walk" node_paths=PackedStringArray("A")]
+visible = false
 position = Vector2(969, -242)
 script = ExtResource("10_t1rx8")
 A = NodePath("../B")
@@ -336,6 +341,7 @@ scale = Vector2(0.539063, 0.453125)
 texture = ExtResource("10_olg7q")
 
 [node name="B" type="Node2D" parent="Walk" node_paths=PackedStringArray("A", "B")]
+visible = false
 position = Vector2(967, -17)
 script = ExtResource("10_t1rx8")
 A = NodePath("../A")
@@ -348,6 +354,7 @@ scale = Vector2(0.539063, 0.453125)
 texture = ExtResource("10_olg7q")
 
 [node name="C" type="Node2D" parent="Walk" node_paths=PackedStringArray("A", "B", "C")]
+visible = false
 position = Vector2(936, 329)
 script = ExtResource("10_t1rx8")
 A = NodePath("../B")
@@ -361,6 +368,7 @@ scale = Vector2(0.539063, 0.453125)
 texture = ExtResource("10_olg7q")
 
 [node name="D" type="Node2D" parent="Walk" node_paths=PackedStringArray("A")]
+visible = false
 position = Vector2(406, 345)
 script = ExtResource("10_t1rx8")
 A = NodePath("../C")
@@ -372,6 +380,7 @@ scale = Vector2(0.539063, 0.453125)
 texture = ExtResource("10_olg7q")
 
 [node name="E" type="Node2D" parent="Walk" node_paths=PackedStringArray("A", "B", "C")]
+visible = false
 position = Vector2(949, 990)
 script = ExtResource("10_t1rx8")
 A = NodePath("../C")
@@ -385,6 +394,7 @@ scale = Vector2(0.539063, 0.453125)
 texture = ExtResource("10_olg7q")
 
 [node name="F" type="Node2D" parent="Walk" node_paths=PackedStringArray("A", "B")]
+visible = false
 position = Vector2(1454, 983)
 script = ExtResource("10_t1rx8")
 A = NodePath("../G")
@@ -397,6 +407,7 @@ scale = Vector2(0.539063, 0.453125)
 texture = ExtResource("10_olg7q")
 
 [node name="G" type="Node2D" parent="Walk" node_paths=PackedStringArray("A")]
+visible = false
 position = Vector2(1754, 364)
 script = ExtResource("10_t1rx8")
 A = NodePath("../F")
@@ -408,6 +419,7 @@ scale = Vector2(0.539063, 0.453125)
 texture = ExtResource("10_olg7q")
 
 [node name="H" type="Node2D" parent="Walk" node_paths=PackedStringArray("A")]
+visible = false
 position = Vector2(302, 1030)
 script = ExtResource("10_t1rx8")
 A = NodePath("../E")

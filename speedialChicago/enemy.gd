@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var shootSFX: AudioStreamPlayer2D
 @export var gun: Node2D
 @export var ray: RayCast2D
+@export var type: int
 
 var bullet: PackedScene = load("res://scenes/bullet.tscn")
 var deathTexture: Texture = load("res://assets/icon.svg")
@@ -29,8 +30,6 @@ func start_pathfinding():
 	current_path_index = 0
 
 func find_path_to(start_node, end_node, i, haveBeen, currentPath):
-	if i == 5:
-		return
 	var myPath = currentPath
 	var current = start_node
 	var visited = haveBeen
