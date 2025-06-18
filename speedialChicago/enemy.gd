@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var gun: Node2D
 @export var ray: RayCast2D
 @export var type: int
+@onready var nav_Agent: NavigationAgent2D = $NavigationAgent2D
 
 var bullet: PackedScene = load("res://scenes/bullet.tscn")
 var deathTexture: Texture = load("res://assets/icon.svg")
@@ -22,28 +23,6 @@ var path: Array = []
 var current_path_index := 0
 var pathing = false
 
-func start_pathfinding():
-	var start_node = WalkWay.findClosestToMe(global_position)
-	var end_node = WalkWay.findClosestToMe(lastKnown)
-
-	path = find_path_to(start_node, end_node, 0, [], [])
-	current_path_index = 0
-
-func find_path_to(start_node, end_node, i, haveBeen, currentPath):
-	var myPath = currentPath
-	var current = start_node
-	var visited = haveBeen
-
-	if current != end_node and current != null:
-		myPath.append(current)
-		visited.append(current)
-		current = current.findNext(end_node.global_position, visited)
-		find_path_to(current, end_node, i + 1, visited, myPath)
-
-	if current == end_node:
-		myPath.append(current)
-
-	return myPath
 
 func _ready() -> void:
 	_fireRateControll()
@@ -62,54 +41,28 @@ func hit(damage: int) -> void:
 		die()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Debug") and pathing:
-		print(path)
+	var goingTo = get_global_mouse_position()
+	nav_Agent.target_position = goingTo
 
+	var current_Pos = self.global_position
+	var next_path_pos = nav_Agent.get_next_path_position()
+	var new_velocity = current_Pos.direction_to(next_path_pos)
+	print("Pre Pass Velocity: ", new_velocity)
 
-	if dead:
-		return
-	
-	var wherePlayer = player.global_position - global_position
-	
-	if wherePlayer.length() < 1600:
-		#Raycays to their position
-		ray.target_position = ray.to_local(player.global_position)
-		ray.force_raycast_update()
-		#If the raycast hit anything,
-		if ray.is_colliding():
-			var collider = ray.get_collider()
-			if collider == player:
-				look_at(player.global_position)
-				await attackPlayer()
-				seen = true
-				lastKnown = player.global_position
-				pathing = false
-				path.clear()
-			else:
-				seen = false
-		else:
-			seen = false
-
-	if not seen and lastKnown != null and !pathing:
-			start_pathfinding()
-			pathing = true
-	
-	if pathing and path.size() > 0:
-		move_along_path()
-	
-func move_along_path():
-	if current_path_index >= path.size():
-		pathing = false
-		velocity = Vector2.ZERO
+	if nav_Agent.is_navigation_finished():
 		return
 
-	var target_node = path[current_path_index]
-	var dir = (target_node.global_position - global_position).normalized()
-	velocity = dir * 800
+	if nav_Agent.avoidance_enabled:
+		nav_Agent.set_velocity(new_velocity)
+	else:
+		_on_navigation_agent_2d_velocity_computed(new_velocity)
 	move_and_slide()
 
-	if global_position.distance_to(target_node.global_position) < 20:
-		current_path_index += 1
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity * speed
+	print("Post Pass Velocity", velocity)
+
 
 #await get_tree().create_timer(1).timeout
 #This is really cool actually

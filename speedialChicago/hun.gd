@@ -27,7 +27,7 @@ func getAmmo() -> int:
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") and canFire and ammo > 0:
 		fire()
-		ammo -= 1
+		ammo += 1
 		get_node("/root/Level/Camera2D/AmAm").text = "Ammo:" + str(ammo)
 
 	if Input.is_action_just_pressed("Drop") and gunPickedUp:

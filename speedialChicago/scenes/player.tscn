@@ -13,7 +13,7 @@ metadata/pla = "fe"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
-scale = Vector2(1, 0.600001)
+scale = Vector2(1, 0.6)
 texture = ExtResource("1_4flbx")
 
 [node name="bullets" type="Node2D" parent="."]
