@@ -41,13 +41,40 @@ func hit(damage: int) -> void:
 		die()
 
 func _process(_delta: float) -> void:
-	var goingTo = get_global_mouse_position()
+	if dead:
+		return
+	
+	var wherePlayer = player.global_position - global_position
+	
+	#This mess handles the main decision making of the enemy
+	#If player is within the sight range
+	if wherePlayer.length() < 1600:
+		#Raycays to their position
+		ray.target_position = ray.to_local(player.global_position)
+		ray.force_raycast_update()
+		#If the raycast hit anything,
+		if ray.is_colliding():
+			#See if the thing it hit is the player
+			var collider = ray.get_collider()
+			if collider == player:
+				look_at(player.global_position)
+				#If it did, activate my "latch" function
+				await attackPlayer()
+				seen = true
+				lastKnown = player.global_position
+			#If it wasn', set seen to false.
+			if collider != player:
+				seen = false
+				if lastKnown != null:
+					search()
+
+func search():
+	var goingTo = lastKnown
 	nav_Agent.target_position = goingTo
 
 	var current_Pos = self.global_position
 	var next_path_pos = nav_Agent.get_next_path_position()
 	var new_velocity = current_Pos.direction_to(next_path_pos)
-	print("Pre Pass Velocity: ", new_velocity)
 
 	if nav_Agent.is_navigation_finished():
 		return
@@ -61,8 +88,6 @@ func _process(_delta: float) -> void:
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity * speed
-	print("Post Pass Velocity", velocity)
-
 
 #await get_tree().create_timer(1).timeout
 #This is really cool actually

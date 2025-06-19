@@ -93,7 +93,7 @@ size = Vector2(57.4609, 53.7143)
 [node name="Level" type="Node2D"]
 
 [node name="Bg" type="Sprite2D" parent="."]
-position = Vector2(967, 560)
+position = Vector2(922, 564)
 scale = Vector2(6.22461, 3.89453)
 texture = ExtResource("1_64w2a")
 
