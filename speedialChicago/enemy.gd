@@ -25,6 +25,7 @@ var pathing = false
 
 
 func _ready() -> void:
+	speed = 800 + rng.randf_range(-50, 100)
 	_fireRateControll()
 	
 func die() -> void:
@@ -72,7 +73,7 @@ func search():
 	var goingTo = lastKnown
 	nav_Agent.target_position = goingTo
 
-	var current_Pos = self.global_position
+	var current_Pos = global_position
 	var next_path_pos = nav_Agent.get_next_path_position()
 	var new_velocity = current_Pos.direction_to(next_path_pos)
 
@@ -88,14 +89,9 @@ func search():
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity * speed
+	
 
-#await get_tree().create_timer(1).timeout
-#This is really cool actually
 func attackPlayer() -> bool:
-	#Basically, this is called any time the raycast is actively hitting the player
-	#however, to emulate the enemy having a "reaction time" on first call seen is not yet true, and therefore
-	#wait a beat before firing. After this first call of attackPlayer, the seen is true and therefore fire at first chance.
-	#Once the raycast is lost, seen is back to false, releasing the latch.
 	if !seen:
 		await get_tree().create_timer(.5).timeout
 	fire()
@@ -110,12 +106,9 @@ func fire() -> void:
 		bull.set("fromWho", "enemy")
 		bull.dir = rotation + rng.randf_range(-.08, .08)
 		bull.pos = gun.global_position
-		bull.damage = 1
+		bull.damage = -1
 		bull.rota = global_rotation
 		add_child(bull)
-		await get_tree().create_timer(1).timeout
-		if bull:
-			bull.queue_free()
 
 func _fireRateControll() -> void:
 	if dead:
