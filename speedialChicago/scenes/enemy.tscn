@@ -46,8 +46,6 @@ path_desired_distance = 50.0
 target_desired_distance = 50.0
 path_postprocessing = 1
 avoidance_enabled = true
-debug_enabled = true
-debug_use_custom = true
 debug_path_custom_color = Color(0.819208, 0, 0.150501, 1)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
