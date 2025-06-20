@@ -150,13 +150,13 @@ collision_mask = 4
 player = NodePath("../../Player")
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
-position = Vector2(1718, 190)
+position = Vector2(257, 850)
 collision_layer = 3
 collision_mask = 0
 player = NodePath("../../Player")
 
 [node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("4_mx8sn")]
-position = Vector2(-405, 840)
+position = Vector2(1668, 324)
 collision_layer = 3
 collision_mask = 0
 player = NodePath("../../Player")

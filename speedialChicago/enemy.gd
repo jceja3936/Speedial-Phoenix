@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var gun: Node2D
 @export var ray: RayCast2D
 @export var type: int
-@onready var nav_Agent: NavigationAgent2D = $NavigationAgent2D
+@export var nav_Agent: NavigationAgent2D
 
 var bullet: PackedScene = load("res://scenes/bullet.tscn")
 var deathTexture: Texture = load("res://assets/icon.svg")
@@ -82,15 +82,13 @@ func search():
 
 	if nav_Agent.avoidance_enabled:
 		nav_Agent.set_velocity(new_velocity)
-	else:
-		_on_navigation_agent_2d_velocity_computed(new_velocity)
+	velocity = new_velocity * speed
 	move_and_slide()
 
 
-func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
-	velocity = safe_velocity * speed
+#func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	
-
+	
 func attackPlayer() -> bool:
 	if !seen:
 		await get_tree().create_timer(.5).timeout
@@ -106,7 +104,7 @@ func fire() -> void:
 		bull.set("fromWho", "enemy")
 		bull.dir = rotation + rng.randf_range(-.08, .08)
 		bull.pos = gun.global_position
-		bull.damage = -1
+		bull.damage = 100
 		bull.rota = global_rotation
 		add_child(bull)
 
