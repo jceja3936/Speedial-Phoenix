@@ -29,13 +29,13 @@ func die() -> void:
 	$Sprite2D.scale.y = 1
 	$CollisionShape2D.queue_free()
 	dead = true;
+	$hun.set_script(null)
 	self.set_script(null)
 
 func _process(delta: float) -> void:
 	if dead:
 		return
 	
-
 	if Input.is_action_just_pressed("esc") and cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		cameFollow = false

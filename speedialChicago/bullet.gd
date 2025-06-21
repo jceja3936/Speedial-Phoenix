@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 			#If it hit a enemy, but was fired by an enemy, don't do damage.
 			if fromWho != "enemy":
 				collider.call("hit", damage)
-			queue_free()
+				queue_free()
 	
 		if collider.get("playa") == true:
 			collider.call("hit", damage)

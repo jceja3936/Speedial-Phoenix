@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 @export var player: CharacterBody2D
-@export var shootSFX: AudioStreamPlayer2D
 @export var gun: Node2D
 @export var ray: RayCast2D
 @export var type: int
 @export var nav_Agent: NavigationAgent2D
+@export var gunSkin: Sprite2D
+var currentSprite: Texture
 
 var bullet: PackedScene = load("res://scenes/bullet.tscn")
 var deathTexture: Texture = load("res://assets/icon.svg")
@@ -17,14 +18,48 @@ var enemy = true
 var lastKnown
 var health = 200
 var dead = false
+var dammage = 100
 var speed = 800
 var fireRate = .2
 
 func _ready() -> void:
 	speed = 800 + rng.randf_range(-50, 100)
+
+	if type == 0:
+		type = rng.randi_range(1, 3)
+
+	match type:
+		1:
+			currentSprite = load("res://assets/basicSquare.svg")
+			dammage = 100
+			gunSkin.rotation = 0
+			gunSkin.scale.x = .9
+			gunSkin.scale.y = .25
+			fireRate = .2
+		2:
+			currentSprite = load("res://assets/Guitar-b.svg")
+			dammage = 100
+			gunSkin.scale.x = 0.612
+			gunSkin.scale.y = 0.622
+			gunSkin.rotation_degrees = 72.9
+			fireRate = .1
+		3:
+			currentSprite = load("res://assets/Frog 2-c.svg")
+			dammage = 100
+			gunSkin.rotation_degrees = 17.0
+			gunSkin.scale.x = 0.612
+			gunSkin.scale.y = 0.289
+			fireRate = .8
+		_:
+			currentSprite = load("res://assets/basicSquare.svg")
+			dammage = 100
+			fireRate = .2
+	gunSkin.texture = currentSprite
+		
 	
 func die() -> void:
 	$Sprite2D.texture = deathTexture
+	gunSkin.texture = currentSprite
 	$Sprite2D.scale.x = 1
 	$Sprite2D.scale.y = 1
 	$CollisionShape2D.queue_free()
@@ -83,22 +118,39 @@ func search():
 func attackPlayer() -> bool:
 	if !seen:
 		await get_tree().create_timer(.5).timeout
-	fire()
+	if canFire:
+		fire()
+		
 	return true;
 	
 
 func fire() -> void:
-	if canFire:
-		shootSFX.play()
-		canFire = false
+	if type == 3:
+		for i in range(6):
+			canFire = false
+			var bull = bullet.instantiate()
+			bull.set("fromWho", "enemy")
+			if i < 3:
+				bull.dir = rotation + rng.randf_range(-.15, .15)
+			else:
+				bull.dir = rotation + rng.randf_range(-.25, .25)
+			bull.pos = gunSkin.global_position
+			bull.rota = global_rotation
+			bull.damage = dammage
+			get_tree().root.add_child(bull)
+			wait()
+		Manager.playSound("sSound", global_position)
+	else:
 		wait()
+		canFire = false
+		Manager.playSound("pSound", global_position)
 		var bull = bullet.instantiate()
 		bull.set("fromWho", "enemy")
-		bull.dir = rotation + rng.randf_range(-.08, .08)
-		bull.pos = gun.global_position
-		bull.damage = 20
+		bull.dir = rotation + rng.randf_range(-.1, .1)
+		bull.pos = gunSkin.global_position
 		bull.rota = global_rotation
-		add_child(bull)
+		bull.damage = dammage
+		get_tree().root.add_child(bull)
 
 func wait() -> bool:
 	await get_tree().create_timer(fireRate).timeout

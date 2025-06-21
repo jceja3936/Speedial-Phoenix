@@ -41,7 +41,10 @@ func fire() -> void:
 		for i in range(6):
 			canFire = false
 			var bull = bullet.instantiate()
-			bull.dir = get_parent().rotation + rng.randf_range(-.24, .24)
+			if i < 3:
+				bull.dir = get_parent().rotation + rng.randf_range(-.15, .15)
+			else:
+				bull.dir = get_parent().rotation + rng.randf_range(-.25, .25)
 			bull.pos = global_position
 			bull.rota = global_rotation
 			bull.damage = dammage
@@ -85,14 +88,14 @@ func update_values(value: int, currentAmmo: int):
 			scale.x = 0.612
 			scale.y = 0.622
 			rotation_degrees = 72.9
-			dammage = 80
+			dammage = 100
 			fireRate = .1
 		3:
 			currentSprite = load("res://assets/Frog 2-c.svg")
 			rotation_degrees = 17.0
 			scale.x = 0.612
 			scale.y = 0.289
-			dammage = 50
+			dammage = 100
 			fireRate = .8
 	texture = currentSprite
 

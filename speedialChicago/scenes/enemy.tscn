@@ -1,31 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv60myid72qvl"]
+[gd_scene load_steps=5 format=3 uid="uid://cv60myid72qvl"]
 
 [ext_resource type="Script" uid="uid://cc2s2fd72wrxi" path="res://enemy.gd" id="1_4ra3w"]
-[ext_resource type="Texture2D" uid="uid://ctysa2i2ilg4w" path="res://assets/Bear-a.png" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://qrirgxpp64hl" path="res://assets/csbear.png" id="2_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/basicSquare.svg" id="2_md0e3"]
-[ext_resource type="AudioStream" uid="uid://cadwgeq4p65vl" path="res://assets/9mm.wav" id="4_5uy6h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
 radius = 50.0633
 height = 196.063
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("shootSFX", "gun", "ray", "nav_Agent")]
-collision_mask = 3
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("gun", "ray", "nav_Agent", "gunSkin")]
+collision_mask = 0
 script = ExtResource("1_4ra3w")
-shootSFX = NodePath("AudioStreamPlayer2D")
 gun = NodePath("gun")
 ray = NodePath("ray")
 nav_Agent = NodePath("NavigationAgent2D")
+gunSkin = NodePath("gun/gunSkin")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-4.68954, -4.46008)
 scale = Vector2(0.465286, 0.266706)
-texture = ExtResource("1_7k104")
+texture = ExtResource("2_4ra3w")
 
 [node name="gun" type="Node2D" parent="."]
-position = Vector2(131, 0)
+position = Vector2(152, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="gun"]
+[node name="gunSkin" type="Sprite2D" parent="gun"]
 position = Vector2(-27, 0)
 scale = Vector2(1, 0.360002)
 texture = ExtResource("2_md0e3")
@@ -36,10 +35,6 @@ rotation = -1.55722
 shape = SubResource("CapsuleShape2D_md0e3")
 
 [node name="ray" type="RayCast2D" parent="."]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_5uy6h")
-volume_db = -80.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0
