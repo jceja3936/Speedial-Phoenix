@@ -18,15 +18,10 @@ var lastKnown
 var health = 200
 var dead = false
 var speed = 800
-
-var path: Array = []
-var current_path_index := 0
-var pathing = false
-
+var fireRate = .2
 
 func _ready() -> void:
 	speed = 800 + rng.randf_range(-50, 100)
-	_fireRateControll()
 	
 func die() -> void:
 	$Sprite2D.texture = deathTexture
@@ -46,23 +41,22 @@ func _process(_delta: float) -> void:
 		return
 	
 	var wherePlayer = player.global_position - global_position
+	var player_pos = player.global_position
 	
 	#This mess handles the main decision making of the enemy
 	#If player is within the sight range
 	if wherePlayer.length() < 1600:
 		#Raycays to their position
-		ray.target_position = ray.to_local(player.global_position)
+		ray.target_position = ray.to_local(player_pos)
 		ray.force_raycast_update()
 		#If the raycast hit anything,
 		if ray.is_colliding():
 			#See if the thing it hit is the player
 			var collider = ray.get_collider()
 			if collider == player:
-				look_at(player.global_position)
-				#If it did, activate my "latch" function
-				await attackPlayer()
-				seen = true
-				lastKnown = player.global_position
+				look_at(player_pos)
+				attackPlayer()
+				lastKnown = player_pos
 			#If it wasn', set seen to false.
 			if collider != player:
 				seen = false
@@ -85,9 +79,6 @@ func search():
 	velocity = new_velocity * speed
 	move_and_slide()
 
-
-#func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
-	
 	
 func attackPlayer() -> bool:
 	if !seen:
@@ -100,17 +91,16 @@ func fire() -> void:
 	if canFire:
 		shootSFX.play()
 		canFire = false
+		wait()
 		var bull = bullet.instantiate()
 		bull.set("fromWho", "enemy")
 		bull.dir = rotation + rng.randf_range(-.08, .08)
 		bull.pos = gun.global_position
-		bull.damage = 100
+		bull.damage = 20
 		bull.rota = global_rotation
 		add_child(bull)
 
-func _fireRateControll() -> void:
-	if dead:
-		return
+func wait() -> bool:
+	await get_tree().create_timer(fireRate).timeout
 	canFire = true
-	await get_tree().create_timer(.2).timeout
-	_fireRateControll()
+	return true

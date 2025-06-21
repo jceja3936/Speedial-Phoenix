@@ -58,9 +58,6 @@ func fire() -> void:
 		bull.rota = global_rotation
 		bull.damage = dammage
 		get_tree().root.add_child(bull)
-		await get_tree().create_timer(1).timeout
-		if bull:
-			bull.queue_free()
 
 func wait() -> bool:
 	await get_tree().create_timer(fireRate).timeout

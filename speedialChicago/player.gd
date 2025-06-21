@@ -15,6 +15,7 @@ var canFire = false
 var rng = RandomNumberGenerator.new()
 var playa = true
 var gunPickedUp = false
+var cameFollow = true
 
 func hit(damage: int) -> void:
 	health -= damage
@@ -33,6 +34,16 @@ func die() -> void:
 func _process(delta: float) -> void:
 	if dead:
 		return
+	
+
+	if Input.is_action_just_pressed("esc") and cameFollow:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		cameFollow = false
+		cam.setCam(false)
+	elif Input.is_action_just_pressed("esc") and !cameFollow:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+		cameFollow = true
+		cam.setCam(true)
 
 	look_at(get_global_mouse_position())
 	var dir = Input.get_vector("Left", "Right", "Up", "Down")

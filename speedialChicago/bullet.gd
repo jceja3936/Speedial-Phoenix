@@ -4,7 +4,7 @@ var pos: Vector2
 var dir: float
 var rota: float
 var damage: int
-var speed = 2500
+var speed = 3000
 var bullet = true
 var fromWho = ""
 
