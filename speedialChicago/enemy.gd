@@ -21,6 +21,7 @@ var dead = false
 var dammage = 100
 var speed = 800
 var fireRate = .2
+var ammo = 20
 
 func _ready() -> void:
 	speed = 800 + rng.randf_range(-50, 100)
@@ -36,6 +37,7 @@ func _ready() -> void:
 			gunSkin.scale.x = .9
 			gunSkin.scale.y = .25
 			fireRate = .2
+			ammo = 17
 		2:
 			currentSprite = load("res://assets/Guitar-b.svg")
 			dammage = 100
@@ -43,6 +45,7 @@ func _ready() -> void:
 			gunSkin.scale.y = 0.622
 			gunSkin.rotation_degrees = 72.9
 			fireRate = .1
+			ammo = 30
 		3:
 			currentSprite = load("res://assets/Frog 2-c.svg")
 			dammage = 100
@@ -50,20 +53,23 @@ func _ready() -> void:
 			gunSkin.scale.x = 0.612
 			gunSkin.scale.y = 0.289
 			fireRate = .8
+			ammo = 6
 		_:
 			currentSprite = load("res://assets/basicSquare.svg")
 			dammage = 100
 			fireRate = .2
+			ammo = 17
 	gunSkin.texture = currentSprite
 		
 	
 func die() -> void:
 	$Sprite2D.texture = deathTexture
-	gunSkin.texture = currentSprite
+	gunSkin.texture = null
 	$Sprite2D.scale.x = 1
 	$Sprite2D.scale.y = 1
 	$CollisionShape2D.queue_free()
 	dead = true;
+	Manager.dropWeapon(type, self, ammo)
 	set_script(null)
 	
 func hit(damage: int) -> void:
@@ -120,11 +126,13 @@ func attackPlayer() -> bool:
 		await get_tree().create_timer(.5).timeout
 	if canFire:
 		fire()
+		ammo -= 1
 		
 	return true;
 	
 
 func fire() -> void:
+	dammage = -1
 	if type == 3:
 		for i in range(6):
 			canFire = false
