@@ -13,14 +13,11 @@ func _process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var player_pos = player.get_global_position()
 
-	if cameFollow and player_pos.distance_to(mouse_pos) > 290:
-		position = lerp(player_pos, (player_pos + Vector2(500, 0).rotated(get_angle_to(mouse_pos))), .1)
+	if cameFollow:
+		position = lerp(position, (player_pos + Vector2(100, 0).rotated(get_angle_to(mouse_pos))), .2)
 		$Cursors.position = player_pos
-		$Cursors.offset = Vector2(500, 0).rotated(get_angle_to(mouse_pos))
-	else:
-		position = lerp(position, player_pos, 1)
-		$Cursors.position = mouse_pos
-		$Cursors.offset = Vector2.ZERO
+		$Cursors.offset = Vector2(800, 0).rotated(get_angle_to(mouse_pos))
+
 
 	if Input.is_action_just_pressed("Respawn") and player.get("dead") == null:
 		get_tree().change_scene_to_file("res://scenes/level.tscn")

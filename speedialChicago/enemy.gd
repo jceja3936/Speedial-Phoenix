@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var type: int
 @export var nav_Agent: NavigationAgent2D
 @export var gunSkin: Sprite2D
+@export var pat: bool
 var currentSprite: Texture
 
 var bullet: PackedScene = load("res://scenes/bullet.tscn")
@@ -13,19 +14,23 @@ var deathTexture: Texture = load("res://assets/icon.svg")
 
 var canFire = true
 var rng = RandomNumberGenerator.new()
-var seen = false
 var enemy = true
 var lastKnown
 var health = 200
 var dead = false
 var dammage = 100
-var speed = 800
+var speed = 750
+var walkSpeed = 375
 var fireRate = .2
 var ammo = 20
+var wallCollision = false
+
+var rotating = false
+var from = 0
+var to = 0
 
 func _ready() -> void:
 	speed = 800 + rng.randf_range(-50, 100)
-
 	if type == 0:
 		type = rng.randi_range(1, 3)
 
@@ -78,31 +83,43 @@ func hit(damage: int) -> void:
 		die()
 
 func _process(_delta: float) -> void:
-	if dead:
-		return
-	
-	var wherePlayer = player.global_position - global_position
 	var player_pos = player.global_position
+	print(rad_to_deg(to))
+
+	if wallCollision and pat and lastKnown == null:
+		from = global_rotation
+		to -= deg_to_rad(90)
+		wallCollision = false
+		rotating = true
 	
-	#This mess handles the main decision making of the enemy
-	#If player is within the sight range
-	if wherePlayer.length() < 1600:
-		#Raycays to their position
-		ray.target_position = ray.to_local(player_pos)
-		ray.force_raycast_update()
-		#If the raycast hit anything,
-		if ray.is_colliding():
-			#See if the thing it hit is the player
-			var collider = ray.get_collider()
-			if collider == player:
-				look_at(player_pos)
-				attackPlayer()
-				lastKnown = player_pos
-			#If it wasn', set seen to false.
-			if collider != player:
-				seen = false
-				if lastKnown != null:
-					search()
+	if rotating:
+		rotation = lerp_angle(rotation, to, .1)
+		if abs(angle_difference(global_rotation, to)) < .08:
+			rotating = false
+			rotation = to
+			to = global_rotation
+
+	#Raycays to their position
+	ray.target_position = ray.to_local(player_pos)
+	ray.force_raycast_update()
+	#If the raycast hit anything,
+	if ray.is_colliding():
+		#See if the thing it hit is the player
+		var collider = ray.get_collider()
+		collider = null
+		if collider == player:
+			look_at(player_pos)
+			attackPlayer()
+			lastKnown = player_pos
+		if collider != player:
+			if lastKnown != null:
+				search()
+			elif pat:
+				patrol()
+			
+func patrol():
+	velocity = walkSpeed * Vector2(1, 0).rotated(rotation)
+	move_and_slide()
 
 func search():
 	var goingTo = lastKnown
@@ -122,9 +139,8 @@ func search():
 
 	
 func attackPlayer() -> bool:
-	if !seen:
-		await get_tree().create_timer(.5).timeout
-	if canFire:
+	await get_tree().create_timer(.5).timeout
+	if canFire and ammo > 0:
 		fire()
 		ammo -= 1
 		
@@ -164,3 +180,7 @@ func wait() -> bool:
 	await get_tree().create_timer(fireRate).timeout
 	canFire = true
 	return true
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	wallCollision = true
