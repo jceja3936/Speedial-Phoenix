@@ -30,7 +30,7 @@ var from = 0
 var to = 0
 
 func _ready() -> void:
-	speed = 800 + rng.randf_range(-50, 100)
+	speed = 800 + rng.randf_range(-100, 100)
 	if type == 0:
 		type = rng.randi_range(1, 3)
 
@@ -84,7 +84,6 @@ func hit(damage: int) -> void:
 
 func _process(_delta: float) -> void:
 	var player_pos = player.global_position
-	print(rad_to_deg(to))
 
 	if wallCollision and pat and lastKnown == null:
 		from = global_rotation
@@ -106,7 +105,6 @@ func _process(_delta: float) -> void:
 	if ray.is_colliding():
 		#See if the thing it hit is the player
 		var collider = ray.get_collider()
-		collider = null
 		if collider == player:
 			look_at(player_pos)
 			attackPlayer()
@@ -146,9 +144,7 @@ func attackPlayer() -> bool:
 		
 	return true;
 	
-
 func fire() -> void:
-	dammage = -1
 	if type == 3:
 		for i in range(6):
 			canFire = false
@@ -181,6 +177,5 @@ func wait() -> bool:
 	canFire = true
 	return true
 
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	wallCollision = true

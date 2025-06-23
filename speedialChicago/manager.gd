@@ -28,8 +28,8 @@ func instantiate(type: PackedScene, who: CharacterBody2D, ammo: int):
 	var instance = type.instantiate()
 	instance.setAmmo(ammo)
 	instance.set_meta("placed", "Yer")
-	instance.set_collision_layer_value(2, true)
-	instance.set_collision_mask_value(2, true)
+	instance.set_collision_layer_value(2, false)
+	instance.set_collision_mask_value(2, false)
 	instance.set_collision_layer_value(1, false)
 	instance.set_collision_mask_value(1, false)
 	instance.position = who.global_position

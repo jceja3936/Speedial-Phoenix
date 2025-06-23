@@ -9,6 +9,7 @@ size = Vector2(14, 8)
 [node name="bullet" type="CharacterBody2D"]
 scale = Vector2(2.8, 1.92)
 collision_layer = 0
+collision_mask = 5
 script = ExtResource("1_y25gk")
 metadata/_edit_group_ = true
 

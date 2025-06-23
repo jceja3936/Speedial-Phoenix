@@ -21,7 +21,7 @@ func hit(damage: int) -> void:
 	health -= damage
 	if health <= 0:
 		die()
-		get_node("/root/Level/Camera2D/Respawn").show()
+		get_node("/root/Lvl1/Camera2D/Respawn").show()
 	
 func die() -> void:
 	$Sprite2D.texture = deathTexture
@@ -30,12 +30,7 @@ func die() -> void:
 	$CollisionShape2D.queue_free()
 	dead = true;
 	$hun.set_script(null)
-	self.set_script(null)
-
 func _process(delta: float) -> void:
-	if dead:
-		return
-	
 	if Input.is_action_just_pressed("esc") and cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		cameFollow = false
@@ -44,6 +39,10 @@ func _process(delta: float) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		cameFollow = true
 		cam.setCam(true)
+
+	if dead:
+		return
+
 
 	look_at(get_global_mouse_position())
 	var dir = Input.get_vector("Left", "Right", "Up", "Down")
@@ -58,5 +57,5 @@ func _process(delta: float) -> void:
 #value is fire rate, gun is guntype, bulldam is bullet damage
 func weaponGrabbed(which: int, currentAmmo: int) -> void:
 	$hun.update_values(which, currentAmmo)
-	get_node("/root/Level/Camera2D/AmAm").show()
+	get_node("/root/Lvl1/Camera2D/AmAm").show()
 	gunPickedUp = true

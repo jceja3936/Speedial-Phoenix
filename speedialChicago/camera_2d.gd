@@ -8,7 +8,6 @@ var cameFollow = true
 func setCam(yes: bool):
 	cameFollow = yes
 
-
 func _process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var player_pos = player.get_global_position()
@@ -19,8 +18,8 @@ func _process(_delta: float) -> void:
 		$Cursors.offset = Vector2(800, 0).rotated(get_angle_to(mouse_pos))
 
 
-	if Input.is_action_just_pressed("Respawn") and player.get("dead") == null:
-		get_tree().change_scene_to_file("res://scenes/level.tscn")
+	if Input.is_action_just_pressed("Respawn") and player.get("dead") == true:
+		get_tree().change_scene_to_file("res://scenes/Lvl1.tscn")
 
 
 func updateAmmo(amount: int):
