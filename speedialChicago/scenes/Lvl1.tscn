@@ -116,7 +116,7 @@ cam = NodePath("../Camera2D")
 position = Vector2(118, -207)
 
 [node name="pistol" parent="." instance=ExtResource("5_4nxgt")]
-position = Vector2(718, -202)
+position = Vector2(641, -223)
 
 [node name="shotgun" parent="." instance=ExtResource("6_8vv17")]
 position = Vector2(433, -207)

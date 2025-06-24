@@ -14,7 +14,7 @@ var gunPickedUp = false
 
 var canFire = false
 var ammo = 10;
-var gunType = 1
+var gunType = 0
 var dammage = 100
 var fireRate = .2
 
@@ -29,11 +29,27 @@ func _process(_delta: float) -> void:
 		ammo -= 1
 		get_node("/root/Lvl1/Camera2D/AmAm").text = "Ammo:" + str(ammo)
 
+	if Input.is_action_just_pressed("shoot") and !gunPickedUp:
+		melee()
+
 	if Input.is_action_just_pressed("Drop") and gunPickedUp:
 		dropWeapon(gunType)
 		get_node("/root/Lvl1/Camera2D/AmAm").hide()
 		update_values(0, 0)
+		gunPickedUp = false
 		
+func melee():
+	var new_area = Area2D.new()
+	var new_collision = CollisionShape2D.new()
+	var new_shape = RectangleShape2D.new()
+	new_shape.extents = Vector2(20, 50)
+	new_collision.shape = new_shape
+	add_child(new_area)
+	new_area.add_child(new_collision)
+	new_area.global_position = get_parent().global_position + Vector2(80, 0).rotated(get_parent().rotation)
+	await get_tree().create_timer(0.5).timeout
+	new_area.queue_free()
+
 
 func fire() -> void:
 	if gunType == 3:
@@ -113,7 +129,6 @@ func instantiate(type: PackedScene):
 	get_tree().root.add_child(instance)
 
 func dropWeapon(gun: int):
-	get_parent().set("gunPickedUp", false)
 	match gun:
 		1:
 			instantiate(pistol)

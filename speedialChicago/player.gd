@@ -14,7 +14,6 @@ var canFire = false
 
 var rng = RandomNumberGenerator.new()
 var playa = true
-var gunPickedUp = false
 var cameFollow = true
 
 func hit(damage: int) -> void:
@@ -58,4 +57,3 @@ func _process(delta: float) -> void:
 func weaponGrabbed(which: int, currentAmmo: int) -> void:
 	$hun.update_values(which, currentAmmo)
 	get_node("/root/Lvl1/Camera2D/AmAm").show()
-	gunPickedUp = true
