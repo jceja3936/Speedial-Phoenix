@@ -68,6 +68,7 @@ func _ready() -> void:
 		
 	
 func die() -> void:
+	Manager.decrementEnemyAmount()
 	$Sprite2D.texture = deathTexture
 	gunSkin.texture = null
 	$Sprite2D.scale.x = 1

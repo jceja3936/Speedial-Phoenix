@@ -4,6 +4,8 @@ var pistol: PackedScene = load("res://scenes/pistol.tscn")
 var rifle: PackedScene = load("res://scenes/rifle.tscn")
 var shotgun: PackedScene = load("res://scenes/shotgun.tscn")
 
+var enemyAmount = 0
+
 var item_sounds = {
 	"pSound": preload("res://assets/9mm.wav"),
 	"sSound": preload("res://assets/Big Boing.wav")
@@ -22,6 +24,14 @@ func playSound(item_name: String, pos: Vector2):
 		if player:
 			player.queue_free()
 
+func setEnemyAmount(amount: int):
+	enemyAmount = amount
+
+func getEnemyAmount():
+	return enemyAmount
+
+func decrementEnemyAmount():
+	enemyAmount -= 1
 
 #Functions that handle Dropping a weapon
 func instantiate(type: PackedScene, who: CharacterBody2D, ammo: int):
