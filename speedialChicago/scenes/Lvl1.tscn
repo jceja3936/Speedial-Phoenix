@@ -108,7 +108,7 @@ tile_map_data = PackedByteArray("AAAHAAQAAAAFAAAAAAAGAAQAAAAAAAAAAAAMAAQAAAAFAAA
 tile_set = SubResource("TileSet_t1rx8")
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("3_yiohx")]
-position = Vector2(485, -197)
+position = Vector2(-60, -215)
 collision_mask = 3
 health = 10000
 cam = NodePath("../Camera2D")
@@ -124,13 +124,14 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="shotgun" parent="." instance=ExtResource("6_8vv17")]
-position = Vector2(1146, 56)
+position = Vector2(433, -207)
 collision_layer = 0
 collision_mask = 2
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(936, -188)
 offset = Vector2(0, -100)
+zoom = Vector2(0.5, 0.5)
 script = ExtResource("7_g2rpt")
 player = NodePath("../Player")
 
@@ -159,7 +160,7 @@ texture = ExtResource("8_goqse")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="patroller" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_63bpq")]
-position = Vector2(0, 1033)
+position = Vector2(3, 1048)
 collision_layer = 4
 collision_mask = 3
 player = NodePath("../../Player")
@@ -167,14 +168,13 @@ type = 2
 pat = true
 
 [node name="Station1" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_63bpq")]
-position = Vector2(162, 241)
+position = Vector2(180, 225)
 collision_layer = 4
 collision_mask = 3
 player = NodePath("../../Player")
-type = 2
 
 [node name="Station2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_63bpq")]
-position = Vector2(1433, 1043)
+position = Vector2(1457, 1038)
 collision_layer = 4
 collision_mask = 3
 player = NodePath("../../Player")

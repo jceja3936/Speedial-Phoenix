@@ -16,6 +16,7 @@ gun = NodePath("gun")
 ray = NodePath("ray")
 nav_Agent = NodePath("NavigationAgent2D")
 gunSkin = NodePath("gun/gunSkin")
+distance = 1600
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-4.68954, -4.46008)

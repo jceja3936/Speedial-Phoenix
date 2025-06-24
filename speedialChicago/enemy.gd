@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var nav_Agent: NavigationAgent2D
 @export var gunSkin: Sprite2D
 @export var pat: bool
+@export var distance: int
 var currentSprite: Texture
 
 var bullet: PackedScene = load("res://scenes/bullet.tscn")
@@ -19,6 +20,7 @@ var lastKnown
 var health = 200
 var dead = false
 var dammage = 100
+var ogSpeed = 750
 var speed = 750
 var walkSpeed = 375
 var fireRate = .2
@@ -31,6 +33,7 @@ var to = 0
 
 func _ready() -> void:
 	speed = 800 + rng.randf_range(-100, 100)
+	ogSpeed = speed
 	if type == 0:
 		type = rng.randi_range(1, 3)
 
@@ -86,6 +89,9 @@ func hit(damage: int) -> void:
 func _process(_delta: float) -> void:
 	var player_pos = player.global_position
 
+	if pat:
+		patrol()
+
 	if wallCollision and pat and lastKnown == null:
 		from = global_rotation
 		to -= deg_to_rad(90)
@@ -102,20 +108,27 @@ func _process(_delta: float) -> void:
 	#Raycays to their position
 	ray.target_position = ray.to_local(player_pos)
 	ray.force_raycast_update()
+
 	#If the raycast hit anything,
+	if global_position.distance_to(player_pos) < distance or lastKnown != null:
+		takeAlook(player_pos)
+
+func takeAlook(playPos: Vector2):
+	ray.target_position = ray.to_local(playPos)
+	ray.force_raycast_update()
 	if ray.is_colliding():
 		#See if the thing it hit is the player
 		var collider = ray.get_collider()
 		if collider == player:
-			look_at(player_pos)
+			rotating = false
+			pat = true
+			look_at(playPos)
 			attackPlayer()
-			lastKnown = player_pos
-		if collider != player:
-			if lastKnown != null:
-				search()
-			elif pat:
-				patrol()
-			
+			lastKnown = playPos
+		if collider != player and lastKnown != null:
+			speed = ogSpeed - walkSpeed
+			search()
+	
 func patrol():
 	velocity = walkSpeed * Vector2(1, 0).rotated(rotation)
 	move_and_slide()
