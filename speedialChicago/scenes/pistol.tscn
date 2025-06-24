@@ -11,6 +11,7 @@ size = Vector2(110.048, 50)
 
 [node name="pistol" type="CharacterBody2D"]
 scale = Vector2(0.418, 0.2)
+collision_layer = 0
 script = ExtResource("1_buff3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,6 +22,8 @@ texture = ExtResource("1_igbvm")
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(21.5311, -5)
 scale = Vector2(1.32804, 1.70989)
+collision_layer = 0
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-50, 1)

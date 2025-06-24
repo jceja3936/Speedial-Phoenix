@@ -9,6 +9,8 @@ radius = 37.0
 height = 98.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_g2els")
 metadata/pla = "fe"
 

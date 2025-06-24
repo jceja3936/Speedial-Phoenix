@@ -127,21 +127,23 @@ func takeAlook(playPos: Vector2):
 			lastKnown = playPos
 		if collider != player and lastKnown != null:
 			speed = ogSpeed - walkSpeed
-			search()
+			search(lastKnown)
 	
 func patrol():
 	velocity = walkSpeed * Vector2(1, 0).rotated(rotation)
 	move_and_slide()
 
-func search():
-	var goingTo = lastKnown
-	nav_Agent.target_position = goingTo
+func search(destination):
+	nav_Agent.target_position = destination
 
 	var current_Pos = global_position
 	var next_path_pos = nav_Agent.get_next_path_position()
 	var new_velocity = current_Pos.direction_to(next_path_pos)
-
+	var lookingAt = rotation + get_angle_to(next_path_pos)
+	rotation = lerp_angle(rotation, lookingAt, .1)
 	if nav_Agent.is_navigation_finished():
+		pat = true
+		lastKnown = null
 		return
 
 	if nav_Agent.avoidance_enabled:
