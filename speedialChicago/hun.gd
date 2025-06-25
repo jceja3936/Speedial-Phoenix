@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 		get_node("/root/Lvl1/Camera2D/AmAm").text = "Ammo:" + str(ammo)
 
 	print(canFire)
-	if Input.is_action_pressed("shoot") and !gunPickedUp and canFire and !punching:
+	if Input.is_action_pressed("shoot") and !gunPickedUp and canFire:
 		punching = true
 		wait(1)
 		Manager.playSound("pSound", global_position)
@@ -43,8 +43,6 @@ func _process(_delta: float) -> void:
 		dropWeapon(gunType)
 		get_node("/root/Lvl1/Camera2D/AmAm").hide()
 		update_values(0, 0)
-		gunPickedUp = false
-		fireRate = .5
 	
 	if punching:
 		melee()
@@ -104,6 +102,7 @@ func update_values(value: int, currentAmmo: int):
 	get_node("/root/Lvl1/Camera2D/AmAm").text = "Ammo:" + str(ammo)
 	canFire = true
 	gunPickedUp = true
+	hitBox.visible = false
 	match value:
 		1:
 			currentSprite = load("res://assets/basicSquare.svg")
@@ -126,6 +125,15 @@ func update_values(value: int, currentAmmo: int):
 			scale.y = 0.289
 			dammage = 100
 			fireRate = .8
+		_:
+			hitBox.visible = true
+			fireRate = .5
+			scale.x = 1
+			scale.y = 1
+			rotation = 0
+			ammo = 0
+			gunPickedUp = false
+
 	texture = currentSprite
 
 
