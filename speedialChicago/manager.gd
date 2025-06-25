@@ -4,6 +4,9 @@ var pistol: PackedScene = load("res://scenes/pistol.tscn")
 var rifle: PackedScene = load("res://scenes/rifle.tscn")
 var shotgun: PackedScene = load("res://scenes/shotgun.tscn")
 
+var next_scene: String = "res://scenes/Lvl1.tscn"
+var loadingScreen = preload("res://scenes/loading_screen.tscn")
+
 var enemyAmount = 0
 
 var item_sounds = {
