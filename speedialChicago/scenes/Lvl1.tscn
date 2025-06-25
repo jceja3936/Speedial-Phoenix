@@ -110,6 +110,7 @@ tile_set = SubResource("TileSet_t1rx8")
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("3_yiohx")]
 position = Vector2(-60, -215)
+health = 20000
 cam = NodePath("../Camera2D")
 
 [node name="Rifle" parent="." instance=ExtResource("4_mkjed")]
@@ -154,12 +155,13 @@ texture = ExtResource("8_goqse")
 [node name="patroller" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_63bpq")]
 position = Vector2(3, 1048)
 player = NodePath("../../Player")
-type = 2
+type = 1
 pat = true
 
 [node name="Station1" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_63bpq")]
 position = Vector2(180, 225)
 player = NodePath("../../Player")
+type = 1
 
 [node name="Station2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("9_63bpq")]
 position = Vector2(1457, 1038)

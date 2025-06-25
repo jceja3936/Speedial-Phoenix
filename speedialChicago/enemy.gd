@@ -10,7 +10,7 @@ extends CharacterBody2D
 @export var distance: int
 var currentSprite: Texture
 
-var bullet: PackedScene = load("res://scenes/bullet.tscn")
+var bullet: PackedScene = preload("res://scenes/bullet.tscn")
 var deathTexture: Texture = load("res://assets/icon.svg")
 
 var canFire = true
@@ -128,7 +128,13 @@ func takeAlook(playPos: Vector2):
 			search(lastKnown)
 	
 func patrol():
+	var player_pos = player.global_position
 	velocity = walkSpeed * Vector2(1, 0).rotated(rotation)
+	if global_position.distance_to(player_pos) < 400 and lastKnown != null:
+		walkSpeed = 0
+	else:
+		walkSpeed = 375
+
 	move_and_slide()
 
 func search(destination):
@@ -142,6 +148,7 @@ func search(destination):
 	if nav_Agent.is_navigation_finished():
 		pat = true
 		lastKnown = null
+		walkSpeed = 375
 		return
 
 	if nav_Agent.avoidance_enabled:

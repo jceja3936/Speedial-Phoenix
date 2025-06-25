@@ -10,7 +10,7 @@ var pistol: PackedScene = load("res://scenes/pistol.tscn")
 var rifle: PackedScene = load("res://scenes/rifle.tscn")
 var shotgun: PackedScene = load("res://scenes/shotgun.tscn")
 
-var punchTexture: Texture = load("res://assets/punch.svg")
+var punchTexture: Texture = preload("res://assets/punch.svg")
 
 var gunPickedUp = false
 

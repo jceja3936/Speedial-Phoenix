@@ -6,7 +6,7 @@ const GRAVITY = 1000
 @export var health = 200
 @export var cam: Camera2D
 
-var bullet: PackedScene = load("res://scenes/bullet.tscn")
+var bullet: PackedScene = preload("res://scenes/bullet.tscn")
 var deathTexture: Texture = load("res://assets/icon.svg")
 
 var dead = false
@@ -30,6 +30,7 @@ func die() -> void:
 	$CollisionShape2D.queue_free()
 	dead = true;
 	$hun.set_script(null)
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("esc") and cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
