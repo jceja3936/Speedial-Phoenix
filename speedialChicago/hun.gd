@@ -32,13 +32,14 @@ func _process(_delta: float) -> void:
 		ammo -= 1
 		get_node("/root/Lvl1/Camera2D/AmAm").text = "Ammo:" + str(ammo)
 
-	print(canFire)
 	if Input.is_action_pressed("shoot") and !gunPickedUp and canFire:
 		punching = true
 		wait(1)
+		canFire = false
+		texture = punchTexture
+		offset = Vector2(-20, 0).rotated(get_angle_to(get_global_mouse_position()))
 		Manager.playSound("pSound", global_position)
 		
-
 	if Input.is_action_just_pressed("Drop") and gunPickedUp:
 		dropWeapon(gunType)
 		get_node("/root/Lvl1/Camera2D/AmAm").hide()
@@ -48,9 +49,6 @@ func _process(_delta: float) -> void:
 		melee()
 
 func melee():
-	canFire = false
-	texture = punchTexture
-	offset = Vector2(-20, 0).rotated(get_parent().rotation)
 	for i in range(hitBox.get_collision_count()):
 		var collider = hitBox.get_collider(i)
 		if hitBox.is_colliding():
