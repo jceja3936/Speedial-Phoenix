@@ -105,15 +105,13 @@ func _process(_delta: float) -> void:
 			rotation = to
 			to = global_rotation
 
-	#Raycays to their position
-	ray.target_position = ray.to_local(player_pos)
-	ray.force_raycast_update()
-
 	#If the raycast hit anything,
 	if global_position.distance_to(player_pos) < distance or lastKnown != null:
 		takeAlook(player_pos)
 
 func takeAlook(playPos: Vector2):
+	ray.target_position = ray.to_local(playPos)
+	ray.force_raycast_update()
 	ray.target_position = ray.to_local(playPos)
 	ray.force_raycast_update()
 	if ray.is_colliding():
@@ -153,8 +151,9 @@ func search(destination):
 
 	
 func attackPlayer() -> bool:
-	await get_tree().create_timer(.5).timeout
-	if canFire and ammo > 0:
+	await get_tree().create_timer(.4).timeout
+	var collider = ray.get_collider()
+	if collider == player and canFire and ammo > 0:
 		fire()
 		ammo -= 1
 		

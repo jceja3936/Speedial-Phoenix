@@ -1,25 +1,30 @@
 extends Camera2D
 
 @export var player: CharacterBody2D
-var cameFollow = true
+var cameFollow = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
-func setCam(yes: bool):
-	cameFollow = yes
+func setCam(type: int):
+	cameFollow = type
 
 func _process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var player_pos = player.get_global_position()
 
-	if cameFollow:
-		position = lerp(position, (player_pos + Vector2(100, 0).rotated(get_angle_to(mouse_pos))), .2)
-		$Cursors.position = player_pos
-		$Cursors.offset = Vector2(800, 0).rotated(get_angle_to(mouse_pos))
-	else:
-		position = lerp(position, player_pos, .4)
-		$Cursors.position = mouse_pos
-		$Cursors.offset = Vector2.ZERO
+	match cameFollow:
+		0:
+			position = lerp(position, (player_pos + Vector2(100, 0).rotated(get_angle_to(mouse_pos))), .2)
+			$Cursors.position = player_pos
+			$Cursors.offset = Vector2(800, 0).rotated(get_angle_to(mouse_pos))
+		1:
+			position = lerp(position, player_pos, .4)
+			$Cursors.position = mouse_pos
+			$Cursors.offset = Vector2.ZERO
+		2:
+			position = lerp(position, (player_pos + Vector2(750, 0).rotated(get_angle_to(mouse_pos))), .1)
+			$Cursors.position = player_pos
+			$Cursors.offset = Vector2(1600, 0).rotated(get_angle_to(mouse_pos))
 
 
 	if Input.is_action_just_pressed("Respawn") and player.get("dead") == true:

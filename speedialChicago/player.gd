@@ -34,11 +34,17 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("esc") and cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		cameFollow = false
-		cam.setCam(false)
+		cam.setCam(1)
 	elif Input.is_action_just_pressed("esc") and !cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		cameFollow = true
-		cam.setCam(true)
+		cam.setCam(0)
+
+	if Input.is_action_pressed("extendCam") and cameFollow:
+		cam.setCam(2)
+
+	if Input.is_action_just_released("extendCam"):
+		cam.setCam(0)
 
 	if dead:
 		return

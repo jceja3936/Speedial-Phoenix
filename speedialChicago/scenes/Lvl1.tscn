@@ -123,7 +123,6 @@ position = Vector2(433, -207)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(936, -188)
-offset = Vector2(0, -100)
 zoom = Vector2(0.75, 0.75)
 script = ExtResource("7_g2rpt")
 player = NodePath("../Player")
