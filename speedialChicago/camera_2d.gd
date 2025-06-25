@@ -16,6 +16,10 @@ func _process(_delta: float) -> void:
 		position = lerp(position, (player_pos + Vector2(100, 0).rotated(get_angle_to(mouse_pos))), .2)
 		$Cursors.position = player_pos
 		$Cursors.offset = Vector2(800, 0).rotated(get_angle_to(mouse_pos))
+	else:
+		position = lerp(position, player_pos, .4)
+		$Cursors.position = mouse_pos
+		$Cursors.offset = Vector2.ZERO
 
 
 	if Input.is_action_just_pressed("Respawn") and player.get("dead") == true:

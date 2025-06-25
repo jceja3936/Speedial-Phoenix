@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://drhq6gxwrpafr"]
+[gd_scene load_steps=6 format=3 uid="uid://drhq6gxwrpafr"]
 
 [ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://hun.gd" id="5_qlg0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 37.0
@@ -21,9 +23,17 @@ texture = ExtResource("1_4flbx")
 
 [node name="bullets" type="Node2D" parent="."]
 
-[node name="hun" type="Sprite2D" parent="."]
+[node name="hun" type="Sprite2D" parent="." node_paths=PackedStringArray("hitBox")]
 position = Vector2(128, -4.52995e-06)
 script = ExtResource("5_qlg0r")
+hitBox = NodePath("punchBox")
+
+[node name="punchBox" type="ShapeCast2D" parent="hun"]
+position = Vector2(-188, 2)
+scale = Vector2(1, 2.84)
+shape = SubResource("RectangleShape2D_qhqgy")
+target_position = Vector2(187, -2.38419e-07)
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

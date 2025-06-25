@@ -1,5 +1,7 @@
 extends Sprite2D
 
+@export var hitBox: ShapeCast2D
+
 var currentSprite: Texture
 var bullet: PackedScene = load("res://scenes/bullet.tscn")
 var rng = RandomNumberGenerator.new()
@@ -8,15 +10,16 @@ var pistol: PackedScene = load("res://scenes/pistol.tscn")
 var rifle: PackedScene = load("res://scenes/rifle.tscn")
 var shotgun: PackedScene = load("res://scenes/shotgun.tscn")
 
-var pSound = load("res://assets/9mm.wav")
+var punchTexture: Texture = load("res://assets/punch.svg")
 
 var gunPickedUp = false
 
-var canFire = false
-var ammo = 10;
+var canFire = true
+var ammo = 0;
 var gunType = 0
 var dammage = 100
-var fireRate = .2
+var fireRate = .5
+var punching = false
 
 #Updates Player on current ammo amount:
 func getAmmo() -> int:
@@ -29,26 +32,32 @@ func _process(_delta: float) -> void:
 		ammo -= 1
 		get_node("/root/Lvl1/Camera2D/AmAm").text = "Ammo:" + str(ammo)
 
-	if Input.is_action_just_pressed("shoot") and !gunPickedUp:
-		melee()
+	print(canFire)
+	if Input.is_action_pressed("shoot") and !gunPickedUp and canFire and !punching:
+		punching = true
+		wait(1)
+		Manager.playSound("pSound", global_position)
+		
 
 	if Input.is_action_just_pressed("Drop") and gunPickedUp:
 		dropWeapon(gunType)
 		get_node("/root/Lvl1/Camera2D/AmAm").hide()
 		update_values(0, 0)
 		gunPickedUp = false
-		
+		fireRate = .5
+	
+	if punching:
+		melee()
+
 func melee():
-	var new_area = Area2D.new()
-	var new_collision = CollisionShape2D.new()
-	var new_shape = RectangleShape2D.new()
-	new_shape.extents = Vector2(20, 50)
-	new_collision.shape = new_shape
-	add_child(new_area)
-	new_area.add_child(new_collision)
-	new_area.global_position = get_parent().global_position + Vector2(80, 0).rotated(get_parent().rotation)
-	await get_tree().create_timer(0.5).timeout
-	new_area.queue_free()
+	canFire = false
+	texture = punchTexture
+	offset = Vector2(-20, 0).rotated(get_parent().rotation)
+	for i in range(hitBox.get_collision_count()):
+		var collider = hitBox.get_collider(i)
+		if hitBox.is_colliding():
+			if collider.get("enemy") == true:
+				collider.call("hit", 220)
 
 
 func fire() -> void:
@@ -77,8 +86,13 @@ func fire() -> void:
 		bull.damage = dammage
 		get_tree().root.add_child(bull)
 
-func wait() -> bool:
-	await get_tree().create_timer(fireRate).timeout
+func wait(_punched: int = 0) -> bool:
+	if _punched == 1:
+		await get_tree().create_timer(.25).timeout
+		texture = null
+		punching = false
+	else:
+		await get_tree().create_timer(fireRate).timeout
 	canFire = true
 	return true
 
@@ -129,6 +143,7 @@ func instantiate(type: PackedScene):
 	get_tree().root.add_child(instance)
 
 func dropWeapon(gun: int):
+	get_parent().set("gunPickedUp", false)
 	match gun:
 		1:
 			instantiate(pistol)

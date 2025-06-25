@@ -11,6 +11,7 @@ var deathTexture: Texture = load("res://assets/icon.svg")
 
 var dead = false
 var canFire = false
+var gunPickedUp = false
 
 var rng = RandomNumberGenerator.new()
 var playa = true
@@ -56,4 +57,5 @@ func _process(delta: float) -> void:
 #value is fire rate, gun is guntype, bulldam is bullet damage
 func weaponGrabbed(which: int, currentAmmo: int) -> void:
 	$hun.update_values(which, currentAmmo)
+	gunPickedUp = true
 	get_node("/root/Lvl1/Camera2D/AmAm").show()
