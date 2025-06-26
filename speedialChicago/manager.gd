@@ -5,6 +5,7 @@ var rifle: PackedScene = load("res://scenes/rifle.tscn")
 var shotgun: PackedScene = load("res://scenes/shotgun.tscn")
 
 var next_scene: String = "res://scenes/Lvl1.tscn"
+var current_scene: String = "1_1"
 var loadingScreen = preload("res://scenes/loading_screen.tscn")
 
 var enemyAmount = 0
@@ -14,6 +15,10 @@ var item_sounds = {
 	"sSound": preload("res://assets/Big Boing.wav")
 	# Add more as needed or load dynamically
 }
+
+func startNextScene():
+	var loadScreen = loadingScreen.instantiate()
+	get_tree().root.add_child(loadScreen)
 
 func playSound(item_name: String, pos: Vector2):
 	var sound = item_sounds.get(item_name)

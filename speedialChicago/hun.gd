@@ -20,17 +20,25 @@ var gunType = 0
 var dammage = 100
 var fireRate = .5
 var punching = false
+var amAm
 
-#Updates Player on current ammo amount:
-func getAmmo() -> int:
-	return ammo
+
+func _ready() -> void:
+	var amamNode = ""
+	match Manager.current_scene:
+		"1_1":
+			amamNode = "/root/Lvl1/Camera2D/AmAm"
+		"1_2":
+			amamNode = "/root/1_2/Camera2D/AmAm"
+
+	amAm = get_node(amamNode)
 
 #Functions that Shoot the gun
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") and canFire and ammo > 0:
 		fire()
 		ammo -= 1
-		get_node("/root/Lvl1/Camera2D/AmAm").text = "Ammo:" + str(ammo)
+		amAm.text = "Ammo:" + str(ammo)
 
 	if Input.is_action_pressed("shoot") and !gunPickedUp and canFire:
 		punching = true
@@ -42,7 +50,7 @@ func _process(_delta: float) -> void:
 		
 	if Input.is_action_just_pressed("Drop") and gunPickedUp:
 		dropWeapon(gunType)
-		get_node("/root/Lvl1/Camera2D/AmAm").hide()
+		amAm.hide()
 		update_values(0, 0)
 	
 	if punching:
@@ -97,7 +105,7 @@ func update_values(value: int, currentAmmo: int):
 	currentSprite = null
 	gunType = value
 	ammo = currentAmmo
-	get_node("/root/Lvl1/Camera2D/AmAm").text = "Ammo:" + str(ammo)
+	amAm.text = "Ammo:" + str(ammo)
 	canFire = true
 	gunPickedUp = true
 	hitBox.visible = false

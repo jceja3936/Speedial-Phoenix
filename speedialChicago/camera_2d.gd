@@ -1,16 +1,33 @@
 extends Camera2D
 
-@export var player: CharacterBody2D
+var player: CharacterBody2D
 var cameFollow = 0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready() -> void:
+	var playerNode = ""
+	match Manager.current_scene:
+		"1_1":
+			playerNode = "/root/Lvl1/Player"
+		"1_2":
+			playerNode = "/root/1_2/Player"
+
+	player = get_node(playerNode)
+			
+	$Cursors.top_level = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	$AmAm.hide()
+	$Respawn.hide()
+	for node in get_tree().root.get_children():
+		if node.has_meta("placed"):
+			node.queue_free()
+
 
 func setCam(type: int):
 	cameFollow = type
 
 func _process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
-	var player_pos = player.get_global_position()
+	var player_pos = player.global_position
 
 	match cameFollow:
 		0:
@@ -28,20 +45,10 @@ func _process(_delta: float) -> void:
 
 
 	if Input.is_action_just_pressed("Respawn") and player.get("dead") == true:
-		get_tree().change_scene_to_file("res://scenes/Lvl1.tscn")
+		get_tree().change_scene_to_file(Manager.next_scene)
 
 
 func updateAmmo(amount: int):
 	$AmAm.show()
 	$AmAm.top_level = true
 	$AmAm.text = "Ammo: " + str(amount)
-
-
-func _ready() -> void:
-	$Cursors.top_level = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
-	$AmAm.hide()
-	$Respawn.hide()
-	for node in get_tree().root.get_children():
-		if node.has_meta("placed"):
-			node.queue_free()

@@ -1,7 +1,5 @@
 extends Control
 
-var next_scene = "res://scenes/lv_2.tscn"
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ResourceLoader.load_threaded_request(Manager.next_scene)

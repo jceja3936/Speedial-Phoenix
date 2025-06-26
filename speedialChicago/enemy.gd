@@ -1,6 +1,4 @@
 extends CharacterBody2D
-
-@export var player: CharacterBody2D
 @export var gun: Node2D
 @export var ray: RayCast2D
 @export var type: int
@@ -31,9 +29,21 @@ var rotating = false
 var from = 0
 var to = 0
 
+var player: CharacterBody2D
+
 func _ready() -> void:
 	speed = 800 + rng.randf_range(-100, 100)
 	ogSpeed = speed
+
+	var playerNode = ""
+	match Manager.current_scene:
+		"1_1":
+			playerNode = "/root/Lvl1/Player"
+		"1_2":
+			playerNode = "/root/1_2/Player"
+
+	player = get_node(playerNode)
+
 	if type == 0:
 		type = rng.randi_range(1, 3)
 

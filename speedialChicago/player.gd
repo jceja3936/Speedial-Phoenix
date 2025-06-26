@@ -16,12 +16,30 @@ var gunPickedUp = false
 var rng = RandomNumberGenerator.new()
 var playa = true
 var cameFollow = true
+var amAm
+var resp
+
+
+func _ready() -> void:
+	var amamNode = ""
+	var respNode = ""
+
+	match Manager.current_scene:
+		"1_1":
+			respNode = "/root/Lvl1/Camera2D/Respawn"
+			amamNode = "/root/Lvl1/Camera2D/AmAm"
+		"1_2":
+			respNode = "/root/1_2/Camera2D/Respawn"
+			amamNode = "/root/1_2/Camera2D/AmAm"
+
+	amAm = get_node(amamNode)
+	resp = get_node(respNode)
 
 func hit(damage: int) -> void:
 	health -= damage
 	if health <= 0:
 		die()
-		get_node("/root/Lvl1/Camera2D/Respawn").show()
+		resp.show()
 	
 func die() -> void:
 	$Sprite2D.texture = deathTexture
@@ -65,4 +83,4 @@ func _process(delta: float) -> void:
 func weaponGrabbed(which: int, currentAmmo: int) -> void:
 	$hun.update_values(which, currentAmmo)
 	gunPickedUp = true
-	get_node("/root/Lvl1/Camera2D/AmAm").show()
+	amAm.show()
