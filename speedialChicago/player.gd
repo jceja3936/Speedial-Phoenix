@@ -31,6 +31,9 @@ func _ready() -> void:
 		"1_2":
 			respNode = "/root/1_2/Camera2D/Respawn"
 			amamNode = "/root/1_2/Camera2D/AmAm"
+		"1_3":
+			respNode = "/root/lvl1END/Camera2D/Respawn"
+			amamNode = "/root/lvl1END/Camera2D/AmAm"
 
 	amAm = get_node(amamNode)
 	resp = get_node(respNode)

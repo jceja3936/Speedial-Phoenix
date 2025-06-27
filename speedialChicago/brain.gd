@@ -7,6 +7,7 @@ var levelBeat = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	state = 0
 	match Manager.current_scene:
 		"1_1":
 			state = 1
@@ -35,6 +36,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 					Manager.current_scene = "1_2"
 					Manager.startNextScene()
 				2:
-					Manager.next_scene = "res://scenes/Lvl1.tscn"
-					Manager.current_scene = "1_1"
+					Manager.next_scene = "res://ENDscenes/lvl_1end.tscn"
+					Manager.current_scene = "1_3"
 					Manager.startNextScene()

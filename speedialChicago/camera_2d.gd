@@ -4,12 +4,20 @@ var player: CharacterBody2D
 var cameFollow = 0
 
 func _ready() -> void:
+	for node in get_tree().root.get_children():
+		if node.has_meta("placed"):
+			node.queue_free()
+		print(node.name)
+	print("DONEDONEDONEDONEDONE")
+
 	var playerNode = ""
 	match Manager.current_scene:
 		"1_1":
 			playerNode = "/root/Lvl1/Player"
 		"1_2":
 			playerNode = "/root/1_2/Player"
+		"1_3":
+			playerNode = "/root/lvl1END/Player"
 
 	player = get_node(playerNode)
 			
@@ -17,9 +25,6 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	$AmAm.hide()
 	$Respawn.hide()
-	for node in get_tree().root.get_children():
-		if node.has_meta("placed"):
-			node.queue_free()
 
 
 func setCam(type: int):
