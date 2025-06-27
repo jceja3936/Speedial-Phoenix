@@ -7,6 +7,11 @@ var levelBeat = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	match Manager.current_scene:
+		"1_1":
+			state = 1
+		"1_2":
+			state = 2
 	setState(state)
 
 func setState(newState: int):
@@ -15,6 +20,9 @@ func setState(newState: int):
 		1:
 			Manager.setEnemyAmount(3)
 			warpPosition = Vector2(1683.0, 1261.0)
+		2:
+			Manager.setEnemyAmount(6)
+			warpPosition = Vector2(1686.0, 0)
 
 	$Area2D/CollisionShape2D.position = warpPosition
 
@@ -25,4 +33,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				1:
 					Manager.next_scene = "res://scenes/1_2.tscn"
 					Manager.current_scene = "1_2"
+					Manager.startNextScene()
+				2:
+					Manager.next_scene = "res://scenes/Lvl1.tscn"
+					Manager.current_scene = "1_1"
 					Manager.startNextScene()

@@ -82,18 +82,18 @@ func _ready() -> void:
 	
 func die() -> void:
 	Manager.decrementEnemyAmount()
+	dead = true
 	$Sprite2D.texture = deathTexture
-	gunSkin.texture = null
-	$Sprite2D.scale.x = 1
-	$Sprite2D.scale.y = 1
+	$Sprite2D.scale = Vector2(1, 1)
+	$gun/gunSkin.texture = null
 	$CollisionShape2D.queue_free()
-	dead = true;
 	Manager.dropWeapon(type, self, ammo)
 	set_script(null)
-	
+
 func hit(damage: int) -> void:
 	health -= damage
-	if health <= 0:
+	if health <= 0 and !dead:
+		dead = true
 		die()
 
 func _process(_delta: float) -> void:
