@@ -8,6 +8,9 @@ var next_scene: String = "res://scenes/Lvl1.tscn"
 var current_scene: String = "1_1"
 var loadingScreen = preload("res://scenes/loading_screen.tscn")
 
+var gunType = 0
+var ammoCount = 0
+
 var enemyAmount = 0
 
 var item_sounds = {

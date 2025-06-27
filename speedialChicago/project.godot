@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Speedial Phoenix"
-run/main_scene="uid://bfomt0a3m057p"
+run/main_scene="uid://bd6et5gd1uwm7"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://i8kqk3lu2u5c"
 

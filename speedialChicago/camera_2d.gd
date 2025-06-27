@@ -7,8 +7,6 @@ func _ready() -> void:
 	for node in get_tree().root.get_children():
 		if node.has_meta("placed"):
 			node.queue_free()
-		print(node.name)
-	print("DONEDONEDONEDONEDONE")
 
 	var playerNode = ""
 	match Manager.current_scene:
@@ -50,7 +48,7 @@ func _process(_delta: float) -> void:
 
 
 	if Input.is_action_just_pressed("Respawn") and player.get("dead") == true:
-		get_tree().change_scene_to_file(Manager.next_scene)
+		Manager.startNextScene()
 
 
 func updateAmmo(amount: int):

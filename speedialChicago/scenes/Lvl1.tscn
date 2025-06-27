@@ -104,7 +104,6 @@ tile_set = SubResource("TileSet_t1rx8")
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("3_yiohx")]
 position = Vector2(-60, -215)
-health = 20000
 cam = NodePath("../Camera2D")
 
 [node name="Rifle" parent="." instance=ExtResource("4_mkjed")]
@@ -159,8 +158,9 @@ position = Vector2(1457, 1038)
 type = 2
 pat = true
 
-[node name="brain" type="Node" parent="."]
+[node name="brain" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("10_1235x")
+player = NodePath("../Player")
 
 [node name="Area2D" type="Area2D" parent="brain"]
 collision_mask = 9

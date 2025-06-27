@@ -1,5 +1,4 @@
 extends Node
-
 @export var player: CharacterBody2D
 var warpPosition = Vector2.ZERO
 var state = 1
@@ -32,10 +31,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if Manager.getEnemyAmount() == 0:
 			match state:
 				1:
+					player.makeHunSave()
 					Manager.next_scene = "res://scenes/1_2.tscn"
 					Manager.current_scene = "1_2"
 					Manager.startNextScene()
 				2:
+					player.makeHunSave()
 					Manager.next_scene = "res://ENDscenes/lvl_1end.tscn"
 					Manager.current_scene = "1_3"
 					Manager.startNextScene()

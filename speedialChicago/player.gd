@@ -38,6 +38,10 @@ func _ready() -> void:
 	amAm = get_node(amamNode)
 	resp = get_node(respNode)
 
+	if Manager.gunType != 0:
+		weaponGrabbed(Manager.gunType, Manager.ammoCount)
+
+
 func hit(damage: int) -> void:
 	health -= damage
 	if health <= 0:
@@ -81,7 +85,9 @@ func _process(delta: float) -> void:
 
 	move_and_slide()
 	
-	
+func makeHunSave():
+	$hun.saveWeapon()
+
 #value is fire rate, gun is guntype, bulldam is bullet damage
 func weaponGrabbed(which: int, currentAmmo: int) -> void:
 	$hun.update_values(which, currentAmmo)

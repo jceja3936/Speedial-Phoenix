@@ -142,6 +142,9 @@ func update_values(value: int, currentAmmo: int):
 
 	texture = currentSprite
 
+func saveWeapon():
+	Manager.gunType = gunType
+	Manager.ammoCount = ammo
 
 #Functions that handle Dropping a weapon
 func instantiate(type: PackedScene):
