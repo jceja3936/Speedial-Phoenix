@@ -50,7 +50,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Respawn") and player.get("dead") == true:
 		Manager.startNextScene()
 
-
 func updateAmmo(amount: int):
 	$AmAm.show()
 	$AmAm.top_level = true

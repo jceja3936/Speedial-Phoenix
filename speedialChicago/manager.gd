@@ -1,12 +1,12 @@
 extends AudioStreamPlayer
 
-var pistol: PackedScene = load("res://scenes/pistol.tscn")
-var rifle: PackedScene = load("res://scenes/rifle.tscn")
-var shotgun: PackedScene = load("res://scenes/shotgun.tscn")
+var pistol: PackedScene = load("res://gunScenes/pistol.tscn")
+var rifle: PackedScene = load("res://gunScenes/rifle.tscn")
+var shotgun: PackedScene = load("res://gunScenes/shotgun.tscn")
 
-var next_scene: String = "res://scenes/Lvl1.tscn"
+var next_scene: String = "res://lvlScenes/Lvl1.tscn"
 var current_scene: String = "1_1"
-var loadingScreen = preload("res://scenes/loading_screen.tscn")
+var loadingScreen = preload("res://UIscenes/loading_screen.tscn")
 
 var gunType = 0
 var ammoCount = 0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cv60myid72qvl"]
 
 [ext_resource type="Script" uid="uid://cc2s2fd72wrxi" path="res://enemy.gd" id="1_4ra3w"]
-[ext_resource type="Texture2D" uid="uid://qrirgxpp64hl" path="res://assets/csbear.png" id="2_4ra3w"]
+[ext_resource type="Texture2D" uid="uid://yaffwv6ksg2d" path="res://assets/Gabriel.png" id="2_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/basicSquare.svg" id="2_md0e3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ra3w"]
@@ -20,8 +20,7 @@ gunSkin = NodePath("gun/gunSkin")
 distance = 1600
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4.68954, -4.46008)
-scale = Vector2(0.465286, 0.266706)
+rotation = -1.5708
 texture = ExtResource("2_4ra3w")
 
 [node name="gun" type="Node2D" parent="."]

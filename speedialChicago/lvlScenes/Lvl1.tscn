@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=14 format=4 uid="uid://e64wgf8otggf"]
 
-[ext_resource type="Texture2D" uid="uid://bh002go3dgt2f" path="res://assets/Bg.jpg" id="1_dpgr1"]
 [ext_resource type="Texture2D" uid="uid://cfak88o605u8u" path="res://assets/tileMap.jpg" id="2_1235x"]
 [ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="3_yiohx"]
-[ext_resource type="PackedScene" uid="uid://bfkltf78e2mmp" path="res://scenes/rifle.tscn" id="4_mkjed"]
-[ext_resource type="PackedScene" uid="uid://byqq6tb73yo2i" path="res://scenes/pistol.tscn" id="5_4nxgt"]
-[ext_resource type="PackedScene" uid="uid://dowe60l1v3rl6" path="res://scenes/shotgun.tscn" id="6_8vv17"]
+[ext_resource type="PackedScene" uid="uid://bfkltf78e2mmp" path="res://gunScenes/rifle.tscn" id="4_mkjed"]
+[ext_resource type="PackedScene" uid="uid://byqq6tb73yo2i" path="res://gunScenes/pistol.tscn" id="5_4nxgt"]
+[ext_resource type="PackedScene" uid="uid://dowe60l1v3rl6" path="res://gunScenes/shotgun.tscn" id="6_8vv17"]
 [ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://camera_2d.gd" id="7_g2rpt"]
 [ext_resource type="Texture2D" uid="uid://didtkpnuwu263" path="res://assets/Cursor2 - Copy.png" id="8_goqse"]
 [ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/enemy.tscn" id="9_63bpq"]
@@ -91,11 +90,6 @@ size = Vector2(333, 114)
 
 [node name="Lvl1" type="Node2D"]
 
-[node name="Bg" type="Sprite2D" parent="."]
-position = Vector2(936, 529)
-scale = Vector2(6.22461, 3.89453)
-texture = ExtResource("1_dpgr1")
-
 [node name="room1" type="TileMapLayer" parent="."]
 position = Vector2(753, -529)
 scale = Vector2(6, 6)
@@ -103,7 +97,7 @@ tile_map_data = PackedByteArray("AAAHAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAMAAQAAAAAAAA
 tile_set = SubResource("TileSet_t1rx8")
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("3_yiohx")]
-position = Vector2(-60, -215)
+position = Vector2(98, -295)
 cam = NodePath("../Camera2D")
 
 [node name="Rifle" parent="." instance=ExtResource("4_mkjed")]

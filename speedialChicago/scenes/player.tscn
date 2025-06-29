@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://drhq6gxwrpafr"]
 
-[ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://d13e8mw3hml3r" path="res://assets/Francis.png" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://hun.gd" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
@@ -18,8 +18,8 @@ metadata/pla = "fe"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, 0)
-scale = Vector2(1, 0.6)
-texture = ExtResource("1_4flbx")
+rotation = -1.5708
+texture = ExtResource("2_qhqgy")
 
 [node name="bullets" type="Node2D" parent="."]
 
@@ -36,5 +36,4 @@ target_position = Vector2(187, -2.38419e-07)
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qhqgy")

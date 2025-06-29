@@ -6,9 +6,9 @@ var currentSprite: Texture
 var bullet: PackedScene = load("res://scenes/bullet.tscn")
 var rng = RandomNumberGenerator.new()
 
-var pistol: PackedScene = load("res://scenes/pistol.tscn")
-var rifle: PackedScene = load("res://scenes/rifle.tscn")
-var shotgun: PackedScene = load("res://scenes/shotgun.tscn")
+var pistol: PackedScene = load("res://gunScenes/pistol.tscn")
+var rifle: PackedScene = load("res://gunScenes/rifle.tscn")
+var shotgun: PackedScene = load("res://gunScenes/shotgun.tscn")
 
 var punchTexture: Texture = preload("res://assets/punch.svg")
 
