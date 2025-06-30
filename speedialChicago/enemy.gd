@@ -1,6 +1,5 @@
 extends CharacterBody2D
 @export var gun: Node2D
-@export var ray: RayCast2D
 @export var type: int
 @export var nav_Agent: NavigationAgent2D
 @export var gunSkin: Sprite2D
@@ -18,9 +17,9 @@ var lastKnown
 var health = 200
 var dead = false
 var dammage = 100
-var ogSpeed = 750
-var speed = 750
-var walkSpeed = 375
+var ogSpeed = 500
+var speed = 500
+var walkSpeed = 250
 var fireRate = .2
 var ammo = 20
 var wallCollision = false
@@ -28,11 +27,21 @@ var wallCollision = false
 var rotating = false
 var from = 0
 var to = 0
+var setOfRays: Array
 
 var player: CharacterBody2D
 
 func _ready() -> void:
-	speed = 800 + rng.randf_range(-100, 100)
+	setOfRays.append($ray1)
+	setOfRays.append($ray2)
+	setOfRays.append($ray3)
+	setOfRays.append($ray4)
+	setOfRays.append($ray5)
+	setOfRays.append($ray6)
+	setOfRays.append($ray7)
+	setOfRays.append($ray8)
+
+	speed = ogSpeed + rng.randf_range(-100, 100)
 	ogSpeed = speed
 
 	var playerNode = ""
@@ -110,32 +119,44 @@ func _process(_delta: float) -> void:
 	
 	if rotating:
 		rotation = lerp_angle(rotation, to, .1)
-		if abs(angle_difference(global_rotation, to)) < .08:
+		if abs(angle_difference(rotation, to)) < .08:
 			rotating = false
 			rotation = to
-			to = global_rotation
-
-	#If the raycast hit anything,
-	if global_position.distance_to(player_pos) < distance or lastKnown != null:
-		takeAlook(player_pos)
+			to = rotation
+	
+	takeAlook(player_pos)
 
 func takeAlook(playPos: Vector2):
-	ray.target_position = ray.to_local(playPos)
-	ray.force_raycast_update()
-	ray.target_position = ray.to_local(playPos)
-	ray.force_raycast_update()
-	if ray.is_colliding():
-		#See if the thing it hit is the player
-		var collider = ray.get_collider()
-		if collider == player:
-			rotating = false
-			pat = true
-			look_at(playPos)
-			attackPlayer()
-			lastKnown = playPos
-		if collider != player and lastKnown != null:
-			speed = ogSpeed - walkSpeed
-			search(lastKnown)
+	setOfRays[0].target_position = Vector2(800, 0).rotated(deg_to_rad(rng.randi_range(-10, 10)))
+	setOfRays[1].target_position = Vector2(800, 0).rotated(deg_to_rad(30))
+	setOfRays[2].target_position = Vector2(800, 0).rotated(deg_to_rad(-30))
+	setOfRays[3].target_position = Vector2(800, 0).rotated(deg_to_rad(80))
+	setOfRays[4].target_position = Vector2(800, 0).rotated(deg_to_rad(-80))
+	setOfRays[5].target_position = Vector2(800, 0).rotated(deg_to_rad(135))
+	setOfRays[6].target_position = Vector2(800, 0).rotated(deg_to_rad(-135))
+	setOfRays[7].target_position = Vector2(800, 0).rotated(deg_to_rad(180))
+
+
+	setOfRays[0].force_raycast_update()
+	setOfRays[1].force_raycast_update()
+	setOfRays[2].force_raycast_update()
+
+	for i in range(8):
+		if setOfRays[i]:
+			#See if the thing it hit is the player
+			var collider = setOfRays[i].get_collider()
+			if collider == player:
+				rotating = false
+				pat = true
+				look_at(playPos)
+				attackPlayer()
+				lastKnown = playPos
+				break
+			if collider != player and lastKnown != null:
+				speed = ogSpeed - walkSpeed
+				search(lastKnown)
+				break
+
 	
 func patrol():
 	var player_pos = player.global_position
@@ -143,7 +164,7 @@ func patrol():
 	if global_position.distance_to(player_pos) < 400 and lastKnown != null:
 		walkSpeed = 0
 	else:
-		walkSpeed = 375
+		walkSpeed = 250
 
 	move_and_slide()
 
@@ -158,7 +179,7 @@ func search(destination):
 	if nav_Agent.is_navigation_finished():
 		pat = true
 		lastKnown = null
-		walkSpeed = 375
+		walkSpeed = 250
 		return
 
 	if nav_Agent.avoidance_enabled:
@@ -169,7 +190,7 @@ func search(destination):
 	
 func attackPlayer() -> bool:
 	await get_tree().create_timer(.4).timeout
-	var collider = ray.get_collider()
+	var collider = setOfRays[0].get_collider()
 	if collider == player and canFire and ammo > 0:
 		fire()
 		ammo -= 1

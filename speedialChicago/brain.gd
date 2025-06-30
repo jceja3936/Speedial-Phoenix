@@ -19,7 +19,7 @@ func setState(newState: int):
 	match state:
 		1:
 			Manager.setEnemyAmount(3)
-			warpPosition = Vector2(1683.0, 1261.0)
+			warpPosition = Vector2(187.0, 1023.0)
 		2:
 			Manager.setEnemyAmount(6)
 			warpPosition = Vector2(1686.0, 0)

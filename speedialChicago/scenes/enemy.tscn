@@ -9,12 +9,11 @@ radius = 48.0104
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("gun", "ray", "nav_Agent", "gunSkin")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("gun", "nav_Agent", "gunSkin")]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_4ra3w")
 gun = NodePath("gun")
-ray = NodePath("ray")
 nav_Agent = NodePath("NavigationAgent2D")
 gunSkin = NodePath("gun/gunSkin")
 distance = 1600
@@ -24,14 +23,43 @@ rotation = -1.5708
 texture = ExtResource("2_4ra3w")
 
 [node name="gun" type="Node2D" parent="."]
-position = Vector2(152, 0)
+position = Vector2(101, 0)
 
 [node name="gunSkin" type="Sprite2D" parent="gun"]
 position = Vector2(-27, 0)
 scale = Vector2(1, 0.360002)
 texture = ExtResource("2_md0e3")
 
-[node name="ray" type="RayCast2D" parent="."]
+[node name="ray1" type="RayCast2D" parent="."]
+target_position = Vector2(56, 0)
+collision_mask = 9
+
+[node name="ray2" type="RayCast2D" parent="."]
+target_position = Vector2(56, 0)
+collision_mask = 9
+
+[node name="ray3" type="RayCast2D" parent="."]
+target_position = Vector2(57, 0)
+collision_mask = 9
+
+[node name="ray4" type="RayCast2D" parent="."]
+target_position = Vector2(57, 0)
+collision_mask = 9
+
+[node name="ray5" type="RayCast2D" parent="."]
+target_position = Vector2(57, 0)
+collision_mask = 9
+
+[node name="ray6" type="RayCast2D" parent="."]
+target_position = Vector2(57, 0)
+collision_mask = 9
+
+[node name="ray7" type="RayCast2D" parent="."]
+target_position = Vector2(57, 0)
+collision_mask = 9
+
+[node name="ray8" type="RayCast2D" parent="."]
+target_position = Vector2(57, 0)
 collision_mask = 9
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -45,7 +73,7 @@ debug_path_custom_color = Color(0.819208, 0, 0.150501, 1)
 shape = SubResource("CircleShape2D_4ra3w")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(116, 0)
+position = Vector2(85, 0)
 collision_layer = 0
 collision_mask = 3
 

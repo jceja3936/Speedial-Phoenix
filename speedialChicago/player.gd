@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const GRAVITY = 1000
-@export var speed = 1000
+@export var speed = 750
 @export var jump = -800
 @export var health = 200
 @export var cam: Camera2D
@@ -41,9 +41,11 @@ func _ready() -> void:
 	if Manager.gunType != 0:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
 
-
-func hit(damage: int) -> void:
-	health -= damage
+var lastGuy = 0
+func hit(damage: int, id: int) -> void:
+	if id != lastGuy:
+		health -= damage
+		lastGuy = id
 	if health <= 0:
 		die()
 		resp.show()

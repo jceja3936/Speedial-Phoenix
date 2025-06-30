@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhb0hox583trv"
-path="res://.godot/imported/wallTS.png-e789b5c5b749457d9c0ea763f25538a8.ctex"
+uid="uid://br0vvihgi3ekh"
+path="res://.godot/imported/comboTS.png-5325e8b156d47911b217c8a113962711.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wallTS.png"
-dest_files=["res://.godot/imported/wallTS.png-e789b5c5b749457d9c0ea763f25538a8.ctex"]
+source_file="res://assets/comboTS.png"
+dest_files=["res://.godot/imported/comboTS.png-5325e8b156d47911b217c8a113962711.ctex"]
 
 [params]
 

@@ -24,11 +24,12 @@ texture = ExtResource("2_qhqgy")
 [node name="bullets" type="Node2D" parent="."]
 
 [node name="hun" type="Sprite2D" parent="." node_paths=PackedStringArray("hitBox")]
-position = Vector2(128, -4.52995e-06)
+position = Vector2(76, 0)
 script = ExtResource("5_qlg0r")
 hitBox = NodePath("punchBox")
 
 [node name="punchBox" type="ShapeCast2D" parent="hun"]
+visible = false
 position = Vector2(-188, 2)
 scale = Vector2(1, 2.84)
 shape = SubResource("RectangleShape2D_qhqgy")

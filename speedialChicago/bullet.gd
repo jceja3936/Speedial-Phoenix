@@ -7,8 +7,9 @@ var damage: int
 var speed = 3000
 var bullet = true
 var fromWho = ""
-
+var id = 999
 func _ready() -> void:
+	id = randi_range(0, 10000)
 	top_level = true
 	global_position = pos
 	global_rotation = rota
@@ -38,5 +39,5 @@ func _process(_delta: float) -> void:
 				queue_free()
 	
 		if collider.get("playa") == true:
-			collider.call("hit", damage)
+			collider.call("hit", damage, id)
 			queue_free()
