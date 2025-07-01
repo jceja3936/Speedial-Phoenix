@@ -4,6 +4,7 @@ var player: CharacterBody2D
 var cameFollow = 0
 
 func _ready() -> void:
+	setCam(0)
 	for node in get_tree().root.get_children():
 		if node.has_meta("placed"):
 			node.queue_free()
@@ -24,31 +25,42 @@ func _ready() -> void:
 	$AmAm.hide()
 	$Respawn.hide()
 
+var camPos = Vector2.ZERO
+var cursOffset = Vector2.ZERO
 
 func setCam(type: int):
 	cameFollow = type
+	print("Called!!")
+	match type:
+		0:
+			camPos = Vector2(100, 0)
+			cursOffset = Vector2(300, 0)
+			speed = 5
+		1:
+			camPos = Vector2(0, 0)
+			cursOffset = Vector2(800, 0)
+		2:
+			camPos = Vector2(600, 0)
+			cursOffset = Vector2(600, 0)
+			speed = 50
 
-func _process(_delta: float) -> void:
+var angletoLerpBy = 0
+var speed = 1
+
+func _physics_process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var player_pos = player.global_position
 
+	angletoLerpBy = lerp_angle(angletoLerpBy, get_angle_to(mouse_pos), 1.0 - exp(- speed * _delta))
+
 	match cameFollow:
-		0:
-			position = lerp(position, (player_pos + Vector2(100, 0).rotated(get_angle_to(mouse_pos))), .2)
-			$Cursors.position = player_pos
-			$Cursors.offset = Vector2(800, 0).rotated(get_angle_to(mouse_pos))
-		1:
-			position = lerp(position, player_pos, .4)
-			$Cursors.position = mouse_pos
-			$Cursors.offset = Vector2.ZERO
 		2:
-			position = lerp(position, (player_pos + Vector2(750, 0).rotated(get_angle_to(mouse_pos))), .1)
-			$Cursors.position = player_pos
-			$Cursors.offset = Vector2(1600, 0).rotated(get_angle_to(mouse_pos))
+			$Cursors.position = player_pos + cursOffset.rotated(get_angle_to(mouse_pos))
+			position = lerp(position, $Cursors.position, 1.0 - exp(- speed * _delta))
+		_:
+			position = lerp(position, (player_pos + camPos.rotated(angletoLerpBy)), 1.0 - exp(-10 * _delta))
+			$Cursors.position = player_pos + cursOffset.rotated(get_angle_to(mouse_pos))
 
-
-	if Input.is_action_just_pressed("Respawn") and player.get("dead") == true:
-		Manager.startNextScene()
 
 func updateAmmo(amount: int):
 	$AmAm.show()

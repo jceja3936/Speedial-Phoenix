@@ -18,6 +18,7 @@ var playa = true
 var cameFollow = true
 var amAm
 var resp
+var camExt = false
 
 
 func _ready() -> void:
@@ -58,22 +59,30 @@ func die() -> void:
 	dead = true;
 	$hun.set_script(null)
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("esc") and cameFollow:
+func _input(event):
+	if event.is_action_pressed("esc") and cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		print("SHOWING")
 		cameFollow = false
 		cam.setCam(1)
-	elif Input.is_action_just_pressed("esc") and !cameFollow:
+	elif event.is_action_pressed("esc") and !cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+		print("HIDDEN")
 		cameFollow = true
 		cam.setCam(0)
 
-	if Input.is_action_pressed("extendCam") and cameFollow:
+	if event.is_action_pressed("extendCam") and cameFollow and !camExt:
 		cam.setCam(2)
+		camExt = true
 
-	if Input.is_action_just_released("extendCam"):
+	if event.is_action_released("extendCam"):
 		cam.setCam(0)
+		camExt = false
 
+	if event.is_action_pressed("Respawn") and dead:
+		Manager.startNextScene()
+
+func _physics_process(delta: float) -> void:
 	if dead:
 		return
 

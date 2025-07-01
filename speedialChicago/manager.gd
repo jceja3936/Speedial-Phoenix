@@ -19,6 +19,7 @@ var item_sounds = {
 	# Add more as needed or load dynamically
 }
 
+
 func startNextScene():
 	var loadScreen = loadingScreen.instantiate()
 	get_tree().root.add_child(loadScreen)

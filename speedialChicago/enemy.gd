@@ -105,7 +105,7 @@ func hit(damage: int) -> void:
 		dead = true
 		die()
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var player_pos = player.global_position
 
 	if pat:
@@ -118,7 +118,7 @@ func _process(_delta: float) -> void:
 		rotating = true
 	
 	if rotating:
-		rotation = lerp_angle(rotation, to, .1)
+		rotation = lerp_angle(rotation, to, 1.0 - exp(-20 * _delta))
 		if abs(angle_difference(rotation, to)) < .08:
 			rotating = false
 			rotation = to
