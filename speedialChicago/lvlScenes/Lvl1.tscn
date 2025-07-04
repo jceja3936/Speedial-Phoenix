@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=36 format=4 uid="uid://e64wgf8otggf"]
 
 [ext_resource type="Texture2D" uid="uid://br0vvihgi3ekh" path="res://assets/comboTS.png" id="1_o37uq"]
 [ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="3_yiohx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byqq6tb73yo2i" path="res://gunScenes/pistol.tscn" id="5_4nxgt"]
 [ext_resource type="PackedScene" uid="uid://dowe60l1v3rl6" path="res://gunScenes/shotgun.tscn" id="6_8vv17"]
 [ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://camera_2d.gd" id="7_g2rpt"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/newBg.png" id="7_wixyy"]
 [ext_resource type="Texture2D" uid="uid://didtkpnuwu263" path="res://assets/Cursor2 - Copy.png" id="8_goqse"]
 [ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/enemy.tscn" id="9_63bpq"]
 [ext_resource type="Script" uid="uid://bc7mo1kgixak6" path="res://brain.gd" id="10_1235x"]
@@ -324,5 +325,11 @@ myFloor = 2
 position = Vector2(1099, 4163)
 rotation = -1.5708
 myFloor = 2
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="bg" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(960, 540)
+texture = ExtResource("7_wixyy")
 
 [connection signal="body_entered" from="brain/Area2D" to="brain" method="_on_area_2d_body_entered"]
