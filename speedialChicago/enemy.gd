@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var gunSkin: Sprite2D
 @export var pat: bool
 @export var distance: int
+@export var myFloor: int
 var currentSprite: Texture
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
@@ -23,6 +24,8 @@ var walkSpeed = 250
 var fireRate = .2
 var ammo = 20
 var wallCollision = false
+var secDeg = 90
+var degToRotby = -90.0
 
 var rotating = false
 var from = 0
@@ -36,10 +39,7 @@ func _ready() -> void:
 	setOfRays.append($ray2)
 	setOfRays.append($ray3)
 	setOfRays.append($ray4)
-	setOfRays.append($ray5)
-	setOfRays.append($ray6)
-	setOfRays.append($ray7)
-	setOfRays.append($ray8)
+	#setOfRays.append($ray5)
 
 	speed = ogSpeed + rng.randf_range(-100, 100)
 	ogSpeed = speed
@@ -87,7 +87,7 @@ func _ready() -> void:
 			ammo = 17
 	gunSkin.texture = currentSprite
 
-	if Manager.levelState == 3:
+	if Manager.levelState > myFloor:
 		die()
 		
 		
@@ -126,26 +126,24 @@ func _physics_process(_delta: float) -> void:
 			rotation = to
 			to = rotation
 	
+	degToRotby = degToRotby + 4
+	secDeg = secDeg + 4
+	if degToRotby == 90:
+		degToRotby = -90.0
+		secDeg = 90
 	takeAlook(player_pos)
 
 func takeAlook(playPos: Vector2):
-	setOfRays[0].target_position = Vector2(800, 0).rotated(deg_to_rad(rng.randi_range(-10, 10)))
-	setOfRays[1].target_position = Vector2(800, 0).rotated(deg_to_rad(30))
-	setOfRays[2].target_position = Vector2(800, 0).rotated(deg_to_rad(-30))
-	setOfRays[3].target_position = Vector2(800, 0).rotated(deg_to_rad(80))
-	setOfRays[4].target_position = Vector2(800, 0).rotated(deg_to_rad(-80))
-	setOfRays[5].target_position = Vector2(800, 0).rotated(deg_to_rad(135))
-	setOfRays[6].target_position = Vector2(800, 0).rotated(deg_to_rad(-135))
-	setOfRays[7].target_position = Vector2(800, 0).rotated(deg_to_rad(180))
+	setOfRays[0].target_position = Vector2(800, 0)
+	setOfRays[1].target_position = Vector2(800, 0).rotated(deg_to_rad(- degToRotby))
+	setOfRays[2].target_position = Vector2(800, 0).rotated(deg_to_rad(degToRotby))
+	setOfRays[3].target_position = Vector2(500, 0).rotated(deg_to_rad(secDeg))
+	#setOfRays[4].target_position = Vector2(800, 0).rotated(deg_to_rad(degToRotby + 270))
 
 
-	setOfRays[0].force_raycast_update()
-	setOfRays[1].force_raycast_update()
-	setOfRays[2].force_raycast_update()
-
-	for i in range(8):
+	for i in range(4):
 		if setOfRays[i]:
-			#See if the thing it hit is the player
+			#See if the thing hit player
 			var collider = setOfRays[i].get_collider()
 			if collider == player:
 				rotating = false

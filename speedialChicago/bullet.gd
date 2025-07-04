@@ -39,5 +39,6 @@ func _process(_delta: float) -> void:
 				queue_free()
 	
 		if collider.get("playa") == true:
-			collider.call("hit", damage, id)
-			queue_free()
+			if fromWho == "enemy":
+				collider.call("hit", damage, id)
+				queue_free()

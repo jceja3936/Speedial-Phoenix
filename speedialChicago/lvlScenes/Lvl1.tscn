@@ -280,13 +280,16 @@ texture = ExtResource("8_goqse")
 [node name="patroller" parent="Enemies" instance=ExtResource("9_63bpq")]
 position = Vector2(364, 1178)
 pat = true
+myFloor = 1
 
 [node name="Station1" parent="Enemies" instance=ExtResource("9_63bpq")]
 position = Vector2(363, 502)
+myFloor = 1
 
 [node name="Station2" parent="Enemies" instance=ExtResource("9_63bpq")]
 position = Vector2(1599, 1204)
 pat = true
+myFloor = 1
 
 [node name="brain" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("10_1235x")
@@ -305,17 +308,21 @@ shape = SubResource("RectangleShape2D_dpgr1")
 [node name="patroller" parent="Enemies2" instance=ExtResource("9_63bpq")]
 position = Vector2(1041, 3210)
 rotation = 1.5708
+myFloor = 2
 
 [node name="Station1" parent="Enemies2" instance=ExtResource("9_63bpq")]
 position = Vector2(1349, 3515)
 pat = true
+myFloor = 2
 
 [node name="Station2" parent="Enemies2" instance=ExtResource("9_63bpq")]
 position = Vector2(1717, 3769)
 rotation = 3.14159
+myFloor = 2
 
 [node name="patroller2" parent="Enemies2" instance=ExtResource("9_63bpq")]
 position = Vector2(1099, 4163)
 rotation = -1.5708
+myFloor = 2
 
 [connection signal="body_entered" from="brain/Area2D" to="brain" method="_on_area_2d_body_entered"]

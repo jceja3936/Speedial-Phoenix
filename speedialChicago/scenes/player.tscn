@@ -24,16 +24,15 @@ texture = ExtResource("2_qhqgy")
 [node name="bullets" type="Node2D" parent="."]
 
 [node name="hun" type="Sprite2D" parent="." node_paths=PackedStringArray("hitBox")]
-position = Vector2(76, 0)
+position = Vector2(54, 0)
 script = ExtResource("5_qlg0r")
 hitBox = NodePath("punchBox")
 
 [node name="punchBox" type="ShapeCast2D" parent="hun"]
-visible = false
-position = Vector2(-188, 2)
+position = Vector2(-89, 0)
 scale = Vector2(1, 2.84)
 shape = SubResource("RectangleShape2D_qhqgy")
-target_position = Vector2(187, -2.38419e-07)
+target_position = Vector2(136, 0)
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
