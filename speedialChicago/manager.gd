@@ -8,6 +8,8 @@ var next_scene: String = "res://lvlScenes/Lvl1.tscn"
 var current_scene: String = "1_1"
 var loadingScreen = preload("res://UIscenes/loading_screen.tscn")
 
+var playerRespawnPos = Vector2.ZERO
+var levelState = 1
 var gunType = 0
 var ammoCount = 0
 

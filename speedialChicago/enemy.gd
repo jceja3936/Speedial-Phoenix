@@ -48,8 +48,7 @@ func _ready() -> void:
 	match Manager.current_scene:
 		"1_1":
 			playerNode = "/root/Lvl1/Player"
-		"1_2":
-			playerNode = "/root/1_2/Player"
+
 
 	player = get_node(playerNode)
 
@@ -87,8 +86,11 @@ func _ready() -> void:
 			fireRate = .2
 			ammo = 17
 	gunSkin.texture = currentSprite
+
+	if Manager.levelState == 3:
+		die()
 		
-	
+		
 func die() -> void:
 	Manager.decrementEnemyAmount()
 	dead = true

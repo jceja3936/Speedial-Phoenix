@@ -29,18 +29,14 @@ func _ready() -> void:
 		"1_1":
 			respNode = "/root/Lvl1/Camera2D/Respawn"
 			amamNode = "/root/Lvl1/Camera2D/AmAm"
-		"1_2":
-			respNode = "/root/1_2/Camera2D/Respawn"
-			amamNode = "/root/1_2/Camera2D/AmAm"
-		"1_3":
-			respNode = "/root/lvl1END/Camera2D/Respawn"
-			amamNode = "/root/lvl1END/Camera2D/AmAm"
 
 	amAm = get_node(amamNode)
 	resp = get_node(respNode)
 
 	if Manager.gunType != 0:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
+	if Manager.playerRespawnPos != Vector2.ZERO:
+		position = Manager.playerRespawnPos
 
 var lastGuy = 0
 func hit(damage: int, id: int) -> void:
@@ -62,12 +58,10 @@ func die() -> void:
 func _input(event):
 	if event.is_action_pressed("esc") and cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		print("SHOWING")
 		cameFollow = false
 		cam.setCam(1)
 	elif event.is_action_pressed("esc") and !cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
-		print("HIDDEN")
 		cameFollow = true
 		cam.setCam(0)
 
@@ -80,7 +74,9 @@ func _input(event):
 		camExt = false
 
 	if event.is_action_pressed("Respawn") and dead:
+		dead = false
 		Manager.startNextScene()
+
 
 func _physics_process(delta: float) -> void:
 	if dead:

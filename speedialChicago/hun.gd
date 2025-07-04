@@ -28,8 +28,6 @@ func _ready() -> void:
 	match Manager.current_scene:
 		"1_1":
 			amamNode = "/root/Lvl1/Camera2D/AmAm"
-		"1_2":
-			amamNode = "/root/1_2/Camera2D/AmAm"
 
 	amAm = get_node(amamNode)
 

@@ -13,12 +13,9 @@ func _ready() -> void:
 	match Manager.current_scene:
 		"1_1":
 			playerNode = "/root/Lvl1/Player"
-		"1_2":
-			playerNode = "/root/1_2/Player"
-		"1_3":
-			playerNode = "/root/lvl1END/Player"
 
 	player = get_node(playerNode)
+	position = player.global_position
 			
 	$Cursors.top_level = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
@@ -30,7 +27,6 @@ var cursOffset = Vector2.ZERO
 
 func setCam(type: int):
 	cameFollow = type
-	print("Called!!")
 	match type:
 		0:
 			camPos = Vector2(100, 0)
