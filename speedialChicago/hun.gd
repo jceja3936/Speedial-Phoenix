@@ -96,7 +96,8 @@ func fire() -> void:
 func wait(_punched: int = 0) -> bool:
 	if _punched == 1:
 		await get_tree().create_timer(.25).timeout
-		texture = null
+		if gunType == 0:
+			texture = null
 		punching = false
 	else:
 		await get_tree().create_timer(fireRate).timeout
