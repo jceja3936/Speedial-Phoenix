@@ -10,6 +10,10 @@ var pistol: PackedScene = load("res://gunScenes/pistol.tscn")
 var rifle: PackedScene = load("res://gunScenes/rifle.tscn")
 var shotgun: PackedScene = load("res://gunScenes/shotgun.tscn")
 
+var pistolImg: Texture = preload("res://assets/basicSquare.svg")
+var rifleImg: Texture = preload("res://assets/Guitar-b.svg")
+var shotgunImg: Texture = preload("res://assets/Frog 2-c.svg")
+
 var punchTexture: Texture = preload("res://assets/punch.svg")
 
 var gunPickedUp = false
@@ -48,8 +52,8 @@ func _process(_delta: float) -> void:
 		
 	if Input.is_action_just_pressed("Drop") and gunPickedUp:
 		dropWeapon(gunType)
-		amAm.hide()
 		update_values(0, 0)
+		amAm.hide()
 	
 	if punching:
 		melee()
@@ -58,8 +62,9 @@ func melee():
 	for i in range(hitBox.get_collision_count()):
 		var collider = hitBox.get_collider(i)
 		if hitBox.is_colliding():
-			if collider.get("enemy") == true:
-				collider.call("hit", 220)
+			if collider != null:
+				if collider.get("enemy") == true:
+					collider.call("hit", 220)
 
 
 func fire() -> void:
@@ -72,7 +77,7 @@ func fire() -> void:
 			else:
 				bull.dir = get_parent().rotation + rng.randf_range(-.25, .25)
 			bull.pos = global_position
-			bull.rota = global_rotation
+			bull.rota = get_parent().rotation
 			bull.damage = dammage
 			get_tree().root.add_child(bull)
 		Manager.playSound("sSound", global_position)
@@ -84,7 +89,7 @@ func fire() -> void:
 		var bull = bullet.instantiate()
 		bull.dir = get_parent().rotation + rng.randf_range(-.1, .1)
 		bull.pos = global_position
-		bull.rota = global_rotation
+		bull.rota = get_parent().rotation
 		bull.damage = dammage
 		get_tree().root.add_child(bull)
 
@@ -109,21 +114,21 @@ func update_values(value: int, currentAmmo: int):
 	hitBox.visible = false
 	match value:
 		1:
-			currentSprite = load("res://assets/basicSquare.svg")
+			currentSprite = pistolImg
 			rotation = 0
 			scale.x = .9
 			scale.y = .25
 			dammage = 100
 			fireRate = .2
 		2:
-			currentSprite = load("res://assets/Guitar-b.svg")
+			currentSprite = rifleImg
 			scale.x = 0.612
 			scale.y = 0.622
 			rotation_degrees = 72.9
 			dammage = 100
 			fireRate = .1
 		3:
-			currentSprite = load("res://assets/Frog 2-c.svg")
+			currentSprite = shotgunImg
 			rotation_degrees = 17.0
 			scale.x = 0.612
 			scale.y = 0.289

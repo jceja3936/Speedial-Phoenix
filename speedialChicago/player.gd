@@ -48,11 +48,11 @@ func hit(damage: int, id: int) -> void:
 		resp.show()
 	
 func die() -> void:
+	dead = true
 	$Sprite2D.texture = deathTexture
 	$Sprite2D.scale.x = 1
 	$Sprite2D.scale.y = 1
 	$CollisionShape2D.queue_free()
-	dead = true;
 	$hun.set_script(null)
 
 func _input(event):

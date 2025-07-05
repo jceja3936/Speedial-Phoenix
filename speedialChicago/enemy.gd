@@ -9,7 +9,7 @@ extends CharacterBody2D
 var currentSprite: Texture
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
-var deathTexture: Texture = load("res://assets/icon.svg")
+var deathTexture: Texture = preload("res://assets/icon.svg")
 
 var canFire = true
 var rng = RandomNumberGenerator.new()
@@ -94,12 +94,14 @@ func _ready() -> void:
 func die() -> void:
 	Manager.decrementEnemyAmount()
 	dead = true
-	$Sprite2D.texture = deathTexture
-	$Sprite2D.scale = Vector2(1, 1)
-	$gun/gunSkin.texture = null
-	$CollisionShape2D.queue_free()
+	var deadBody = Sprite2D.new()
+	deadBody.texture = deathTexture
+	deadBody.global_position = position
+	deadBody.rotation = rotation
+	get_parent().add_child(deadBody)
 	Manager.dropWeapon(type, self, ammo)
-	set_script(null)
+	queue_free()
+	
 
 func hit(damage: int) -> void:
 	health -= damage
@@ -208,8 +210,8 @@ func fire() -> void:
 			else:
 				bull.dir = rotation + rng.randf_range(-.25, .25)
 			bull.pos = gunSkin.global_position
-			bull.rota = global_rotation
 			bull.damage = dammage
+			bull.rota = rotation
 			get_tree().root.add_child(bull)
 			wait()
 		Manager.playSound("sSound", global_position)
@@ -221,7 +223,7 @@ func fire() -> void:
 		bull.set("fromWho", "enemy")
 		bull.dir = rotation + rng.randf_range(-.1, .1)
 		bull.pos = gunSkin.global_position
-		bull.rota = global_rotation
+		bull.rota = rotation
 		bull.damage = dammage
 		get_tree().root.add_child(bull)
 

@@ -12,6 +12,8 @@ var playerRespawnPos = Vector2.ZERO
 var levelState = 1
 var gunType = 0
 var ammoCount = 0
+var points = 0
+var mult = 1
 
 var enemyAmount = 0
 
@@ -46,6 +48,14 @@ func getEnemyAmount():
 
 func decrementEnemyAmount():
 	enemyAmount -= 1
+	points += 100 * mult
+	mult += 1
+
+func startMult():
+	var currentEnemyAmount = enemyAmount
+	await get_tree().create_timer(.7).timeout
+	if currentEnemyAmount == enemyAmount:
+		mult = 1
 
 #Functions that handle Dropping a weapon
 func instantiate(type: PackedScene, who: CharacterBody2D, ammo: int):
