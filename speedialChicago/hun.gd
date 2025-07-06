@@ -9,46 +9,58 @@ var rng = RandomNumberGenerator.new()
 var pistol: PackedScene = load("res://gunScenes/pistol.tscn")
 var rifle: PackedScene = load("res://gunScenes/rifle.tscn")
 var shotgun: PackedScene = load("res://gunScenes/shotgun.tscn")
+var hammer: PackedScene = load("res://gunScenes/hammer.tscn")
 
-var pistolImg: Texture = preload("res://assets/basicSquare.svg")
-var rifleImg: Texture = preload("res://assets/Guitar-b.svg")
-var shotgunImg: Texture = preload("res://assets/Frog 2-c.svg")
+var pistolImg: Texture = load("res://assets/basicSquare.svg")
+var rifleImg: Texture = load("res://assets/Guitar-b.svg")
+var shotgunImg: Texture = load("res://assets/Frog 2-c.svg")
+var hammerImg: Texture = load("res://assets/Block-t.svg")
 
 var punchTexture: Texture = preload("res://assets/punch.svg")
 
 var gunPickedUp = false
 
+const BADTILES = [Vector2i(5, 3), Vector2i(-1, -1), Vector2i(5, 2)]
+
 var canFire = true
 var ammo = 0;
 var gunType = 0
 var dammage = 100
-var fireRate = .5
+var fireRate = .4
 var punching = false
 var amAm
+var currentMap: TileMapLayer
 
 
 func _ready() -> void:
 	var amamNode = ""
+	var cmNode = ""
 	match Manager.current_scene:
 		"1_1":
 			amamNode = "/root/Lvl1/Camera2D/AmAm"
+			cmNode = "/root/Lvl1/floor1"
 
+	currentMap = get_node(cmNode)
 	amAm = get_node(amamNode)
 
 #Functions that Shoot the gun
 func _process(_delta: float) -> void:
-	if Input.is_action_pressed("shoot") and canFire and ammo > 0:
-		fire()
-		ammo -= 1
-		amAm.text = "Ammo:" + str(ammo)
-
-	if Input.is_action_pressed("shoot") and !gunPickedUp and canFire:
-		punching = true
-		wait(1)
-		canFire = false
-		texture = punchTexture
-		offset = Vector2(-20, 0).rotated(get_angle_to(get_global_mouse_position()))
-		Manager.playSound("pSound", global_position)
+	if Input.is_action_pressed("shoot") and canFire:
+		match gunType:
+			0:
+				punching = true
+				wait(1)
+				canFire = false
+				texture = punchTexture
+				offset = Vector2(-20, 0).rotated(get_angle_to(get_global_mouse_position()))
+				Manager.playSound("pSound", global_position)
+			4:
+				breach()
+				punching = true
+				
+			_:
+				fire()
+				amAm.text = "Ammo:" + str(ammo)
 		
 	if Input.is_action_just_pressed("Drop") and gunPickedUp:
 		dropWeapon(gunType)
@@ -57,6 +69,17 @@ func _process(_delta: float) -> void:
 	
 	if punching:
 		melee()
+
+func breach():
+	var tileCoords = currentMap.local_to_map(get_parent().global_position)
+	
+	var direction = (get_global_mouse_position() - get_global_position()).normalized()
+
+	if !BADTILES.has(currentMap.get_cell_atlas_coords(tileCoords)):
+		currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
+	tileCoords += Vector2i(round(direction.x), round(direction.y))
+	if !BADTILES.has(currentMap.get_cell_atlas_coords(tileCoords)):
+		currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
 
 func melee():
 	for i in range(hitBox.get_collision_count()):
@@ -68,34 +91,36 @@ func melee():
 
 
 func fire() -> void:
-	if gunType == 3:
-		for i in range(6):
+	if ammo > 0:
+		ammo -= 1
+		if gunType == 3:
+			for i in range(6):
+				canFire = false
+				var bull = bullet.instantiate()
+				if i < 3:
+					bull.dir = get_parent().rotation + rng.randf_range(-.15, .15)
+				else:
+					bull.dir = get_parent().rotation + rng.randf_range(-.25, .25)
+				bull.pos = global_position
+				bull.rota = get_parent().rotation
+				bull.damage = dammage
+				get_tree().root.add_child(bull)
+			Manager.playSound("sSound", global_position)
+			wait()
+		else:
+			wait()
 			canFire = false
+			Manager.playSound("pSound", global_position)
 			var bull = bullet.instantiate()
-			if i < 3:
-				bull.dir = get_parent().rotation + rng.randf_range(-.15, .15)
-			else:
-				bull.dir = get_parent().rotation + rng.randf_range(-.25, .25)
+			bull.dir = get_parent().rotation + rng.randf_range(-.1, .1)
 			bull.pos = global_position
 			bull.rota = get_parent().rotation
 			bull.damage = dammage
 			get_tree().root.add_child(bull)
-		Manager.playSound("sSound", global_position)
-		wait()
-	else:
-		wait()
-		canFire = false
-		Manager.playSound("pSound", global_position)
-		var bull = bullet.instantiate()
-		bull.dir = get_parent().rotation + rng.randf_range(-.1, .1)
-		bull.pos = global_position
-		bull.rota = get_parent().rotation
-		bull.damage = dammage
-		get_tree().root.add_child(bull)
 
 func wait(_punched: int = 0) -> bool:
 	if _punched == 1:
-		await get_tree().create_timer(.25).timeout
+		await get_tree().create_timer(fireRate).timeout
 		if gunType == 0:
 			texture = null
 		punching = false
@@ -135,9 +160,16 @@ func update_values(value: int, currentAmmo: int):
 			scale.y = 0.289
 			dammage = 100
 			fireRate = .8
+		4:
+			currentSprite = hammerImg
+			rotation_degrees = 0
+			scale.x = 1
+			scale.y = 1
+			dammage = 220
+			fireRate = .5
 		_:
 			hitBox.visible = true
-			fireRate = .5
+			fireRate = .25
 			scale.x = 1
 			scale.y = 1
 			rotation = 0

@@ -3,10 +3,6 @@ extends Node2D
 var closeEnough = false
 var lastEntered = null
 var currentAmmo = 21
-@export var mySound: AudioStreamPlayer2D
-
-func playSound():
-	mySound.play()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	closeEnough = true
