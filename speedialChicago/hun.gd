@@ -20,7 +20,7 @@ var punchTexture: Texture = preload("res://assets/punch.svg")
 
 var gunPickedUp = false
 
-const BADTILES = [Vector2i(5, 3), Vector2i(-1, -1), Vector2i(5, 2)]
+const BADTILES = [Vector2i(5, 3), Vector2i(-1, -1), Vector2i(5, 2), Vector2i(5, 0)]
 
 var canFire = true
 var ammo = 0;
@@ -57,6 +57,7 @@ func _process(_delta: float) -> void:
 			4:
 				breach()
 				punching = true
+				amAm.text = "Ammo:" + str(ammo)
 				
 			_:
 				fire()
@@ -71,15 +72,24 @@ func _process(_delta: float) -> void:
 		melee()
 
 func breach():
-	var tileCoords = currentMap.local_to_map(get_parent().global_position)
-	
-	var direction = (get_global_mouse_position() - get_global_position()).normalized()
+	if ammo > 0:
+		canFire = false
+		wait()
+		var wallBroke = false
+		var tileCoords = currentMap.local_to_map(get_parent().global_position)
+		
+		var direction = (get_global_mouse_position() - get_global_position()).normalized()
 
-	if !BADTILES.has(currentMap.get_cell_atlas_coords(tileCoords)):
-		currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
-	tileCoords += Vector2i(round(direction.x), round(direction.y))
-	if !BADTILES.has(currentMap.get_cell_atlas_coords(tileCoords)):
-		currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
+		if !BADTILES.has(currentMap.get_cell_atlas_coords(tileCoords)):
+			currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
+			wallBroke = true
+		tileCoords += Vector2i(round(direction.x), round(direction.y))
+		if !BADTILES.has(currentMap.get_cell_atlas_coords(tileCoords)):
+			currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
+			wallBroke = true
+		if wallBroke:
+			Manager.playSound("dSound", get_parent().global_position)
+			ammo -= 1
 
 func melee():
 	for i in range(hitBox.get_collision_count()):
@@ -166,7 +176,7 @@ func update_values(value: int, currentAmmo: int):
 			scale.x = 1
 			scale.y = 1
 			dammage = 220
-			fireRate = .5
+			fireRate = 1
 		_:
 			hitBox.visible = true
 			fireRate = .25
@@ -204,3 +214,5 @@ func dropWeapon(gun: int):
 			instantiate(rifle)
 		3:
 			instantiate(shotgun)
+		4:
+			instantiate(hammer)

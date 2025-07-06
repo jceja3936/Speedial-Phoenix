@@ -2,7 +2,7 @@ extends Node2D
 
 var closeEnough = false
 var lastEntered = null
-var currentAmmo = 99999
+var currentAmmo = 4
 @export var mySound: AudioStreamPlayer2D
 
 

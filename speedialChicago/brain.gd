@@ -16,9 +16,11 @@ func setState(newState: int):
 			endPosition = Vector2(-57.0, 1023)
 			$start.position = Vector2(1097.0, 328.0)
 		2:
+			$start/CollisionShape2D.disabled = true
 			Manager.setEnemyAmount(4)
 			endPosition = Vector2(2214.0, 2677.0)
-			$start.position = Vector2(1720.0, 2715.0)
+			$start.position = Vector2(1678.0, 2821.0)
+			$start/CollisionShape2D.disabled = false
 		3:
 			endPosition = Vector2(-57.0, 1023)
 			$start.position = Vector2(1097.0, 328.0)
@@ -33,6 +35,7 @@ func setState(newState: int):
 
 
 func _on_start_body_entered(body: Node2D) -> void:
+	print("ASHDAHDHS")
 	if Manager.levelState == 3:
 		get_tree().quit()
 

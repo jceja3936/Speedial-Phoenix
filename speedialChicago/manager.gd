@@ -19,7 +19,8 @@ var enemyAmount = 0
 
 var item_sounds = {
 	"pSound": preload("res://assets/9mm.wav"),
-	"sSound": preload("res://assets/Big Boing.wav")
+	"sSound": preload("res://assets/Big Boing.wav"),
+	"dSound": preload("res://assets/wallBreak1.wav")
 	# Add more as needed or load dynamically
 }
 
