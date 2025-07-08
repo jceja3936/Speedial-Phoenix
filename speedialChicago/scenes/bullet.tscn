@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0k1a6sp617ph"]
 
-[ext_resource type="Script" uid="uid://dtqs3nyg0h1fm" path="res://bullet.gd" id="1_y25gk"]
-[ext_resource type="Texture2D" uid="uid://crvay03wo4jxv" path="res://assets/Balloon1-b2.svg" id="2_y25gk"]
+[ext_resource type="Script" uid="uid://dtqs3nyg0h1fm" path="res://Scripts/bullet.gd" id="1_y25gk"]
+[ext_resource type="Texture2D" uid="uid://crvay03wo4jxv" path="res://assets/img/Balloon1-b2.svg" id="2_y25gk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
 size = Vector2(14, 8)

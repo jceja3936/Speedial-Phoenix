@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfomt0a3m057p"]
+
+[ext_resource type="Script" uid="uid://d0215sh6xviag" path="res://Scripts/loading_screen.gd" id="1_ep5rh"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="2_i6gi2"]
+
+[node name="Loading Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ep5rh")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(960, 540)
+texture = ExtResource("2_i6gi2")
+
+[node name="percent" type="TextEdit" parent="ParallaxBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 898.0
+offset_top = 486.0
+offset_right = -906.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Bruh
+"

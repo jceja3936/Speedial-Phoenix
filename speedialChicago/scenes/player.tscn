@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://drhq6gxwrpafr"]
 
-[ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://d13e8mw3hml3r" path="res://assets/Francis.png" id="2_qhqgy"]
-[ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://hun.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://Scripts/ActiveScripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://d13e8mw3hml3r" path="res://assets/img/Francis.png" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://Scripts/ActiveScripts/hun.gd" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 

@@ -17,7 +17,7 @@ config/icon="uid://i8kqk3lu2u5c"
 
 [autoload]
 
-Manager="*res://manager.gd"
+Manager="*res://Scripts/manager.gd"
 
 [display]
 
