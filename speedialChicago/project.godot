@@ -18,6 +18,7 @@ config/icon="uid://i8kqk3lu2u5c"
 [autoload]
 
 Manager="*res://Scripts/manager.gd"
+SignalBus="*res://Scripts/ActiveScripts/signal_bus.gd"
 
 [display]
 

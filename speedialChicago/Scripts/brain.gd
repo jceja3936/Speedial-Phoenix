@@ -25,7 +25,7 @@ func setState(newState: int):
 			endPosition = Vector2(-57.0, 1023)
 			$start.position = Vector2(1097.0, 328.0)
 		_:
-			print("Bruh")
+			print("Bruh, Brain setState is received ", state)
 
 	if levelBeat == true:
 		Manager.setEnemyAmount(0)

@@ -6,6 +6,7 @@ const GRAVITY = 1000
 @export var health = 200
 @export var cam: Camera2D
 
+
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
 var deathTexture: Texture = load("res://assets/img/icon.svg")
 
@@ -16,27 +17,16 @@ var gunPickedUp = false
 var rng = RandomNumberGenerator.new()
 var playa = true
 var cameFollow = true
-var amAm
-var resp
+
 var camExt = false
 
 
 func _ready() -> void:
-	var amamNode = ""
-	var respNode = ""
-
-	match Manager.current_scene:
-		"1_1":
-			respNode = "/root/Lvl1/Camera2D/Respawn"
-			amamNode = "/root/Lvl1/Camera2D/AmAm"
-
-	amAm = get_node(amamNode)
-	resp = get_node(respNode)
-
-	if Manager.gunType != 0:
-		weaponGrabbed(Manager.gunType, Manager.ammoCount)
+	SignalBus.updateResp.emit(false)
 	if Manager.playerRespawnPos != Vector2.ZERO:
 		position = Manager.playerRespawnPos
+	if Manager.gunType != 0:
+		weaponGrabbed(Manager.gunType, Manager.ammoCount)
 
 var lastGuy = 0
 func hit(damage: int, id: int) -> void:
@@ -45,9 +35,9 @@ func hit(damage: int, id: int) -> void:
 		lastGuy = id
 	if health <= 0:
 		die()
-		resp.show()
-	
+
 func die() -> void:
+	SignalBus.updateResp.emit(true)
 	dead = true
 	$Sprite2D.texture = deathTexture
 	$Sprite2D.scale.x = 1
@@ -98,5 +88,5 @@ func makeHunSave():
 #value is fire rate, gun is guntype, bulldam is bullet damage
 func weaponGrabbed(which: int, currentAmmo: int) -> void:
 	$hun.update_values(which, currentAmmo)
+	SignalBus.updateAmmo.emit(currentAmmo)
 	gunPickedUp = true
-	amAm.show()

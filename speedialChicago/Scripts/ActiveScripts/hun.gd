@@ -28,20 +28,16 @@ var gunType = 0
 var dammage = 100
 var fireRate = .25
 var punching = false
-var amAm
 var currentMap: TileMapLayer
 
 
 func _ready() -> void:
-	var amamNode = ""
 	var cmNode = ""
 	match Manager.current_scene:
 		"1_1":
-			amamNode = "/root/Lvl1/Camera2D/AmAm"
 			cmNode = "/root/Lvl1/floor1"
 
 	currentMap = get_node(cmNode)
-	amAm = get_node(amamNode)
 
 #Functions that Shoot the gun
 func _process(_delta: float) -> void:
@@ -57,17 +53,16 @@ func _process(_delta: float) -> void:
 			4:
 				breach()
 				punching = true
-				amAm.text = "Ammo:" + str(ammo)
+				SignalBus.updateAmmo.emit(ammo)
 				
 			_:
 				fire()
-				amAm.text = "Ammo:" + str(ammo)
+				SignalBus.updateAmmo.emit(ammo)
 		
 	if Input.is_action_just_pressed("Drop") and gunPickedUp:
 		dropWeapon(gunType)
-		update_values(0, 0)
-		amAm.hide()
-	
+		update_values(0, -1)
+
 	if punching:
 		melee()
 
@@ -149,7 +144,7 @@ func update_values(value: int, currentAmmo: int):
 	currentSprite = null
 	gunType = value
 	ammo = currentAmmo
-	amAm.text = "Ammo:" + str(ammo)
+	SignalBus.updateAmmo.emit(ammo)
 	canFire = true
 	gunPickedUp = true
 	hitBox.visible = false

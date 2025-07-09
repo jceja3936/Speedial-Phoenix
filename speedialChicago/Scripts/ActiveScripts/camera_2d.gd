@@ -19,8 +19,6 @@ func _ready() -> void:
 			
 	$Cursors.top_level = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
-	$AmAm.hide()
-	$Respawn.hide()
 
 var camPos = Vector2.ZERO
 var cursOffset = Vector2.ZERO
@@ -56,9 +54,3 @@ func _physics_process(_delta: float) -> void:
 		_:
 			position = lerp(position, (player_pos + camPos.rotated(angletoLerpBy)), 1.0 - exp(-10 * _delta))
 			$Cursors.position = player_pos + cursOffset.rotated(get_angle_to(mouse_pos))
-
-
-func updateAmmo(amount: int):
-	$AmAm.show()
-	$AmAm.top_level = true
-	$AmAm.text = "Ammo: " + str(amount)
