@@ -93,7 +93,7 @@ func _ready() -> void:
 		
 
 func punched(gunType: int, rot: float):
-	toRotby = - rot
+	toRotby = rot
 	var ogFirerate = fireRate
 	fireRate = 2
 	falling = true
@@ -131,9 +131,9 @@ func hit(damage: int) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if falling:
-		rotation = toRotby
 		x = lerp(x, 1.0, .08)
-		velocity = Vector2(curve.sample(x) * -900, 0).rotated(toRotby)
+		rotation = deg_to_rad(rad_to_deg(toRotby) + 180)
+		velocity = Vector2(curve.sample(x) * 1000, 0).rotated(toRotby)
 		move_and_slide()
 
 	if imHit:
