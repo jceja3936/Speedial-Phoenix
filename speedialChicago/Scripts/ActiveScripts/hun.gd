@@ -63,6 +63,15 @@ func _process(_delta: float) -> void:
 		dropWeapon(gunType)
 		update_values(0, -1)
 
+	if Input.is_action_just_pressed("Respawn"):
+		for i in range(hitBox.get_collision_count()):
+			var collider = hitBox.get_collider(i)
+			if hitBox.is_colliding():
+				if collider != null:
+					if collider.get("enemy") == true:
+						collider.call("finish")
+
+
 	if punching:
 		melee()
 
@@ -92,7 +101,7 @@ func melee():
 		if hitBox.is_colliding():
 			if collider != null:
 				if collider.get("enemy") == true:
-					collider.call("punched", gunType)
+					collider.call("punched", gunType, get_parent().rotation)
 
 
 func fire() -> void:

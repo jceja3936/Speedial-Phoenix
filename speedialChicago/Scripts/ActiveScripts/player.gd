@@ -19,14 +19,28 @@ var playa = true
 var cameFollow = true
 
 var camExt = false
+var finish = false
 
 
 func _ready() -> void:
+	SignalBus.finishing.connect(finishing)
 	SignalBus.updateResp.emit(false)
 	if Manager.playerRespawnPos != Vector2.ZERO:
 		position = Manager.playerRespawnPos
 	if Manager.gunType != 0:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
+
+func finishing(value: Vector2, enemy: CharacterBody2D):
+	finish = true
+	position = value
+	await get_tree().create_timer(.15).timeout
+	Manager.playSound("punched", global_position)
+	await get_tree().create_timer(.15).timeout
+	Manager.playSound("punched", global_position)
+	enemy.call("hit", 290)
+
+	finish = false
+
 
 var lastGuy = 0
 func hit(damage: int, id: int) -> void:
@@ -69,9 +83,8 @@ func _input(event):
 
 
 func _physics_process(delta: float) -> void:
-	if dead:
+	if dead or finish:
 		return
-
 
 	look_at(get_global_mouse_position())
 	var dir = Input.get_vector("Left", "Right", "Up", "Down")

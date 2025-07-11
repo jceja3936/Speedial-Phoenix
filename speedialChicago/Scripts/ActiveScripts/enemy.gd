@@ -8,6 +8,7 @@ var currentSprite: Texture
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
 var deathTexture: Texture = preload("res://assets/img/icon.svg")
+var curve: Curve = load("res://assets/prac.tres")
 
 var canFire = true
 var rng = RandomNumberGenerator.new()
@@ -26,9 +27,13 @@ var secDeg = 90
 var degToRotby = -90.0
 
 var rotating = false
-var from = 0
 var to = 0
 var setOfRays: Array
+var x = 0.0
+
+var imHit = false
+var falling = false
+var toRotby = 0
 
 var player: CharacterBody2D
 
@@ -88,10 +93,12 @@ func _ready() -> void:
 	if Manager.levelState > myFloor:
 		die()
 		
-var imHit = false
-func punched(gunType: int):
+
+func punched(gunType: int, rot: float):
+	toRotby = - rot
 	var ogFirerate = fireRate
 	fireRate = 2
+	falling = true
 
 	if !imHit:
 		Manager.playSound("punched", global_position)
@@ -114,6 +121,8 @@ func die() -> void:
 	Manager.dropWeapon(type, self, ammo)
 	queue_free()
 	
+func finish() -> void:
+	SignalBus.finishing.emit(global_position, self)
 
 func hit(damage: int) -> void:
 	health -= damage
@@ -121,7 +130,14 @@ func hit(damage: int) -> void:
 		dead = true
 		die()
 
+
 func _physics_process(_delta: float) -> void:
+	if falling:
+		rotation = toRotby
+		x = lerp(x, 1.0, .08)
+		velocity = Vector2(curve.sample(x) * -900, 0).rotated(toRotby)
+		move_and_slide()
+
 	if imHit:
 		return
 
@@ -131,7 +147,6 @@ func _physics_process(_delta: float) -> void:
 		patrol()
 
 	if wallCollision and pat and lastKnown == null:
-		from = global_rotation
 		to -= deg_to_rad(90)
 		wallCollision = false
 		rotating = true
@@ -245,6 +260,8 @@ func fire() -> void:
 func wait() -> bool:
 	await get_tree().create_timer(fireRate).timeout
 	canFire = true
+	falling = false
+	x = 0.0
 	return true
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
