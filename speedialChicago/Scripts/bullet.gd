@@ -15,6 +15,8 @@ func _ready() -> void:
 	global_rotation = rota
 	if fromWho == "enemy":
 		set_collision_mask_value(3, false)
+	else:
+		set_collision_mask_value(4, false)
 
 
 func _process(_delta: float) -> void:

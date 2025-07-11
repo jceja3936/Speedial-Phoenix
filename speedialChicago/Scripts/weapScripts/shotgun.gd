@@ -3,8 +3,24 @@ extends CharacterBody2D
 var closeEnough = false
 var lastEntered = null
 var currentAmmo = 6
+var dropped = false
+var curve: Curve = load("res://assets/prac.tres")
+var randDeg
+var x = 0.0
+var randDir
+
+func _ready():
+	randDeg = randi_range(20, 40)
+	randDir = randf_range(-3.14, 3.14)
 
 func _process(_delta: float) -> void:
+	if dropped:
+		x = lerp(x, 1.0, .08)
+		rotation += deg_to_rad(curve.sample(x) * randDeg)
+		velocity = curve.sample(x) * Vector2(800, 0).rotated(randDir)
+		move_and_slide()
+
+
 	if Input.is_action_just_pressed("Pick up") and closeEnough:
 		if lastEntered.has_method("weaponGrabbed") and lastEntered.get("gunPickedUp") != true:
 			lastEntered.call("weaponGrabbed", 3, currentAmmo)

@@ -243,6 +243,7 @@ tile_set = SubResource("TileSet_8ym7p")
 
 [node name="patroller" parent="Enemies" instance=ExtResource("9_63bpq")]
 position = Vector2(364, 1178)
+type = 1
 pat = true
 myFloor = 1
 

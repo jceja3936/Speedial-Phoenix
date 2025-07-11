@@ -40,9 +40,7 @@ var player: CharacterBody2D
 func _ready() -> void:
 	setOfRays.append($ray1)
 	setOfRays.append($ray2)
-	setOfRays.append($ray3)
 	setOfRays.append($ray4)
-	#setOfRays.append($ray5)
 
 	speed = ogSpeed + rng.randf_range(-100, 100)
 	ogSpeed = speed
@@ -168,12 +166,9 @@ func _physics_process(_delta: float) -> void:
 func takeAlook(playPos: Vector2):
 	setOfRays[0].target_position = Vector2(800, 0)
 	setOfRays[1].target_position = Vector2(800, 0).rotated(deg_to_rad(- degToRotby))
-	#setOfRays[2].target_position = Vector2(800, 0).rotated(deg_to_rad(degToRotby))
-	setOfRays[3].target_position = Vector2(500, 0).rotated(deg_to_rad(secDeg))
-	#setOfRays[4].target_position = Vector2(800, 0).rotated(deg_to_rad(degToRotby + 270))
-
-
-	for i in range(4):
+	setOfRays[2].target_position = Vector2(500, 0).rotated(deg_to_rad(secDeg))
+	
+	for i in range(3):
 		if setOfRays[i]:
 			#See if the thing hit player
 			var collider = setOfRays[i].get_collider()

@@ -1,8 +1,13 @@
-extends Node2D
+extends CharacterBody2D
 
 var closeEnough = false
 var lastEntered = null
+var dropped = false
 var currentAmmo = 21
+var x = 0.0
+var curve: Curve = load("res://assets/prac.tres")
+var randDeg
+var randDir
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	closeEnough = true
@@ -15,7 +20,18 @@ func _on_area_2d_body_exited(_body: Node2D) -> void:
 	lastEntered = null
 	pass # Replace with function body.
 
+func _ready():
+	randDeg = randi_range(20, 40)
+	randDir = randf_range(-3.14, 3.14)
+
+
 func _process(_delta: float) -> void:
+	if dropped:
+		x = lerp(x, 1.0, .08)
+		rotation += deg_to_rad(curve.sample(x) * randDeg)
+		velocity = curve.sample(x) * Vector2(800, 0).rotated(randDir)
+		move_and_slide()
+
 	if Input.is_action_just_pressed("Pick up") and closeEnough:
 		if lastEntered.has_method("weaponGrabbed") and !lastEntered.get("gunPickedUp"):
 			lastEntered.call("weaponGrabbed", 1, currentAmmo)

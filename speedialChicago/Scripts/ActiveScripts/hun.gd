@@ -204,13 +204,11 @@ func instantiate(type: PackedScene):
 	var instance = type.instantiate()
 	instance.setAmmo(ammo)
 	instance.set_meta("placed", "Yer")
-	instance.set_collision_layer_value(2, false)
-	instance.set_collision_mask_value(2, false)
-	instance.set_collision_layer_value(1, false)
-	instance.set_collision_mask_value(1, false)
 	instance.position = global_position
 	instance.rotation = get_parent().rotation
 	get_tree().root.add_child(instance)
+	instance.set("dropped", true)
+
 
 func dropWeapon(gun: int):
 	get_parent().set("gunPickedUp", false)
