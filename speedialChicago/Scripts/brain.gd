@@ -6,9 +6,9 @@ var levelBeat = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	setState(Manager.levelState)
+	set_State(Manager.levelState)
 
-func setState(newState: int):
+func set_State(newState: int):
 	state = newState
 	match state:
 		1:
@@ -57,12 +57,12 @@ func _on_end_body_entered(body: Node2D) -> void:
 					Manager.playerRespawnPos = Vector2(1839.0, 2611.0)
 					player.position = Vector2(2121.0, 2606.0)
 					Manager.levelState = 2
-					setState(2)
+					set_State(2)
 				2:
 					levelBeat = true
 					player.position = Vector2(124.0, 1038.0)
 					Manager.levelState = 3
-					setState(3)
+					set_State(3)
 				3:
 					player.position = Vector2(2121.0, 2606.0)
-					setState(2)
+					set_State(2)

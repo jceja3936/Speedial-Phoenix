@@ -32,7 +32,7 @@ func setCam(type: int):
 			speed = 5
 		1:
 			camPos = Vector2(0, 0)
-			cursOffset = Vector2(800, 0)
+			cursOffset = Vector2(300, 0)
 		2:
 			camPos = Vector2(600, 0)
 			cursOffset = Vector2(600, 0)

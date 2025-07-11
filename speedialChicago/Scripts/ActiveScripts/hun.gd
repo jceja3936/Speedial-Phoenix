@@ -26,7 +26,7 @@ var canFire = true
 var ammo = 0;
 var gunType = 0
 var dammage = 100
-var fireRate = .25
+var fireRate = .4
 var punching = false
 var currentMap: TileMapLayer
 
@@ -45,11 +45,11 @@ func _process(_delta: float) -> void:
 		match gunType:
 			0:
 				punching = true
+				Manager.playSound("swing", global_position)
 				wait(1)
 				canFire = false
 				texture = punchTexture
 				offset = Vector2(-20, 0).rotated(get_angle_to(get_global_mouse_position()))
-				Manager.playSound("pSound", global_position)
 			4:
 				breach()
 				punching = true
@@ -92,7 +92,7 @@ func melee():
 		if hitBox.is_colliding():
 			if collider != null:
 				if collider.get("enemy") == true:
-					collider.call("hit", 220)
+					collider.call("punched", gunType)
 
 
 func fire() -> void:
@@ -126,9 +126,7 @@ func fire() -> void:
 func wait(_punched: int = 0) -> bool:
 	if _punched == 1:
 		waitPunch()
-		await get_tree().create_timer(fireRate).timeout
-	else:
-		await get_tree().create_timer(fireRate).timeout
+	await get_tree().create_timer(fireRate).timeout
 	canFire = true
 	return true
 
@@ -179,7 +177,7 @@ func update_values(value: int, currentAmmo: int):
 			fireRate = 1
 		_:
 			hitBox.visible = true
-			fireRate = .25
+			fireRate = .4
 			scale.x = 1
 			scale.y = 1
 			rotation = 0

@@ -20,6 +20,5 @@ func _process(_delta: float) -> void:
 		startingNext(packed_scene)
 
 func startingNext(theScene):
-	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_packed(theScene)
 	queue_free()

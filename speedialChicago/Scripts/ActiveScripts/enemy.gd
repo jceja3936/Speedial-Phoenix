@@ -88,6 +88,20 @@ func _ready() -> void:
 	if Manager.levelState > myFloor:
 		die()
 		
+var imHit = false
+func punched(gunType: int):
+	var ogFirerate = fireRate
+	fireRate = 2
+
+	if !imHit:
+		Manager.playSound("punched", global_position)
+		if gunType == 4:
+			hit(300)
+		imHit = true
+		await wait()
+		fireRate = ogFirerate
+		imHit = false
+		
 		
 func die() -> void:
 	Manager.decrementEnemyAmount()
@@ -96,7 +110,7 @@ func die() -> void:
 	deadBody.texture = deathTexture
 	deadBody.global_position = position
 	deadBody.rotation = rotation
-	get_parent().add_child(deadBody)
+	get_parent().add_child.call_deferred(deadBody)
 	Manager.dropWeapon(type, self, ammo)
 	queue_free()
 	
@@ -108,6 +122,9 @@ func hit(damage: int) -> void:
 		die()
 
 func _physics_process(_delta: float) -> void:
+	if imHit:
+		return
+
 	var player_pos = player.global_position
 
 	if pat:
@@ -136,7 +153,7 @@ func _physics_process(_delta: float) -> void:
 func takeAlook(playPos: Vector2):
 	setOfRays[0].target_position = Vector2(800, 0)
 	setOfRays[1].target_position = Vector2(800, 0).rotated(deg_to_rad(- degToRotby))
-	setOfRays[2].target_position = Vector2(800, 0).rotated(deg_to_rad(degToRotby))
+	#setOfRays[2].target_position = Vector2(800, 0).rotated(deg_to_rad(degToRotby))
 	setOfRays[3].target_position = Vector2(500, 0).rotated(deg_to_rad(secDeg))
 	#setOfRays[4].target_position = Vector2(800, 0).rotated(deg_to_rad(degToRotby + 270))
 
@@ -191,7 +208,7 @@ func search(destination):
 func attackPlayer() -> bool:
 	await get_tree().create_timer(.4).timeout
 	var collider = setOfRays[0].get_collider()
-	if collider == player and canFire and ammo > 0:
+	if collider == player and canFire and ammo > 0 and !imHit:
 		fire()
 		ammo -= 1
 		

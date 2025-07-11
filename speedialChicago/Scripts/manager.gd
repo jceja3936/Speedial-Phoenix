@@ -20,7 +20,9 @@ var enemyAmount = 0
 var item_sounds = {
 	"pSound": preload("res://assets/aud/9mm.wav"),
 	"sSound": preload("res://assets/aud/Big Boing.wav"),
-	"dSound": preload("res://assets/aud/wallBreak1.wav")
+	"dSound": preload("res://assets/aud/wallBreak1.wav"),
+	"punched": preload("res://assets/aud/ounched.wav"),
+	"swing": preload("res://assets/aud/swing.wav")
 	# Add more as needed or load dynamically
 }
 
@@ -34,7 +36,7 @@ func playSound(item_name: String, pos: Vector2):
 	if sound:
 		var player = AudioStreamPlayer2D.new()
 		if item_name == "dSound":
-			player.volume_db = 5.0
+			player.volume_db = 4.5
 		player.stream = sound
 		get_tree().current_scene.add_child(player)
 		player.position = pos
