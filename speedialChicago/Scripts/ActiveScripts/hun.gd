@@ -45,13 +45,28 @@ func _process(_delta: float) -> void:
 		match gunType:
 			0:
 				punching = true
+				if swung:
+					invRot = 25.0
+					swung = false
+				else:
+					invRot = 155.0
+					swung = true
+				punching = true
 				Manager.playSound("swing", global_position)
 				wait(1)
 				canFire = false
 				texture = punchTexture
-				offset = Vector2(-20, 0).rotated(get_angle_to(get_global_mouse_position()))
 			4:
 				breach()
+				if swung:
+					invRot = 25.0
+					hammPos = Vector2(0, -20)
+					swung = false
+				else:
+					invRot = 155.0
+					swung = true
+					hammPos = Vector2(0, 20)
+
 				punching = true
 				SignalBus.updateAmmo.emit(ammo)
 				
@@ -71,9 +86,14 @@ func _process(_delta: float) -> void:
 					if collider.get("enemy") == true:
 						collider.call("finish")
 
-
 	if punching:
+		rotation_degrees = lerp(rad_to_deg(rotation), invRot, .2)
+		position.y = lerp(position.y, hammPos.y, .1)
 		melee()
+
+var invRot = 25.0
+var swung = false
+var hammPos = Vector2(0, -20)
 
 func breach():
 	if ammo > 0:
@@ -152,6 +172,8 @@ func update_values(value: int, currentAmmo: int):
 	gunType = value
 	ammo = currentAmmo
 	SignalBus.updateAmmo.emit(ammo)
+	offset = Vector2.ZERO
+	position = Vector2(54, 0)
 	canFire = true
 	gunPickedUp = true
 	hitBox.visible = false
@@ -179,7 +201,9 @@ func update_values(value: int, currentAmmo: int):
 			fireRate = .8
 		4:
 			currentSprite = hammerImg
-			rotation_degrees = 0
+			offset = Vector2(0, -20)
+			position = Vector2(0, -20)
+			rotation_degrees = 25
 			scale.x = 1
 			scale.y = 1
 			dammage = 220

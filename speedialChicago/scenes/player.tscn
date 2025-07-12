@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://d13e8mw3hml3r" path="res://assets/img/Francis.png" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://Scripts/ActiveScripts/hun.gd" id="5_qlg0r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 37.0
 height = 98.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 8
@@ -16,24 +16,26 @@ collision_mask = 3
 script = ExtResource("1_g2els")
 metadata/pla = "fe"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, 0)
-rotation = -1.5708
-texture = ExtResource("2_qhqgy")
-
 [node name="bullets" type="Node2D" parent="."]
 
 [node name="hun" type="Sprite2D" parent="." node_paths=PackedStringArray("hitBox")]
 position = Vector2(54, 0)
+rotation = 0.436332
 script = ExtResource("5_qlg0r")
-hitBox = NodePath("punchBox")
+hitBox = NodePath("../punchBox")
 
-[node name="punchBox" type="ShapeCast2D" parent="hun"]
-position = Vector2(-89, 0)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("2_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_qhqgy")
+
+[node name="punchBox" type="ShapeCast2D" parent="."]
+visible = false
+position = Vector2(-35, 0)
 scale = Vector2(1, 2.84)
 shape = SubResource("RectangleShape2D_qhqgy")
 target_position = Vector2(136, 0)
 collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_qhqgy")
