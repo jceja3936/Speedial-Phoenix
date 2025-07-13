@@ -87,8 +87,9 @@ func _process(_delta: float) -> void:
 						collider.call("finish")
 
 	if punching:
-		rotation_degrees = lerp(rad_to_deg(rotation), invRot, .2)
-		position.y = lerp(position.y, hammPos.y, .1)
+		if gunType != 0:
+			rotation_degrees = lerp(rad_to_deg(rotation), invRot, .2)
+			position.y = lerp(position.y, hammPos.y, .1)
 		melee()
 
 var invRot = 25.0

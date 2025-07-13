@@ -1,10 +1,19 @@
 extends Control
 
+var score = 0
+
 func _ready():
 	SignalBus.updateAmmo.connect(updateAmmo)
 	SignalBus.updateResp.connect(updateResp)
+	SignalBus.updateScore.connect(updateScore)
+	SignalBus.saveScore.connect(saveScore)
 	$AmAm.hide()
 	$resp.hide()
+	$fadeAway.modulate = Color(0, 0, 0, 0)
+	if Manager.score != 0:
+		score = Manager.score
+		updateScore(0)
+
 
 func updateAmmo(value):
 	if value == -1:
@@ -19,3 +28,25 @@ func updateResp(value):
 			$resp.show()
 		false:
 			$resp.hide()
+
+func updateScore(value):
+	makePretty()
+	score += value
+	if score < 1000:
+		$Score.text = "Score : 0"
+	else:
+		$Score.text = "Score : "
+	$Score.text = $Score.text + str(score)
+
+
+func makePretty():
+	$Score.modulate = Color(255, 255, 0, 255)
+	await get_tree().create_timer(.05).timeout
+	$Score.modulate = Color(255, 255, 255, 255)
+	await get_tree().create_timer(.1).timeout
+	$Score.modulate = Color(255, 255, 0, 255)
+	await get_tree().create_timer(.05).timeout
+	$Score.modulate = Color(255, 255, 255, 255)
+
+func saveScore():
+	Manager.score = score

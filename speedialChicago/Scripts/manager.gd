@@ -7,8 +7,8 @@ var shotgun: PackedScene = load("res://scenes/gunScenes/shotgun.tscn")
 var next_scene: String = "res://scenes/lvlScenes/Lvl1.tscn"
 var current_scene: String = "1_1"
 var loadingScreen = preload("res://scenes/UIscenes/loading_screen.tscn")
-
 var playerRespawnPos = Vector2.ZERO
+var score = 0
 var levelState = 1
 var gunType = 0
 var ammoCount = 0
@@ -16,6 +16,7 @@ var points = 0
 var mult = 1
 
 var enemyAmount = 0
+
 
 var item_sounds = {
 	"pSound": preload("res://assets/aud/9mm.wav"),

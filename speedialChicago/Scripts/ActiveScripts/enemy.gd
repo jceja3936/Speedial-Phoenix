@@ -125,6 +125,7 @@ func finish() -> void:
 func hit(damage: int) -> void:
 	health -= damage
 	if health <= 0 and !dead:
+		SignalBus.emit_signal("updateScore", 200)
 		dead = true
 		die()
 

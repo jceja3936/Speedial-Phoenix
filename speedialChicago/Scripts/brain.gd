@@ -36,7 +36,10 @@ func set_State(newState: int):
 
 func _on_start_body_entered(body: Node2D) -> void:
 	if Manager.levelState == 3:
-		get_tree().quit()
+		SignalBus.emit_signal("saveScore")
+		Manager.next_scene = "res://scenes/UIscenes/end_screen.tscn"
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		Manager.startNextScene()
 
 	if body.name == "Player":
 		match state:
@@ -54,6 +57,7 @@ func _on_end_body_entered(body: Node2D) -> void:
 			match state:
 				1:
 					player.makeHunSave()
+					SignalBus.emit_signal("saveScore")
 					Manager.playerRespawnPos = Vector2(1839.0, 2611.0)
 					player.position = Vector2(2121.0, 2606.0)
 					Manager.levelState = 2

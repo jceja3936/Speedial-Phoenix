@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://bolbb3urbmybx"]
+
+[ext_resource type="Script" uid="uid://ddqb8j0gyj6ik" path="res://Scripts/uiScript/end_screen.gd" id="1_4ws7o"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="1_yraj6"]
+
+[node name="endScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ws7o")
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_yraj6")
+
+[node name="Results" type="Label" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 285.0
+offset_bottom = 133.0
+scale = Vector2(2, 1)
+theme_override_font_sizes/font_size = 50
+text = "Results:"
+uppercase = true
+
+[node name="Score" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 285.0
+offset_bottom = 261.0
+scale = Vector2(2, 1)
+theme_override_font_sizes/font_size = 40
+text = "SCORE"
+uppercase = true
+
+[node name="Time" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 945.0
+offset_bottom = 389.0
+scale = Vector2(2, 1)
+theme_override_font_sizes/font_size = 40
+text = "TIME"
+uppercase = true
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 960.0
+offset_right = 105.0
+offset_bottom = 991.0
+theme_override_font_sizes/font_size = 50
+text = "EXIT"
+
+[node name="timeNum" type="Label" parent="."]
+offset_left = 1600.0
+offset_top = 320.0
+offset_right = 1821.0
+offset_bottom = 389.0
+scale = Vector2(2, 1)
+theme_override_font_sizes/font_size = 40
+text = "0000"
+uppercase = true
+
+[node name="scoreNum" type="Label" parent="."]
+offset_left = 1600.0
+offset_top = 192.0
+offset_right = 1821.0
+offset_bottom = 261.0
+scale = Vector2(2, 1)
+theme_override_font_sizes/font_size = 40
+text = "0000"
+uppercase = true
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

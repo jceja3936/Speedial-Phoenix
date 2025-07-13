@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dewgjpt1wbtm4"]
+[gd_scene load_steps=2 format=3 uid="uid://dewgjpt1wbtm4"]
+
+[ext_resource type="Script" uid="uid://cigsncue0fg5s" path="res://Scripts/uiScript/control.gd" id="1_nufsr"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nufsr")
 
 [node name="resp" type="Label" parent="."]
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
@@ -40,3 +43,19 @@ offset_bottom = -61.0
 grow_vertical = 0
 scale = Vector2(3, 3)
 text = "Ammo: "
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 26.0
+offset_right = 259.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 50
+text = "Score : 0000"
+
+[node name="fadeAway" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 6.10352e-05
+offset_right = 1920.0
+offset_bottom = 1080.0
