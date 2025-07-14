@@ -17,6 +17,17 @@ var mult = 1
 
 var enemyAmount = 0
 
+func reset():
+	next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
+	current_scene = "1_1"
+	score = 0
+	levelState = 1
+	gunType = 0
+	ammoCount = 0
+	points = 0
+	mult = 1
+	enemyAmount = 0
+	playerRespawnPos = Vector2.ZERO
 
 var item_sounds = {
 	"pSound": preload("res://assets/aud/9mm.wav"),

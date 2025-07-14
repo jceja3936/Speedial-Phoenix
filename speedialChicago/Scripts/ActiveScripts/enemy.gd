@@ -37,7 +37,12 @@ var toRotby = 0
 
 var player: CharacterBody2D
 
+var gamePaused = false
+
 func _ready() -> void:
+	SignalBus.paused.connect(paused)
+	SignalBus.unPaused.connect(unPaused)
+
 	setOfRays.append($ray1)
 	setOfRays.append($ray2)
 	setOfRays.append($ray4)
@@ -91,6 +96,10 @@ func _ready() -> void:
 	if Manager.levelState > myFloor:
 		die()
 		
+func paused():
+	gamePaused = true
+func unPaused():
+	gamePaused = false
 
 func punched(gunType: int, rot: float):
 	toRotby = rot
@@ -131,6 +140,9 @@ func hit(damage: int) -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if gamePaused:
+		return
+
 	if falling:
 		x = lerp(x, 1.0, .08)
 		rotation = deg_to_rad(rad_to_deg(toRotby) + 180)

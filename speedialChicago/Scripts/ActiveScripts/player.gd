@@ -20,15 +20,28 @@ var cameFollow = true
 
 var camExt = false
 var finish = false
+var gamePaused = false
 
 
 func _ready() -> void:
 	SignalBus.finishing.connect(finishing)
+	SignalBus.paused.connect(paused)
+	SignalBus.unPaused.connect(unPaused)
 	SignalBus.updateResp.emit(false)
 	if Manager.playerRespawnPos != Vector2.ZERO:
 		position = Manager.playerRespawnPos
 	if Manager.gunType != 0:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
+
+func paused():
+	gamePaused = true
+func unPaused():
+	gamePaused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+	cameFollow = true
+	cam.setCam(0)
+	$hun.unStop()
+
 
 func finishing(value: Vector2, enemy: CharacterBody2D):
 	finish = true
@@ -65,10 +78,15 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		cameFollow = false
 		cam.setCam(1)
+		$hun.stop()
+		SignalBus.emit_signal("paused")
+		
 	elif event.is_action_pressed("esc") and !cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		cameFollow = true
 		cam.setCam(0)
+		$hun.unStop()
+		SignalBus.emit_signal("unPaused")
 
 	if event.is_action_pressed("extendCam") and cameFollow and !camExt:
 		cam.setCam(2)
@@ -84,7 +102,7 @@ func _input(event):
 
 
 func _physics_process(delta: float) -> void:
-	if dead or finish:
+	if dead or finish or gamePaused:
 		return
 
 	look_at(get_global_mouse_position())

@@ -29,6 +29,7 @@ var dammage = 100
 var fireRate = .4
 var punching = false
 var currentMap: TileMapLayer
+var gameStopped = false
 
 
 func _ready() -> void:
@@ -41,6 +42,9 @@ func _ready() -> void:
 
 #Functions that Shoot the gun
 func _process(_delta: float) -> void:
+	if gameStopped:
+		return
+
 	if Input.is_action_pressed("shoot") and canFire:
 		match gunType:
 			0:
@@ -58,6 +62,7 @@ func _process(_delta: float) -> void:
 				texture = punchTexture
 			4:
 				breach()
+				Manager.playSound("swing", global_position)
 				if swung:
 					invRot = 25.0
 					hammPos = Vector2(0, -20)
@@ -87,7 +92,7 @@ func _process(_delta: float) -> void:
 						collider.call("finish")
 
 	if punching:
-		if gunType != 0:
+		if gunType == 4:
 			rotation_degrees = lerp(rad_to_deg(rotation), invRot, .2)
 			position.y = lerp(position.y, hammPos.y, .1)
 		melee()
@@ -224,6 +229,11 @@ func saveWeapon():
 	Manager.gunType = gunType
 	Manager.ammoCount = ammo
 
+func stop():
+	gameStopped = true
+func unStop():
+	gameStopped = false
+	
 #Functions that handle Dropping a weapon
 func instantiate(type: PackedScene):
 	var instance = type.instantiate()
