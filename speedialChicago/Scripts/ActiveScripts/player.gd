@@ -35,8 +35,10 @@ func _ready() -> void:
 
 func paused():
 	gamePaused = true
+	Manager.gamePaused = true
 func unPaused():
 	gamePaused = false
+	Manager.gamePaused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	cameFollow = true
 	cam.setCam(0)

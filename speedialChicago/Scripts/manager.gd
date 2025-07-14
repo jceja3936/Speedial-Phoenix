@@ -8,23 +8,31 @@ var next_scene: String = "res://scenes/lvlScenes/Lvl1.tscn"
 var current_scene: String = "1_1"
 var loadingScreen = preload("res://scenes/UIscenes/loading_screen.tscn")
 var playerRespawnPos = Vector2.ZERO
+
+var timer = 0.0
+var gamePaused = true
 var score = 0
+
 var levelState = 1
 var gunType = 0
 var ammoCount = 0
-var points = 0
 var mult = 1
 
 var enemyAmount = 0
 
+func _physics_process(delta: float):
+	if !gamePaused:
+		timer += delta
+
 func reset():
 	next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
+	gamePaused = false
 	current_scene = "1_1"
-	score = 0
+	timer = 0
 	levelState = 1
 	gunType = 0
 	ammoCount = 0
-	points = 0
+	score = 0
 	mult = 1
 	enemyAmount = 0
 	playerRespawnPos = Vector2.ZERO
@@ -65,14 +73,6 @@ func getEnemyAmount():
 
 func decrementEnemyAmount():
 	enemyAmount -= 1
-	points += 100 * mult
-	mult += 1
-
-func startMult():
-	var currentEnemyAmount = enemyAmount
-	await get_tree().create_timer(.7).timeout
-	if currentEnemyAmount == enemyAmount:
-		mult = 1
 
 #Functions that handle Dropping a weapon
 func instantiate(type: PackedScene, who: CharacterBody2D, ammo: int):

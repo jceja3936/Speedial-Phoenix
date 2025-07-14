@@ -21,3 +21,8 @@ func _on_resume_pressed() -> void:
 func _on_exit_pressed() -> void:
     Manager.next_scene = "res://scenes/UIscenes/start_menu.tscn"
     Manager.startNextScene()
+
+
+func _on_retry_pressed() -> void:
+    Manager.reset()
+    Manager.startNextScene()

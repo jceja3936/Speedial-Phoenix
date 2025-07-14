@@ -22,27 +22,25 @@ offset_left = 64.0
 offset_top = 64.0
 offset_right = 285.0
 offset_bottom = 133.0
-scale = Vector2(2, 1)
 theme_override_font_sizes/font_size = 50
 text = "Results:"
 uppercase = true
 
 [node name="Score" type="Label" parent="."]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 192.0
 offset_right = 285.0
 offset_bottom = 261.0
-scale = Vector2(2, 1)
 theme_override_font_sizes/font_size = 40
 text = "SCORE"
-uppercase = true
 
 [node name="Time" type="Label" parent="."]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 320.0
 offset_right = 945.0
 offset_bottom = 389.0
-scale = Vector2(2, 1)
 theme_override_font_sizes/font_size = 40
 text = "TIME"
 uppercase = true
@@ -53,10 +51,13 @@ offset_left = 64.0
 offset_top = 960.0
 offset_right = 105.0
 offset_bottom = 991.0
+theme_override_constants/outline_size = 20
+theme_override_constants/icon_max_width = 100
 theme_override_font_sizes/font_size = 50
 text = "EXIT"
 
 [node name="timeNum" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1600.0
 offset_top = 320.0
 offset_right = 1821.0
@@ -67,6 +68,7 @@ text = "0000"
 uppercase = true
 
 [node name="scoreNum" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1600.0
 offset_top = 192.0
 offset_right = 1821.0

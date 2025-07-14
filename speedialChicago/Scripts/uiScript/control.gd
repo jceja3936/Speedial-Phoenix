@@ -1,8 +1,11 @@
 extends Control
 
+var mult = 1
 var score = 0
+var prevScore = 0
 
 func _ready():
+	multManager()
 	SignalBus.updateAmmo.connect(updateAmmo)
 	SignalBus.updateResp.connect(updateResp)
 	SignalBus.updateScore.connect(updateScore)
@@ -29,9 +32,22 @@ func updateResp(value):
 		false:
 			$resp.hide()
 
+func multManager():
+	prevScore = score
+	await get_tree().create_timer(.75).timeout
+	if score == prevScore:
+		mult = 1
+		updateMult()
+	multManager()
+
+func updateMult():
+	$mult.text = str(mult)
+
 func updateScore(value):
 	makePretty()
-	score += value
+	score += value * mult
+	mult += 1
+	updateMult()
 	if score < 1000:
 		$Score.text = "Score : 0"
 	else:
