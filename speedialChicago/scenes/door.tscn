@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvwmxjcseecq7"]
+
+[ext_resource type="Texture2D" uid="uid://bmhuoovjqxijl" path="res://assets/img/door.png" id="1_hpvv5"]
+[ext_resource type="Script" uid="uid://ce78b2owrkmrt" path="res://Scripts/door.gd" id="1_uvdjg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvdjg"]
+size = Vector2(9, 115.5)
+
+[node name="doorRoot" type="Node2D"]
+
+[node name="point" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="point"]
+position = Vector2(0, -1)
+
+[node name="door" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+script = ExtResource("1_uvdjg")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="door"]
+auto_translate_mode = 2
+node_a = NodePath("..")
+node_b = NodePath("../../point")
+angular_limit_enabled = true
+angular_limit_lower = -2.61799
+angular_limit_upper = 2.61799
+
+[node name="Sprite2D" type="Sprite2D" parent="door"]
+position = Vector2(0, -63)
+texture = ExtResource("1_hpvv5")
+
+[node name="coll" type="CollisionShape2D" parent="door"]
+position = Vector2(0, -65.75)
+shape = SubResource("RectangleShape2D_uvdjg")

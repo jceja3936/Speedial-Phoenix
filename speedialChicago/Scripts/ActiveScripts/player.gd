@@ -115,7 +115,14 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2(0, 0)
 
 	move_and_slide()
-	
+
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().call("stopColliding")
+			c.get_collider().apply_central_impulse(-c.get_normal() * 400)
+			
+
 func makeHunSave():
 	$hun.saveWeapon()
 

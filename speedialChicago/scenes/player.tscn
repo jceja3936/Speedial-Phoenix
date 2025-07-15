@@ -16,7 +16,9 @@ collision_mask = 3
 script = ExtResource("1_g2els")
 metadata/pla = "fe"
 
-[node name="bullets" type="Node2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("2_qhqgy")
 
 [node name="hun" type="Sprite2D" parent="." node_paths=PackedStringArray("hitBox")]
 position = Vector2(54, 0)
@@ -24,12 +26,7 @@ rotation = 0.436332
 script = ExtResource("5_qlg0r")
 hitBox = NodePath("../punchBox")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -1.5708
-texture = ExtResource("2_qhqgy")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_qhqgy")
 
 [node name="punchBox" type="ShapeCast2D" parent="."]

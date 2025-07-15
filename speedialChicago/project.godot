@@ -13,7 +13,7 @@ config_version=5
 config/name="Speedial Phoenix"
 run/main_scene="uid://bd6et5gd1uwm7"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="uid://i8kqk3lu2u5c"
+config/icon="uid://dxep4kfcdgmdj"
 
 [autoload]
 

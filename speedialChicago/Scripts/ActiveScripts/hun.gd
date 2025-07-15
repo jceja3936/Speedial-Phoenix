@@ -110,6 +110,13 @@ func breach():
 		
 		var direction = (get_global_mouse_position() - get_global_position()).normalized()
 
+		for i in range(hitBox.get_collision_count()):
+			var collider = hitBox.get_collider(i)
+			if hitBox.is_colliding():
+				if collider is RigidBody2D:
+					collider.queue_free()
+					wallBroke = true
+
 		if !BADTILES.has(currentMap.get_cell_atlas_coords(tileCoords)):
 			currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
 			wallBroke = true
@@ -128,7 +135,6 @@ func melee():
 			if collider != null:
 				if collider.get("enemy") == true:
 					collider.call("punched", gunType, get_parent().rotation)
-
 
 func fire() -> void:
 	if ammo > 0:

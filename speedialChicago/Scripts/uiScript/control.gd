@@ -34,7 +34,7 @@ func updateResp(value):
 
 func multManager():
 	prevScore = score
-	await get_tree().create_timer(.75).timeout
+	await get_tree().create_timer(1.5).timeout
 	if score == prevScore:
 		mult = 1
 		updateMult()
