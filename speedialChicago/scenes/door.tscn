@@ -14,6 +14,7 @@ size = Vector2(9, 115.5)
 position = Vector2(0, -1)
 
 [node name="door" type="RigidBody2D" parent="."]
+collision_mask = 16
 gravity_scale = 0.0
 script = ExtResource("1_uvdjg")
 

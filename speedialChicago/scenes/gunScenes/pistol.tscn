@@ -1,37 +1,34 @@
 [gd_scene load_steps=5 format=3 uid="uid://byqq6tb73yo2i"]
 
 [ext_resource type="Script" uid="uid://is2dqdyhynua" path="res://Scripts/weapScripts/pistol.gd" id="1_buff3"]
-[ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/img/basicSquare.svg" id="1_igbvm"]
+[ext_resource type="Texture2D" uid="uid://b70ce2r56fqkm" path="res://assets/img/weapons/pistolSide.png" id="2_5awjy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_buff3"]
-radius = 107.65
+radius = 51.7732
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buff3"]
-size = Vector2(110.048, 50)
+size = Vector2(98.4403, 33)
 
 [node name="pistol" type="CharacterBody2D"]
-scale = Vector2(0.418, 0.2)
+scale = Vector2(0.8, 0.8)
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_buff3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-57.4163, 0)
-scale = Vector2(1.85, 1)
-texture = ExtResource("1_igbvm")
+texture_filter = 1
+texture = ExtResource("2_5awjy")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(21.5311, -5)
 scale = Vector2(1.32804, 1.70989)
 collision_layer = 0
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-50, 1)
 shape = SubResource("CircleShape2D_buff3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-57.4163, 0)
+position = Vector2(-3.8147e-06, -9.53674e-07)
 shape = SubResource("RectangleShape2D_buff3")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

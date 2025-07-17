@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv60myid72qvl"]
+[gd_scene load_steps=5 format=3 uid="uid://cv60myid72qvl"]
 
 [ext_resource type="Script" uid="uid://cc2s2fd72wrxi" path="res://Scripts/ActiveScripts/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://yaffwv6ksg2d" path="res://assets/img/Gabriel.png" id="2_4ra3w"]
-[ext_resource type="Texture2D" uid="uid://cl21634jajktv" path="res://assets/img/basicSquare.svg" id="2_md0e3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ra3w"]
 radius = 48.0104
@@ -25,9 +24,6 @@ position = Vector2(85, 0)
 metadata/_edit_group_ = true
 
 [node name="gunSkin" type="Sprite2D" parent="gun"]
-position = Vector2(-27, 0)
-scale = Vector2(1, 0.360002)
-texture = ExtResource("2_md0e3")
 
 [node name="ray1" type="RayCast2D" parent="."]
 target_position = Vector2(56, 0)

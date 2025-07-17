@@ -19,7 +19,9 @@ func _process(_delta: float) -> void:
 		rotation += deg_to_rad(curve.sample(x) * randDeg)
 		velocity = curve.sample(x) * Vector2(800, 0).rotated(randDir)
 		move_and_slide()
-
+	if x >= 0.9:
+		dropped = false
+		set_collision_layer_value(1, false)
 
 	if Input.is_action_just_pressed("Pick up") and closeEnough:
 		if lastEntered.has_method("weaponGrabbed") and lastEntered.get("gunPickedUp") != true:

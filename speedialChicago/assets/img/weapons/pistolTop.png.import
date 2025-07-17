@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b67vwlph77wx4"
-path="res://.godot/imported/Guitar-b.svg-b46072cf638d33ca91386397f8984bc0.ctex"
+uid="uid://b5kvowi7y7ev5"
+path="res://.godot/imported/pistolTop.png-7e48e0353baa5ce3badb4d08b7a767ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/Guitar-b.svg"
-dest_files=["res://.godot/imported/Guitar-b.svg-b46072cf638d33ca91386397f8984bc0.ctex"]
+source_file="res://assets/img/weapons/pistolTop.png"
+dest_files=["res://.godot/imported/pistolTop.png-7e48e0353baa5ce3badb4d08b7a767ca.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

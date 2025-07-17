@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://03lxyxx3lv78"]
 
 [ext_resource type="Script" uid="uid://cp183o6hrf5ho" path="res://Scripts/weapScripts/hammer.gd" id="1_f8vvu"]
-[ext_resource type="Texture2D" uid="uid://dj6redu2hwvjq" path="res://assets/img/Block-t.svg" id="1_vvxdq"]
+[ext_resource type="Texture2D" uid="uid://bxo0db2qa4mvj" path="res://assets/img/weapons/hammerTop.png" id="2_d5d3m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f8vvu"]
 radius = 41.4144
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcyiy"]
-size = Vector2(74.024, 50)
+size = Vector2(78, 8)
 
 [node name="Hammer" type="CharacterBody2D"]
 collision_layer = 0
@@ -15,23 +15,18 @@ collision_mask = 3
 script = ExtResource("1_f8vvu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-20, -2)
-rotation = 1.58669
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_vvxdq")
+texture = ExtResource("2_d5d3m")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(21.5311, -5)
 scale = Vector2(1.32804, 1.70989)
 collision_layer = 0
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-26.7545, 2.92416)
 shape = SubResource("CircleShape2D_f8vvu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-14.988, -1)
+texture_filter = 1
 shape = SubResource("RectangleShape2D_fcyiy")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

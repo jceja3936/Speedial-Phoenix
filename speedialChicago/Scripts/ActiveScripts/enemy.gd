@@ -63,27 +63,19 @@ func _ready() -> void:
 
 	match type:
 		1:
-			currentSprite = load("res://assets/img/basicSquare.svg")
+			currentSprite = load("res://assets/img/weapons/pistolTop.png")
 			dammage = 100
-			gunSkin.rotation = 0
-			gunSkin.scale.x = .9
-			gunSkin.scale.y = .25
 			fireRate = .2
-			ammo = 17
+			$gun/gunSkin.scale = Vector2(1.5, 1.5)
+			ammo = 6
 		2:
-			currentSprite = load("res://assets/img/Guitar-b.svg")
+			currentSprite = load("res://assets/img/weapons/rifleTop.png")
 			dammage = 100
-			gunSkin.scale.x = 0.612
-			gunSkin.scale.y = 0.622
-			gunSkin.rotation_degrees = 72.9
 			fireRate = .1
 			ammo = 30
 		3:
-			currentSprite = load("res://assets/img/Frog 2-c.svg")
+			currentSprite = load("res://assets/img/weapons/shotgunTop.png")
 			dammage = 100
-			gunSkin.rotation_degrees = 17.0
-			gunSkin.scale.x = 0.612
-			gunSkin.scale.y = 0.289
 			fireRate = .8
 			ammo = 6
 		_:

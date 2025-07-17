@@ -11,10 +11,10 @@ var rifle: PackedScene = load("res://scenes/gunScenes/rifle.tscn")
 var shotgun: PackedScene = load("res://scenes/gunScenes/shotgun.tscn")
 var hammer: PackedScene = load("res://scenes/gunScenes/hammer.tscn")
 
-var pistolImg: Texture = load("res://assets/img/basicSquare.svg")
-var rifleImg: Texture = load("res://assets/img/Guitar-b.svg")
-var shotgunImg: Texture = load("res://assets/img/Frog 2-c.svg")
-var hammerImg: Texture = load("res://assets/img/Block-t.svg")
+var pistolImg: Texture = load("res://assets/img/weapons/pistolTop.png")
+var rifleImg: Texture = load("res://assets/img/weapons/rifleTop.png")
+var shotgunImg: Texture = load("res://assets/img/weapons/shotgunTop.png")
+var hammerImg: Texture = load("res://assets/img/weapons/hammerTop.png")
 
 var punchTexture: Texture = preload("res://assets/img/punch.svg")
 
@@ -185,30 +185,24 @@ func update_values(value: int, currentAmmo: int):
 	ammo = currentAmmo
 	SignalBus.updateAmmo.emit(ammo)
 	offset = Vector2.ZERO
-	position = Vector2(54, 0)
+	rotation = 0
+	scale = Vector2(1, 1)
+	position = Vector2(54, 24)
 	canFire = true
 	gunPickedUp = true
 	hitBox.visible = false
 	match value:
 		1:
 			currentSprite = pistolImg
-			rotation = 0
-			scale.x = .9
-			scale.y = .25
-			dammage = 100
-			fireRate = .2
+			dammage = 220
+			global_scale = Vector2(1.5, 1.5)
+			fireRate = .5
 		2:
 			currentSprite = rifleImg
-			scale.x = 0.612
-			scale.y = 0.622
-			rotation_degrees = 72.9
 			dammage = 100
 			fireRate = .1
 		3:
 			currentSprite = shotgunImg
-			rotation_degrees = 17.0
-			scale.x = 0.612
-			scale.y = 0.289
 			dammage = 100
 			fireRate = .8
 		4:
@@ -216,16 +210,11 @@ func update_values(value: int, currentAmmo: int):
 			offset = Vector2(0, -20)
 			position = Vector2(0, -20)
 			rotation_degrees = 25
-			scale.x = 1
-			scale.y = 1
 			dammage = 220
 			fireRate = 1
 		_:
 			hitBox.visible = true
 			fireRate = .4
-			scale.x = 1
-			scale.y = 1
-			rotation = 0
 			ammo = 0
 			gunPickedUp = false
 
