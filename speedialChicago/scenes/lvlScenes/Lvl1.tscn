@@ -290,7 +290,7 @@ script = ExtResource("10_1235x")
 player = NodePath("../Player")
 
 [node name="start" type="Area2D" parent="brain"]
-position = Vector2(1678, 2821)
+position = Vector2(1099, 355)
 collision_mask = 9
 metadata/_edit_group_ = true
 
@@ -359,6 +359,9 @@ position = Vector2(1077, 159)
 [node name="Rifle" parent="." instance=ExtResource("8_fn5q6")]
 position = Vector2(708, 168)
 
+[node name="shotgun" parent="." instance=ExtResource("14_k1hfm")]
+position = Vector2(538, 90)
+
 [node name="pistol" parent="." instance=ExtResource("8_1qu8u")]
 position = Vector2(917, 158)
 
@@ -382,9 +385,6 @@ texture = ExtResource("8_goqse")
 position = Vector2(960, 540)
 texture = ExtResource("7_wixyy")
 metadata/_edit_lock_ = true
-
-[node name="shotgun" parent="." instance=ExtResource("14_k1hfm")]
-position = Vector2(565, 147)
 
 [connection signal="body_entered" from="brain/start" to="brain" method="_on_start_body_entered"]
 [connection signal="body_entered" from="brain/end" to="brain" method="_on_end_body_entered"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://03lxyxx3lv78"]
 
 [ext_resource type="Script" uid="uid://cp183o6hrf5ho" path="res://Scripts/weapScripts/hammer.gd" id="1_f8vvu"]
-[ext_resource type="Texture2D" uid="uid://bxo0db2qa4mvj" path="res://assets/img/weapons/hammerTop.png" id="2_d5d3m"]
+[ext_resource type="Texture2D" uid="uid://ch3o42jt40hru" path="res://assets/img/weapons/hammerSide.png" id="2_d5d3m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f8vvu"]
 radius = 41.4144

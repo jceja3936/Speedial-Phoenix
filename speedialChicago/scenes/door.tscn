@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ce78b2owrkmrt" path="res://Scripts/door.gd" id="1_uvdjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvdjg"]
-size = Vector2(9, 115.5)
+size = Vector2(9, 120)
 
 [node name="doorRoot" type="Node2D"]
 
@@ -31,5 +31,5 @@ position = Vector2(0, -63)
 texture = ExtResource("1_hpvv5")
 
 [node name="coll" type="CollisionShape2D" parent="door"]
-position = Vector2(0, -65.75)
+position = Vector2(0, -68)
 shape = SubResource("RectangleShape2D_uvdjg")

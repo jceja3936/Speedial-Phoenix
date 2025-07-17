@@ -12,7 +12,6 @@ func _ready():
 	SignalBus.saveScore.connect(saveScore)
 	$AmAm.hide()
 	$resp.hide()
-	$fadeAway.modulate = Color(0, 0, 0, 0)
 	if Manager.score != 0:
 		score = Manager.score
 		updateScore(0)

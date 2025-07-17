@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cigsncue0fg5s" path="res://Scripts/uiScript/control.gd" id="1_nufsr"]
 
 [node name="mainUI" type="Control"]
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,6 +55,7 @@ theme_override_font_sizes/font_size = 50
 text = "Score : 0000"
 
 [node name="mult" type="Label" parent="."]
+layout_mode = 0
 offset_left = 29.0
 offset_top = 93.0
 offset_right = 316.0
@@ -61,10 +63,3 @@ offset_bottom = 234.0
 theme_override_font_sizes/font_size = 25
 text = "1x
 "
-
-[node name="fadeAway" type="ColorRect" parent="."]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 6.10352e-05
-offset_right = 1920.0
-offset_bottom = 1080.0
