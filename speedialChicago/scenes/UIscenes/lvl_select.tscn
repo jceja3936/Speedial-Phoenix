@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2iuhlyf7jyo4"]
+
+[ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/start_menu.gdshader" id="1_ad1sg"]
+[ext_resource type="Script" uid="uid://jkkk7k73jskj" path="res://Scripts/uiScript/lvl_select.gd" id="1_yekil"]
+[ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/img/icon.svg" id="2_em7jy"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="2_r8adp"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="3_em7jy"]
+[ext_resource type="Texture2D" uid="uid://qrirgxpp64hl" path="res://assets/img/csbear.png" id="3_yekil"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yekil"]
+shader = ExtResource("1_ad1sg")
+shader_parameter/noise_img = ExtResource("2_r8adp")
+shader_parameter/myColor = Color(1, 0, 0, 1)
+shader_parameter/myOpaq = 0.5
+
+[node name="lvlSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yekil")
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("3_em7jy")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -709.0
+offset_top = -222.0
+offset_right = 175.0
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.6, 1.6)
+theme_override_constants/h_separation = 250
+columns = 3
+
+[node name="lel1" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_em7jy")
+texture_pressed = ExtResource("3_yekil")
+stretch_mode = 0
+
+[node name="l2" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_em7jy")
+texture_pressed = ExtResource("3_yekil")
+stretch_mode = 0
+
+[node name="l3" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_em7jy")
+texture_pressed = ExtResource("3_yekil")
+stretch_mode = 0
+
+[node name="Warm Ups" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Warm Ups"
+horizontal_alignment = 1
+
+[node name="BREACH" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "BREACH"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Finale" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Finale"
+horizontal_alignment = 1
+
+[node name="sel" type="Label" parent="."]
+layout_mode = 1
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 746.0
+offset_bottom = 183.0
+theme_override_font_sizes/font_size = 87
+text = "Choose A Scene:"
+
+[node name="shader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_yekil")
+position = Vector2(960, 540)
+texture = ExtResource("3_em7jy")
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -151.0
+offset_right = 109.0
+offset_bottom = -120.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+text = "Back"
+
+[connection signal="pressed" from="GridContainer/lel1" to="." method="_on_lel_1_pressed"]
+[connection signal="pressed" from="GridContainer/l2" to="." method="_on_l_2_pressed"]
+[connection signal="pressed" from="GridContainer/l3" to="." method="_on_l_3_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

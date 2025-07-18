@@ -10,7 +10,7 @@
 shader = ExtResource("3_l82ty")
 shader_parameter/noise_img = ExtResource("4_nuoxx")
 shader_parameter/myColor = Color(1, 0, 0, 1)
-shader_parameter/myOpaq = 0.5
+shader_parameter/myOpaq = 1.0
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -43,11 +43,13 @@ layout_mode = 2
 
 [node name="Start" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Play"
+text = "NEW GAME
+"
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Options"
+text = "Continue
+"
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -55,4 +57,5 @@ text = "Quit
 "
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
