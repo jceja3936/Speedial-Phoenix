@@ -6,9 +6,7 @@ const GRAVITY = 1000
 @export var health = 200
 @export var cam: Camera2D
 
-
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
-var deathTexture: Texture = load("res://assets/img/icon.svg")
 
 var dead = false
 var canFire = false
@@ -28,6 +26,7 @@ func _ready() -> void:
 	SignalBus.paused.connect(paused)
 	SignalBus.unPaused.connect(unPaused)
 	SignalBus.updateResp.emit(false)
+	$shader.material.set_shader_parameter("myOpaq", 0.0)
 	if Manager.playerRespawnPos != Vector2.ZERO:
 		position = Manager.playerRespawnPos
 	if Manager.gunType != 0:
@@ -69,10 +68,8 @@ func hit(damage: int, id: int) -> void:
 func die() -> void:
 	SignalBus.updateResp.emit(true)
 	dead = true
-	$Sprite2D.texture = deathTexture
-	$Sprite2D.scale.x = 1
-	$Sprite2D.scale.y = 1
 	$CollisionShape2D.queue_free()
+	$shader.material.set_shader_parameter("myOpaq", 8.0)
 	$hun.set_script(null)
 
 func _input(event):

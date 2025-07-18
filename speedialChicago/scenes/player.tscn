@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://drhq6gxwrpafr"]
+[gd_scene load_steps=9 format=3 uid="uid://drhq6gxwrpafr"]
 
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://Scripts/ActiveScripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://d13e8mw3hml3r" path="res://assets/img/Francis.png" id="2_qhqgy"]
+[ext_resource type="Shader" uid="uid://bhb832wfoa81a" path="res://assets/player.gdshader" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://Scripts/ActiveScripts/hun.gd" id="5_qlg0r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]
+shader = ExtResource("3_dqkch")
+shader_parameter/noise_img = ExtResource("4_tuyoq")
+shader_parameter/myColor = Color(1, 0.568627, 0, 1)
+shader_parameter/myOpaq = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 37.0
@@ -15,6 +23,13 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_g2els")
 metadata/pla = "fe"
+
+[node name="shader" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_qlg0r")
+rotation = -1.5708
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_qhqgy")
 
 [node name="hun" type="Sprite2D" parent="." node_paths=PackedStringArray("hitBox")]
 texture_filter = 1

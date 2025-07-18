@@ -16,6 +16,7 @@ nav_Agent = NodePath("NavigationAgent2D")
 gunSkin = NodePath("gun/gunSkin")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 rotation = -1.5708
 texture = ExtResource("2_4ra3w")
 

@@ -7,7 +7,7 @@ extends CharacterBody2D
 var currentSprite: Texture
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
-var deathTexture: Texture = preload("res://assets/img/icon.svg")
+var deathTexture: Texture = preload("res://assets/img/enemySleep.png")
 var curve: Curve = load("res://assets/prac.tres")
 
 var canFire = true
@@ -86,7 +86,7 @@ func _ready() -> void:
 	gunSkin.texture = currentSprite
 
 	if Manager.levelState > myFloor:
-		die()
+		call_deferred("queue_free")
 		
 func paused():
 	gamePaused = true

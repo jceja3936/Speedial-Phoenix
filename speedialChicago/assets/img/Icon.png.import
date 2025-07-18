@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvth8vfrd20f6"
-path="res://.godot/imported/bruh.svg-01fc593b415d0518ecc49d88249f95e4.ctex"
+uid="uid://ce65y263ajct3"
+path="res://.godot/imported/Icon.png-96ef55e3ff0733abb42e1232cab6baa4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/bruh.svg"
-dest_files=["res://.godot/imported/bruh.svg-01fc593b415d0518ecc49d88249f95e4.ctex"]
+source_file="res://assets/img/Icon.png"
+dest_files=["res://.godot/imported/Icon.png-96ef55e3ff0733abb42e1232cab6baa4.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
