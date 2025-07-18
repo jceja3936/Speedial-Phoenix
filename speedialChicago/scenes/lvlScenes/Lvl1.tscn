@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=41 format=4 uid="uid://e64wgf8otggf"]
 
 [ext_resource type="Texture2D" uid="uid://br0vvihgi3ekh" path="res://assets/img/comboTS.png" id="1_o37uq"]
 [ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_ixny3"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bc7mo1kgixak6" path="res://Scripts/brain.gd" id="10_1235x"]
 [ext_resource type="PackedScene" uid="uid://dvwmxjcseecq7" path="res://scenes/door.tscn" id="11_xspno"]
 [ext_resource type="PackedScene" uid="uid://dowe60l1v3rl6" path="res://scenes/gunScenes/shotgun.tscn" id="14_k1hfm"]
+[ext_resource type="PackedScene" uid="uid://c8rrc3lvlk3wq" path="res://scenes/UIscenes/bg_shader.tscn" id="15_i6yy0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o37uq"]
 vertices = PackedVector2Array(64, -49.5, 64, 64, -51.1484, 64, -51.1484, -50.0469)
@@ -385,6 +386,8 @@ texture = ExtResource("8_goqse")
 position = Vector2(960, 540)
 texture = ExtResource("7_wixyy")
 metadata/_edit_lock_ = true
+
+[node name="bgShader" parent="ParallaxBackground" instance=ExtResource("15_i6yy0")]
 
 [connection signal="body_entered" from="brain/start" to="brain" method="_on_start_body_entered"]
 [connection signal="body_entered" from="brain/end" to="brain" method="_on_end_body_entered"]
