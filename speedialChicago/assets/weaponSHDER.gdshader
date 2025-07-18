@@ -2,7 +2,6 @@ shader_type canvas_item;
 
 uniform sampler2D noise_img;
 uniform vec4 myColor : source_color;
-uniform float myOpaq = 0.0;
 
 void fragment() {
 	vec2 uv1 = vec2(UV.x, UV.y);
@@ -17,7 +16,7 @@ void fragment() {
 	float newA = noise_r * noise_g * noise_b;
 
 	COLOR.rgb = myColor.rgb;
-	COLOR.a = newA * myOpaq * texture(TEXTURE, UV).a;
+	COLOR.a = newA * 10.0 * texture(TEXTURE, UV).a;
 
 }
 

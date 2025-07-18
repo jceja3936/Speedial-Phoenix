@@ -1,7 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfkltf78e2mmp"]
+[gd_scene load_steps=9 format=3 uid="uid://bfkltf78e2mmp"]
 
 [ext_resource type="Script" uid="uid://c67eefpsw4qal" path="res://Scripts/weapScripts/rifle.gd" id="1_l7v2r"]
 [ext_resource type="Texture2D" uid="uid://spq1qqjmkdo" path="res://assets/img/weapons/rifleSideBU.png" id="2_2qtil"]
+[ext_resource type="Shader" uid="uid://dy17bvsgo6h65" path="res://assets/weaponSHDER.gdshader" id="2_ssncp"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="3_tl5av"]
+[ext_resource type="Texture2D" uid="uid://dto0nrv6al1qk" path="res://assets/spotlight_3.png" id="4_kjagp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5sk5s"]
+shader = ExtResource("2_ssncp")
+shader_parameter/noise_img = ExtResource("3_tl5av")
+shader_parameter/myColor = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20e1h"]
 size = Vector2(60.9355, 245.314)
@@ -14,10 +22,16 @@ collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_l7v2r")
 
+[node name="light" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5sk5s")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_kjagp")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_2qtil")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, -4.5)
 rotation = 1.56931
 scale = Vector2(0.577987, 0.603096)
@@ -28,6 +42,7 @@ collision_layer = 0
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("CircleShape2D_20e1h")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

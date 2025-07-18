@@ -326,13 +326,6 @@ rotation = 3.14159
 position = Vector2(1150, 762)
 rotation = 1.5708
 
-[node name="door4" parent="DoorStuff" instance=ExtResource("11_xspno")]
-position = Vector2(1018, 896)
-rotation = 3.14159
-
-[node name="door5" parent="DoorStuff" instance=ExtResource("11_xspno")]
-position = Vector2(1018, 1152)
-
 [node name="door6" parent="DoorStuff" instance=ExtResource("11_xspno")]
 position = Vector2(1530, 1152)
 
@@ -352,6 +345,10 @@ rotation = 1.5708
 
 [node name="door11" parent="DoorStuff" instance=ExtResource("11_xspno")]
 position = Vector2(1023, 3450)
+rotation = 1.5708
+
+[node name="door12" parent="DoorStuff" instance=ExtResource("11_xspno")]
+position = Vector2(1534, 3078)
 rotation = 1.5708
 
 [node name="Hammer" parent="." instance=ExtResource("5_o37uq")]

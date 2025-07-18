@@ -1,7 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://03lxyxx3lv78"]
+[gd_scene load_steps=9 format=3 uid="uid://03lxyxx3lv78"]
 
 [ext_resource type="Script" uid="uid://cp183o6hrf5ho" path="res://Scripts/weapScripts/hammer.gd" id="1_f8vvu"]
 [ext_resource type="Texture2D" uid="uid://ch3o42jt40hru" path="res://assets/img/weapons/hammerSide.png" id="2_d5d3m"]
+[ext_resource type="Shader" uid="uid://dy17bvsgo6h65" path="res://assets/weaponSHDER.gdshader" id="3_pciei"]
+[ext_resource type="Texture2D" uid="uid://dto0nrv6al1qk" path="res://assets/spotlight_3.png" id="4_8t37h"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="4_qynyi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qynyi"]
+shader = ExtResource("3_pciei")
+shader_parameter/noise_img = ExtResource("4_qynyi")
+shader_parameter/myColor = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f8vvu"]
 radius = 41.4144
@@ -14,10 +22,17 @@ collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_f8vvu")
 
+[node name="light" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qynyi")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_8t37h")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 1)
 texture = ExtResource("2_d5d3m")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 scale = Vector2(1.32804, 1.70989)
 collision_layer = 0
 collision_mask = 9
@@ -26,6 +41,7 @@ collision_mask = 9
 shape = SubResource("CircleShape2D_f8vvu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 texture_filter = 1
 shape = SubResource("RectangleShape2D_fcyiy")
 

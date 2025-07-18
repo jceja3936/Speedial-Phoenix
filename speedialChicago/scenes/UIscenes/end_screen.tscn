@@ -56,6 +56,15 @@ theme_override_constants/icon_max_width = 100
 theme_override_font_sizes/font_size = 50
 text = "EXIT"
 
+[node name="Next" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1656.0
+offset_top = 960.0
+offset_right = 1746.0
+offset_bottom = 991.0
+scale = Vector2(2.12936, 2.30118)
+text = "Next Level"
+
 [node name="timeNum" type="Label" parent="."]
 layout_mode = 0
 offset_left = 1600.0
