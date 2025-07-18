@@ -13,6 +13,8 @@ func _ready() -> void:
 	match Manager.current_scene:
 		"1_1":
 			playerNode = "/root/Lvl1/Player"
+		"2":
+			playerNode = "/root/Lvl2/Player"
 
 	player = get_node(playerNode)
 	position = player.global_position

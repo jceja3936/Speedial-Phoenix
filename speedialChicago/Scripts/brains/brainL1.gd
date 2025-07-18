@@ -16,11 +16,11 @@ func set_State(newState: int):
 			endPosition = Vector2(-57.0, 1023)
 			$start.position = Vector2(1097.0, 355.0)
 		2:
-			$start/CollisionShape2D.disabled = true
+			set_deferred("$start/CollisionShape2D.disabled", true)
 			Manager.setEnemyAmount(4)
 			endPosition = Vector2(2214.0, 2677.0)
 			$start.position = Vector2(1678.0, 2821.0)
-			$start/CollisionShape2D.disabled = false
+			set_deferred("$start/CollisionShape2D.disabled", true)
 		3:
 			endPosition = Vector2(-57.0, 1023)
 			$start.position = Vector2(1097.0, 328.0)

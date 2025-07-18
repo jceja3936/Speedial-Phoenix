@@ -37,6 +37,8 @@ func _ready() -> void:
 	match Manager.current_scene:
 		"1_1":
 			cmNode = "/root/Lvl1/floor1"
+		"2":
+			cmNode = "/root/Lvl2/Floor"
 
 	currentMap = get_node(cmNode)
 

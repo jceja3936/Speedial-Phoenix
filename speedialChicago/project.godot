@@ -17,7 +17,7 @@ config/icon="uid://dxep4kfcdgmdj"
 
 [autoload]
 
-Manager="*res://Scripts/manager.gd"
+Manager="*res://Scripts/brains/manager.gd"
 SignalBus="*res://Scripts/ActiveScripts/signal_bus.gd"
 
 [display]

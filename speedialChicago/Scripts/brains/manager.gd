@@ -25,9 +25,15 @@ func _physics_process(delta: float):
 		timer += delta
 
 func reset():
-	next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
+	match current_scene:
+		"1_1":
+			next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
+			current_scene = "1_1"
+		"2":
+			current_scene = "2"
+			next_scene = "res://scenes/lvlScenes/Lvl2.tscn"
+			
 	gamePaused = false
-	current_scene = "1_1"
 	timer = 0
 	levelState = 1
 	gunType = 0
