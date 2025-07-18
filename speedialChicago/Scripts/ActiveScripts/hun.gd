@@ -20,7 +20,9 @@ var punchTexture: Texture = preload("res://assets/img/punch.svg")
 
 var gunPickedUp = false
 
-const BADTILES = [Vector2i(5, 3), Vector2i(-1, -1), Vector2i(5, 2), Vector2i(5, 0)]
+const BADTILES = [Vector2i(5, 3), Vector2i(-1, -1), Vector2i(5, 2), Vector2i(5, 0), Vector2i(6, 0),
+Vector2i(7, 0), Vector2i(6, 1), Vector2i(7, 1), Vector2i(6, 2), Vector2i(7, 2),
+Vector2i(6, 3), Vector2i(7, 3)]
 
 var canFire = true
 var ammo = 0;
@@ -104,9 +106,11 @@ var swung = false
 var hammPos = Vector2(0, -20)
 
 func breach():
+	canFire = false
+	wait(1)
 	if ammo > 0:
 		canFire = false
-		wait(1)
+
 		var wallBroke = false
 		var tileCoords = currentMap.local_to_map(get_parent().global_position)
 		
@@ -118,18 +122,81 @@ func breach():
 				if collider is RigidBody2D:
 					collider.queue_free()
 					wallBroke = true
+		var atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
 
-		if !BADTILES.has(currentMap.get_cell_atlas_coords(tileCoords)):
-			currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
+		if !BADTILES.has(atlasCords):
+			findProperTile(tileCoords, atlasCords)
 			wallBroke = true
+
 		tileCoords += Vector2i(round(direction.x), round(direction.y))
-		if !BADTILES.has(currentMap.get_cell_atlas_coords(tileCoords)):
-			currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
+		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+
+		if !BADTILES.has(atlasCords):
+			findProperTile(tileCoords, atlasCords)
 			wallBroke = true
+
 		if wallBroke:
 			Manager.playSound("dSound", get_parent().global_position)
-			ammo -= 1
+			ammo += 1
 
+func findProperTile(tCord: Vector2i, atCord: Vector2i):
+	match atCord:
+		#CORNERS
+		Vector2i(0, 0):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 0), 0)
+		Vector2i(2, 0):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 0), 0)
+		Vector2i(0, 2):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 2), 0)
+		Vector2i(2, 2):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 2), 0)
+
+		#TOPS
+		Vector2i(1, 0):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 3), 0)
+		Vector2i(3, 0):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 3), 0)
+		Vector2i(4, 0):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 3), 0)
+		Vector2i(1, 3):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 3), 0)
+
+		#LEFTS
+		Vector2i(0, 1):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 1), 0)
+		Vector2i(1, 1):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 1), 0)
+		Vector2i(3, 2):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 1), 0)
+		Vector2i(3, 3):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 1), 0)
+		
+		#RIGHTS
+		Vector2i(2, 1):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 1), 0)
+		Vector2i(4, 2):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 1), 0)
+		Vector2i(2, 3):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 1), 0)
+		Vector2i(0, 3):
+			currentMap.set_cell(tCord, 0, Vector2i(7, 1), 0)
+
+
+		#BOTTOMS
+		Vector2i(3, 1):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 3), 0)
+		Vector2i(4, 1):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 3), 0)
+		Vector2i(1, 2):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 3), 0)
+		Vector2i(4, 3):
+			currentMap.set_cell(tCord, 0, Vector2i(6, 3), 0)
+		
+		
+	if atCord == Vector2i(0, 0):
+		currentMap.set_cell(tCord, 0, Vector2i(6, 0), 0)
+
+	
 func melee():
 	for i in range(hitBox.get_collision_count()):
 		var collider = hitBox.get_collider(i)
@@ -225,6 +292,7 @@ func update_values(value: int, currentAmmo: int):
 func saveWeapon():
 	Manager.gunType = gunType
 	Manager.ammoCount = ammo
+
 
 func stop():
 	gameStopped = true
