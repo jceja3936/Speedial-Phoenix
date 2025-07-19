@@ -46,7 +46,7 @@ func _ready() -> void:
 
 #Functions that Shoot the gun
 func _process(_delta: float) -> void:
-	if gameStopped:
+	if gameStopped or get_parent().get("dead") == true:
 		return
 
 	if Input.is_action_pressed("shoot") and canFire:

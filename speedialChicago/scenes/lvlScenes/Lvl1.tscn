@@ -41,7 +41,7 @@ tile_set = ExtResource("3_i6yy0")
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="patroller" parent="Enemies" instance=ExtResource("9_63bpq")]
+[node name="patroller1" parent="Enemies" instance=ExtResource("9_63bpq")]
 position = Vector2(364, 1178)
 type = 1
 pat = true

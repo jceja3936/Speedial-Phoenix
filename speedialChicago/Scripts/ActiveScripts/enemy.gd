@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var gunSkin: Sprite2D
 @export var pat: bool
 @export var myFloor: int
+@export var melee: bool
 var currentSprite: Texture
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
@@ -25,6 +26,7 @@ var ammo = 20
 var wallCollision = false
 var secDeg = 90
 var degToRotby = -90.0
+var gap = 400
 
 var rotating = false
 var to = 0
@@ -45,6 +47,7 @@ func _ready() -> void:
 
 	setOfRays.append($ray1)
 	setOfRays.append($ray2)
+	setOfRays.append($ray3)
 	setOfRays.append($ray4)
 
 	speed = ogSpeed + rng.randf_range(-100, 100)
@@ -60,6 +63,12 @@ func _ready() -> void:
 
 	if type == 0:
 		type = rng.randi_range(1, 3)
+	if melee:
+		ammo = -1
+		canFire = false
+		gap = 10
+		type = 0
+		currentSprite = null
 
 	match type:
 		1:
@@ -78,13 +87,7 @@ func _ready() -> void:
 			dammage = 100
 			fireRate = .8
 			ammo = 6
-		_:
-			currentSprite = load("res://assets/img/basicSquare.svg")
-			dammage = 100
-			fireRate = .2
-			ammo = 17
 	gunSkin.texture = currentSprite
-
 	if Manager.levelState > myFloor:
 		call_deferred("queue_free")
 		
@@ -146,6 +149,16 @@ func _physics_process(_delta: float) -> void:
 
 	var player_pos = player.global_position
 
+	if melee and global_position.distance_to(player_pos) < 95:
+		if player.get("dead") == false:
+			Manager.playSound("swing", global_position)
+			Manager.playSound("punched", global_position)
+			player.call("hit", 220, 1)
+			$gun/gunSkin.texture = load("res://assets/img/punch.svg")
+			await get_tree().create_timer(.2).timeout
+			$gun/gunSkin.texture = null
+
+
 	if pat:
 		patrol()
 
@@ -171,9 +184,10 @@ func _physics_process(_delta: float) -> void:
 func takeAlook(playPos: Vector2):
 	setOfRays[0].target_position = Vector2(800, 0)
 	setOfRays[1].target_position = Vector2(800, 0).rotated(deg_to_rad(- degToRotby))
-	setOfRays[2].target_position = Vector2(500, 0).rotated(deg_to_rad(secDeg))
+	setOfRays[2].target_position = Vector2(500, 0).rotated(deg_to_rad(degToRotby))
+	setOfRays[3].target_position = Vector2(500, 0).rotated(deg_to_rad(secDeg))
 	
-	for i in range(3):
+	for i in range(4):
 		if setOfRays[i]:
 			#See if the thing hit player
 			var collider = setOfRays[i].get_collider()
@@ -193,12 +207,20 @@ func takeAlook(playPos: Vector2):
 func patrol():
 	var player_pos = player.global_position
 	velocity = walkSpeed * Vector2(1, 0).rotated(rotation)
-	if global_position.distance_to(player_pos) < 400 and lastKnown != null:
+	if global_position.distance_to(player_pos) < gap and lastKnown != null:
 		walkSpeed = 0
 	else:
-		walkSpeed = 250
+		if melee:
+			walkSpeed = 800
+		else:
+			walkSpeed = 250
 
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().call("stopColliding")
+			c.get_collider().apply_central_impulse(-c.get_normal() * 400)
 
 func search(destination):
 	nav_Agent.target_position = destination
@@ -210,6 +232,7 @@ func search(destination):
 	rotation = lerp_angle(rotation, lookingAt, .1)
 	if nav_Agent.is_navigation_finished():
 		pat = true
+		wallCollision = false
 		lastKnown = null
 		walkSpeed = 250
 		return

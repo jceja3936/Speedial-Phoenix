@@ -28,7 +28,7 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_8t37h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 1)
+texture_filter = 1
 texture = ExtResource("2_d5d3m")
 
 [node name="Area2D" type="Area2D" parent="."]

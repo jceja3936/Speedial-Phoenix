@@ -62,15 +62,13 @@ func hit(damage: int, id: int) -> void:
 	if id != lastGuy:
 		health -= damage
 		lastGuy = id
-	if health <= 0:
+	if health <= 0 and !dead:
 		die()
 
 func die() -> void:
 	SignalBus.updateResp.emit(true)
 	dead = true
-	$CollisionShape2D.queue_free()
 	$shader.material.set_shader_parameter("myOpaq", 8.0)
-	$hun.set_script(null)
 
 func _input(event):
 	if event.is_action_pressed("esc") and cameFollow:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv60myid72qvl"]
+[gd_scene load_steps=6 format=3 uid="uid://cv60myid72qvl"]
 
 [ext_resource type="Script" uid="uid://cc2s2fd72wrxi" path="res://Scripts/ActiveScripts/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://yaffwv6ksg2d" path="res://assets/img/Gabriel.png" id="2_4ra3w"]
@@ -7,6 +7,9 @@
 radius = 48.0104
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
+radius = 75.5381
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("nav_Agent", "gunSkin")]
 collision_layer = 4
@@ -34,6 +37,10 @@ collision_mask = 25
 target_position = Vector2(56, 0)
 collision_mask = 25
 
+[node name="ray3" type="RayCast2D" parent="."]
+target_position = Vector2(56, 0)
+collision_mask = 25
+
 [node name="ray4" type="RayCast2D" parent="."]
 target_position = Vector2(56, 0)
 collision_mask = 25
@@ -56,6 +63,12 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_5uy6h")
+
+[node name="punchZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="punchZone"]
+position = Vector2(25, 1)
+shape = SubResource("CircleShape2D_md0e3")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
