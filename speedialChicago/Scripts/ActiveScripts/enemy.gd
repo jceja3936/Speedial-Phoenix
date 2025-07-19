@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var nav_Agent: NavigationAgent2D
 @export var gunSkin: Sprite2D
 @export var pat: bool
-@export var myFloor: int
+@export var myFloor = 1
 @export var melee: bool
 var currentSprite: Texture
 
@@ -57,7 +57,8 @@ func _ready() -> void:
 	match Manager.current_scene:
 		"1_1":
 			playerNode = "/root/Lvl1/Player"
-
+		"2":
+			playerNode = "/root/Lvl2/Player"
 
 	player = get_node(playerNode)
 
@@ -182,10 +183,10 @@ func _physics_process(_delta: float) -> void:
 	takeAlook(player_pos)
 
 func takeAlook(playPos: Vector2):
-	setOfRays[0].target_position = Vector2(800, 0)
-	setOfRays[1].target_position = Vector2(800, 0).rotated(deg_to_rad(- degToRotby))
-	setOfRays[2].target_position = Vector2(500, 0).rotated(deg_to_rad(degToRotby))
-	setOfRays[3].target_position = Vector2(500, 0).rotated(deg_to_rad(secDeg))
+	setOfRays[0].target_position = Vector2(900, 0)
+	setOfRays[1].target_position = Vector2(900, 0).rotated(deg_to_rad(- degToRotby))
+	setOfRays[2].target_position = Vector2(600, 0).rotated(deg_to_rad(degToRotby))
+	setOfRays[3].target_position = Vector2(600, 0).rotated(deg_to_rad(secDeg))
 	
 	for i in range(4):
 		if setOfRays[i]:
