@@ -32,6 +32,7 @@ var fireRate = .4
 var punching = false
 var currentMap: TileMapLayer
 var gameStopped = false
+var droppable = true
 
 
 func _ready() -> void:
@@ -83,7 +84,8 @@ func _process(_delta: float) -> void:
 				fire()
 				SignalBus.updateAmmo.emit(ammo)
 		
-	if Input.is_action_just_pressed("Drop") and gunPickedUp:
+	if gunPickedUp and Input.is_action_pressed("Pick up") and droppable:
+		gunPickedUp = false
 		dropWeapon(gunType)
 		update_values(0, -1)
 
@@ -246,9 +248,14 @@ func waitPunch():
 	if gunType == 0:
 			texture = null
 
+func waitDrop():
+	await get_tree().create_timer(.2).timeout
+	droppable = true
+
 
 #Functions Called on Weapon pick up
 func update_values(value: int, currentAmmo: int):
+	droppable = false
 	currentSprite = null
 	gunType = value
 	ammo = currentAmmo
@@ -266,14 +273,17 @@ func update_values(value: int, currentAmmo: int):
 			dammage = 220
 			global_scale = Vector2(1.5, 1.5)
 			fireRate = .5
+			waitDrop()
 		2:
 			currentSprite = rifleImg
 			dammage = 100
 			fireRate = .1
+			waitDrop()
 		3:
 			currentSprite = shotgunImg
 			dammage = 100
 			fireRate = .8
+			waitDrop()
 		4:
 			currentSprite = hammerImg
 			offset = Vector2(0, -20)
@@ -281,6 +291,7 @@ func update_values(value: int, currentAmmo: int):
 			rotation_degrees = 25
 			dammage = 220
 			fireRate = 1
+			waitDrop()
 		_:
 			hitBox.visible = true
 			fireRate = .4

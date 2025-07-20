@@ -17,7 +17,6 @@ func _on_l_2_pressed() -> void:
 	Manager.startNextScene()
 
 func _on_lel_1_pressed() -> void:
-	print("Bruh??")
 	Manager.next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
 	Manager.current_scene = "1_1"
 	Manager.reset()
