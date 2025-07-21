@@ -3,7 +3,7 @@ extends CharacterBody2D
 const GRAVITY = 1000
 @export var speed = 750
 @export var jump = -800
-@export var health = 2000
+@export var health = 200
 @export var cam: Camera2D
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
@@ -129,7 +129,7 @@ func loading():
 	await get_tree().create_timer(.2).timeout
 	gamePaused = false
 
-#value is fire rate, gun is guntype, bulldam is bullet damage
+	
 func weaponGrabbed(which: int, currentAmmo: int) -> void:
 	$hun.update_values(which, currentAmmo)
 	SignalBus.updateAmmo.emit(currentAmmo)

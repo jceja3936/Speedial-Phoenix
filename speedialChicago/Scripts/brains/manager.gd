@@ -88,8 +88,8 @@ func instantiate(type: PackedScene, who: CharacterBody2D, ammo: int):
 	instance.set_meta("placed", "Yer")
 	instance.position = who.global_position
 	instance.rotation = who.rotation
-	get_tree().root.add_child(instance)
 	instance.set("dropped", true)
+	get_tree().root.add_child(instance)
 
 func dropWeapon(gun: int, who: CharacterBody2D, ammo: int):
 	get_parent().set("gunPickedUp", false)

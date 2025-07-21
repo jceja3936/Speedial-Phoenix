@@ -323,8 +323,8 @@ func instantiate(type: PackedScene):
 	instance.set_meta("placed", "Yer")
 	instance.position = global_position
 	instance.rotation = get_parent().rotation
-	get_tree().root.add_child(instance)
 	instance.set("dropped", true)
+	get_tree().root.add_child(instance)
 
 
 func dropWeapon(gun: int):

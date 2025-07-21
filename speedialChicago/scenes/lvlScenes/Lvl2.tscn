@@ -137,7 +137,7 @@ pat = true
 [node name="ENEM" type="Node" parent="."]
 
 [node name="Enemy" parent="ENEM" instance=ExtResource("9_vjsey")]
-position = Vector2(1536, 5100)
+position = Vector2(1800, 5447)
 rotation = 3.14091
 myFloor = 2
 melee = true

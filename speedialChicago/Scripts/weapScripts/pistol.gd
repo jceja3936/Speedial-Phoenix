@@ -10,19 +10,30 @@ var randDeg
 var randDir
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("ENTERED")
 	closeEnough = true
 	lastEntered = body
 	pass # Replace with function body.
 
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
+	print("EXITED")
 	closeEnough = false
 	lastEntered = null
 	pass # Replace with function body.
 
 func _ready():
+	if dropped:
+		bugFix()
+	else:
+		$Area2D.monitoring = true
+
 	randDeg = randi_range(20, 40)
 	randDir = randf_range(-3.14, 3.14)
+
+func bugFix():
+	await get_tree().create_timer(.2).timeout
+	$Area2D.monitoring = true
 
 
 func _process(_delta: float) -> void:

@@ -10,8 +10,17 @@ var randDeg
 var randDir
 
 func _ready():
+	if dropped:
+		bugFix()
+	else:
+		$Area2D.monitoring = true
+
 	randDeg = randi_range(20, 40)
 	randDir = randf_range(-3.14, 3.14)
+
+func bugFix():
+	await get_tree().create_timer(.2).timeout
+	$Area2D.monitoring = true
 
 func _process(_delta: float) -> void:
 	if dropped:
