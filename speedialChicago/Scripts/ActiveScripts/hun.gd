@@ -33,10 +33,14 @@ var punching = false
 var currentMap: TileMapLayer
 var gameStopped = false
 var droppable = true
+var wallsBroke = 0
 
 
 func _ready() -> void:
 	var cmNode = ""
+	SignalBus.saveWB.connect(saveWB)
+	
+
 	match Manager.current_scene:
 		"1_1":
 			cmNode = "/root/Lvl1/floor1"
@@ -44,6 +48,9 @@ func _ready() -> void:
 			cmNode = "/root/Lvl2/Floor"
 
 	currentMap = get_node(cmNode)
+
+func saveWB():
+	Manager.wallsBroke = wallsBroke
 
 #Functions that Shoot the gun
 func _process(_delta: float) -> void:
@@ -78,7 +85,6 @@ func _process(_delta: float) -> void:
 					hammPos = Vector2(0, 20)
 
 				punching = true
-				SignalBus.updateAmmo.emit(ammo)
 				
 			_:
 				fire()
@@ -108,38 +114,38 @@ var swung = false
 var hammPos = Vector2(0, -20)
 
 func breach():
-	canFire = false
 	wait(1)
-	if ammo > 0:
-		canFire = false
+	canFire = false
 
-		var wallBroke = false
-		var tileCoords = currentMap.local_to_map(get_parent().global_position)
-		
-		var direction = (get_global_mouse_position() - get_global_position()).normalized()
+	var wallBroke = false
+	var tileCoords = currentMap.local_to_map(get_parent().global_position)
+	
+	var direction = (get_global_mouse_position() - get_global_position()).normalized()
+	for i in range(hitBox.get_collision_count()):
+		var collider = hitBox.get_collider(i)
+		if hitBox.is_colliding():
+			if collider is RigidBody2D:
+				collider.queue_free()
+				wallBroke = true
+	var atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
 
-		for i in range(hitBox.get_collision_count()):
-			var collider = hitBox.get_collider(i)
-			if hitBox.is_colliding():
-				if collider is RigidBody2D:
-					collider.queue_free()
-					wallBroke = true
-		var atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+	if !BADTILES.has(atlasCords):
+		findProperTile(tileCoords, atlasCords)
+		wallBroke = true
+		wallsBroke += 1
 
-		if !BADTILES.has(atlasCords):
-			findProperTile(tileCoords, atlasCords)
-			wallBroke = true
+	tileCoords += Vector2i(round(direction.x), round(direction.y))
+	atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
 
-		tileCoords += Vector2i(round(direction.x), round(direction.y))
-		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+	if !BADTILES.has(atlasCords):
+		wallsBroke += 1
+		findProperTile(tileCoords, atlasCords)
+		wallBroke = true
 
-		if !BADTILES.has(atlasCords):
-			findProperTile(tileCoords, atlasCords)
-			wallBroke = true
+	print(wallsBroke)
 
-		if wallBroke:
-			Manager.playSound("dSound", get_parent().global_position)
-			ammo += 1
+	if wallBroke:
+		Manager.playSound("dSound", get_parent().global_position)
 
 func findProperTile(tCord: Vector2i, atCord: Vector2i):
 	match atCord:

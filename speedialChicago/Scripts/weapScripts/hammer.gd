@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var closeEnough = false
 var lastEntered = null
-var currentAmmo = 4
+var currentAmmo = -1
 var dropped = false
 var curve: Curve = load("res://assets/prac.tres")
 var randDeg

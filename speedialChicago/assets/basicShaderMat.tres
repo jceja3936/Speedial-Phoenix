@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dreh33v4icnaj"]
+
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="1_olbpe"]
+
+[sub_resource type="Shader" id="Shader_57j11"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_img : repeat_enable;
+uniform vec4 myColor : source_color;
+uniform float myOpaq = 0.0;
+
+void fragment() {
+	vec2 uv1 = vec2(UV.x + TIME * .1, UV.y);
+	vec2 uv2 = vec2(UV.x, UV.y);
+	vec2 uv3 = vec2(UV.x, UV.y);
+
+	float noise_r = texture(noise_img, uv1).r;
+	float noise_g = texture(noise_img, uv1).g;
+	float noise_b = texture(noise_img, uv1).b;
+
+
+	float newA = noise_r * noise_g * noise_b;
+
+	COLOR.rgb = myColor.rgb;
+	COLOR.a = newA * myOpaq * texture(TEXTURE, UV).a;
+
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[resource]
+shader = SubResource("Shader_57j11")
+shader_parameter/noise_img = ExtResource("1_olbpe")
+shader_parameter/myColor = Color(1, 0.470588, 0.870588, 0.854902)
+shader_parameter/myOpaq = 10.0

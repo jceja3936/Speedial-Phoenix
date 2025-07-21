@@ -12,6 +12,7 @@ var playerRespawnPos = Vector2.ZERO
 var timer = 0.0
 var gamePaused = true
 var score = 0
+var wallsBroke = 0
 
 var levelState = 1
 var gunType = 0

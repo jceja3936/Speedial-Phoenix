@@ -1,7 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://bolbb3urbmybx"]
+[gd_scene load_steps=9 format=3 uid="uid://bolbb3urbmybx"]
 
 [ext_resource type="Script" uid="uid://ddqb8j0gyj6ik" path="res://Scripts/uiScript/end_screen.gd" id="1_4ws7o"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="1_yraj6"]
+[ext_resource type="Material" uid="uid://dreh33v4icnaj" path="res://assets/basicShaderMat.tres" id="3_5k28m"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="4_pk1hw"]
+
+[sub_resource type="Shader" id="Shader_57j11"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_img : repeat_enable;
+uniform vec4 myColor : source_color;
+uniform float myOpaq = 0.0;
+
+void fragment() {
+	vec2 uv1 = vec2(UV.x + TIME * .1, UV.y);
+	vec2 uv2 = vec2(UV.x, UV.y);
+	vec2 uv3 = vec2(UV.x, UV.y);
+
+	float noise_r = texture(noise_img, uv1).r;
+	float noise_g = texture(noise_img, uv1).g;
+	float noise_b = texture(noise_img, uv1).b;
+
+
+	float newA = noise_r * noise_g * noise_b;
+
+	COLOR.rgb = myColor.rgb;
+	COLOR.a = newA * myOpaq * texture(TEXTURE, UV).a;
+
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bf3oi"]
+shader = SubResource("Shader_57j11")
+shader_parameter/noise_img = ExtResource("4_pk1hw")
+shader_parameter/myColor = Color(1, 1, 0, 0.854902)
+shader_parameter/myOpaq = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_17owq"]
+shader = SubResource("Shader_57j11")
+shader_parameter/noise_img = ExtResource("4_pk1hw")
+shader_parameter/myColor = Color(1, 0.294118, 0, 0.854902)
+shader_parameter/myOpaq = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jtytr"]
+shader = SubResource("Shader_57j11")
+shader_parameter/noise_img = ExtResource("4_pk1hw")
+shader_parameter/myColor = Color(0, 1, 0.870588, 0.854902)
+shader_parameter/myOpaq = 10.0
 
 [node name="endScreen" type="Control"]
 layout_mode = 3
@@ -17,32 +67,15 @@ position = Vector2(960, 540)
 texture = ExtResource("1_yraj6")
 
 [node name="Results" type="Label" parent="."]
+material = ExtResource("3_5k28m")
 layout_mode = 0
 offset_left = 64.0
 offset_top = 64.0
 offset_right = 285.0
 offset_bottom = 133.0
+scale = Vector2(1.5, 1.5)
 theme_override_font_sizes/font_size = 50
 text = "Results:"
-uppercase = true
-
-[node name="Score" type="Label" parent="."]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 192.0
-offset_right = 285.0
-offset_bottom = 261.0
-theme_override_font_sizes/font_size = 40
-text = "SCORE"
-
-[node name="Time" type="Label" parent="."]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 320.0
-offset_right = 945.0
-offset_bottom = 389.0
-theme_override_font_sizes/font_size = 40
-text = "TIME"
 uppercase = true
 
 [node name="Exit" type="Button" parent="."]
@@ -65,24 +98,61 @@ offset_bottom = 991.0
 scale = Vector2(2.12936, 2.30118)
 text = "Next Level"
 
-[node name="timeNum" type="Label" parent="."]
+[node name="vert" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1600.0
-offset_top = 320.0
-offset_right = 1821.0
-offset_bottom = 389.0
-scale = Vector2(2, 1)
+offset_left = 64.0
+offset_top = 256.0
+offset_right = 462.0
+offset_bottom = 521.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 50
+
+[node name="time" type="HBoxContainer" parent="vert"]
+layout_mode = 2
+theme_override_constants/separation = 700
+
+[node name="Time" type="Label" parent="vert/time"]
+material = SubResource("ShaderMaterial_bf3oi")
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "TIME"
+uppercase = true
+
+[node name="timeNum" type="Label" parent="vert/time"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "0000"
 uppercase = true
 
-[node name="scoreNum" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1600.0
-offset_top = 192.0
-offset_right = 1821.0
-offset_bottom = 261.0
-scale = Vector2(2, 1)
+[node name="wbroke" type="HBoxContainer" parent="vert"]
+layout_mode = 2
+theme_override_constants/separation = 490
+
+[node name="WallsB" type="Label" parent="vert/wbroke"]
+material = SubResource("ShaderMaterial_17owq")
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "WAlls broken"
+uppercase = true
+
+[node name="wNum" type="Label" parent="vert/wbroke"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0000"
+uppercase = true
+
+[node name="score" type="HBoxContainer" parent="vert"]
+layout_mode = 2
+theme_override_constants/separation = 665
+
+[node name="Score" type="Label" parent="vert/score"]
+material = SubResource("ShaderMaterial_jtytr")
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SCORE"
+
+[node name="scoreNum" type="Label" parent="vert/score"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "0000"
 uppercase = true

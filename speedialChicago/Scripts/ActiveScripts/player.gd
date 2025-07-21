@@ -3,7 +3,7 @@ extends CharacterBody2D
 const GRAVITY = 1000
 @export var speed = 750
 @export var jump = -800
-@export var health = 200
+@export var health = 2000
 @export var cam: Camera2D
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
@@ -19,6 +19,8 @@ var cameFollow = true
 var camExt = false
 var finish = false
 var gamePaused = false
+
+var moved = false
 
 
 func _ready() -> void:
@@ -105,6 +107,7 @@ func _physics_process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 	var dir = Input.get_vector("Left", "Right", "Up", "Down")
 	if dir:
+		moved = true
 		position += dir * speed * delta
 	else:
 		velocity = Vector2(0, 0)
@@ -120,6 +123,11 @@ func _physics_process(delta: float) -> void:
 
 func makeHunSave():
 	$hun.saveWeapon()
+
+func loading():
+	gamePaused = true
+	await get_tree().create_timer(.2).timeout
+	gamePaused = false
 
 #value is fire rate, gun is guntype, bulldam is bullet damage
 func weaponGrabbed(which: int, currentAmmo: int) -> void:

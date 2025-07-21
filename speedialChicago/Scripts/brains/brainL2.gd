@@ -19,18 +19,21 @@ func set_State(newState: int):
 			Manager.setEnemyAmount(1)
 			endPosition = Vector2(171.0, 5380.0)
 			$start.position = Vector2(509.0, 5369.0)
+		3:
+			endPosition = Vector2(3398.0, 769.0)
+			$start.position = Vector2(2499.0, 775.0)
 		_:
 			print("Bruh, Brain setState received ", state)
 
 	if levelBeat == true:
 		Manager.setEnemyAmount(0)
-		$start.position = Vector2(1097.0, 328.0)
+		$start.position = Vector2(469.0, 767.0)
 
 	$end.position = endPosition
 
 
 func _on_start_body_entered(body: Node2D) -> void:
-	if Manager.levelState == 3:
+	if levelBeat and player.get("moved") == true:
 		SignalBus.emit_signal("saveScore")
 		Manager.next_scene = "res://scenes/UIscenes/end_screen.tscn"
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -53,10 +56,22 @@ func _on_end_body_entered(body: Node2D) -> void:
 				1:
 					player.makeHunSave()
 					SignalBus.emit_signal("saveScore")
+					SignalBus.emit_signal("saveWB")
 					Manager.playerRespawnPos = Vector2(473.0, 5372.0)
 					player.position = Vector2(198.0, 5372.0)
+					player.set("moved", false)
+					player.call("loading")
 					Manager.levelState = 2
 					set_State(2)
 				2:
 					levelBeat = true
+					SignalBus.emit_signal("saveWB")
 					player.position = Vector2(3061.0, 762.0)
+					player.call("loading")
+					player.set("moved", false)
+					Manager.levelState = 3
+					set_State(3)
+				3:
+					player.position = Vector2(466.0, 5370.0)
+					player.call("loading")
+					set_State(2)
