@@ -35,6 +35,9 @@ var gameStopped = false
 var droppable = true
 var wallsBroke = 0
 
+var invRot = -36.0
+var swung = false
+var hammPos = Vector2(0.0, -20.0)
 
 func _ready() -> void:
 	var cmNode = ""
@@ -62,10 +65,10 @@ func _process(_delta: float) -> void:
 			0:
 				punching = true
 				if swung:
-					invRot = 25.0
+					invRot = 36.0
 					swung = false
 				else:
-					invRot = 155.0
+					invRot = -36.0
 					swung = true
 				punching = true
 				Manager.playSound("swing", global_position)
@@ -76,13 +79,13 @@ func _process(_delta: float) -> void:
 				breach()
 				Manager.playSound("swing", global_position)
 				if swung:
-					invRot = 25.0
-					hammPos = Vector2(0, -20)
+					invRot = 80.0
+					hammPos = Vector2(13.0, 69.0)
 					swung = false
 				else:
-					invRot = 155.0
+					invRot = -36.0
 					swung = true
-					hammPos = Vector2(0, 20)
+					hammPos = Vector2(19.0, -63.0)
 
 				punching = true
 				
@@ -109,16 +112,13 @@ func _process(_delta: float) -> void:
 			position.y = lerp(position.y, hammPos.y, .1)
 		melee()
 
-var invRot = 25.0
-var swung = false
-var hammPos = Vector2(0, -20)
-
 func breach():
 	wait(1)
 	canFire = false
 
 	var wallBroke = false
 	var tileCoords = currentMap.local_to_map(get_parent().global_position)
+	var ogTileCoords = tileCoords
 	
 	var direction = (get_global_mouse_position() - get_global_position()).normalized()
 	for i in range(hitBox.get_collision_count()):
@@ -134,13 +134,61 @@ func breach():
 		wallBroke = true
 		wallsBroke += 1
 
-	tileCoords += Vector2i(round(direction.x), round(direction.y))
+	var dir = Vector2i(round(direction.x), round(direction.y))
+	tileCoords += dir
 	atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+
 
 	if !BADTILES.has(atlasCords):
 		wallsBroke += 1
 		findProperTile(tileCoords, atlasCords)
 		wallBroke = true
+
+	if dir == Vector2i(-1, 0) or dir == Vector2i(1, 0):
+		var gotOne = false
+		#GETTING EXTRAS: UP
+		tileCoords = ogTileCoords
+		tileCoords += Vector2i(0, -1)
+		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+
+		if !BADTILES.has(atlasCords):
+			wallsBroke += 1
+			findProperTile(tileCoords, atlasCords)
+			wallBroke = true
+			gotOne = true
+			
+		#GETTING EXTRAS: DOWN
+		tileCoords = ogTileCoords
+		tileCoords += Vector2i(0, 1)
+		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+
+		if !BADTILES.has(atlasCords) and !gotOne:
+			wallsBroke += 1
+			findProperTile(tileCoords, atlasCords)
+			wallBroke = true
+
+	if dir == Vector2i(0, -1) or dir == Vector2i(0, 1):
+		var gotOne = false
+		#GETTING EXTRAS: LEFT
+		tileCoords = ogTileCoords
+		tileCoords += Vector2i(-1, 0)
+		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+		if !BADTILES.has(atlasCords):
+			wallsBroke += 1
+			findProperTile(tileCoords, atlasCords)
+			wallBroke = true
+			gotOne = true
+
+		#GETTING EXTRAS: RIGHT
+		tileCoords = ogTileCoords
+		tileCoords += Vector2i(1, 0)
+		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+
+		if !BADTILES.has(atlasCords) and !gotOne:
+			wallsBroke += 1
+			findProperTile(tileCoords, atlasCords)
+			wallBroke = true
+
 
 	if wallBroke:
 		Manager.playSound("dSound", get_parent().global_position)
@@ -265,7 +313,7 @@ func update_values(value: int, currentAmmo: int):
 	ammo = currentAmmo
 	SignalBus.updateAmmo.emit(ammo)
 	offset = Vector2.ZERO
-	rotation = 0
+	rotation = 0.0
 	scale = Vector2(1, 1)
 	position = Vector2(54, 24)
 	canFire = true
@@ -289,12 +337,12 @@ func update_values(value: int, currentAmmo: int):
 			fireRate = .8
 			waitDrop()
 		4:
+			swung = false
 			currentSprite = hammerImg
-			offset = Vector2(0, -20)
-			position = Vector2(0, -20)
-			rotation_degrees = 25
+			position = Vector2(13.0, 69.0)
+			rotation_degrees = 80.0
 			dammage = 220
-			fireRate = 1
+			fireRate = .75
 			waitDrop()
 		_:
 			hitBox.visible = true

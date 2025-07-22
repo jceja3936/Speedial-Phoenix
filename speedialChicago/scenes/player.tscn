@@ -34,7 +34,8 @@ texture = ExtResource("2_qhqgy")
 
 [node name="hun" type="Sprite2D" parent="." node_paths=PackedStringArray("hitBox")]
 texture_filter = 1
-position = Vector2(54, 24)
+position = Vector2(19, -63)
+rotation = -1.39626
 script = ExtResource("5_qlg0r")
 hitBox = NodePath("../punchBox")
 
