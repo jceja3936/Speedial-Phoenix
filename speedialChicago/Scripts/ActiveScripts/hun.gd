@@ -142,8 +142,6 @@ func breach():
 		findProperTile(tileCoords, atlasCords)
 		wallBroke = true
 
-	print(wallsBroke)
-
 	if wallBroke:
 		Manager.playSound("dSound", get_parent().global_position)
 

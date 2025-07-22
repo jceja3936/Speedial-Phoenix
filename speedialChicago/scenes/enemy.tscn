@@ -12,6 +12,7 @@ radius = 48.0104
 radius = 75.5381
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("nav_Agent", "gunSkin")]
+z_index = 1
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_4ra3w")

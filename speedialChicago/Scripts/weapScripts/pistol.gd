@@ -10,14 +10,12 @@ var randDeg
 var randDir
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("ENTERED")
 	closeEnough = true
 	lastEntered = body
 	pass # Replace with function body.
 
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
-	print("EXITED")
 	closeEnough = false
 	lastEntered = null
 	pass # Replace with function body.

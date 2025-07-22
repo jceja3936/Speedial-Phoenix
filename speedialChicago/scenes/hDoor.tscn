@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw1s7il08t6q8"]
+
+[ext_resource type="Script" uid="uid://cuylvgt5pnchf" path="res://Scripts/hDoor.gd" id="1_ywwsx"]
+[ext_resource type="Texture2D" uid="uid://bmhuoovjqxijl" path="res://assets/img/door.png" id="2_xo8n4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eychs"]
+size = Vector2(9, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j806b"]
+size = Vector2(13, 116)
+
+[node name="hDoor" type="Node2D"]
+
+[node name="point" type="StaticBody2D" parent="."]
+position = Vector2(-62, 0)
+collision_layer = 0
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="point"]
+
+[node name="door" type="RigidBody2D" parent="."]
+rotation = 1.5708
+collision_layer = 16
+gravity_scale = 0.0
+linear_damp = 1.0
+script = ExtResource("1_ywwsx")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="door"]
+auto_translate_mode = 2
+visible = false
+position = Vector2(0, 62)
+node_a = NodePath("..")
+node_b = NodePath("../../point")
+angular_limit_enabled = true
+angular_limit_lower = -2.61799
+angular_limit_upper = 2.61799
+
+[node name="Sprite2D" type="Sprite2D" parent="door"]
+texture_filter = 1
+texture = ExtResource("2_xo8n4")
+
+[node name="coll" type="CollisionShape2D" parent="door"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_eychs")
+
+[node name="right" type="Area2D" parent="door"]
+position = Vector2(-10, -3)
+collision_mask = 13
+metadata/_edit_group_ = true
+
+[node name="size" type="CollisionShape2D" parent="door/right"]
+shape = SubResource("RectangleShape2D_j806b")
+
+[node name="left" type="Area2D" parent="door"]
+position = Vector2(10, -3)
+collision_mask = 13
+metadata/_edit_group_ = true
+
+[node name="size" type="CollisionShape2D" parent="door/left"]
+shape = SubResource("RectangleShape2D_j806b")
+
+[connection signal="body_entered" from="door/right" to="door" method="_on_right_body_entered"]
+[connection signal="body_entered" from="door/left" to="door" method="_on_left_body_entered"]

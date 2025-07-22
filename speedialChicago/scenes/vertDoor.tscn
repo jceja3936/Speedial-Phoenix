@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvwmxjcseecq7"]
+
+[ext_resource type="Texture2D" uid="uid://bmhuoovjqxijl" path="res://assets/img/door.png" id="1_hpvv5"]
+[ext_resource type="Script" uid="uid://ce78b2owrkmrt" path="res://Scripts/door.gd" id="1_uvdjg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvdjg"]
+size = Vector2(9, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83dcw"]
+size = Vector2(13, 116)
+
+[node name="vertDoor" type="Node2D"]
+
+[node name="point" type="StaticBody2D" parent="."]
+position = Vector2(0, 62)
+collision_layer = 0
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="point"]
+
+[node name="door" type="RigidBody2D" parent="."]
+collision_layer = 16
+gravity_scale = 0.0
+linear_damp = 1.0
+script = ExtResource("1_uvdjg")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="door"]
+auto_translate_mode = 2
+visible = false
+position = Vector2(0, 62)
+node_a = NodePath("..")
+node_b = NodePath("../../point")
+angular_limit_enabled = true
+angular_limit_lower = -2.61799
+angular_limit_upper = 2.61799
+
+[node name="Sprite2D" type="Sprite2D" parent="door"]
+texture_filter = 1
+texture = ExtResource("1_hpvv5")
+
+[node name="coll" type="CollisionShape2D" parent="door"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_uvdjg")
+
+[node name="right" type="Area2D" parent="door"]
+position = Vector2(10, 0)
+collision_mask = 13
+metadata/_edit_group_ = true
+
+[node name="size" type="CollisionShape2D" parent="door/right"]
+shape = SubResource("RectangleShape2D_83dcw")
+
+[node name="left" type="Area2D" parent="door"]
+position = Vector2(-10, 0)
+collision_mask = 13
+metadata/_edit_group_ = true
+
+[node name="size" type="CollisionShape2D" parent="door/left"]
+shape = SubResource("RectangleShape2D_83dcw")
+
+[connection signal="body_entered" from="door/right" to="door" method="_on_right_body_entered"]
+[connection signal="body_entered" from="door/left" to="door" method="_on_left_body_entered"]
