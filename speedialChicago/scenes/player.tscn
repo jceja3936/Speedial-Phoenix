@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://baewr3b6a44lq" path="res://Scripts/ActiveScripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://d13e8mw3hml3r" path="res://assets/img/Francis.png" id="2_qhqgy"]
-[ext_resource type="Shader" uid="uid://bhb832wfoa81a" path="res://assets/player.gdshader" id="3_dqkch"]
-[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="4_tuyoq"]
+[ext_resource type="Shader" uid="uid://bhb832wfoa81a" path="res://assets/shaders/player.gdshader" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://qde2iyn7j3ic" path="res://Scripts/ActiveScripts/hun.gd" id="5_qlg0r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]

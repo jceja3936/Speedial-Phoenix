@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ddqb8j0gyj6ik" path="res://Scripts/uiScript/end_screen.gd" id="1_4ws7o"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="1_yraj6"]
-[ext_resource type="Material" uid="uid://dreh33v4icnaj" path="res://assets/basicShaderMat.tres" id="3_5k28m"]
-[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="4_pk1hw"]
+[ext_resource type="Material" uid="uid://dreh33v4icnaj" path="res://assets/shaders/basicShaderMat.tres" id="3_5k28m"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="4_pk1hw"]
 
 [sub_resource type="Shader" id="Shader_57j11"]
 code = "shader_type canvas_item;

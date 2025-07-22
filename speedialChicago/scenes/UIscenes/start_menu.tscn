@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://clkbpj3uj5u2d" path="res://Scripts/uiScript/start_menu.gd" id="1_t600c"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="2_l82ty"]
 [ext_resource type="Texture2D" uid="uid://dxep4kfcdgmdj" path="res://assets/img/titleArt.png" id="2_rofax"]
-[ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/start_menu.gdshader" id="3_l82ty"]
-[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="4_nuoxx"]
+[ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/shaders/start_menu.gdshader" id="3_l82ty"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="4_nuoxx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nuoxx"]
 shader = ExtResource("3_l82ty")

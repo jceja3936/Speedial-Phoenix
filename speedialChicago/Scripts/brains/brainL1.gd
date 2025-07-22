@@ -11,15 +11,17 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Manager.enemyAmount == 0:
-		$arrow.position = player.global_position + Vector2(0, -100)
+		$arrow.position = player.global_position + Vector2(0, -200)
 		$arrow.show()
 
 		match state:
 			1:
-				print("Floor Beat")
+				SignalBus.emit_signal("floorBeat")
 				$arrow.look_at($end.global_position)
+
 			2:
 				print("Level Beat")
+				SignalBus.emit_signal("levelBeat")
 				$arrow.look_at($end.global_position)
 			3:
 				print("Now Leaving")
@@ -27,7 +29,6 @@ func _physics_process(_delta: float) -> void:
 	else:
 		$arrow.hide()
 
-		
 func set_State(newState: int):
 	state = newState
 	match state:

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://is2dqdyhynua" path="res://Scripts/weapScripts/pistol.gd" id="1_buff3"]
 [ext_resource type="Texture2D" uid="uid://b70ce2r56fqkm" path="res://assets/img/weapons/pistolSide.png" id="2_5awjy"]
-[ext_resource type="Shader" uid="uid://dy17bvsgo6h65" path="res://assets/weaponSHDER.gdshader" id="2_avh6e"]
-[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="3_s8tpc"]
+[ext_resource type="Shader" uid="uid://dy17bvsgo6h65" path="res://assets/shaders/weaponSHDER.gdshader" id="2_avh6e"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="3_s8tpc"]
 [ext_resource type="Texture2D" uid="uid://dto0nrv6al1qk" path="res://assets/spotlight_3.png" id="4_1c31k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oc8se"]

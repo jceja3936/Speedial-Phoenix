@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cp183o6hrf5ho" path="res://Scripts/weapScripts/hammer.gd" id="1_f8vvu"]
 [ext_resource type="Texture2D" uid="uid://ch3o42jt40hru" path="res://assets/img/weapons/hammerSide.png" id="2_d5d3m"]
-[ext_resource type="Shader" uid="uid://dy17bvsgo6h65" path="res://assets/weaponSHDER.gdshader" id="3_pciei"]
+[ext_resource type="Shader" uid="uid://dy17bvsgo6h65" path="res://assets/shaders/weaponSHDER.gdshader" id="3_pciei"]
 [ext_resource type="Texture2D" uid="uid://dto0nrv6al1qk" path="res://assets/spotlight_3.png" id="4_8t37h"]
-[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/noise_combined.png" id="4_qynyi"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="4_qynyi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qynyi"]
 shader = ExtResource("3_pciei")
