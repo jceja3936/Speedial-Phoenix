@@ -8,7 +8,6 @@ var next_scene: String = "res://scenes/lvlScenes/Lvl1.tscn"
 var current_scene: String = "1_1"
 var loadingScreen = preload("res://scenes/UIscenes/loading_screen.tscn")
 var playerRespawnPos = Vector2.ZERO
-
 var timer = 0.0
 var gamePaused = true
 var score = 0

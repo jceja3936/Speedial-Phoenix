@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=17 format=4 uid="uid://e64wgf8otggf"]
 
 [ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_ixny3"]
 [ext_resource type="TileSet" uid="uid://bdhuawh88bvlx" path="res://assets/finalTileSet.tres" id="3_i6yy0"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="9_oioyg"]
 [ext_resource type="Script" uid="uid://bc7mo1kgixak6" path="res://Scripts/brains/brainL1.gd" id="10_1235x"]
 [ext_resource type="PackedScene" uid="uid://dvwmxjcseecq7" path="res://scenes/vertDoor.tscn" id="11_xspno"]
+[ext_resource type="Texture2D" uid="uid://qrirgxpp64hl" path="res://assets/img/csbear.png" id="12_k1hfm"]
 [ext_resource type="PackedScene" uid="uid://c8rrc3lvlk3wq" path="res://scenes/UIscenes/bg_shader.tscn" id="15_i6yy0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpgr1"]
@@ -25,9 +26,7 @@ size = Vector2(272, 123)
 [node name="MainUI" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="MainUI" instance=ExtResource("9_oioyg")]
-offset_left = -1.0
 offset_top = -1.0
-offset_right = -1.0
 offset_bottom = -1.0
 
 [node name="pauseMenu" parent="MainUI" instance=ExtResource("2_ixny3")]
@@ -140,6 +139,11 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="brain/blocker"]
 shape = SubResource("RectangleShape2D_fghko")
+
+[node name="arrow" type="Sprite2D" parent="brain"]
+position = Vector2(1163.13, 132.625)
+scale = Vector2(0.351333, 0.132006)
+texture = ExtResource("12_k1hfm")
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("3_yiohx")]
 z_index = 4
