@@ -1,12 +1,22 @@
 shader_type canvas_item;
-uniform sampler2D dissolveNoise;
-uniform float dissolved = 3.4;
+
+uniform sampler2D noise_img : repeat_enable;
+uniform vec4 myColor : source_color;
 
 void fragment() {
-	COLOR = texture(TEXTURE, UV);
-	float noise = texture(dissolveNoise, UV).r;
-	float showing_threshold = 0.3;
-	COLOR.a *= step(sin(dissolved) * (UV.x + .9), noise - showing_threshold);
+	vec2 uv1 = vec2(UV.x + TIME * .1, UV.y);
+	vec2 uv2 = vec2(UV.x, UV.y);
+	vec2 uv3 = vec2(UV.x, UV.y);
+
+	float noise_r = texture(noise_img, uv1).r;
+	float noise_g = texture(noise_img, uv1).g;
+	float noise_b = texture(noise_img, uv1).b;
+
+
+	float newA = noise_r * noise_g * noise_b;
+
+	COLOR.rgb = texture(TEXTURE,UV).rgb + newA * myColor.rgb * 3.0;
+
 }
 
 //void light() {

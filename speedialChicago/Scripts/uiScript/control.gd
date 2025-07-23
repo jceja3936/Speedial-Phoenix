@@ -1,11 +1,14 @@
 extends Control
 
 var curve: Curve = load("res://assets/fbeatCurve.tres")
+var oCurve: Curve = load("res://assets/lBeatCurve.tres")
+var sCurve: Curve = load("res://assets/lBeatSkewCurve.tres")
 
 var mult = 1
 var score = 0
 var prevScore = 0
-var tweener = 4.0
+var tweener = 1.0
+var oTweener = 1.0
 var lb = false
 
 func _ready():
@@ -23,22 +26,34 @@ func _ready():
 		updateScore(0)
 
 func levelBeat():
-	lb = false
+	if oTweener >= 1.0:
+		oTweener = 0.0
+		beatPretty()
+		
+	lb = true
 	$AmAm.hide()
-	$"Level Beat".show()
+	$Path2D/PathFollow2D/funTxt.show()
 
+func beatPretty():
+	$Path2D/PathFollow2D.progress_ratio = oTweener
+	$Path2D/PathFollow2D/funTxt.skew = deg_to_rad(sCurve.sample(oTweener))
+	$Path2D/PathFollow2D/funTxt.scale = Vector2(1.0 + oCurve.sample(oTweener), 1.0 + oCurve.sample(oTweener))
+	await get_tree().create_timer(.05).timeout
+	oTweener += .02
+	if oTweener < 1.0:
+		beatPretty()
 
 func playFFanim():
-	if tweener == 4.0:
+	if tweener == 1.0:
 		tweener = 0.0
 		finisher()
 
 func finisher():
 	if $FloorBeat:
-		$FloorBeat.material.set_shader_parameter("dissolved", curve.sample(tweener))
-		await get_tree().create_timer(.08).timeout
-		tweener += .1
-		if tweener < 4.0:
+		$FloorBeat.position = Vector2((4000.0 * curve.sample(tweener) - 907.0), 542.0)
+		await get_tree().create_timer(.05).timeout
+		tweener += .02
+		if tweener < 1.0:
 			finisher()
 
 

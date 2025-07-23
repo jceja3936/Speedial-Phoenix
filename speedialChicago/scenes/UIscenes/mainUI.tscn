@@ -1,15 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dewgjpt1wbtm4"]
+[gd_scene load_steps=8 format=3 uid="uid://dewgjpt1wbtm4"]
 
 [ext_resource type="Script" uid="uid://cigsncue0fg5s" path="res://Scripts/uiScript/control.gd" id="1_nufsr"]
 [ext_resource type="Texture2D" uid="uid://bvdhw15b1h4x" path="res://assets/img/Floor beat.png" id="2_7hqfr"]
 [ext_resource type="Shader" uid="uid://vuar85e1xgyh" path="res://assets/shaders/floorBeatShader.gdshader" id="3_oj8hp"]
-[ext_resource type="Texture2D" uid="uid://c58b0mkfqtmpe" path="res://assets/img/grayNoise.png" id="3_thuov"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="3_thuov"]
 [ext_resource type="Texture2D" uid="uid://bexmw0p4ieja5" path="res://assets/img/Finished.png" id="5_thuov"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_thuov"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_502jd"]
 shader = ExtResource("3_oj8hp")
-shader_parameter/dissolveNoise = ExtResource("3_thuov")
-shader_parameter/dissolved = 2.4
+shader_parameter/noise_img = ExtResource("3_thuov")
+shader_parameter/myColor = Color(1, 0.0156863, 0, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_thuov"]
+_data = {
+"points": PackedVector2Array(-38.9318, 85.4074, 38.9318, -85.4074, 145, 954, 0, 0, 0, 0, 240, 951, 51.5365, 0.931382, -51.5365, -0.931382, 189, 1019, 0, 0, 0, 0, 145, 954)
+}
+point_count = 4
 
 [node name="mainUI" type="Control"]
 z_as_relative = false
@@ -20,6 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nufsr")
+metadata/_edit_lock_ = true
 
 [node name="resp" type="Label" parent="."]
 modulate = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
@@ -83,11 +90,22 @@ text = "1x
 
 [node name="FloorBeat" type="Sprite2D" parent="."]
 texture_filter = 1
-material = SubResource("ShaderMaterial_thuov")
-position = Vector2(959, 543)
+material = SubResource("ShaderMaterial_502jd")
+position = Vector2(-1613, 245)
+scale = Vector2(1.41979, 1)
 texture = ExtResource("2_7hqfr")
 
-[node name="Level Beat" type="Sprite2D" parent="."]
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(693, -810)
+curve = SubResource("Curve2D_thuov")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(145, 954)
+rotation = 2.7133
+rotates = false
+
+[node name="funTxt" type="Sprite2D" parent="Path2D/PathFollow2D"]
 visible = false
-position = Vector2(234, 1009)
+position = Vector2(-49.3983, -55.5321)
+rotation = -2.71407
 texture = ExtResource("5_thuov")

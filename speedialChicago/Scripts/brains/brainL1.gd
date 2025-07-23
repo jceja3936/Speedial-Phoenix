@@ -7,11 +7,11 @@ var levelBeat = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_State(Manager.levelState)
-	$arrow.hide()
+	
 
 func _physics_process(_delta: float) -> void:
 	if Manager.enemyAmount == 0:
-		$arrow.position = player.global_position + Vector2(0, -200)
+		$arrow.position = player.global_position + Vector2(0, 100)
 		$arrow.show()
 
 		match state:
@@ -24,7 +24,7 @@ func _physics_process(_delta: float) -> void:
 				SignalBus.emit_signal("levelBeat")
 				$arrow.look_at($end.global_position)
 			3:
-				print("Now Leaving")
+				SignalBus.emit_signal("levelBeat")
 				$arrow.look_at($start.global_position)
 	else:
 		$arrow.hide()

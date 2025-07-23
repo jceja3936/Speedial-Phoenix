@@ -142,7 +142,8 @@ shape = SubResource("RectangleShape2D_fghko")
 
 [node name="arrow" type="Sprite2D" parent="brain"]
 visible = false
-position = Vector2(1139.56, 154.813)
+position = Vector2(419, 283)
+scale = Vector2(0.762188, 0.592289)
 texture = ExtResource("8_k1hfm")
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("3_yiohx")]
