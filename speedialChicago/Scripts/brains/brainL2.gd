@@ -16,7 +16,7 @@ func set_State(newState: int):
 			endPosition = Vector2(3398.0, 769.0)
 			$start.position = Vector2(2499.0, 775.0)
 		2:
-			Manager.setEnemyAmount(1)
+			Manager.setEnemyAmount(10)
 			endPosition = Vector2(171.0, 5380.0)
 			$start.position = Vector2(509.0, 5369.0)
 		3:
