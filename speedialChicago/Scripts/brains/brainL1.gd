@@ -2,7 +2,7 @@ extends Node
 @export var player: CharacterBody2D
 var endPosition = Vector2.ZERO
 var state = 1
-var done = false
+var stage = [0, 0]
 var levelBeat = false
 
 # Called when the node enters the scene tree for the first time.
@@ -22,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 				$arrow.look_at($end.global_position)
 
 			2:
-				print("Level Beat")
+				playOnce()
 				SignalBus.emit_signal("levelBeat")
 				$arrow.look_at($end.global_position)
 			3:
@@ -32,9 +32,14 @@ func _physics_process(_delta: float) -> void:
 		$arrow.hide()
 
 func playOnce():
-	if !done:
-		done = true
+	if stage[0] == 0:
+		stage[0] = 1
 		Manager.playSound("floorBeat", player.global_position, 10.5)
+		
+	elif stage[1] == 0 and state == 2:
+		stage[1] = 1
+		Manager.playSound("levelBeat", player.global_position, 10.5)
+
 	
 func set_State(newState: int):
 	state = newState

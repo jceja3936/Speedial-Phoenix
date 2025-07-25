@@ -51,6 +51,7 @@ var item_sounds = {
 	"swing": preload("res://assets/aud/swing.wav"),
 	"bLand": preload("res://assets/aud/bullLand.wav"),
 	"floorBeat": preload("res://assets/aud/floorBeat.wav"),
+	"levelBeat": preload("res://assets/aud/LevelBeat.wav"),
 	"doorOpen1": preload("res://assets/aud/doorOpen1.mp3"),
 	"doorOpen2": preload("res://assets/aud/doorOpen2.wav"),
 	"doorOpen3": preload("res://assets/aud/doorOpen3.wav")

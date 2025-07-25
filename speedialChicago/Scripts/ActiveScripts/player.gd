@@ -21,18 +21,29 @@ var finish = false
 var gamePaused = false
 
 var moved = false
+var loop = false
 
 
 func _ready() -> void:
 	SignalBus.finishing.connect(finishing)
 	SignalBus.paused.connect(paused)
 	SignalBus.unPaused.connect(unPaused)
+	SignalBus.levelBeat.connect(playAmbience)
 	SignalBus.updateResp.emit(false)
 	$shader.material.set_shader_parameter("myOpaq", 0.0)
 	if Manager.playerRespawnPos != Vector2.ZERO:
 		position = Manager.playerRespawnPos
 	if Manager.gunType != 0:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
+
+func playAmbience():
+	print("YEAHHHHHH")
+	if !loop:
+		loop = true
+		$sound.play()
+		await get_tree().create_timer(12.0).timeout
+		loop = false
+
 
 func paused():
 	gamePaused = true
