@@ -191,7 +191,7 @@ func breach():
 
 
 	if wallBroke:
-		Manager.playSound("dSound", get_parent().global_position)
+		Manager.playSound("dSound", get_parent().global_position, 4.5)
 
 func findProperTile(tCord: Vector2i, atCord: Vector2i):
 	match atCord:

@@ -1,15 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dewgjpt1wbtm4"]
+[gd_scene load_steps=7 format=3 uid="uid://dewgjpt1wbtm4"]
 
 [ext_resource type="Script" uid="uid://cigsncue0fg5s" path="res://Scripts/uiScript/control.gd" id="1_nufsr"]
 [ext_resource type="Texture2D" uid="uid://bvdhw15b1h4x" path="res://assets/img/Floor beat.png" id="2_7hqfr"]
 [ext_resource type="Shader" uid="uid://vuar85e1xgyh" path="res://assets/shaders/floorBeatShader.gdshader" id="3_oj8hp"]
-[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="3_thuov"]
 [ext_resource type="Texture2D" uid="uid://bexmw0p4ieja5" path="res://assets/img/Finished.png" id="5_thuov"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_502jd"]
 shader = ExtResource("3_oj8hp")
-shader_parameter/noise_img = ExtResource("3_thuov")
-shader_parameter/myColor = Color(1, 0.0156863, 0, 1)
 
 [sub_resource type="Curve2D" id="Curve2D_thuov"]
 _data = {

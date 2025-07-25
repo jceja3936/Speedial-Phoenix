@@ -31,6 +31,7 @@ func _process(_delta: float) -> void:
 		
 	#If the collided object doesn't have method "hit", the bullet can safely delete.
 		if not collider.has_method("hit") and not collider.get("bullet") and not collider.has_meta("glass"):
+			Manager.playSound("bLand", global_position, -2.0)
 			queue_free()
 			
 	#If that if was passed, it either hit an enemy or a player

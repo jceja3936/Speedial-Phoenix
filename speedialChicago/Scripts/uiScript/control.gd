@@ -50,7 +50,7 @@ func playFFanim():
 
 func finisher():
 	if $FloorBeat:
-		$FloorBeat.position = Vector2((4000.0 * curve.sample(tweener) - 907.0), 542.0)
+		$FloorBeat.position = Vector2((4000.0 * curve.sample(tweener) - 907.0), 245.0)
 		await get_tree().create_timer(.05).timeout
 		tweener += .02
 		if tweener < 1.0:

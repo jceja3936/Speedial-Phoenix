@@ -48,7 +48,12 @@ var item_sounds = {
 	"sSound": preload("res://assets/aud/Big Boing.wav"),
 	"dSound": preload("res://assets/aud/wallBreak1.wav"),
 	"punched": preload("res://assets/aud/ounched.wav"),
-	"swing": preload("res://assets/aud/swing.wav")
+	"swing": preload("res://assets/aud/swing.wav"),
+	"bLand": preload("res://assets/aud/bullLand.wav"),
+	"floorBeat": preload("res://assets/aud/floorBeat.wav"),
+	"doorOpen1": preload("res://assets/aud/doorOpen1.mp3"),
+	"doorOpen2": preload("res://assets/aud/doorOpen2.wav"),
+	"doorOpen3": preload("res://assets/aud/doorOpen3.wav")
 	# Add more as needed or load dynamically
 }
 
@@ -57,12 +62,11 @@ func startNextScene():
 	var loadScreen = loadingScreen.instantiate()
 	get_tree().root.add_child(loadScreen)
 
-func playSound(item_name: String, pos: Vector2):
+func playSound(item_name: String, pos: Vector2, _aud: float = 0.0):
 	var sound = item_sounds.get(item_name)
 	if sound:
 		var player = AudioStreamPlayer2D.new()
-		if item_name == "dSound":
-			player.volume_db = 4.5
+		player.volume_db = _aud
 		player.stream = sound
 		get_tree().current_scene.add_child(player)
 		player.position = pos
@@ -70,6 +74,7 @@ func playSound(item_name: String, pos: Vector2):
 		await get_tree().create_timer(sound.get_length()).timeout
 		if player:
 			player.queue_free()
+			return true
 
 func setEnemyAmount(amount: int):
 	enemyAmount = amount
