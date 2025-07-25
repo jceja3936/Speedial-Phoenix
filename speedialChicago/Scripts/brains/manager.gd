@@ -44,8 +44,8 @@ func reset():
 	playerRespawnPos = Vector2.ZERO
 
 var item_sounds = {
-	"pSound": preload("res://assets/aud/9mm.wav"),
-	"sSound": preload("res://assets/aud/Big Boing.wav"),
+	"pSound": preload("res://assets/aud/revolv.mp3"),
+	"sSound": preload("res://assets/aud/shotgun.wav"),
 	"dSound": preload("res://assets/aud/wallBreak1.wav"),
 	"punched": preload("res://assets/aud/ounched.wav"),
 	"swing": preload("res://assets/aud/swing.wav"),

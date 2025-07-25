@@ -43,16 +43,14 @@ metadata/_edit_lock_ = true
 
 [node name="patroller1" parent="Enemies" instance=ExtResource("9_63bpq")]
 position = Vector2(364, 1178)
-type = 1
 pat = true
 
 [node name="Station1" parent="Enemies" instance=ExtResource("9_63bpq")]
 position = Vector2(497, 485)
-type = 1
 
 [node name="Station2" parent="Enemies" instance=ExtResource("9_63bpq")]
 position = Vector2(1599, 1204)
-type = 1
+type = 3
 pat = true
 
 [node name="Enemies2" type="Node" parent="."]

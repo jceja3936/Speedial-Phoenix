@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://deibpfgrnwmmm"
-path="res://.godot/imported/9mm.wav-7b1bfdaf7f18d2f6784c201f4f183c25.sample"
+uid="uid://dobwuu2bx3lg5"
+path="res://.godot/imported/shotgun.wav-1de93bee15f56e1dc6c12b8b3aaed325.sample"
 
 [deps]
 
-source_file="res://assets/aud/9mm.wav"
-dest_files=["res://.godot/imported/9mm.wav-7b1bfdaf7f18d2f6784c201f4f183c25.sample"]
+source_file="res://assets/aud/shotgun.wav"
+dest_files=["res://.godot/imported/shotgun.wav-1de93bee15f56e1dc6c12b8b3aaed325.sample"]
 
 [params]
 

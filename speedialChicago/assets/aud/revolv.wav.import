@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dwyqm1dw0vmv8"
-path="res://.godot/imported/Big Boing.wav-5b01320e1b7380b1fb7a21305b0ce6aa.sample"
+uid="uid://baw2j3ekm8c5o"
+path="res://.godot/imported/revolv.wav-62c081d3eea4d81017711dbb1ab252bc.sample"
 
 [deps]
 
-source_file="res://assets/aud/Big Boing.wav"
-dest_files=["res://.godot/imported/Big Boing.wav-5b01320e1b7380b1fb7a21305b0ce6aa.sample"]
+source_file="res://assets/aud/revolv.wav"
+dest_files=["res://.godot/imported/revolv.wav-62c081d3eea4d81017711dbb1ab252bc.sample"]
 
 [params]
 
