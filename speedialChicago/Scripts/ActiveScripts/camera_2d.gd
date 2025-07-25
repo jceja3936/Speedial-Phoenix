@@ -2,8 +2,11 @@ extends Camera2D
 
 var player: CharacterBody2D
 var cameFollow = 0
+var camPos = Vector2.ZERO
+var cursOffset = Vector2.ZERO
 
 func _ready() -> void:
+	SignalBus.playCutscene.connect(leave)
 	setCam(0)
 	for node in get_tree().root.get_children():
 		if node.has_meta("placed"):
@@ -22,8 +25,9 @@ func _ready() -> void:
 	$Cursors.top_level = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 
-var camPos = Vector2.ZERO
-var cursOffset = Vector2.ZERO
+func leave():
+	speed = .8
+	cameFollow = -1
 
 func setCam(type: int):
 	cameFollow = type
@@ -43,9 +47,13 @@ func setCam(type: int):
 var angletoLerpBy = 0
 var speed = 1
 
+
 func _physics_process(_delta: float) -> void:
-	var mouse_pos = get_global_mouse_position()
 	var player_pos = player.global_position
+	if cameFollow == -1:
+		position = lerp(position, player_pos + Vector2(0, -3000), 1.0 - exp(- speed * _delta))
+		return
+	var mouse_pos = get_global_mouse_position()
 
 	angletoLerpBy = lerp_angle(angletoLerpBy, get_angle_to(mouse_pos), 1.0 - exp(- speed * _delta))
 

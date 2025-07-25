@@ -69,9 +69,12 @@ func set_State(newState: int):
 
 func _on_start_body_entered(body: Node2D) -> void:
 	if Manager.levelState == 3:
+		SignalBus.emit_signal("playCutscene")
 		SignalBus.emit_signal("saveScore")
-		Manager.next_scene = "res://scenes/UIscenes/end_screen.tscn"
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		await get_tree().create_timer(2).timeout
+		Manager.next_scene = "res://scenes/UIscenes/end_screen.tscn"
+
 		Manager.startNextScene()
 
 	if body.name == "Player":
@@ -89,20 +92,32 @@ func _on_end_body_entered(body: Node2D) -> void:
 		if Manager.getEnemyAmount() == 0:
 			match state:
 				1:
+					SignalBus.emit_signal("teleporting")
 					player.makeHunSave()
 					SignalBus.emit_signal("saveScore")
 					Manager.playerRespawnPos = Vector2(1839.0, 2611.0)
+					player.set("finish", true)
+					await get_tree().create_timer(.15).timeout
+					player.set("finish", false)
 					player.position = Vector2(2121.0, 2606.0)
 					Manager.levelState = 2
 					set_State(2)
 					Manager.playSound("floorBeat", Vector2(1678.0, 2821.0), 10.5)
 				2:
+					SignalBus.emit_signal("teleporting")
 					levelBeat = true
+					player.set("finish", true)
+					await get_tree().create_timer(.15).timeout
+					player.set("finish", false)
 					player.position = Vector2(124.0, 1038.0)
 					Manager.levelState = 3
 					set_State(3)
 					Manager.playSound("floorBeat", Vector2(124.0, 1038.0), 10.5)
 				3:
-					player.position = Vector2(2121.0, 2606.0)
+					SignalBus.emit_signal("teleporting")
+					player.set("finish", true)
+					await get_tree().create_timer(.15).timeout
+					player.set("finish", false)
+					player.position = Vector2(1830.0, 2606.0)
 					set_State(2)
 					Manager.playSound("floorBeat", Vector2(1678.0, 2821.0), 10.5)

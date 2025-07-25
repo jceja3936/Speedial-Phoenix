@@ -1,14 +1,29 @@
 extends Control
 
+var bsTweener = 0.0
 
 func _ready() -> void:
 	var theScore = Manager.score + (Manager.wallsBroke * 100)
 	if theScore > 50000:
 		theScore = 50000
-
+	cutScene()
 	$vert/score/scoreNum.text = str(theScore)
 	$vert/wbroke/wNum.text = str(Manager.wallsBroke)
 	$vert/time/timeNum.text = str(Manager.timer).pad_decimals(2)
+
+
+func cutScene():
+	if bsTweener == 0.0:
+		bsTweener = 1.0
+		bsFinisher()
+
+func bsFinisher():
+	if $blackScreen:
+		bsTweener -= .05
+		$blackScreen.material.set_shader_parameter("myOpaq", bsTweener)
+		await get_tree().create_timer(.05).timeout
+		if bsTweener > 0.0:
+			bsFinisher()
 
 
 func _on_exit_pressed() -> void:

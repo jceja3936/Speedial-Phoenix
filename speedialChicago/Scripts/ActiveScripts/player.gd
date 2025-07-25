@@ -29,6 +29,7 @@ func _ready() -> void:
 	SignalBus.paused.connect(paused)
 	SignalBus.unPaused.connect(unPaused)
 	SignalBus.levelBeat.connect(playAmbience)
+	SignalBus.playCutscene.connect(cutScenePlaying)
 	SignalBus.updateResp.emit(false)
 	$shader.material.set_shader_parameter("myOpaq", 0.0)
 	if Manager.playerRespawnPos != Vector2.ZERO:
@@ -36,8 +37,10 @@ func _ready() -> void:
 	if Manager.gunType != 0:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
 
+func cutScenePlaying():
+	finish = true
+
 func playAmbience():
-	print("YEAHHHHHH")
 	if !loop:
 		loop = true
 		$sound.play()
@@ -84,6 +87,8 @@ func die() -> void:
 	$shader.material.set_shader_parameter("myOpaq", 8.0)
 
 func _input(event):
+	if finish:
+		return
 	if event.is_action_pressed("esc") and cameFollow:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		cameFollow = false
