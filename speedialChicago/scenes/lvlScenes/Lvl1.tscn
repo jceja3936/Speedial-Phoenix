@@ -80,7 +80,7 @@ myFloor = 2
 [node name="vD" type="Node" parent="DoorStuff"]
 
 [node name="vertDoor" parent="DoorStuff/vD" instance=ExtResource("11_xspno")]
-position = Vector2(890, 451)
+position = Vector2(890, 449)
 
 [node name="vertDoor2" parent="DoorStuff/vD" instance=ExtResource("11_xspno")]
 position = Vector2(1530, 450)

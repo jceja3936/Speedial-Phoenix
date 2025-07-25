@@ -2,7 +2,7 @@ extends Control
 
 
 func _ready() -> void:
-	var theScore = Manager.score * (Manager.wallsBroke / 2 + 1)
+	var theScore = Manager.score + (Manager.wallsBroke * 100)
 	if theScore > 50000:
 		theScore = 50000
 
@@ -16,7 +16,6 @@ func _on_exit_pressed() -> void:
 
 func _on_next_pressed() -> void:
 	if Manager.current_scene == "1_1":
-		Manager.next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
 		Manager.gamePaused = false
 		Manager.current_scene = "2"
 		Manager.timer = 0

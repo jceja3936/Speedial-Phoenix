@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://buw4jt5dw8ikn"]
+[gd_scene load_steps=18 format=4 uid="uid://buw4jt5dw8ikn"]
 
 [ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="1_vt376"]
 [ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_h4xcu"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dh26tcfwf7wjv" path="res://Scripts/brains/brainL2.gd" id="9_msb3r"]
 [ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/enemy.tscn" id="9_vjsey"]
 [ext_resource type="PackedScene" uid="uid://bfkltf78e2mmp" path="res://scenes/gunScenes/rifle.tscn" id="10_u3u1i"]
+[ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/arrow.png" id="10_wb6gm"]
 [ext_resource type="PackedScene" uid="uid://03lxyxx3lv78" path="res://scenes/gunScenes/hammer.tscn" id="12_c2p4a"]
 [ext_resource type="PackedScene" uid="uid://dowe60l1v3rl6" path="res://scenes/gunScenes/shotgun.tscn" id="12_fcmif"]
 [ext_resource type="PackedScene" uid="uid://byqq6tb73yo2i" path="res://scenes/gunScenes/pistol.tscn" id="14_sjuta"]
@@ -89,6 +90,12 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="brain/blocker"]
 shape = SubResource("RectangleShape2D_msb3r")
+
+[node name="arrow" type="Sprite2D" parent="brain"]
+visible = false
+position = Vector2(419, 283)
+scale = Vector2(0.762188, 0.592289)
+texture = ExtResource("10_wb6gm")
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -181,17 +188,29 @@ melee = true
 position = Vector2(1450, 6462)
 rotation = 4.69691
 myFloor = 2
-melee = true
 
 [node name="Enemy9" parent="ENEM2" instance=ExtResource("9_vjsey")]
 position = Vector2(2147, 6471)
 rotation = 4.69691
 myFloor = 2
-melee = true
 
 [node name="Enemy10" parent="ENEM2" instance=ExtResource("9_vjsey")]
 position = Vector2(2002, 6587)
 rotation = 6.30074
+pat = true
+myFloor = 2
+
+[node name="Enemy11" parent="ENEM2" instance=ExtResource("9_vjsey")]
+position = Vector2(1737, 6591)
+rotation = 6.26959
+type = 2
+pat = true
+myFloor = 2
+
+[node name="Enemy12" parent="ENEM2" instance=ExtResource("9_vjsey")]
+position = Vector2(1718, 4290)
+rotation = 6.26505
+type = 2
 pat = true
 myFloor = 2
 

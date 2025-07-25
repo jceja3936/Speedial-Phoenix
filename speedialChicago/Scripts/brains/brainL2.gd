@@ -3,10 +3,32 @@ extends Node
 var endPosition = Vector2.ZERO
 var state = 1
 var levelBeat = false
+var done = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_State(Manager.levelState)
+
+func _physics_process(_delta: float) -> void:
+	if Manager.enemyAmount == 0:
+		$arrow.position = player.global_position + Vector2(0, 100)
+		$arrow.show()
+
+		match state:
+			1:
+				SignalBus.emit_signal("floorBeat")
+				playOnce()
+				$arrow.look_at($end.global_position)
+
+			2:
+				print("Level Beat")
+				SignalBus.emit_signal("levelBeat")
+				$arrow.look_at($end.global_position)
+			3:
+				SignalBus.emit_signal("levelBeat")
+				$arrow.look_at($start.global_position)
+	else:
+		$arrow.hide()
 
 func set_State(newState: int):
 	state = newState
@@ -16,7 +38,7 @@ func set_State(newState: int):
 			endPosition = Vector2(3398.0, 769.0)
 			$start.position = Vector2(2499.0, 775.0)
 		2:
-			Manager.setEnemyAmount(10)
+			Manager.setEnemyAmount(12)
 			endPosition = Vector2(171.0, 5380.0)
 			$start.position = Vector2(509.0, 5369.0)
 		3:
@@ -31,6 +53,10 @@ func set_State(newState: int):
 
 	$end.position = endPosition
 
+func playOnce():
+	if !done:
+		done = true
+		Manager.playSound("floorBeat", player.global_position, 10.5)
 
 func _on_start_body_entered(body: Node2D) -> void:
 	if levelBeat and player.get("moved") == true:
@@ -63,6 +89,7 @@ func _on_end_body_entered(body: Node2D) -> void:
 					player.call("loading")
 					Manager.levelState = 2
 					set_State(2)
+					Manager.playSound("floorBeat", Vector2(198.0, 5372.0), 10.5)
 				2:
 					levelBeat = true
 					SignalBus.emit_signal("saveWB")
@@ -71,7 +98,9 @@ func _on_end_body_entered(body: Node2D) -> void:
 					player.set("moved", false)
 					Manager.levelState = 3
 					set_State(3)
+					Manager.playSound("floorBeat", Vector2(3061.0, 762.0), 10.5)
 				3:
 					player.position = Vector2(466.0, 5370.0)
 					player.call("loading")
 					set_State(2)
+					Manager.playSound("floorBeat", Vector2(466.0, 5370.0), 10.5)

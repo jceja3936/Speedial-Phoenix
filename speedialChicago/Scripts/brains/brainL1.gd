@@ -35,6 +35,7 @@ func playOnce():
 	if !done:
 		done = true
 		Manager.playSound("floorBeat", player.global_position, 10.5)
+	
 func set_State(newState: int):
 	state = newState
 	match state:
