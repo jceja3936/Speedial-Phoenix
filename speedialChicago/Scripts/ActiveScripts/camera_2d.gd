@@ -18,6 +18,8 @@ func _ready() -> void:
 			playerNode = "/root/Lvl1/Player"
 		"2":
 			playerNode = "/root/Lvl2/Player"
+		"3":
+			playerNode = "/root/Lvl3/Player"
 
 	player = get_node(playerNode)
 	position = player.global_position

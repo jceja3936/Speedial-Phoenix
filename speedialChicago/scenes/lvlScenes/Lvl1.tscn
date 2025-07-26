@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=4 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=16 format=4 uid="uid://e64wgf8otggf"]
 
 [ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_ixny3"]
 [ext_resource type="TileSet" uid="uid://bdhuawh88bvlx" path="res://assets/finalTileSet.tres" id="3_i6yy0"]
 [ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="3_yiohx"]
-[ext_resource type="PackedScene" uid="uid://03lxyxx3lv78" path="res://scenes/gunScenes/hammer.tscn" id="5_o37uq"]
 [ext_resource type="PackedScene" uid="uid://cw1s7il08t6q8" path="res://scenes/hDoor.tscn" id="5_q2qlp"]
 [ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://Scripts/ActiveScripts/camera_2d.gd" id="7_g2rpt"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="7_wixyy"]
@@ -150,9 +149,6 @@ z_index = 4
 position = Vector2(447, 161)
 health = 20000
 cam = NodePath("../Camera2D")
-
-[node name="Hammer" parent="." instance=ExtResource("5_o37uq")]
-position = Vector2(692, 175)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 5

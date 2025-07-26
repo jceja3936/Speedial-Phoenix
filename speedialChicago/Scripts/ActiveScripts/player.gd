@@ -37,6 +37,14 @@ func _ready() -> void:
 	if Manager.gunType != 0:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
 
+func _notification(what):
+	if what == NOTIFICATION_WM_MOUSE_EXIT:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		cameFollow = false
+		cam.setCam(1)
+		$hun.stop()
+		SignalBus.emit_signal("paused")
+
 func cutScenePlaying():
 	finish = true
 

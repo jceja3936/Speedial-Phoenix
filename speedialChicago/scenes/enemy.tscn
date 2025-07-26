@@ -30,18 +30,22 @@ metadata/_edit_group_ = true
 [node name="ray1" type="RayCast2D" parent="."]
 target_position = Vector2(56, 0)
 collision_mask = 25
+collide_with_areas = true
 
 [node name="ray2" type="RayCast2D" parent="."]
 target_position = Vector2(56, 0)
 collision_mask = 25
+collide_with_areas = true
 
 [node name="ray3" type="RayCast2D" parent="."]
 target_position = Vector2(56, 0)
 collision_mask = 25
+collide_with_areas = true
 
 [node name="ray4" type="RayCast2D" parent="."]
 target_position = Vector2(56, 0)
 collision_mask = 25
+collide_with_areas = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0

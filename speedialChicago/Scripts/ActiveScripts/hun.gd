@@ -50,6 +50,8 @@ func _ready() -> void:
 			cmNode = "/root/Lvl1/floor1"
 		"2":
 			cmNode = "/root/Lvl2/Floor"
+		"3":
+			cmNode = "/root/Lvl3/Floor"
 
 	currentMap = get_node(cmNode)
 

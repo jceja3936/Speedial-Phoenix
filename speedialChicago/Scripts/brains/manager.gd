@@ -32,6 +32,10 @@ func reset():
 		"2":
 			current_scene = "2"
 			next_scene = "res://scenes/lvlScenes/Lvl2.tscn"
+		"3":
+			current_scene = "3"
+			next_scene = "res://scenes/lvlScenes/Lvl3.tscn"
+
 			
 	gamePaused = false
 	timer = 0
