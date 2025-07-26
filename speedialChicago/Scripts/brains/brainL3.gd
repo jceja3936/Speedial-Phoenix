@@ -13,7 +13,7 @@ func set_State(newState: int):
 	state = newState
 	match state:
 		1:
-			Manager.setEnemyAmount(1)
+			Manager.setEnemyAmount(24)
 			$Start.position = Vector2(2090.0, 138.0)
 		_:
 			print("Bruh, Brain setState received ", state)
