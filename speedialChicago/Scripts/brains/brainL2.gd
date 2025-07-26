@@ -23,6 +23,7 @@ func _physics_process(_delta: float) -> void:
 			2:
 				playOnce()
 				SignalBus.emit_signal("levelBeat")
+				Manager.gamePaused = true
 				$arrow.look_at($end.global_position)
 			3:
 				SignalBus.emit_signal("levelBeat")
@@ -64,14 +65,6 @@ func set_State(newState: int):
 
 
 func _on_start_body_entered(body: Node2D) -> void:
-	if levelBeat and player.get("moved") == true:
-		SignalBus.emit_signal("playCutscene")
-		SignalBus.emit_signal("saveScore")
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		await get_tree().create_timer(2).timeout
-		Manager.next_scene = "res://scenes/UIscenes/end_screen.tscn"
-		Manager.startNextScene()
-
 	if body.name == "Player":
 		match state:
 				1:

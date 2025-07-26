@@ -23,6 +23,7 @@ func _physics_process(_delta: float) -> void:
 
 			2:
 				playOnce()
+				Manager.gamePaused = true
 				SignalBus.emit_signal("levelBeat")
 				$arrow.look_at($end.global_position)
 			3:

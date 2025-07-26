@@ -60,7 +60,7 @@ func _ready() -> void:
 		"2":
 			playerNode = "/root/Lvl2/Player"
 		"3":
-			playerNode = "/root/Lvl2/Player"
+			playerNode = "/root/Lvl3/Player"
 
 	player = get_node(playerNode)
 
