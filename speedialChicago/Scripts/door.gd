@@ -25,9 +25,9 @@ func playRandom(_nonRand: bool = false):
 	var rand = randi_range(1, 2)
 	match rand:
 		1:
-			Manager.playSound("doorOpen1", global_position)
+			Manager.playSound("doorOpen1", global_position, -10.0)
 		2:
-			Manager.playSound("doorOpen2", global_position)
+			Manager.playSound("doorOpen2", global_position, -10.0)
 
 func wait():
 	await get_tree().create_timer(.5).timeout

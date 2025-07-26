@@ -104,7 +104,7 @@ func punched(gunType: int, rot: float):
 	falling = true
 
 	if !imHit:
-		Manager.playSound("punched", global_position)
+		Manager.playSound("punched", global_position, -5.0)
 		if gunType == 4:
 			hit(300)
 		imHit = true
@@ -153,7 +153,7 @@ func _physics_process(_delta: float) -> void:
 	if melee and global_position.distance_to(player_pos) < 95:
 		if player.get("dead") == false:
 			Manager.playSound("swing", global_position)
-			Manager.playSound("punched", global_position)
+			Manager.playSound("punched", global_position, -5.0)
 			player.call("hit", 220, 1)
 			$gun/gunSkin.texture = load("res://assets/img/punch.svg")
 			await get_tree().create_timer(.2).timeout

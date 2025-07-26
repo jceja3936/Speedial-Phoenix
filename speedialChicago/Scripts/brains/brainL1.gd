@@ -92,10 +92,10 @@ func _on_end_body_entered(body: Node2D) -> void:
 		if Manager.getEnemyAmount() == 0:
 			match state:
 				1:
-					SignalBus.emit_signal("teleporting")
 					player.makeHunSave()
 					SignalBus.emit_signal("saveScore")
 					Manager.playerRespawnPos = Vector2(1839.0, 2611.0)
+					SignalBus.emit_signal("teleporting")
 					player.set("finish", true)
 					await get_tree().create_timer(.15).timeout
 					player.set("finish", false)

@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @export var hitBox: ShapeCast2D
+@export var animation: AnimatedSprite2D
 
 var currentSprite: Texture
 var bullet: PackedScene = load("res://scenes/bullet.tscn")
@@ -112,9 +113,15 @@ func _process(_delta: float) -> void:
 			position.y = lerp(position.y, hammPos.y, .1)
 		melee()
 
+func _on_hammer_blow_animation_finished() -> void:
+	animation.hide()
+
 func breach():
 	wait(1)
 	canFire = false
+	animation.show()
+	if !animation.is_playing():
+		animation.play()
 
 	var wallBroke = false
 	var tileCoords = currentMap.local_to_map(get_parent().global_position)
@@ -145,7 +152,6 @@ func breach():
 		wallBroke = true
 
 	if dir == Vector2i(-1, 0) or dir == Vector2i(1, 0):
-		var gotOne = false
 		#GETTING EXTRAS: UP
 		tileCoords = ogTileCoords
 		tileCoords += Vector2i(0, -1)
@@ -155,20 +161,39 @@ func breach():
 			wallsBroke += 1
 			findProperTile(tileCoords, atlasCords)
 			wallBroke = true
-			gotOne = true
 			
 		#GETTING EXTRAS: DOWN
 		tileCoords = ogTileCoords
 		tileCoords += Vector2i(0, 1)
 		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
 
-		if !BADTILES.has(atlasCords) and !gotOne:
+		if !BADTILES.has(atlasCords):
 			wallsBroke += 1
 			findProperTile(tileCoords, atlasCords)
 			wallBroke = true
 
+		#GETTING EXTRAS: UP
+		tileCoords = ogTileCoords + dir
+		tileCoords += Vector2i(0, -1)
+		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+
+		if !BADTILES.has(atlasCords):
+			wallsBroke += 1
+			findProperTile(tileCoords, atlasCords)
+			wallBroke = true
+			
+		#GETTING EXTRAS: DOWN
+		tileCoords = ogTileCoords + dir
+		tileCoords += Vector2i(0, 1)
+		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+
+		if !BADTILES.has(atlasCords):
+			wallsBroke += 1
+			findProperTile(tileCoords, atlasCords)
+			wallBroke = true
+
+		
 	if dir == Vector2i(0, -1) or dir == Vector2i(0, 1):
-		var gotOne = false
 		#GETTING EXTRAS: LEFT
 		tileCoords = ogTileCoords
 		tileCoords += Vector2i(-1, 0)
@@ -177,14 +202,32 @@ func breach():
 			wallsBroke += 1
 			findProperTile(tileCoords, atlasCords)
 			wallBroke = true
-			gotOne = true
 
 		#GETTING EXTRAS: RIGHT
 		tileCoords = ogTileCoords
 		tileCoords += Vector2i(1, 0)
 		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
 
-		if !BADTILES.has(atlasCords) and !gotOne:
+		if !BADTILES.has(atlasCords):
+			wallsBroke += 1
+			findProperTile(tileCoords, atlasCords)
+			wallBroke = true
+
+		#GETTING EXTRAS: LEFT
+		tileCoords = ogTileCoords + dir
+		tileCoords += Vector2i(-1, 0)
+		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+		if !BADTILES.has(atlasCords):
+			wallsBroke += 1
+			findProperTile(tileCoords, atlasCords)
+			wallBroke = true
+
+		#GETTING EXTRAS: RIGHT
+		tileCoords = ogTileCoords + dir
+		tileCoords += Vector2i(1, 0)
+		atlasCords = currentMap.get_cell_atlas_coords(tileCoords)
+
+		if !BADTILES.has(atlasCords):
 			wallsBroke += 1
 			findProperTile(tileCoords, atlasCords)
 			wallBroke = true
@@ -307,6 +350,7 @@ func waitDrop():
 
 #Functions Called on Weapon pick up
 func update_values(value: int, currentAmmo: int):
+	get_parent().set("speed", 750)
 	droppable = false
 	currentSprite = null
 	gunType = value
@@ -337,6 +381,8 @@ func update_values(value: int, currentAmmo: int):
 			fireRate = .8
 			waitDrop()
 		4:
+			get_parent().set("speed", 1000)
+			global_scale = Vector2(1.5, 1.5)
 			swung = false
 			currentSprite = hammerImg
 			position = Vector2(13.0, 69.0)
