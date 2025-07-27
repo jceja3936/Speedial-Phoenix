@@ -38,6 +38,7 @@ func _ready() -> void:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
 
 func _notification(what):
+	return
 	if what == NOTIFICATION_WM_MOUSE_EXIT:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		cameFollow = false
