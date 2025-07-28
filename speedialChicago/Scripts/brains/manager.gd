@@ -17,6 +17,7 @@ var levelState = 1
 var gunType = 0
 var ammoCount = 0
 var mult = 1
+var deaths = 0
 
 var enemyAmount = 0
 
@@ -44,6 +45,7 @@ func reset():
 	ammoCount = 0
 	score = 0
 	mult = 1
+	deaths = 0
 	enemyAmount = 0
 	playerRespawnPos = Vector2.ZERO
 

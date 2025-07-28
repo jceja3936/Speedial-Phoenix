@@ -106,6 +106,8 @@ func multManager():
 	prevScore = score
 	await get_tree().create_timer(1.5).timeout
 	if score == prevScore:
+		if mult > Manager.mult:
+			Manager.mult = mult
 		mult = 1
 		updateMult()
 	multManager()

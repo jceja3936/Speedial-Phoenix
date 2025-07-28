@@ -3,15 +3,26 @@ extends Control
 var bsTweener = 0.0
 
 func _ready() -> void:
-	var theScore = Manager.score + (Manager.wallsBroke * 100)
+	cutScene()
+	$Main/vert/wbroke/wNum.text = str(Manager.wallsBroke)
+	var ogTime = Manager.timer
+	var minutes = 0
+	var seconds = 0
+
+	while ogTime >= 60:
+		ogTime -= 60
+		minutes += 1
+	seconds = ogTime
+	$Main/vert/time/timeNum.text = str(minutes) + ":" + str(int(seconds))
+	$Main/vert/Combo/combNum.text = str(Manager.mult)
+	$Main/vert/Deaths/deathNum.text = str(Manager.deaths * -100)
+
+	var theScore = Manager.score + (Manager.wallsBroke * 100) + (Manager.deaths * -100)
 	if theScore > 50000:
 		theScore = 50000
-	cutScene()
-	$vert/score/scoreNum.text = str(theScore)
-	$vert/wbroke/wNum.text = str(Manager.wallsBroke)
-	$vert/time/timeNum.text = str(Manager.timer).pad_decimals(2)
-
-
+	$Main/vert/score/scoreNum.text = str(theScore)
+	
+	
 func cutScene():
 	if bsTweener == 0.0:
 		bsTweener = 1.0

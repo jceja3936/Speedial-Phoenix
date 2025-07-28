@@ -37,14 +37,15 @@ func _ready() -> void:
 	if Manager.gunType != 0:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
 
-func _notification(what):
+func _notification(_what):
 	return
-	if what == NOTIFICATION_WM_MOUSE_EXIT:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		cameFollow = false
-		cam.setCam(1)
-		$hun.stop()
-		SignalBus.emit_signal("paused")
+	#This is a fix I don't yet know if I'm gonna implement
+	#if what == NOTIFICATION_WM_MOUSE_EXIT:
+	#	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#	cameFollow = false
+	#	cam.setCam(1)
+	#	$hun.stop()
+	#	SignalBus.emit_signal("paused")
 
 func cutScenePlaying():
 	finish = true
@@ -92,6 +93,7 @@ func hit(damage: int, id: int) -> void:
 
 func die() -> void:
 	SignalBus.updateResp.emit(true)
+	Manager.deaths += 1
 	dead = true
 	$shader.material.set_shader_parameter("myOpaq", 8.0)
 
