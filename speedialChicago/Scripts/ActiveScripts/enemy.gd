@@ -185,10 +185,10 @@ func _physics_process(_delta: float) -> void:
 	takeAlook(player_pos)
 
 func takeAlook(playPos: Vector2):
-	setOfRays[0].target_position = Vector2(900, 0)
-	setOfRays[1].target_position = Vector2(900, 0).rotated(deg_to_rad(- degToRotby))
-	setOfRays[2].target_position = Vector2(600, 0).rotated(deg_to_rad(degToRotby))
-	setOfRays[3].target_position = Vector2(600, 0).rotated(deg_to_rad(secDeg))
+	setOfRays[0].target_position = Vector2(1100, 0)
+	setOfRays[1].target_position = Vector2(1100, 0).rotated(deg_to_rad(- degToRotby))
+	setOfRays[2].target_position = Vector2(800, 0).rotated(deg_to_rad(degToRotby))
+	setOfRays[3].target_position = Vector2(800, 0).rotated(deg_to_rad(secDeg))
 	
 	for i in range(4):
 		if setOfRays[i]:

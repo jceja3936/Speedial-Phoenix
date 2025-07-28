@@ -120,11 +120,7 @@ func updateScore(value):
 	score += value * mult
 	mult += 1
 	updateMult()
-	if score < 1000:
-		$Score.text = "Score : 0"
-	else:
-		$Score.text = "Score : "
-	$Score.text = $Score.text + str(score)
+	$Score.text = str(score).pad_zeros(4)
 
 
 func makePretty():

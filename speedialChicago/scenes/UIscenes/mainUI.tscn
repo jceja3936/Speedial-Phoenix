@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dewgjpt1wbtm4"]
+[gd_scene load_steps=12 format=3 uid="uid://dewgjpt1wbtm4"]
 
 [ext_resource type="Script" uid="uid://cigsncue0fg5s" path="res://Scripts/uiScript/control.gd" id="1_nufsr"]
 [ext_resource type="Material" uid="uid://dreh33v4icnaj" path="res://assets/shaders/basicShaderMat.tres" id="1_qvd58"]
 [ext_resource type="Texture2D" uid="uid://bvdhw15b1h4x" path="res://assets/img/Floor beat.png" id="2_7hqfr"]
 [ext_resource type="Shader" uid="uid://vuar85e1xgyh" path="res://assets/shaders/floorBeatShader.gdshader" id="3_oj8hp"]
+[ext_resource type="Texture2D" uid="uid://dat0thkqujbf3" path="res://assets/img/pointsFlavor.png" id="3_vtmv6"]
 [ext_resource type="Texture2D" uid="uid://bexmw0p4ieja5" path="res://assets/img/Finished.png" id="5_thuov"]
 [ext_resource type="Texture2D" uid="uid://c58b0mkfqtmpe" path="res://assets/img/grayNoise.png" id="6_sdlxc"]
 [ext_resource type="Shader" uid="uid://dj4rx4p7yo3jk" path="res://assets/shaders/blackScreen.gdshader" id="6_vtmv6"]
@@ -71,27 +72,31 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -361.0
-offset_top = 45.0
-offset_right = -74.0
-offset_bottom = 114.0
+offset_left = -209.0
+offset_top = 833.0
+offset_right = 78.0
+offset_bottom = 902.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 50
-text = "Score : 0000"
+text = "0000"
 
 [node name="mult" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -356.0
-offset_top = 112.0
-offset_right = -69.0
-offset_bottom = 253.0
+offset_left = -132.0
+offset_top = 936.0
+offset_right = -103.0
+offset_bottom = 1077.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 25
-text = "1x
+theme_override_font_sizes/font_size = 40
+text = "1
 "
+
+[node name="FlavorText" type="Sprite2D" parent="."]
+position = Vector2(1747, 912)
+texture = ExtResource("3_vtmv6")
 
 [node name="FloorBeat" type="Sprite2D" parent="."]
 texture_filter = 1

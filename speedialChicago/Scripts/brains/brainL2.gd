@@ -53,7 +53,7 @@ func set_State(newState: int):
 			$start.position = Vector2(509.0, 5369.0)
 		3:
 			endPosition = Vector2(3398.0, 769.0)
-			$start.position = Vector2(2499.0, 775.0)
+			$start.position = Vector2(469.0, 767.0)
 		_:
 			print("Bruh, Brain setState received ", state)
 
@@ -65,6 +65,15 @@ func set_State(newState: int):
 
 
 func _on_start_body_entered(body: Node2D) -> void:
+	if Manager.levelState == 3:
+		SignalBus.emit_signal("playCutscene")
+		SignalBus.emit_signal("saveScore")
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		await get_tree().create_timer(2).timeout
+		Manager.next_scene = "res://scenes/UIscenes/end_screen.tscn"
+
+		Manager.startNextScene()
+
 	if body.name == "Player":
 		match state:
 				1:

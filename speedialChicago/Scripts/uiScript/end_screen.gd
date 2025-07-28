@@ -21,6 +21,9 @@ func _ready() -> void:
 	if theScore > 50000:
 		theScore = 50000
 	$Main/vert/score/scoreNum.text = str(theScore)
+
+	if Manager.current_scene == "3":
+		$Next.disabled = true
 	
 	
 func cutScene():
