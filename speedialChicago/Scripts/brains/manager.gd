@@ -13,6 +13,10 @@ var gamePaused = true
 var score = -1
 var wallsBroke = 0
 
+var musicSound = 0.0
+var sfx = 0.0
+
+
 var levelState = 1
 var gunType = 0
 var ammoCount = 0
@@ -73,7 +77,7 @@ func playSound(item_name: String, pos: Vector2, _aud: float = 0.0):
 	var sound = item_sounds.get(item_name)
 	if sound:
 		var player = AudioStreamPlayer2D.new()
-		player.volume_db = _aud
+		player.volume_db = _aud + sfx
 		player.stream = sound
 		get_tree().current_scene.add_child(player)
 		player.position = pos

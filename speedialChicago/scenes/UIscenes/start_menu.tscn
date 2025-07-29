@@ -32,11 +32,11 @@ texture = ExtResource("2_l82ty")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 199.0
-offset_top = 807.0
-offset_right = 269.0
-offset_bottom = 908.0
-scale = Vector2(2.16, 1.56)
+offset_left = 176.0
+offset_top = 715.0
+offset_right = 271.0
+offset_bottom = 851.0
+scale = Vector2(2, 2)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -51,6 +51,11 @@ layout_mode = 2
 text = "Continue
 "
 
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options
+"
+
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit
@@ -58,4 +63,5 @@ text = "Quit
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://ocp8w11aa8y4"]
+
+[ext_resource type="Script" uid="uid://yq6cibctkpsd" path="res://Scripts/uiScript/options.gd" id="1_bfhvm"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="1_s44rm"]
+[ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="2_drvp4"]
+[ext_resource type="Texture2D" uid="uid://c6ouk4lcp3c3d" path="res://assets/img/musicIcon.png" id="3_tuiq6"]
+[ext_resource type="Texture2D" uid="uid://cbr2wu8vfb831" path="res://assets/img/soundIcon.png" id="4_bfhvm"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bfhvm")
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_s44rm")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 94.0
+offset_right = 332.0
+offset_bottom = 230.0
+theme_override_fonts/font = ExtResource("2_drvp4")
+theme_override_font_sizes/font_size = 90
+text = "Options"
+
+[node name="main" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 318.0
+offset_right = 754.0
+offset_bottom = 493.0
+theme_override_constants/separation = 75
+
+[node name="Music" type="HBoxContainer" parent="main"]
+layout_mode = 2
+
+[node name="mIcon" type="Sprite2D" parent="main/Music"]
+position = Vector2(-69, 24)
+texture = ExtResource("3_tuiq6")
+
+[node name="music" type="HSlider" parent="main/Music"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+min_value = -20.0
+max_value = 10.0
+step = 0.5
+tick_count = 1
+
+[node name="Sounds" type="HBoxContainer" parent="main"]
+layout_mode = 2
+
+[node name="sIcon" type="Sprite2D" parent="main/Sounds"]
+position = Vector2(-64, 27)
+texture = ExtResource("4_bfhvm")
+
+[node name="sound" type="HSlider" parent="main/Sounds"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+min_value = -20.0
+max_value = 10.0
+step = 0.5
+tick_count = 1
+
+[node name="exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 915.0
+offset_right = 219.0
+offset_bottom = 992.0
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[connection signal="drag_ended" from="main/Music/music" to="." method="_on_music_drag_ended"]
+[connection signal="drag_ended" from="main/Sounds/sound" to="." method="_on_sound_drag_ended"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

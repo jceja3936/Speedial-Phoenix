@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="Speedial Phoenix"
-run/main_scene="uid://bd6et5gd1uwm7"
+run/main_scene="uid://b2ujw5qdwbsfi"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/show_image=false
+boot_splash/image="uid://dqn8pafh1o8sn"
 config/icon="uid://dxep4kfcdgmdj"
+boot_splash/minimum_display_time=20
 
 [autoload]
 
@@ -24,7 +27,6 @@ SignalBus="*res://Scripts/ActiveScripts/signal_bus.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [input]

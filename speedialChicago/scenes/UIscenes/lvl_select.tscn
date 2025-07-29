@@ -13,7 +13,7 @@
 shader = ExtResource("1_ad1sg")
 shader_parameter/noise_img = ExtResource("2_r8adp")
 shader_parameter/myColor = Color(1, 0, 0, 1)
-shader_parameter/myOpaq = 0.8
+shader_parameter/myOpaq = 0.5
 
 [node name="lvlSelect" type="Control"]
 layout_mode = 3
