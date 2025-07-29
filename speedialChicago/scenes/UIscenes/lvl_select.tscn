@@ -1,17 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2iuhlyf7jyo4"]
+[gd_scene load_steps=10 format=3 uid="uid://d2iuhlyf7jyo4"]
 
 [ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/shaders/start_menu.gdshader" id="1_ad1sg"]
 [ext_resource type="Script" uid="uid://jkkk7k73jskj" path="res://Scripts/uiScript/lvl_select.gd" id="1_yekil"]
-[ext_resource type="Texture2D" uid="uid://i8kqk3lu2u5c" path="res://assets/img/icon.svg" id="2_em7jy"]
 [ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="2_r8adp"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="3_em7jy"]
-[ext_resource type="Texture2D" uid="uid://qrirgxpp64hl" path="res://assets/img/csbear.png" id="3_yekil"]
+[ext_resource type="Texture2D" uid="uid://dyeqw5t8bctmi" path="res://assets/img/Level1.png" id="3_wavfk"]
+[ext_resource type="Texture2D" uid="uid://l57g2glbtt0m" path="res://assets/img/Level2.png" id="4_frpb5"]
+[ext_resource type="Texture2D" uid="uid://q6j7xiuq1nqt" path="res://assets/img/Level3.png" id="5_0oi67"]
+[ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="5_b22jk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yekil"]
 shader = ExtResource("1_ad1sg")
 shader_parameter/noise_img = ExtResource("2_r8adp")
 shader_parameter/myColor = Color(1, 0, 0, 1)
-shader_parameter/myOpaq = 0.5
+shader_parameter/myOpaq = 0.8
 
 [node name="lvlSelect" type="Control"]
 layout_mode = 3
@@ -33,47 +35,56 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -709.0
-offset_top = -222.0
-offset_right = 175.0
-offset_bottom = -67.0
+offset_left = -833.0
+offset_top = -282.0
+offset_right = 211.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6, 1.6)
-theme_override_constants/h_separation = 250
+theme_override_constants/h_separation = 150
 columns = 3
 
 [node name="lel1" type="TextureButton" parent="GridContainer"]
+custom_minimum_size = Vector2(248, 248)
 layout_mode = 2
-texture_normal = ExtResource("2_em7jy")
-texture_pressed = ExtResource("3_yekil")
-stretch_mode = 0
+texture_normal = ExtResource("3_wavfk")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="l2" type="TextureButton" parent="GridContainer"]
+custom_minimum_size = Vector2(248, 248)
 layout_mode = 2
-texture_normal = ExtResource("2_em7jy")
-texture_pressed = ExtResource("3_yekil")
-stretch_mode = 0
+texture_normal = ExtResource("4_frpb5")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="l3" type="TextureButton" parent="GridContainer"]
+custom_minimum_size = Vector2(248, 248)
 layout_mode = 2
-texture_normal = ExtResource("2_em7jy")
-texture_pressed = ExtResource("3_yekil")
-stretch_mode = 0
+texture_normal = ExtResource("5_0oi67")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Warm Ups" type="Label" parent="GridContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_b22jk")
+theme_override_font_sizes/font_size = 21
 text = "Warm Ups"
 horizontal_alignment = 1
 
 [node name="BREACH" type="Label" parent="GridContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_b22jk")
+theme_override_font_sizes/font_size = 21
 text = "BREACH"
 horizontal_alignment = 1
 uppercase = true
 
 [node name="Finale" type="Label" parent="GridContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_b22jk")
+theme_override_font_sizes/font_size = 21
 text = "Finale"
 horizontal_alignment = 1
 
@@ -83,6 +94,7 @@ offset_left = 64.0
 offset_top = 64.0
 offset_right = 746.0
 offset_bottom = 183.0
+theme_override_fonts/font = ExtResource("5_b22jk")
 theme_override_font_sizes/font_size = 87
 text = "Choose A Scene:"
 

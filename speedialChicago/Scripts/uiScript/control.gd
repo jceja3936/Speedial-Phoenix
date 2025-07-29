@@ -15,7 +15,9 @@ var oBS = 1.0
 var lb = false
 
 func _ready():
+	mult = 1
 	multManager()
+	updateMult()
 	SignalBus.updateAmmo.connect(updateAmmo)
 	SignalBus.updateResp.connect(updateResp)
 	SignalBus.updateScore.connect(updateScore)
@@ -26,7 +28,7 @@ func _ready():
 	SignalBus.teleporting.connect(scutScene)
 	$AmAm.hide()
 	$resp.hide()
-	if Manager.score != 0:
+	if Manager.score != -1:
 		score = Manager.score
 		updateScore(0)
 
@@ -104,8 +106,8 @@ func updateResp(value):
 
 func multManager():
 	prevScore = score
-	await get_tree().create_timer(1.5).timeout
-	if score == prevScore:
+	await get_tree().create_timer(1.25).timeout
+	if score == prevScore or score == Manager.score:
 		if mult > Manager.mult:
 			Manager.mult = mult
 		mult = 1

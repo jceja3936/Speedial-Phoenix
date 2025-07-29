@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bolbb3urbmybx"]
+[gd_scene load_steps=16 format=3 uid="uid://bolbb3urbmybx"]
 
 [ext_resource type="Script" uid="uid://ddqb8j0gyj6ik" path="res://Scripts/uiScript/end_screen.gd" id="1_4ws7o"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="1_yraj6"]
 [ext_resource type="Material" uid="uid://dreh33v4icnaj" path="res://assets/shaders/basicShaderMat.tres" id="3_5k28m"]
+[ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="4_jtytr"]
 [ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="4_pk1hw"]
 [ext_resource type="Shader" uid="uid://dj4rx4p7yo3jk" path="res://assets/shaders/blackScreen.gdshader" id="5_17owq"]
+[ext_resource type="FontFile" uid="uid://dv7g0una1e76a" path="res://assets/BAUHS93.ttf" id="6_0s3t6"]
 
 [sub_resource type="Shader" id="Shader_57j11"]
 code = "shader_type canvas_item;
@@ -95,6 +97,7 @@ offset_top = 48.0
 offset_right = 269.0
 offset_bottom = 117.0
 scale = Vector2(1.84916, 1.95115)
+theme_override_fonts/font = ExtResource("4_jtytr")
 theme_override_font_sizes/font_size = 50
 text = "Results:"
 uppercase = true
@@ -138,6 +141,7 @@ theme_override_constants/separation = 650
 [node name="Time" type="Label" parent="Main/vert/time"]
 material = SubResource("ShaderMaterial_bf3oi")
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_0s3t6")
 theme_override_font_sizes/font_size = 40
 text = "TIME"
 uppercase = true
@@ -150,11 +154,12 @@ uppercase = true
 
 [node name="wbroke" type="HBoxContainer" parent="Main/vert"]
 layout_mode = 2
-theme_override_constants/separation = 440
+theme_override_constants/separation = 480
 
 [node name="WallsB" type="Label" parent="Main/vert/wbroke"]
 material = SubResource("ShaderMaterial_17owq")
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jtytr")
 theme_override_font_sizes/font_size = 40
 text = "WAlls broken"
 uppercase = true
@@ -167,11 +172,12 @@ uppercase = true
 
 [node name="Combo" type="HBoxContainer" parent="Main/vert"]
 layout_mode = 2
-theme_override_constants/separation = 500
+theme_override_constants/separation = 508
 
 [node name="combo" type="Label" parent="Main/vert/Combo"]
 material = SubResource("ShaderMaterial_ko2to")
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jtytr")
 theme_override_font_sizes/font_size = 40
 text = "TOP COMBO"
 
@@ -183,11 +189,12 @@ uppercase = true
 
 [node name="Deaths" type="HBoxContainer" parent="Main/vert"]
 layout_mode = 2
-theme_override_constants/separation = 588
+theme_override_constants/separation = 600
 
 [node name="Deaths" type="Label" parent="Main/vert/Deaths"]
 material = SubResource("ShaderMaterial_3gobu")
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jtytr")
 theme_override_font_sizes/font_size = 40
 text = "DEATHS"
 
@@ -197,6 +204,10 @@ theme_override_font_sizes/font_size = 40
 text = "0000"
 uppercase = true
 
+[node name="ColorRect" type="ColorRect" parent="Main/vert"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
 [node name="score" type="HBoxContainer" parent="Main/vert"]
 layout_mode = 2
 theme_override_constants/separation = 615
@@ -204,6 +215,7 @@ theme_override_constants/separation = 615
 [node name="Score" type="Label" parent="Main/vert/score"]
 material = SubResource("ShaderMaterial_jtytr")
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_jtytr")
 theme_override_font_sizes/font_size = 40
 text = "SCORE"
 

@@ -10,7 +10,7 @@ var loadingScreen = preload("res://scenes/UIscenes/loading_screen.tscn")
 var playerRespawnPos = Vector2.ZERO
 var timer = 0.0
 var gamePaused = true
-var score = 0
+var score = -1
 var wallsBroke = 0
 
 var levelState = 1
@@ -43,7 +43,7 @@ func reset():
 	levelState = 1
 	gunType = 0
 	ammoCount = 0
-	score = 0
+	score = -1
 	mult = 1
 	deaths = 0
 	enemyAmount = 0

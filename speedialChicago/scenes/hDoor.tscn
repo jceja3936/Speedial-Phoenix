@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywwsx"]
 radius = 4.99998
-height = 114.0
+height = 108.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j806b"]
 size = Vector2(9.50002, 132)
@@ -45,6 +45,7 @@ texture_filter = 1
 texture = ExtResource("2_xo8n4")
 
 [node name="coll" type="CollisionShape2D" parent="door"]
+position = Vector2(1.086e-05, 3)
 shape = SubResource("CapsuleShape2D_ywwsx")
 
 [node name="right" type="Area2D" parent="door"]

@@ -17,7 +17,7 @@ func _ready() -> void:
 	$Main/vert/Combo/combNum.text = str(Manager.mult)
 	$Main/vert/Deaths/deathNum.text = str(Manager.deaths * -100)
 
-	var theScore = Manager.score + (Manager.wallsBroke * 100) + (Manager.deaths * -100)
+	var theScore = Manager.score + (Manager.wallsBroke * 100) + (Manager.deaths * -100) + (Manager.mult * 1000)
 	if theScore > 50000:
 		theScore = 50000
 	$Main/vert/score/scoreNum.text = str(theScore)

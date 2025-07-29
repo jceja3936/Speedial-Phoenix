@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qrirgxpp64hl"
-path="res://.godot/imported/csbear.png-f0d34c9d39bb61d45a2735b6055ed3cc.ctex"
+uid="uid://dyeqw5t8bctmi"
+path="res://.godot/imported/Level1.png-bc15f3891b598b61cf4aaeb10916ff49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/csbear.png"
-dest_files=["res://.godot/imported/csbear.png-f0d34c9d39bb61d45a2735b6055ed3cc.ctex"]
+source_file="res://assets/img/Level1.png"
+dest_files=["res://.godot/imported/Level1.png-bc15f3891b598b61cf4aaeb10916ff49.ctex"]
 
 [params]
 
