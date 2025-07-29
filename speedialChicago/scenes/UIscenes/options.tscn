@@ -76,6 +76,23 @@ offset_bottom = 992.0
 theme_override_font_sizes/font_size = 50
 text = "Back"
 
+[node name="Controlls" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 230.0
+offset_right = 1778.0
+offset_bottom = 647.0
+theme_override_fonts/font = ExtResource("2_drvp4")
+theme_override_font_sizes/font_size = 50
+text = "Controls:
+Movement                  WASD
+Camera                      Mouse
+Pick Up/Drop             F
+Fire                             LMB
+Finish                          Space
+Look Far                     RMB (Hold)
+"
+
 [connection signal="drag_ended" from="main/Music/music" to="." method="_on_music_drag_ended"]
 [connection signal="drag_ended" from="main/Sounds/sound" to="." method="_on_sound_drag_ended"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

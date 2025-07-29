@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 const GRAVITY = 1000
 @export var speed = 750
-@export var jump = -800
 @export var health = 200
 @export var cam: Camera2D
 

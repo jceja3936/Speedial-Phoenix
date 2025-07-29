@@ -4,6 +4,8 @@ var endPosition = Vector2.ZERO
 var state = 1
 var levelBeat = false
 var stage = [0, 0]
+var jankyBugFix = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -60,12 +62,25 @@ func set_State(newState: int):
 	if levelBeat == true:
 		Manager.setEnemyAmount(0)
 		$start.position = Vector2(469.0, 767.0)
+		$blocker.position = Vector2(10000, 10000)
 
 	$end.position = endPosition
 
 
 func _on_start_body_entered(body: Node2D) -> void:
-	if Manager.levelState == 3:
+	print("Yah yah")
+
+	if body.name == "Player":
+		match state:
+				1:
+					$blocker.position = Vector2(2666.0, 764.0)
+				2:
+					$blocker.position = Vector2(290.0, 5380.0)
+	
+	if Manager.getEnemyAmount() == 0:
+		$blocker.position = Vector2(10000, 10000)
+
+	if Manager.levelState == 3 and jankyBugFix == true:
 		SignalBus.emit_signal("playCutscene")
 		SignalBus.emit_signal("saveScore")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -74,18 +89,15 @@ func _on_start_body_entered(body: Node2D) -> void:
 
 		Manager.startNextScene()
 
-	if body.name == "Player":
-		match state:
-				1:
-					$blocker.position = Vector2(2666.0, 764.0)
-				2:
-					$blocker.position = Vector2(290.0, 5380.0)
-	if Manager.getEnemyAmount() == 0:
-		$blocker.position = Vector2(10000, 10000)
 					
+func bugFix():
+	await get_tree().create_timer(1).timeout
+	jankyBugFix = true
+
 
 func _on_end_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
+		print("End body entered, state is ", state)
 		if Manager.getEnemyAmount() == 0:
 			match state:
 				1:
@@ -105,6 +117,7 @@ func _on_end_body_entered(body: Node2D) -> void:
 					Manager.playSound("floorBeat", Vector2(198.0, 5372.0), 10.5)
 				2:
 					levelBeat = true
+					bugFix()
 					SignalBus.emit_signal("saveWB")
 					SignalBus.emit_signal("teleporting")
 					player.set("finish", true)
