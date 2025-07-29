@@ -77,7 +77,7 @@ func finishing(value: Vector2, enemy: CharacterBody2D):
 		Manager.playSound("punched", global_position, -5.0)
 		await get_tree().create_timer(.15).timeout
 		Manager.playSound("punched", global_position, -5.0)
-		if enemy and enemy.get("imHit") == true:
+		if enemy:
 			enemy.call("hit", 290)
 		finish = false
 
