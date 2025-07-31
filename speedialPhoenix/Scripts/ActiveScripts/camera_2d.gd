@@ -22,6 +22,8 @@ func _ready() -> void:
 			playerNode = "/root/Lvl2/Player"
 		"3":
 			playerNode = "/root/Lvl3/Player"
+		_:
+			print("Bruh, received ", Manager.current_scene)
 
 	player = get_node(playerNode)
 	position = player.global_position
