@@ -14,6 +14,8 @@ func _ready() -> void:
 
 	var playerNode = ""
 	match Manager.current_scene:
+		"0":
+			playerNode = "/root/tutorial/Player"
 		"1_1":
 			playerNode = "/root/Lvl1/Player"
 		"2":

@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=4 uid="uid://ccm3bfo311cwa"]
+
+[ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="1_1xhgp"]
+[ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_ptb6j"]
+[ext_resource type="TileSet" uid="uid://bdhuawh88bvlx" path="res://assets/finalTileSet.tres" id="3_i5npi"]
+[ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="4_ovh2w"]
+[ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://Scripts/ActiveScripts/camera_2d.gd" id="5_vr8ad"]
+[ext_resource type="Texture2D" uid="uid://didtkpnuwu263" path="res://assets/img/Cursor2 - Copy.png" id="6_i7eql"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="8_185hf"]
+[ext_resource type="PackedScene" uid="uid://dhdonfjjwt10f" path="res://scenes/tut_enemy.tscn" id="9_185hf"]
+[ext_resource type="PackedScene" uid="uid://c8rrc3lvlk3wq" path="res://scenes/UIscenes/bg_shader.tscn" id="9_tbs6h"]
+
+[node name="tutorial" type="Node2D"]
+
+[node name="MainUI" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="Control" parent="MainUI" instance=ExtResource("1_1xhgp")]
+offset_top = -1.0
+offset_bottom = -1.0
+
+[node name="pauseMenu" parent="MainUI" instance=ExtResource("2_ptb6j")]
+visible = false
+
+[node name="floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAJAAIAAAAFAAAAAAAJAAMAAAAFAAAAAAAKAAIAAAAFAAAAAAAKAAMAAAAFAAAAAAALAAIAAAAFAAAAAAALAAMAAAAFAAAAAAAMAAIAAAAFAAAAAAAMAAMAAAAFAAAAAAANAAIAAAAFAAAAAAANAAMAAAAFAAAAAAAOAAIAAAAFAAAAAAAOAAMAAAAFAAAAAAAPAAIAAAAFAAAAAAAPAAMAAAAFAAAAAAAQAAIAAAAFAAAAAAAQAAMAAAAFAAAAAAARAAIAAAAFAAAAAAARAAMAAAAFAAAAAAASAAIAAAAFAAAAAAASAAMAAAAFAAAAAAATAAIAAAAFAAAAAAATAAMAAAAFAAAAAAAJAAEAAAAFAAAAAAAKAAEAAAAFAAAAAAALAAEAAAAFAAAAAAAMAAEAAAAFAAAAAAAMAAQAAAAFAAAAAAALAAQAAAAFAAAAAAAKAAQAAAAFAAAAAAAJAAQAAAAFAAAAAAAUAAEAAAAAAAAAAAAUAAIAAAAFAAAAAAAUAAMAAAAFAAAAAAAUAAQAAAAAAAIAAAAVAAQAAAADAAEAAAAWAAQAAAABAAIAAAAXAAQAAAAEAAEAAAAYAAQAAAACAAIAAAAYAAMAAAAFAAAAAAAXAAMAAAAFAAAAAAAWAAMAAAAFAAAAAAAVAAMAAAAFAAAAAAAVAAIAAAAFAAAAAAAVAAEAAAABAAAAAAAWAAEAAAABAAAAAAAXAAEAAAABAAAAAAAXAAIAAAAFAAAAAAAWAAIAAAAFAAAAAAAYAAIAAAAFAAAAAAAYAAEAAAACAAAAAAAZAAMAAAAFAAAAAAAZAAIAAAAFAAAAAAAaAAIAAAAFAAAAAAAaAAMAAAAFAAAAAAAbAAMAAAAFAAAAAAAcAAMAAAAFAAAAAAAcAAIAAAAFAAAAAAAbAAIAAAAFAAAAAAAdAAIAAAAFAAAAAAAdAAMAAAAFAAAAAAAgAAEAAAAAAAAAAAAgAAIAAAAFAAAAAAAgAAMAAAAFAAAAAAAgAAQAAAAAAAIAAAAhAAEAAAABAAAAAAAhAAIAAAAFAAAAAAAhAAMAAAAFAAAAAAAhAAQAAAADAAEAAAAiAAEAAAABAAAAAAAiAAIAAAAFAAAAAAAiAAMAAAAFAAAAAAAiAAQAAAABAAIAAAAjAAEAAAABAAAAAAAjAAIAAAAFAAAAAAAjAAMAAAAFAAAAAAAjAAQAAAAEAAEAAAAkAAEAAAACAAAAAAAkAAIAAAAFAAAAAAAkAAMAAAAFAAAAAAAkAAQAAAACAAIAAAAeAAIAAAAFAAAAAAAeAAMAAAAFAAAAAAAfAAMAAAAFAAAAAAAfAAIAAAAFAAAAAAAmAAIAAAAFAAAAAAAmAAMAAAAFAAAAAAAnAAIAAAAFAAAAAAAnAAMAAAAFAAAAAAAoAAIAAAAFAAAAAAAoAAMAAAAFAAAAAAApAAIAAAAFAAAAAAApAAMAAAAFAAAAAAAqAAIAAAAFAAAAAAAqAAMAAAAFAAAAAAArAAIAAAAFAAAAAAArAAMAAAAFAAAAAAAlAAIAAAAFAAAAAAAlAAMAAAAFAAAAAAAsAAEAAAAAAAAAAAAsAAIAAAAFAAAAAAAsAAMAAAAFAAAAAAAsAAQAAAAAAAIAAAAtAAEAAAADAAAAAAAtAAIAAAAFAAAAAAAtAAMAAAAFAAAAAAAtAAQAAAADAAEAAAAuAAEAAAAFAAAAAAAuAAIAAAAFAAAAAAAuAAMAAAAFAAAAAAAvAAEAAAAEAAAAAAAvAAIAAAAFAAAAAAAvAAMAAAAFAAAAAAAvAAQAAAAEAAEAAAAwAAEAAAACAAAAAAAwAAIAAAACAAEAAAAwAAMAAAACAAEAAAAwAAQAAAACAAIAAAAuAAQAAAABAAIAAAAuAAAAAAAFAAAAAAAtAAAAAAAAAAEAAAAvAAAAAAACAAEAAAAvAP//AAACAAEAAAAuAP//AAAFAAAAAAAtAP//AAAAAAEAAAAuAP7/AAAFAAAAAAAtAP7/AAAAAAEAAAAvAP7/AAACAAEAAAAvAP3/AAACAAEAAAAuAP3/AAAFAAAAAAAtAP3/AAAAAAEAAAAtAPz/AAAAAAEAAAAuAPz/AAAFAAAAAAAvAPz/AAACAAEAAAAvAPv/AAACAAAAAAAuAPv/AAABAAAAAAAtAPv/AAAAAAAAAAA=")
+tile_set = ExtResource("3_i5npi")
+
+[node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("4_ovh2w")]
+position = Vector2(1409, 383)
+cam = NodePath("../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 5
+position = Vector2(1191, 195)
+script = ExtResource("5_vr8ad")
+
+[node name="Cursors" type="Sprite2D" parent="Camera2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_i7eql")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="bg" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(960, 540)
+texture = ExtResource("8_185hf")
+metadata/_edit_lock_ = true
+
+[node name="bgShader" parent="ParallaxBackground" instance=ExtResource("9_tbs6h")]
+metadata/_edit_lock_ = true
+
+[node name="tutEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_185hf")]
+position = Vector2(2869, 391)
+player = NodePath("../Player")

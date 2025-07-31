@@ -31,6 +31,10 @@ func _physics_process(delta: float):
 
 func reset():
 	match current_scene:
+		"0":
+			next_scene = "res://scenes/lvlScenes/tutorial.tscn"
+			current_scene = "0"
+
 		"1_1":
 			next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
 			current_scene = "1_1"

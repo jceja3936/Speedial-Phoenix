@@ -24,3 +24,10 @@ func _on_lel_1_pressed() -> void:
 	Manager.current_scene = "1_1"
 	Manager.reset()
 	Manager.startNextScene()
+
+
+func _on_tut_pressed() -> void:
+	Manager.next_scene = "res://scenes/lvlScenes/tutorial.tscn"
+	Manager.current_scene = "0"
+	Manager.reset()
+	Manager.startNextScene()

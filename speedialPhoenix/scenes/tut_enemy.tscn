@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhdonfjjwt10f"]
+
+[ext_resource type="Script" uid="uid://baejstcu2gtfc" path="res://Scripts/tut_enemy.gd" id="1_2t3jp"]
+[ext_resource type="Texture2D" uid="uid://yaffwv6ksg2d" path="res://assets/img/Gabriel.png" id="1_lckpr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lckpr"]
+radius = 48.0104
+
+[node name="tutEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_2t3jp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = -1.5708
+texture = ExtResource("1_lckpr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lckpr")

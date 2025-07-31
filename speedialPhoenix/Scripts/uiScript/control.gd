@@ -143,10 +143,10 @@ func slideComboAway():
 		
 
 func updateScore(value):
-	if value != 0:
-		mult += 1
 	makePretty()
 	score += value * mult
+	if value != 0:
+		mult += 1
 	updateMult()
 	$Score.text = str(score).pad_zeros(4)
 

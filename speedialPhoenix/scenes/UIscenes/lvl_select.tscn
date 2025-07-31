@@ -116,7 +116,17 @@ grow_vertical = 0
 scale = Vector2(3, 3)
 text = "Back"
 
+[node name="tut" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1629.0
+offset_top = 929.0
+offset_right = 1826.0
+offset_bottom = 1006.0
+theme_override_font_sizes/font_size = 50
+text = "Tutorial"
+
 [connection signal="pressed" from="GridContainer/lel1" to="." method="_on_lel_1_pressed"]
 [connection signal="pressed" from="GridContainer/l2" to="." method="_on_l_2_pressed"]
 [connection signal="pressed" from="GridContainer/l3" to="." method="_on_l_3_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="tut" to="." method="_on_tut_pressed"]

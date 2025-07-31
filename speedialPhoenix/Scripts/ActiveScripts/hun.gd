@@ -46,6 +46,8 @@ func _ready() -> void:
 	
 
 	match Manager.current_scene:
+		"0":
+			cmNode = "/root/tutorial/floor"
 		"1_1":
 			cmNode = "/root/Lvl1/floor1"
 		"2":
