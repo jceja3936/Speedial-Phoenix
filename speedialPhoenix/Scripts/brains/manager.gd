@@ -74,6 +74,8 @@ func startNextScene():
 	get_tree().root.add_child(loadScreen)
 
 func playSound(item_name: String, pos: Vector2, _aud: float = 0.0):
+	if sfx == -20.0:
+		return
 	var sound = item_sounds.get(item_name)
 	if sound:
 		var player = AudioStreamPlayer2D.new()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dqn8pafh1o8sn" path="res://assets/img/icon-dark.png" id="1_5cq4l"]
 [ext_resource type="Script" uid="uid://cdilhhuk0xjx1" path="res://Scripts/uiScript/splash_screens.gd" id="1_vlwtv"]
-[ext_resource type="Texture2D" uid="uid://drasg815rg1nt" path="res://assets/img/splashScreen2.png" id="2_ikrj0"]
+[ext_resource type="Texture2D" uid="uid://oehwg0qnnjum" path="res://assets/img/logoExperiments.png" id="2_ikrj0"]
 
 [node name="splashScreens" type="Control"]
 layout_mode = 3
@@ -20,7 +20,6 @@ offset_bottom = 1100.0
 color = Color(0, 0, 0, 1)
 
 [node name="mine" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(960, 540)
 texture = ExtResource("2_ikrj0")
 

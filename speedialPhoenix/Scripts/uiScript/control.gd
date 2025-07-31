@@ -30,6 +30,7 @@ func _ready():
 	$resp.hide()
 	if Manager.score != -1:
 		score = Manager.score
+		prevScore = score
 		updateScore(0)
 
 func scutScene():
@@ -76,6 +77,7 @@ func beatPretty():
 	if oTweener < 1.0:
 		beatPretty()
 
+
 func playFFanim():
 	if tweener == 1.0:
 		tweener = 0.0
@@ -107,20 +109,44 @@ func updateResp(value):
 func multManager():
 	prevScore = score
 	await get_tree().create_timer(1.25).timeout
-	if score == prevScore or score == Manager.score:
+	if score == prevScore:
 		if mult > Manager.mult:
 			Manager.mult = mult
 		mult = 1
+		comboDirection = true
+		slideComboAway()
 		updateMult()
+		
+
 	multManager()
 
+var comboDirection = true
+
 func updateMult():
-	$mult.text = str(mult)
+	if mult > 1:
+		comboDirection = false
+		slideComboto()
+
+	$ComboCont/mult.text = str(mult)
+
+func slideComboto():
+	$ComboCont.position.x = lerp($ComboCont.position.x, 1766.0, .1)
+	if $ComboCont.position.x > 1780.0 and !comboDirection:
+		await get_tree().create_timer(.05).timeout
+		slideComboto()
+
+func slideComboAway():
+	$ComboCont.position.x = lerp($ComboCont.position.x, 2127.0, .1)
+	if $ComboCont.position.x <= 2120.0 and comboDirection:
+		await get_tree().create_timer(.05).timeout
+		slideComboAway()
+		
 
 func updateScore(value):
+	if value != 0:
+		mult += 1
 	makePretty()
 	score += value * mult
-	mult += 1
 	updateMult()
 	$Score.text = str(score).pad_zeros(4)
 

@@ -2,7 +2,7 @@ extends Control
 
 var inTime: float = .5
 var fadeInTime: float = .5
-var pTime: float = .5
+var pTime: float = .75
 var foTime: float = .5
 var outTime: float = .5
 

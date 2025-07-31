@@ -68,8 +68,6 @@ func set_State(newState: int):
 
 
 func _on_start_body_entered(body: Node2D) -> void:
-	print("Yah yah")
-
 	if body.name == "Player":
 		match state:
 				1:
@@ -97,7 +95,6 @@ func bugFix():
 
 func _on_end_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		print("End body entered, state is ", state)
 		if Manager.getEnemyAmount() == 0:
 			match state:
 				1:

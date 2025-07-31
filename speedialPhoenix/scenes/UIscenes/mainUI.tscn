@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dewgjpt1wbtm4"]
+[gd_scene load_steps=14 format=3 uid="uid://dewgjpt1wbtm4"]
 
 [ext_resource type="Script" uid="uid://cigsncue0fg5s" path="res://Scripts/uiScript/control.gd" id="1_nufsr"]
 [ext_resource type="Material" uid="uid://dreh33v4icnaj" path="res://assets/shaders/basicShaderMat.tres" id="1_qvd58"]
 [ext_resource type="Texture2D" uid="uid://bvdhw15b1h4x" path="res://assets/img/Floor beat.png" id="2_7hqfr"]
+[ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="3_cilar"]
 [ext_resource type="Shader" uid="uid://vuar85e1xgyh" path="res://assets/shaders/floorBeatShader.gdshader" id="3_oj8hp"]
-[ext_resource type="Texture2D" uid="uid://dat0thkqujbf3" path="res://assets/img/pointsFlavor.png" id="3_vtmv6"]
 [ext_resource type="Texture2D" uid="uid://bexmw0p4ieja5" path="res://assets/img/Finished.png" id="5_thuov"]
 [ext_resource type="Texture2D" uid="uid://c58b0mkfqtmpe" path="res://assets/img/grayNoise.png" id="6_sdlxc"]
 [ext_resource type="Shader" uid="uid://dj4rx4p7yo3jk" path="res://assets/shaders/blackScreen.gdshader" id="6_vtmv6"]
+[ext_resource type="Texture2D" uid="uid://dmqfnbhfxe1vb" path="res://assets/img/pts.png" id="9_wbnar"]
+[ext_resource type="Texture2D" uid="uid://dr28foaiuiwx5" path="res://assets/img/Combo.png" id="10_fvpjl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_502jd"]
 shader = ExtResource("3_oj8hp")
@@ -59,12 +61,13 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 17.0
-offset_top = -84.0
-offset_right = 77.0
-offset_bottom = -61.0
+offset_left = 53.0
+offset_top = -143.0
+offset_right = 287.0
+offset_bottom = -63.0
 grow_vertical = 0
-scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("3_cilar")
+theme_override_font_sizes/font_size = 70
 text = "Ammo: "
 
 [node name="Score" type="Label" parent="."]
@@ -72,31 +75,12 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -209.0
-offset_top = 833.0
-offset_right = 78.0
-offset_bottom = 902.0
+offset_left = -146.0
+offset_bottom = 69.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 50
-text = "0000"
-
-[node name="mult" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -132.0
-offset_top = 936.0
-offset_right = -103.0
-offset_bottom = 1077.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 40
-text = "1
-"
-
-[node name="FlavorText" type="Sprite2D" parent="."]
-position = Vector2(1747, 912)
-texture = ExtResource("3_vtmv6")
+text = "         0"
+horizontal_alignment = 2
 
 [node name="FloorBeat" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -119,6 +103,28 @@ visible = false
 position = Vector2(-49.3983, -55.5321)
 rotation = -2.71407
 texture = ExtResource("5_thuov")
+
+[node name="score" type="Sprite2D" parent="."]
+position = Vector2(1747, 68)
+texture = ExtResource("9_wbnar")
+
+[node name="ComboCont" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 2127.0
+offset_top = 69.0
+offset_right = 2150.0
+offset_bottom = 182.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="combo" type="Sprite2D" parent="ComboCont"]
+position = Vector2(-90, 50)
+texture = ExtResource("10_fvpjl")
+
+[node name="mult" type="Label" parent="ComboCont"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "1"
 
 [node name="blackScreen" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cilar")
