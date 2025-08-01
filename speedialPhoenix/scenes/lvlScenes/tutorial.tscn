@@ -122,7 +122,7 @@ offset_right = 219.0
 offset_bottom = -31.0
 theme_override_fonts/font = ExtResource("12_50kau")
 theme_override_font_sizes/font_size = 60
-text = "This is a Hammer"
+text = "This is an Enemy"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -134,7 +134,8 @@ offset_right = 546.0
 offset_bottom = 800.0
 theme_override_fonts/font = ExtResource("12_50kau")
 theme_override_font_sizes/font_size = 60
-text = "Use it on a wall"
+text = "Click to Attack
+Space (near an Enemy) to Finish"
 horizontal_alignment = 1
 
 [node name="arrow" type="Sprite2D" parent="brain"]

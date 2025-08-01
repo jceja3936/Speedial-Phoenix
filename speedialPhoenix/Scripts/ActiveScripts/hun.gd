@@ -299,6 +299,7 @@ func findProperTile(tCord: Vector2i, atCord: Vector2i):
 
 	
 func melee():
+	print("U GONNA DIE")
 	for i in range(hitBox.get_collision_count()):
 		var collider = hitBox.get_collider(i)
 		if hitBox.is_colliding():
@@ -342,7 +343,10 @@ func wait(_punched: int = 0) -> bool:
 	return true
 
 func waitPunch():
-	await get_tree().create_timer(.2).timeout
+	if gunType == 4:
+		await get_tree().create_timer(.3).timeout
+	else:
+		await get_tree().create_timer(.2).timeout
 	punching = false
 	if gunType == 0:
 			texture = null
