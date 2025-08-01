@@ -26,6 +26,8 @@ func _physics_process(_delta: float) -> void:
 				playOnce()
 				SignalBus.emit_signal("levelBeat")
 				Manager.gamePaused = true
+				GameAudio.pauseMusic()
+				GameAudio.levelBeat = true
 				$arrow.look_at($end.global_position)
 			3:
 				SignalBus.emit_signal("levelBeat")

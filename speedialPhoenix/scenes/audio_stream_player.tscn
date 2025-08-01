@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8gkd6spqencm"]
+
+[ext_resource type="AudioStream" uid="uid://kgxa77wf8ui" path="res://assets/aud/speeddial song.wav" id="1_nbeep"]
+[ext_resource type="Script" uid="uid://durv2grt17qs2" path="res://Scripts/uiScript/audio_stream_player.gd" id="2_6eoa2"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_nbeep")
+script = ExtResource("2_6eoa2")

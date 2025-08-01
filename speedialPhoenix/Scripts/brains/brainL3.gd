@@ -28,13 +28,13 @@ func _physics_process(_delta: float) -> void:
 		$arrow.position = player.global_position + Vector2(0, 100)
 		$arrow.show()
 
-		match state:
-			1:
-				SignalBus.emit_signal("levelBeat")
-				Manager.gamePaused = true
-				levelBeat = true
-				playOnce()
-				$arrow.look_at($Start.global_position)
+		GameAudio.pauseMusic()
+		GameAudio.levelBeat = true
+		SignalBus.emit_signal("levelBeat")
+		Manager.gamePaused = true
+		levelBeat = true
+		playOnce()
+		$arrow.look_at($Start.global_position)
 
 
 	else:

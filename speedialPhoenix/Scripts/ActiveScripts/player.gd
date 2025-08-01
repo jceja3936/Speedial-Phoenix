@@ -24,6 +24,8 @@ var loop = false
 
 
 func _ready() -> void:
+	if GameAudio.isPlaying == false:
+		GameAudio.playMusic()
 	SignalBus.finishing.connect(finishing)
 	SignalBus.paused.connect(paused)
 	SignalBus.unPaused.connect(unPaused)
@@ -59,9 +61,11 @@ func playAmbience():
 
 func paused():
 	gamePaused = true
+	GameAudio.pauseMusic()
 	Manager.gamePaused = true
 func unPaused():
 	gamePaused = false
+	GameAudio.resumeMusic()
 	Manager.gamePaused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	cameFollow = true
