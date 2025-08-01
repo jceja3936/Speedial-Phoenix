@@ -15,6 +15,8 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if state == 4:
+		GameAudio.pauseMusic()
+		GameAudio.levelBeat = true
 		$arrow.show()
 		$arrow.position = player.global_position + Vector2(0, 100)
 		$arrow.look_at($end.global_position)

@@ -58,15 +58,26 @@ func bsFinisher():
 		if bsTweener < 1.0:
 			bsFinisher()
 
-	
+var happenOnceInator = false
+var happendCount = 0
 func levelBeat():
 	if oTweener >= 1.0:
 		oTweener = 0.0
 		beatPretty()
-		
+	if !happenOnceInator:
+		playAnim()
+		happenOnceInator = true
 	lb = true
 	$AmAm.hide()
 	$Path2D/PathFollow2D/funTxt.show()
+
+func playAnim():
+	$Path2D/PathFollow2D/funTxt.play()
+	
+func _on_fun_txt_animation_finished() -> void:
+	if happendCount <= 3:
+		happendCount += 1
+		playAnim()
 
 func beatPretty():
 	$Path2D/PathFollow2D.progress_ratio = oTweener
@@ -96,6 +107,7 @@ func updateAmmo(value):
 	if value == -1 or lb == true:
 		$AmAm.hide()
 	else:
+		print("Showing Am AM cus lb is ", lb)
 		$AmAm.show()
 	$AmAm.text = "Ammo: " + str(value)
 

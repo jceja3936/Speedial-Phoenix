@@ -1,13 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://dewgjpt1wbtm4"]
+[gd_scene load_steps=17 format=3 uid="uid://dewgjpt1wbtm4"]
 
 [ext_resource type="Script" uid="uid://cigsncue0fg5s" path="res://Scripts/uiScript/control.gd" id="1_nufsr"]
 [ext_resource type="Material" uid="uid://dreh33v4icnaj" path="res://assets/shaders/basicShaderMat.tres" id="1_qvd58"]
 [ext_resource type="Texture2D" uid="uid://bvdhw15b1h4x" path="res://assets/img/Floor beat.png" id="2_7hqfr"]
 [ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="3_cilar"]
 [ext_resource type="Shader" uid="uid://vuar85e1xgyh" path="res://assets/shaders/floorBeatShader.gdshader" id="3_oj8hp"]
-[ext_resource type="Texture2D" uid="uid://bexmw0p4ieja5" path="res://assets/img/Finished.png" id="5_thuov"]
 [ext_resource type="Texture2D" uid="uid://c58b0mkfqtmpe" path="res://assets/img/grayNoise.png" id="6_sdlxc"]
 [ext_resource type="Shader" uid="uid://dj4rx4p7yo3jk" path="res://assets/shaders/blackScreen.gdshader" id="6_vtmv6"]
+[ext_resource type="Texture2D" uid="uid://cq3csjmirjlm5" path="res://assets/img/blueTop.png" id="7_fvpjl"]
+[ext_resource type="Texture2D" uid="uid://dfa0dje3erdk3" path="res://assets/img/redTop.png" id="8_irgif"]
+[ext_resource type="Texture2D" uid="uid://dnhycb8qr2y24" path="res://assets/img/yelTop.png" id="9_6d7n1"]
 [ext_resource type="Texture2D" uid="uid://dmqfnbhfxe1vb" path="res://assets/img/pts.png" id="9_wbnar"]
 [ext_resource type="Texture2D" uid="uid://dr28foaiuiwx5" path="res://assets/img/Combo.png" id="10_fvpjl"]
 
@@ -19,6 +21,23 @@ _data = {
 "points": PackedVector2Array(-38.9318, 85.4074, 38.9318, -85.4074, 145, 954, -4.55642, -24.3593, 4.55642, 24.3593, 240, 951, 51.5365, 0.931382, -51.5365, -0.931382, 189, 1019, 0, 0, 0, 0, 145, 954)
 }
 point_count = 4
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1o7g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_fvpjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_irgif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6d7n1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cilar"]
 shader = ExtResource("6_vtmv6")
@@ -90,20 +109,19 @@ scale = Vector2(1.41979, 1)
 texture = ExtResource("2_7hqfr")
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(777, -716)
+position = Vector2(103, 124)
 scale = Vector2(0.9, 0.9)
 curve = SubResource("Curve2D_thuov")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(145, 954)
-rotation = 2.7133
+progress = 326.377
 rotates = false
 
-[node name="funTxt" type="Sprite2D" parent="Path2D/PathFollow2D"]
+[node name="funTxt" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
 visible = false
-position = Vector2(-49.3983, -55.5321)
-rotation = -2.71407
-texture = ExtResource("5_thuov")
+sprite_frames = SubResource("SpriteFrames_y1o7g")
+frame_progress = 0.413105
 
 [node name="score" type="Sprite2D" parent="."]
 position = Vector2(1747, 68)
@@ -132,3 +150,5 @@ material = SubResource("ShaderMaterial_cilar")
 position = Vector2(959.875, 540.125)
 scale = Vector2(0.937622, 0.527222)
 texture = ExtResource("6_sdlxc")
+
+[connection signal="animation_finished" from="Path2D/PathFollow2D/funTxt" to="." method="_on_fun_txt_animation_finished"]

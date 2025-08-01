@@ -38,6 +38,9 @@ func playOnce():
 	if stage[0] == 0:
 		stage[0] = 1
 		Manager.playSound("floorBeat", player.global_position, 10.5)
+	elif stage[1] == 0 and state == 2:
+		stage[1] = 1
+		Manager.playSound("levelBeat", player.global_position, 10.5)
 		
 	
 func set_State(newState: int):
