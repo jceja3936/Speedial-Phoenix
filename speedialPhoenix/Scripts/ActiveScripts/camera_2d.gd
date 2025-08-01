@@ -7,6 +7,7 @@ var cursOffset = Vector2.ZERO
 
 func _ready() -> void:
 	SignalBus.playCutscene.connect(leave)
+	SignalBus.tutorialCutscens.connect(tutScene)
 	setCam(0)
 	for node in get_tree().root.get_children():
 		if node.has_meta("placed"):
@@ -30,6 +31,15 @@ func _ready() -> void:
 			
 	$Cursors.top_level = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+
+func tutScene(part):
+	speed = 1.6
+	cameFollow = part
+	reset(5)
+
+func reset(time):
+	await get_tree().create_timer(time).timeout
+	setCam(0)
 
 func leave():
 	speed = .8
@@ -59,6 +69,14 @@ func _physics_process(_delta: float) -> void:
 	if cameFollow == -1:
 		position = lerp(position, player_pos + Vector2(0, -3000), 1.0 - exp(- speed * _delta))
 		return
+	elif cameFollow == -2:
+		position = lerp(position, Vector2(2865.0, 396.0), 1.0 - exp(- speed * _delta))
+		return
+	elif cameFollow == -3:
+		position = lerp(position, Vector2(4420.0, 396.0), 1.0 - exp(- speed * _delta))
+		return
+
+
 	var mouse_pos = get_global_mouse_position()
 
 	angletoLerpBy = lerp_angle(angletoLerpBy, get_angle_to(mouse_pos), 1.0 - exp(- speed * _delta))

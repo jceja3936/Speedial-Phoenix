@@ -12,6 +12,7 @@ func _ready():
 
 func loadGodot():
     $godot.modulate.a = 0.0
+    $godot.show()
     var tween = self.create_tween()
     tween.tween_interval(inTime)
     tween.tween_property($godot, "modulate:a", 1.0, fadeInTime)

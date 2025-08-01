@@ -72,8 +72,8 @@ func beatPretty():
 	$Path2D/PathFollow2D.progress_ratio = oTweener
 	$Path2D/PathFollow2D/funTxt.skew = deg_to_rad(sCurve.sample(oTweener))
 	$Path2D/PathFollow2D/funTxt.scale = Vector2(1.0 + oCurve.sample(oTweener), 1.0 + oCurve.sample(oTweener))
-	await get_tree().create_timer(.05).timeout
-	oTweener += .02
+	await get_tree().create_timer(.02).timeout
+	oTweener += .008
 	if oTweener < 1.0:
 		beatPretty()
 
@@ -130,15 +130,15 @@ func updateMult():
 	$ComboCont/mult.text = str(mult)
 
 func slideComboto():
-	$ComboCont.position.x = lerp($ComboCont.position.x, 1766.0, .1)
+	$ComboCont.position.x = lerp($ComboCont.position.x, 1766.0, .05)
 	if $ComboCont.position.x > 1780.0 and !comboDirection:
-		await get_tree().create_timer(.05).timeout
+		await get_tree().create_timer(.02).timeout
 		slideComboto()
 
 func slideComboAway():
-	$ComboCont.position.x = lerp($ComboCont.position.x, 2127.0, .1)
+	$ComboCont.position.x = lerp($ComboCont.position.x, 2127.0, .05)
 	if $ComboCont.position.x <= 2120.0 and comboDirection:
-		await get_tree().create_timer(.05).timeout
+		await get_tree().create_timer(.02).timeout
 		slideComboAway()
 		
 
