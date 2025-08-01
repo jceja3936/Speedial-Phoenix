@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://ccm3bfo311cwa"]
+[gd_scene load_steps=18 format=4 uid="uid://ccm3bfo311cwa"]
 
 [ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="1_1xhgp"]
 [ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_ptb6j"]
@@ -12,12 +12,14 @@
 [ext_resource type="Script" uid="uid://b5wevoal42bsa" path="res://Scripts/brains/tutBrain.gd" id="10_abf0q"]
 [ext_resource type="PackedScene" uid="uid://dowe60l1v3rl6" path="res://scenes/gunScenes/shotgun.tscn" id="11_50kau"]
 [ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="12_50kau"]
+[ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/arrow.png" id="13_nj81d"]
+[ext_resource type="PackedScene" uid="uid://03lxyxx3lv78" path="res://scenes/gunScenes/hammer.tscn" id="14_bxin3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_185hf"]
 size = Vector2(124, 303)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbs6h"]
-size = Vector2(125, 286)
+size = Vector2(33.5, 286)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abf0q"]
 size = Vector2(254, 448)
@@ -45,7 +47,7 @@ cam = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 5
-position = Vector2(2861, 396)
+position = Vector2(5944, -478)
 script = ExtResource("5_vr8ad")
 
 [node name="Cursors" type="Sprite2D" parent="Camera2D"]
@@ -73,12 +75,14 @@ position = Vector2(4418, 393)
 position = Vector2(5935, 408)
 player = NodePath("../Player")
 
-[node name="brain" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="brain" type="Node" parent="." node_paths=PackedStringArray("player", "top", "bottom")]
 script = ExtResource("10_abf0q")
 player = NodePath("../Player")
+top = NodePath("textContainer/Top")
+bottom = NodePath("textContainer/Bottom")
 
 [node name="start" type="Area2D" parent="brain"]
-position = Vector2(2471, 663)
+position = Vector2(5954, 68)
 collision_mask = 8
 metadata/_edit_group_ = true
 
@@ -86,42 +90,61 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_185hf")
 
 [node name="end" type="Area2D" parent="brain"]
-position = Vector2(3201, 1008)
+position = Vector2(5958, -867)
 collision_mask = 8
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="brain/end"]
+position = Vector2(1, 0.999998)
 shape = SubResource("RectangleShape2D_tbs6h")
 
 [node name="block" type="StaticBody2D" parent="brain"]
-position = Vector2(4851, 385)
+position = Vector2(4998, -162)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="brain/block"]
 position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_abf0q")
 
-[node name="Top" type="Label" parent="brain"]
-offset_left = 2258.0
+[node name="textContainer" type="Control" parent="brain"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5956.0
+offset_top = -783.0
+offset_right = 5956.0
+offset_bottom = -783.0
+
+[node name="Top" type="Label" parent="brain/textContainer"]
+layout_mode = 2
+offset_left = -223.0
 offset_top = -99.0
-offset_right = 3489.0
-offset_bottom = 86.0
+offset_right = 219.0
+offset_bottom = -31.0
 theme_override_fonts/font = ExtResource("12_50kau")
 theme_override_font_sizes/font_size = 60
-text = " This is an Enemy"
+text = "This is a Hammer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Bottom" type="Label" parent="brain"]
-offset_left = 2070.0
+[node name="Bottom" type="Label" parent="brain/textContainer"]
+layout_mode = 2
+offset_left = -540.0
 offset_top = 661.0
-offset_right = 3710.0
-offset_bottom = 846.0
+offset_right = 546.0
+offset_bottom = 800.0
 theme_override_fonts/font = ExtResource("12_50kau")
 theme_override_font_sizes/font_size = 60
-text = "Click to attack
-Space (Near an Enemy) to Finish them off"
+text = "Use it on a wall"
 horizontal_alignment = 1
+
+[node name="arrow" type="Sprite2D" parent="brain"]
+visible = false
+position = Vector2(419, 283)
+scale = Vector2(0.762188, 0.592289)
+texture = ExtResource("13_nj81d")
+
+[node name="Hammer" parent="." instance=ExtResource("14_bxin3")]
+position = Vector2(5952, -486)
 
 [connection signal="body_entered" from="brain/start" to="brain" method="_on_start_body_entered"]
 [connection signal="body_entered" from="brain/end" to="brain" method="_on_end_body_entered"]

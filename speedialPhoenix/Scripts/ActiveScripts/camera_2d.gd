@@ -66,15 +66,23 @@ var speed = 1
 
 func _physics_process(_delta: float) -> void:
 	var player_pos = player.global_position
-	if cameFollow == -1:
-		position = lerp(position, player_pos + Vector2(0, -3000), 1.0 - exp(- speed * _delta))
-		return
-	elif cameFollow == -2:
-		position = lerp(position, Vector2(2865.0, 396.0), 1.0 - exp(- speed * _delta))
-		return
-	elif cameFollow == -3:
-		position = lerp(position, Vector2(4420.0, 396.0), 1.0 - exp(- speed * _delta))
-		return
+
+	match cameFollow:
+		-1:
+			position = lerp(position, player_pos + Vector2(0, -3000), 1.0 - exp(- speed * _delta))
+			return
+		-2:
+			position = lerp(position, Vector2(2865.0, 396.0), 1.0 - exp(- speed * _delta))
+			return
+		-3:
+			position = lerp(position, Vector2(4420.0, 396.0), 1.0 - exp(- speed * _delta))
+			return
+		-4:
+			position = lerp(position, Vector2(5944.0, 396.0), 1.0 - exp(- speed * _delta))
+			return
+		-5:
+			position = lerp(position, Vector2(5944.0, -478.0), 1.0 - exp(- speed * _delta))
+			return
 
 
 	var mouse_pos = get_global_mouse_position()
