@@ -48,7 +48,7 @@ func set_State(newState: int):
 	state = newState
 	match state:
 		1:
-			Manager.setEnemyAmount(3)
+			Manager.setEnemyAmount(1)
 			endPosition = Vector2(-57.0, 1023)
 			$start.position = Vector2(1097.0, 355.0)
 		2:

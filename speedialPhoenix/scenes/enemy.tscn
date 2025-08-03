@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv60myid72qvl"]
+[gd_scene load_steps=6 format=3 uid="uid://cv60myid72qvl"]
 
 [ext_resource type="Script" uid="uid://cc2s2fd72wrxi" path="res://Scripts/ActiveScripts/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://yaffwv6ksg2d" path="res://assets/img/Gabriel.png" id="2_4ra3w"]
+[ext_resource type="Texture2D" uid="uid://bo5nwq48oucqq" path="res://assets/img/knocked2.png" id="3_4ra3w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ra3w"]
 radius = 48.0104
@@ -65,6 +66,14 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_5uy6h")
+
+[node name="birds" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(-4, 12)
+rotation = 6.28319
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_4ra3w")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

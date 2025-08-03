@@ -96,9 +96,9 @@ func playFFanim():
 
 func finisher():
 	if $FloorBeat:
-		$FloorBeat.position = Vector2((4000.0 * curve.sample(tweener) - 907.0), 245.0)
-		await get_tree().create_timer(.05).timeout
-		tweener += .02
+		$FloorBeat.position = Vector2((4100.0 * curve.sample(tweener) - 1000.0), 245.0)
+		await get_tree().create_timer(.01).timeout
+		tweener += .005
 		if tweener < 1.0:
 			finisher()
 

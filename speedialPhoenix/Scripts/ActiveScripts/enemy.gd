@@ -42,6 +42,7 @@ var player: CharacterBody2D
 var gamePaused = false
 
 func _ready() -> void:
+	$birds.hide()
 	SignalBus.paused.connect(paused)
 	SignalBus.unPaused.connect(unPaused)
 
@@ -144,6 +145,8 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	if falling:
+		$birds.show()
+		$birds.rotation_degrees += 5
 		x = lerp(x, 1.0, .08)
 		rotation = deg_to_rad(rad_to_deg(toRotby) + 180)
 		velocity = Vector2(curve.sample(x) * 1000, 0).rotated(toRotby)
@@ -151,6 +154,7 @@ func _physics_process(_delta: float) -> void:
 
 	if imHit:
 		return
+	$birds.hide()
 
 	var player_pos = player.global_position
 
