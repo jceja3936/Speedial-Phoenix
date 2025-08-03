@@ -14,7 +14,11 @@ func _ready() -> void:
 
 	match Manager.current_scene:
 		"1_1":
-			tiers = [1600, 2000, 2200, 2600, 3000]
+			tiers = [1600, 2000, 2200, 2600, 3500]
+		"2":
+			tiers = [3000, 5000, 7000, 9000, 10000]
+		"3":
+			tiers = [4000, 6000, 8000, 10000, 12000]
 	$Main/vert/wbroke/wNum.text = str(Manager.wallsBroke)
 	var ogTime = Manager.timer
 	var minutes = 0
@@ -24,7 +28,7 @@ func _ready() -> void:
 		ogTime -= 60
 		minutes += 1
 	seconds = ogTime
-	$Main/vert/time/timeNum.text = str(minutes) + ":" + str(int(seconds))
+	$Main/vert/time/timeNum.text = str(minutes) + ":" + str(int(seconds)).pad_zeros(2)
 	$Main/vert/Combo/combNum.text = str(Manager.mult)
 	$Main/vert/Deaths/deathNum.text = str(Manager.deaths * -100)
 

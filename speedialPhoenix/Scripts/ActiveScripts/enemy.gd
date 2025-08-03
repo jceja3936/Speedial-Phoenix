@@ -184,6 +184,10 @@ func _physics_process(_delta: float) -> void:
 	if degToRotby == 90:
 		degToRotby = -90.0
 		secDeg = 90
+
+	if position.distance_to(player_pos) >= 1500:
+		return
+	
 	takeAlook(player_pos)
 
 func takeAlook(playPos: Vector2):
