@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://clkbpj3uj5u2d" path="res://Scripts/uiScript/start_menu.gd" id="1_t600c"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="2_l82ty"]
-[ext_resource type="Texture2D" uid="uid://dxep4kfcdgmdj" path="res://assets/img/titleArt.png" id="2_rofax"]
+[ext_resource type="Texture2D" uid="uid://dgy2lcnqyj1y8" path="res://assets/img/titleArt2.png" id="2_nuoxx"]
 [ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/shaders/start_menu.gdshader" id="3_l82ty"]
 [ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="4_nuoxx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nuoxx"]
 shader = ExtResource("3_l82ty")
 shader_parameter/noise_img = ExtResource("4_nuoxx")
-shader_parameter/myColor = Color(1, 0, 0, 1)
-shader_parameter/myOpaq = 1.0
+shader_parameter/myColor = Color(0.993173, 0, 0.220425, 1)
+shader_parameter/myOpaq = 0.6
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -23,7 +23,7 @@ script = ExtResource("1_t600c")
 
 [node name="bg" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-texture = ExtResource("2_rofax")
+texture = ExtResource("2_nuoxx")
 
 [node name="shader" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_nuoxx")

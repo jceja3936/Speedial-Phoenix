@@ -1,9 +1,20 @@
 extends Control
 
 var bsTweener = 0.0
+var dTier = 0
+var cTier = 0
+var bTier = 0
+var aTier = 0
+var sTier = 0
+
+var tiers = [0, 0, 0, 0, 0]
 
 func _ready() -> void:
 	cutScene()
+
+	match Manager.current_scene:
+		"1_1":
+			tiers = [1600, 2000, 2200, 2600, 3000]
 	$Main/vert/wbroke/wNum.text = str(Manager.wallsBroke)
 	var ogTime = Manager.timer
 	var minutes = 0
@@ -17,9 +28,26 @@ func _ready() -> void:
 	$Main/vert/Combo/combNum.text = str(Manager.mult)
 	$Main/vert/Deaths/deathNum.text = str(Manager.deaths * -100)
 
-	var theScore = Manager.score + (Manager.wallsBroke * 100) + (Manager.deaths * -100) + (Manager.mult * 1000)
-	if theScore > 50000:
-		theScore = 50000
+	var theScore = Manager.score + (Manager.wallsBroke * 100) + (Manager.deaths * -100) + (Manager.mult * 500)
+
+	var yourTier = 0
+
+	for tier in tiers:
+		if theScore >= tier:
+			yourTier += 1
+
+	match yourTier:
+		1:
+			$Results.text = "Results: D rank"
+		2:
+			$Results.text = "Results: C rank"
+		3:
+			$Results.text = "Results: B rank"
+		4:
+			$Results.text = "Results: A rank"
+		5:
+			$Results.text = "Results: S rank"
+
 	$Main/vert/score/scoreNum.text = str(theScore)
 
 	if Manager.current_scene == "3":

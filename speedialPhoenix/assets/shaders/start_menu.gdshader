@@ -6,8 +6,8 @@ uniform float myOpaq = 0.0;
 
 void fragment() {
 	vec2 uv1 = vec2(UV.x + TIME * .1, UV.y);
-	vec2 uv2 = vec2(UV.x - TIME * .5, UV.y);
-	vec2 uv3 = vec2(UV.x, UV.y + TIME * .1);
+	vec2 uv2 = vec2(UV.x - TIME * .2, UV.y);
+	vec2 uv3 = vec2(UV.x, UV.y + TIME * .2);
 
 	float noise_r = texture(noise_img, uv1).r;
 	float noise_g = texture(noise_img, uv2).g;

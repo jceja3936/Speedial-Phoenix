@@ -107,7 +107,6 @@ func updateAmmo(value):
 	if value == -1 or lb == true:
 		$AmAm.hide()
 	else:
-		print("Showing Am AM cus lb is ", lb)
 		$AmAm.show()
 	$AmAm.text = "Ammo: " + str(value)
 

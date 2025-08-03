@@ -6,8 +6,11 @@ extends Node
 var state = 0
 var levelBeat = false
 var doneArray = [0, 0, 0, 0]
+var fadeInTime = 2
 
 func _ready() -> void:
+	GameAudio.isPlaying = true
+	GameAudio.pauseMusic()
 	$textContainer.position = Vector2(2869.0, 55.0)
 	set_State(Manager.levelState)
 	top.modulate.a = 0.0
@@ -50,7 +53,7 @@ func set_State(newState: int):
 			$end.position = Vector2(4670.0, 380.0)
 
 		3:
-			$start.position = Vector2(5574.0, 394.0)
+			$start.position = Vector2(5044.0, 394.0)
 			$end.position = Vector2(5959.0, 155.0)
 			$end.rotation_degrees = 90
 		4:
@@ -110,7 +113,7 @@ func _on_start_body_entered(body: Node2D) -> void:
 						SignalBus.emit_signal("tutorialCutscens", -2)
 						player.set("finish", true)
 						fadeInText()
-						await get_tree().create_timer(4.75).timeout
+						await get_tree().create_timer(fadeInTime).timeout
 						fadeOutText()
 						await get_tree().create_timer(.5).timeout
 						player.set("finish", false)
@@ -127,7 +130,7 @@ func _on_start_body_entered(body: Node2D) -> void:
 						SignalBus.emit_signal("tutorialCutscens", -3)
 						player.set("finish", true)
 						fadeInText()
-						await get_tree().create_timer(4.75).timeout
+						await get_tree().create_timer(fadeInTime).timeout
 						fadeOutText()
 						await get_tree().create_timer(.5).timeout
 						player.set("finish", false)
@@ -142,12 +145,13 @@ func _on_start_body_entered(body: Node2D) -> void:
 						SignalBus.emit_signal("tutorialCutscens", -4)
 						player.set("finish", true)
 						fadeInText()
-						await get_tree().create_timer(4.75).timeout
+						await get_tree().create_timer(fadeInTime).timeout
 						fadeOutText()
 						await get_tree().create_timer(.5).timeout
 						player.set("finish", false)
 				4:
 					if doneArray[3] == 0:
+						top.modulate.a = -1.0
 						$textContainer.position = Vector2(5956.0, -783.0)
 						top.text = "This is a Hammer"
 						bottom.text = "Use it on a Wall"
@@ -156,7 +160,7 @@ func _on_start_body_entered(body: Node2D) -> void:
 						SignalBus.emit_signal("tutorialCutscens", -5)
 						player.set("finish", true)
 						fadeInText()
-						await get_tree().create_timer(4.75).timeout
+						await get_tree().create_timer(fadeInTime).timeout
 						fadeOutText()
 						await get_tree().create_timer(.5).timeout
 						player.set("finish", false)

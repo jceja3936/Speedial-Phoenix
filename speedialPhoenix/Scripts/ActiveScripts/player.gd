@@ -20,12 +20,13 @@ var finish = false
 var gamePaused = false
 
 var moved = false
-var loop = false
 
 
 func _ready() -> void:
-	if GameAudio.isPlaying == false:
+	if GameAudio.isPlaying == false and Manager.current_scene != "0":
 		GameAudio.playMusic()
+	else:
+		playAmbience()
 	SignalBus.finishing.connect(finishing)
 	SignalBus.paused.connect(paused)
 	SignalBus.unPaused.connect(unPaused)
@@ -52,18 +53,30 @@ func cutScenePlaying():
 	finish = true
 
 func playAmbience():
-	if !loop:
-		loop = true
+	if GameAudio.canPlay:
 		$sound.play()
-		await get_tree().create_timer(12.0).timeout
-		loop = false
+		$sound.volume_db = GameAudio.musicSound
+
+func pauseAmbience():
+	$sound.stream_paused = true
 
 
 func paused():
 	gamePaused = true
 	GameAudio.pauseMusic()
 	Manager.gamePaused = true
+	playAmbience()
 func unPaused():
+	if Manager.current_scene == "0":
+		gamePaused = false
+		Manager.gamePaused = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+		cameFollow = true
+		cam.setCam(0)
+		$hun.unStop()
+		return
+		
+	pauseAmbience()
 	gamePaused = false
 	GameAudio.resumeMusic()
 	Manager.gamePaused = false

@@ -13,7 +13,6 @@ var gamePaused = true
 var score = -1
 var wallsBroke = 0
 
-var musicSound = 0.0
 var sfx = 0.0
 
 
