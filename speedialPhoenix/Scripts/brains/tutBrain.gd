@@ -6,7 +6,7 @@ extends Node
 var state = 0
 var levelBeat = false
 var doneArray = [0, 0, 0, 0]
-var fadeInTime = 2
+var fadeInTime = 4.5
 
 func _ready() -> void:
 	GameAudio.isPlaying = true
@@ -151,7 +151,8 @@ func _on_start_body_entered(body: Node2D) -> void:
 						player.set("finish", false)
 				4:
 					if doneArray[3] == 0:
-						top.modulate.a = -1.0
+						top.modulate.a = -0.4
+						bottom.modulate.a = -0.4
 						$textContainer.position = Vector2(5956.0, -783.0)
 						top.text = "This is a Hammer"
 						bottom.text = "Use it on a Wall"

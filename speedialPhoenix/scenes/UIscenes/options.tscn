@@ -69,19 +69,19 @@ tick_count = 1
 
 [node name="exit" type="Button" parent="."]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 915.0
-offset_right = 219.0
-offset_bottom = 992.0
+offset_left = 52.0
+offset_top = 958.0
+offset_right = 175.0
+offset_bottom = 1035.0
 theme_override_font_sizes/font_size = 50
 text = "Back"
 
 [node name="Controlls" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1060.0
-offset_top = 230.0
-offset_right = 1778.0
-offset_bottom = 647.0
+offset_left = 1034.0
+offset_top = 278.0
+offset_right = 1752.0
+offset_bottom = 755.0
 theme_override_fonts/font = ExtResource("2_drvp4")
 theme_override_font_sizes/font_size = 50
 text = "Controls:
@@ -92,6 +92,23 @@ Fire                             LMB
 Finish                          Space
 Look Far                     RMB (Hold)
 "
+
+[node name="credits" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 534.0
+offset_right = 839.0
+offset_bottom = 995.0
+theme_override_font_sizes/font_size = 35
+text = "Sprites, Scripts, and Game Design By:
+Jesse Ceja
+
+Orignal Soundtrack by:
+Stephen Ceja
+
+Special Thanks to:
+The r/Godot Community"
+horizontal_alignment = 1
 
 [connection signal="drag_ended" from="main/Music/music" to="." method="_on_music_drag_ended"]
 [connection signal="drag_ended" from="main/Sounds/sound" to="." method="_on_sound_drag_ended"]

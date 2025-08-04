@@ -42,14 +42,14 @@ metadata/_edit_lock_ = true
 [node name="Enemies" type="Node" parent="."]
 
 [node name="patroller1" parent="Enemies" instance=ExtResource("9_63bpq")]
-position = Vector2(364, 1178)
+position = Vector2(333, 1205)
 pat = true
 
 [node name="Station1" parent="Enemies" instance=ExtResource("9_63bpq")]
-position = Vector2(497, 485)
+position = Vector2(537, 489)
 
 [node name="Station2" parent="Enemies" instance=ExtResource("9_63bpq")]
-position = Vector2(1599, 1204)
+position = Vector2(1627, 1209)
 type = 3
 pat = true
 
@@ -79,19 +79,19 @@ myFloor = 2
 
 [node name="vD" type="Node" parent="DoorStuff"]
 
-[node name="vertDoor" parent="DoorStuff/vD" instance=ExtResource("11_xspno")]
-position = Vector2(890, 449)
-
 [node name="vertDoor2" parent="DoorStuff/vD" instance=ExtResource("11_xspno")]
 position = Vector2(1530, 450)
 
 [node name="vertDoor3" parent="DoorStuff/vD" instance=ExtResource("11_xspno")]
-position = Vector2(1530, 1089)
+position = Vector2(890, 449)
 
 [node name="vertDoor4" parent="DoorStuff/vD" instance=ExtResource("11_xspno")]
-position = Vector2(1914, 2626)
+position = Vector2(1530, 1089)
 
 [node name="vertDoor5" parent="DoorStuff/vD" instance=ExtResource("11_xspno")]
+position = Vector2(1914, 2625)
+
+[node name="vertDoor6" parent="DoorStuff/vD" instance=ExtResource("11_xspno")]
 position = Vector2(1402, 3777)
 
 [node name="hD" type="Node" parent="DoorStuff"]

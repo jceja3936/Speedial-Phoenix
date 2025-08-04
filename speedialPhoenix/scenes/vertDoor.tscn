@@ -4,14 +4,14 @@
 [ext_resource type="Script" uid="uid://ce78b2owrkmrt" path="res://Scripts/door.gd" id="1_uvdjg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_egh6x"]
-radius = 6.0
-height = 108.0
+radius = 4.0
+height = 106.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83dcw"]
-size = Vector2(10.5, 130)
+size = Vector2(24.5, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egh6x"]
-size = Vector2(10.5, 131)
+size = Vector2(24.25, 131)
 
 [node name="vertDoor" type="Node2D"]
 
@@ -25,8 +25,7 @@ metadata/_edit_group_ = true
 
 [node name="door" type="RigidBody2D" parent="."]
 collision_layer = 16
-gravity_scale = 0.0
-linear_damp = 1.0
+collision_mask = 33
 script = ExtResource("1_uvdjg")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="door"]
@@ -48,23 +47,23 @@ position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_egh6x")
 
 [node name="right" type="Area2D" parent="door"]
-position = Vector2(10, 0)
+position = Vector2(2, 0)
 collision_layer = 17
-collision_mask = 13
+collision_mask = 45
 metadata/_edit_group_ = true
 
 [node name="size" type="CollisionShape2D" parent="door/right"]
-position = Vector2(-1.25, -3)
+position = Vector2(5.75, -3)
 shape = SubResource("RectangleShape2D_83dcw")
 
 [node name="left" type="Area2D" parent="door"]
-position = Vector2(-10, 0)
+position = Vector2(1, 0)
 collision_layer = 17
-collision_mask = 13
+collision_mask = 45
 metadata/_edit_group_ = true
 
 [node name="size" type="CollisionShape2D" parent="door/left"]
-position = Vector2(0, -2.5)
+position = Vector2(-6.875, -2.5)
 shape = SubResource("RectangleShape2D_egh6x")
 
 [connection signal="body_entered" from="door/right" to="door" method="_on_right_body_entered"]

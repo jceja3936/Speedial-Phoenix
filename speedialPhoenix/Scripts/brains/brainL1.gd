@@ -48,7 +48,7 @@ func set_State(newState: int):
 	state = newState
 	match state:
 		1:
-			Manager.setEnemyAmount(1)
+			Manager.setEnemyAmount(3)
 			endPosition = Vector2(-57.0, 1023)
 			$start.position = Vector2(1097.0, 355.0)
 		2:
@@ -83,7 +83,7 @@ func _on_start_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		match state:
 				1:
-					$blocker.position = Vector2(1107.0, 207.0)
+					$blocker.position = Vector2(1107.0, 190.0)
 				2:
 					$blocker.position = Vector2(2079, 2598.0)
 	if Manager.getEnemyAmount() == 0:

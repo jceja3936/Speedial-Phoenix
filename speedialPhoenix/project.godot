@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Speedial Phoenix"
-run/main_scene="uid://d2iuhlyf7jyo4"
+run/main_scene="uid://b2ujw5qdwbsfi"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 config/icon="uid://dxep4kfcdgmdj"
@@ -26,6 +26,7 @@ GameAudio="*res://scenes/audio_stream_player.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [input]
