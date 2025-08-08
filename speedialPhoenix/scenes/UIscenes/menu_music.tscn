@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b061xptg1y1hg"]
+
+[ext_resource type="AudioStream" uid="uid://dfreqwop5oa4h" path="res://assets/aud/inter song.wav" id="1_kje2u"]
+[ext_resource type="Script" uid="uid://ctxoxkkveyces" path="res://scenes/UIscenes/menu_music.gd" id="2_p5ant"]
+
+[node name="menuMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_kje2u")
+script = ExtResource("2_p5ant")

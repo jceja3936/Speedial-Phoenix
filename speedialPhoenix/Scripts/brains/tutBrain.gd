@@ -9,6 +9,7 @@ var doneArray = [0, 0, 0, 0]
 var fadeInTime = 4.5
 
 func _ready() -> void:
+	MenuMusic.pauseMusic()
 	GameAudio.isPlaying = true
 	GameAudio.pauseMusic()
 	$textContainer.position = Vector2(2869.0, 55.0)

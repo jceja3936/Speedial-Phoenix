@@ -61,13 +61,6 @@ func pauseAmbience():
 	$sound.stream_paused = true
 
 
-func paused():
-	gamePaused = true
-	GameAudio.pauseMusic()
-	Manager.gamePaused = true
-	playAmbience()
-
-	
 func unPaused():
 	if Manager.current_scene == "0":
 		gamePaused = false
@@ -78,7 +71,6 @@ func unPaused():
 		$hun.unStop()
 		return
 		
-	pauseAmbience()
 	gamePaused = false
 	GameAudio.resumeMusic()
 	Manager.gamePaused = false
@@ -114,6 +106,11 @@ func die() -> void:
 	Manager.deaths += 1
 	dead = true
 	$shader.material.set_shader_parameter("myOpaq", 8.0)
+
+func paused():
+	gamePaused = true
+	GameAudio.pauseMusic()
+	Manager.gamePaused = true
 
 func _input(event):
 	if finish:

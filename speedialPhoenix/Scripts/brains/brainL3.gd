@@ -7,6 +7,7 @@ var stage = [0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MenuMusic.pauseMusic()
 	GameAudio.levelBeat = false
 	set_State(Manager.levelState)
 

@@ -2,6 +2,7 @@ extends Control
 
 func _ready():
 	$MarginContainer/VBoxContainer/Continue.grab_focus()
+	MenuMusic.playMusic()
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

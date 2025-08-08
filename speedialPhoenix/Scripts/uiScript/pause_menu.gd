@@ -8,9 +8,12 @@ func _ready() -> void:
 func paused():
     show()
     $VBoxContainer/Resume.grab_focus()
-	
+    MenuMusic.playMusic()
+
 func unPaused():
     hide()
+    $ambience.stream_paused = true
+    MenuMusic.pauseMusic()
 
 func _on_resume_pressed() -> void:
     hide()
