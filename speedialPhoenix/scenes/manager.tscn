@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dmb22a2o2vpp6" path="res://Scripts/brains/manager.gd" id="1_bgrh2"]
 
-[node name="manager" type="AudioStreamPlayer"]
+[node name="manager" type="Node2D"]
 script = ExtResource("1_bgrh2")

@@ -66,6 +66,8 @@ func paused():
 	GameAudio.pauseMusic()
 	Manager.gamePaused = true
 	playAmbience()
+
+	
 func unPaused():
 	if Manager.current_scene == "0":
 		gamePaused = false
@@ -124,7 +126,7 @@ func _input(event):
 		SignalBus.emit_signal("paused")
 		
 	elif event.is_action_pressed("esc") and !cameFollow:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		cameFollow = true
 		cam.setCam(0)
 		$hun.unStop()

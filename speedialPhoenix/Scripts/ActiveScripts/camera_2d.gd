@@ -65,6 +65,10 @@ var speed = 1
 
 
 func _physics_process(_delta: float) -> void:
+	var dir = Input.get_vector("rStickleft", "riStickRight", "rStickUp", "rStickDown")
+	if dir:
+		Input.warp_mouse(get_window().position + Vector2i(dir * 400))
+
 	var player_pos = player.global_position
 
 	match cameFollow:

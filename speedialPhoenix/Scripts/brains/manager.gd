@@ -1,4 +1,4 @@
-extends AudioStreamPlayer
+extends Node2D
 
 var pistol: PackedScene = load("res://scenes/gunScenes/pistol.tscn")
 var rifle: PackedScene = load("res://scenes/gunScenes/rifle.tscn")

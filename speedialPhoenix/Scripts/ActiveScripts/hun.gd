@@ -388,14 +388,14 @@ func update_values(value: int, currentAmmo: int):
 			fireRate = .8
 			waitDrop()
 		4:
-			get_parent().set("speed", 900)
+			get_parent().set("speed", 1000)
 			global_scale = Vector2(1.5, 1.5)
 			swung = false
 			currentSprite = hammerImg
 			position = Vector2(13.0, 69.0)
 			rotation_degrees = 80.0
 			dammage = 220
-			fireRate = .75
+			fireRate = .7
 			waitDrop()
 		_:
 			hitBox.visible = true

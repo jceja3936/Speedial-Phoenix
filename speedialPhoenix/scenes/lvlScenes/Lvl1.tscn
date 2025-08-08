@@ -146,12 +146,11 @@ texture = ExtResource("8_k1hfm")
 
 [node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("3_yiohx")]
 z_index = 4
-position = Vector2(447, 161)
+position = Vector2(418, 145)
 cam = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 5
-position = Vector2(1191, 195)
 script = ExtResource("7_g2rpt")
 
 [node name="Cursors" type="Sprite2D" parent="Camera2D"]
