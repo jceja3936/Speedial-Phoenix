@@ -58,7 +58,7 @@ func setCam(type: int):
 		2:
 			camPos = Vector2(600, 0)
 			cursOffset = Vector2(600, 0)
-			speed = 50
+			speed = 15
 
 var angletoLerpBy = 0
 var speed = 1
@@ -67,8 +67,9 @@ var speed = 1
 func _physics_process(_delta: float) -> void:
 	var dir = Input.get_vector("rStickleft", "riStickRight", "rStickUp", "rStickDown")
 	if dir:
-		Input.warp_mouse(get_window().position + Vector2i(dir * 400))
-
+		var center = Vector2(get_viewport().size / 2)
+		var target = center + (dir * 400)
+		Input.warp_mouse(target)
 	var player_pos = player.global_position
 
 	match cameFollow:

@@ -24,9 +24,6 @@ func pauseMusic():
     isPlaying = false
 
 func resumeMusic():
-    print("I have been called")
     if !levelBeat and canPlay:
         stream_paused = false
         isPlaying = true
-    else:
-        print("But nah")

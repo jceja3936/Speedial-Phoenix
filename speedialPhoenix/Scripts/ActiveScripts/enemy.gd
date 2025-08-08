@@ -36,15 +36,19 @@ var x = 0.0
 var imHit = false
 var falling = false
 var toRotby = 0
+var score = 200
 
 var player: CharacterBody2D
 
 var gamePaused = false
 
+func setScore(value):
+	score = value
 func _ready() -> void:
 	$birds.hide()
 	SignalBus.paused.connect(paused)
 	SignalBus.unPaused.connect(unPaused)
+	SignalBus.changeScore.connect(setScore)
 
 	setOfRays.append($ray1)
 	setOfRays.append($ray2)
@@ -135,7 +139,7 @@ func finish() -> void:
 func hit(damage: int) -> void:
 	health -= damage
 	if health <= 0 and !dead:
-		SignalBus.emit_signal("updateScore", 200)
+		SignalBus.emit_signal("updateScore", score)
 		dead = true
 		die()
 

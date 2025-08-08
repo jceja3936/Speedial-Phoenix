@@ -1,5 +1,7 @@
 extends Control
 
+func _ready():
+	$GridContainer/lel1.grab_focus()
 
 func _on_back_pressed() -> void:
 	Manager.next_scene = "res://scenes/UIscenes/start_menu.tscn"

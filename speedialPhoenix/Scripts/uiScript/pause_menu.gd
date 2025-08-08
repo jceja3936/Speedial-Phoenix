@@ -4,11 +4,11 @@ func _ready() -> void:
     SignalBus.paused.connect(paused)
     SignalBus.unPaused.connect(unPaused)
     hide()
-    
 
 func paused():
     show()
-
+    $VBoxContainer/Resume.grab_focus()
+	
 func unPaused():
     hide()
 

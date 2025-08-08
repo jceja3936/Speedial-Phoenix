@@ -10,6 +10,7 @@ var sTier = 0
 var tiers = [0, 0, 0, 0, 0]
 
 func _ready() -> void:
+	$Next.grab_focus()
 	cutScene()
 
 	match Manager.current_scene:

@@ -358,6 +358,7 @@ func waitDrop():
 #Functions Called on Weapon pick up
 func update_values(value: int, currentAmmo: int):
 	get_parent().set("speed", 750)
+	SignalBus.emit_signal("changeScore", 200)
 	droppable = false
 	currentSprite = null
 	gunType = value
@@ -372,10 +373,11 @@ func update_values(value: int, currentAmmo: int):
 	hitBox.visible = false
 	match value:
 		1:
+			SignalBus.emit_signal("changeScore", 300)
 			currentSprite = pistolImg
 			dammage = 220
 			global_scale = Vector2(1.5, 1.5)
-			fireRate = .5
+			fireRate = .4
 			waitDrop()
 		2:
 			currentSprite = rifleImg
