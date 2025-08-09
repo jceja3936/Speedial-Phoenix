@@ -110,6 +110,37 @@ Special Thanks to:
 The r/Godot Community"
 horizontal_alignment = 1
 
+[node name="Ctype" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1034.0
+offset_top = 94.0
+offset_right = 1719.0
+offset_bottom = 211.0
+theme_override_constants/separation = 270
+
+[node name="kboard" type="Label" parent="Ctype"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_drvp4")
+theme_override_font_sizes/font_size = 50
+text = "Keyboard"
+
+[node name="controller" type="Label" parent="Ctype"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_drvp4")
+theme_override_font_sizes/font_size = 50
+text = "Controller"
+
+[node name="slide" type="CheckButton" parent="."]
+layout_mode = 2
+offset_left = 1337.0
+offset_top = 124.0
+offset_right = 1381.0
+offset_bottom = 148.0
+scale = Vector2(2.5, 2.5)
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_drvp4")
+
 [connection signal="drag_ended" from="main/Music/music" to="." method="_on_music_drag_ended"]
 [connection signal="drag_ended" from="main/Sounds/sound" to="." method="_on_sound_drag_ended"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="toggled" from="slide" to="." method="_on_slide_toggled"]
