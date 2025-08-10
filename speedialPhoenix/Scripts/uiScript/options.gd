@@ -10,6 +10,8 @@ func _on_sound_drag_ended(_value_changed: bool) -> void:
 func _on_music_drag_ended(_value_changed: bool) -> void:
 	GameAudio.musicSound = $main/Music/music.value
 	GameAudio.setMusicSound()
+	MenuMusic.musicSound = $main/Music/music.value
+	MenuMusic.setMusicSound()
     
 func _on_exit_pressed() -> void:
 	Manager.next_scene = "res://scenes/UIscenes/start_menu.tscn"

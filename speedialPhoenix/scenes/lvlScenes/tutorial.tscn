@@ -110,16 +110,16 @@ tile_map_data = PackedByteArray("AAAJAAIAAAAFAAAAAAAJAAMAAAAFAAAAAAAKAAIAAAAFAAA
 tile_set = ExtResource("3_i5npi")
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("4_ovh2w")]
+[node name="Player" parent="." instance=ExtResource("4_ovh2w")]
 position = Vector2(1409, 383)
-cam = NodePath("../Camera2D")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="theCam" type="Camera2D" parent="."]
 z_index = 5
 position = Vector2(5944, -478)
 script = ExtResource("5_vr8ad")
 
-[node name="Cursors" type="Sprite2D" parent="Camera2D"]
+[node name="Cursors" type="Sprite2D" parent="theCam"]
+visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_i7eql")
 

@@ -44,20 +44,8 @@ var gamePaused = false
 
 func setScore(value):
 	score = value
-func _ready() -> void:
-	$birds.hide()
-	SignalBus.paused.connect(paused)
-	SignalBus.unPaused.connect(unPaused)
-	SignalBus.changeScore.connect(setScore)
 
-	setOfRays.append($ray1)
-	setOfRays.append($ray2)
-	setOfRays.append($ray3)
-	setOfRays.append($ray4)
-
-	speed = ogSpeed + rng.randf_range(-100, 100)
-	ogSpeed = speed
-
+func getPlayer():
 	var playerNode = ""
 	match Manager.current_scene:
 		"0":
@@ -70,6 +58,23 @@ func _ready() -> void:
 			playerNode = "/root/Lvl3/Player"
 
 	player = get_node(playerNode)
+	gamePaused = false
+
+func _ready() -> void:
+	gamePaused = true
+	$birds.hide()
+	SignalBus.playerReady.connect(getPlayer)
+	SignalBus.paused.connect(paused)
+	SignalBus.unPaused.connect(unPaused)
+	SignalBus.changeScore.connect(setScore)
+
+	setOfRays.append($ray1)
+	setOfRays.append($ray2)
+	setOfRays.append($ray3)
+	setOfRays.append($ray4)
+
+	speed = ogSpeed + rng.randf_range(-100, 100)
+	ogSpeed = speed
 
 	if type == 0:
 		type = rng.randi_range(1, 3)

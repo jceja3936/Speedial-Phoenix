@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = 750
+@export var speed = 1200
 @export var health = 200
-var cam: Camera2D
+@export var cam: Camera2D
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
 
@@ -18,13 +18,11 @@ var camExt = false
 var finish = false
 var gamePaused = false
 
+
 var moved = false
 
 
 func _ready() -> void:
-	if Manager.playerRespawnPos != Vector2.ZERO:
-		position = Manager.playerRespawnPos
-	SignalBus.emit_signal("playerReady")
 	if GameAudio.isPlaying == false and Manager.current_scene != "0":
 		GameAudio.playMusic()
 	else:
@@ -36,24 +34,11 @@ func _ready() -> void:
 	SignalBus.playCutscene.connect(cutScenePlaying)
 	SignalBus.updateResp.emit(false)
 	$shader.material.set_shader_parameter("myOpaq", 0.0)
-
-	
+	if Manager.playerRespawnPos != Vector2.ZERO:
+		position = Manager.playerRespawnPos
 	if Manager.gunType != 0:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
 
-	var camNode = ""
-	match Manager.current_scene:
-		"0":
-			camNode = "/root/tutorial/theCam"
-		"1_1":
-			camNode = "/root/Lvl1/theCam"
-		"2":
-			camNode = "/root/Lvl2/theCam"
-		"3":
-			camNode = "/root/Lvl3/theCam"
-
-	cam = get_node(camNode)
-	
 func _notification(_what):
 	return
 	#This is a fix I don't yet know if I'm gonna implement

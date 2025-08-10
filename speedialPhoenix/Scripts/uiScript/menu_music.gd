@@ -9,8 +9,10 @@ func setMusicSound():
     volume_db = musicSound
     if musicSound == -20.0:
         canPlay = false
+        pauseMusic()
     else:
         canPlay = true
+        resumeMusic()
 
 func playMusic():
     if canPlay and !isPlaying:

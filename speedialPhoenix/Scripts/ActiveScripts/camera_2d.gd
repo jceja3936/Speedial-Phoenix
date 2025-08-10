@@ -5,14 +5,7 @@ var cameFollow = 0
 var camPos = Vector2.ZERO
 var cursOffset = Vector2.ZERO
 
-func _ready() -> void:
-	SignalBus.playCutscene.connect(leave)
-	SignalBus.tutorialCutscens.connect(tutScene)
-	setCam(0)
-	for node in get_tree().root.get_children():
-		if node.has_meta("placed"):
-			node.queue_free()
-
+func getPlayer():
 	var playerNode = ""
 	match Manager.current_scene:
 		"0":
@@ -23,11 +16,20 @@ func _ready() -> void:
 			playerNode = "/root/Lvl2/Player"
 		"3":
 			playerNode = "/root/Lvl3/Player"
-		_:
-			print("Bruh, received ", Manager.current_scene)
 
 	player = get_node(playerNode)
-	position = player.global_position
+
+func _ready() -> void:
+	if Manager.playerRespawnPos != Vector2.ZERO:
+		position = Manager.playerRespawnPos
+	SignalBus.playerReady.connect(getPlayer)
+	SignalBus.playCutscene.connect(leave)
+	SignalBus.tutorialCutscens.connect(tutScene)
+	setCam(0)
+	for node in get_tree().root.get_children():
+		if node.has_meta("placed"):
+			node.queue_free()
+
 			
 	$Cursors.top_level = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
@@ -65,6 +67,8 @@ var speed = 1
 
 
 func _physics_process(_delta: float) -> void:
+	if player == null:
+		return
 	var dir = Input.get_vector("rStickleft", "riStickRight", "rStickUp", "rStickDown")
 	if dir:
 		var center = Vector2(get_viewport().size / 2)

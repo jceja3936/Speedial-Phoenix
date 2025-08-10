@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://e64wgf8otggf"]
+[gd_scene load_steps=15 format=4 uid="uid://e64wgf8otggf"]
 
 [ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_ixny3"]
 [ext_resource type="TileSet" uid="uid://bdhuawh88bvlx" path="res://assets/finalTileSet.tres" id="3_i6yy0"]
-[ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="3_yiohx"]
 [ext_resource type="PackedScene" uid="uid://cw1s7il08t6q8" path="res://scenes/hDoor.tscn" id="5_q2qlp"]
 [ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://Scripts/ActiveScripts/camera_2d.gd" id="7_g2rpt"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="7_wixyy"]
@@ -21,6 +20,38 @@ size = Vector2(333, 114)
 size = Vector2(272, 123)
 
 [node name="Lvl1" type="Node2D"]
+
+[node name="brain" type="Node" parent="."]
+script = ExtResource("10_1235x")
+
+[node name="start" type="Area2D" parent="brain"]
+position = Vector2(1099, 355)
+collision_mask = 9
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="brain/start"]
+shape = SubResource("RectangleShape2D_dpgr1")
+
+[node name="end" type="Area2D" parent="brain"]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="brain/end"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_dpgr1")
+metadata/_edit_group_ = true
+
+[node name="blocker" type="StaticBody2D" parent="brain"]
+position = Vector2(2079, 2598)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="brain/blocker"]
+shape = SubResource("RectangleShape2D_fghko")
+
+[node name="arrow" type="Sprite2D" parent="brain"]
+visible = false
+position = Vector2(419, 283)
+scale = Vector2(0.762188, 0.592289)
+texture = ExtResource("8_k1hfm")
 
 [node name="MainUI" type="CanvasLayer" parent="."]
 layer = 4
@@ -111,49 +142,11 @@ position = Vector2(1087, 3450)
 [node name="hDoor5" parent="DoorStuff/hD" instance=ExtResource("5_q2qlp")]
 position = Vector2(1087, 262)
 
-[node name="brain" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("10_1235x")
-player = NodePath("../Player")
-
-[node name="start" type="Area2D" parent="brain"]
-position = Vector2(1099, 355)
-collision_mask = 9
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="brain/start"]
-shape = SubResource("RectangleShape2D_dpgr1")
-
-[node name="end" type="Area2D" parent="brain"]
-collision_mask = 9
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="brain/end"]
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_dpgr1")
-metadata/_edit_group_ = true
-
-[node name="blocker" type="StaticBody2D" parent="brain"]
-position = Vector2(2079, 2598)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="brain/blocker"]
-shape = SubResource("RectangleShape2D_fghko")
-
-[node name="arrow" type="Sprite2D" parent="brain"]
-visible = false
-position = Vector2(419, 283)
-scale = Vector2(0.762188, 0.592289)
-texture = ExtResource("8_k1hfm")
-
-[node name="Player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("3_yiohx")]
-z_index = 4
-position = Vector2(418, 145)
-cam = NodePath("../Camera2D")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="theCam" type="Camera2D" parent="."]
 z_index = 5
 script = ExtResource("7_g2rpt")
 
-[node name="Cursors" type="Sprite2D" parent="Camera2D"]
+[node name="Cursors" type="Sprite2D" parent="theCam"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_goqse")
 

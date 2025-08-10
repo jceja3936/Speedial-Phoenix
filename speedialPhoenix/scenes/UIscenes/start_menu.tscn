@@ -10,7 +10,7 @@
 shader = ExtResource("3_l82ty")
 shader_parameter/noise_img = ExtResource("4_nuoxx")
 shader_parameter/myColor = Color(0.993173, 0, 0.220425, 1)
-shader_parameter/myOpaq = 0.6
+shader_parameter/myOpaq = 0.4
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3

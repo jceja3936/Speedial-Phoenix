@@ -1,16 +1,38 @@
 extends Node
-@export var player: CharacterBody2D
+var player: CharacterBody2D
 var endPosition = Vector2.ZERO
 var state = 1
 var stage = [0, 0]
 var levelBeat = false
 
+var francis: PackedScene = load("res://scenes/player.tscn")
+var claire: PackedScene = load("res://scenes/claire.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.playerReady.connect(getPlayer)
+	var character = null
+	match Manager.chosenChar:
+		0:
+			character = francis.instantiate()
+		1:
+			character = claire.instantiate()
+
+	if character != null:
+		character.name = "Player"
+		get_parent().add_child.call_deferred(character)
+		print("Shoulda worked")
+	else:
+		print("Character stayed null big bro")
+			
+	
 	MenuMusic.pauseMusic()
 	GameAudio.levelBeat = false
 	set_State(Manager.levelState)
 	
+func getPlayer():
+	print("Yer")
+	player = get_node("/root/Lvl1/Player")
 
 func _physics_process(_delta: float) -> void:
 	if Manager.enemyAmount == 0:

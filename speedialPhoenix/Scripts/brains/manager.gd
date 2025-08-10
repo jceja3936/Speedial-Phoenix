@@ -13,6 +13,8 @@ var gamePaused = true
 var score = -1
 var wallsBroke = 0
 
+var chosenChar = 0
+
 var sfx = 0.0
 
 
@@ -37,6 +39,7 @@ func reset():
 		"1_1":
 			next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
 			current_scene = "1_1"
+			playerRespawnPos = Vector2(418.0, 145.0)
 		"2":
 			current_scene = "2"
 			next_scene = "res://scenes/lvlScenes/Lvl2.tscn"
@@ -54,7 +57,6 @@ func reset():
 	mult = 1
 	deaths = 0
 	enemyAmount = 0
-	playerRespawnPos = Vector2.ZERO
 
 var item_sounds = {
 	"pSound": preload("res://assets/aud/revolv.mp3"),
