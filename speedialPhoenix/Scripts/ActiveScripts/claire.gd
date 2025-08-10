@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = 1200
+@export var speed = 1000
 @export var health = 200
-@export var cam: Camera2D
+var cam: Camera2D
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
 
@@ -23,10 +23,12 @@ var moved = false
 
 
 func _ready() -> void:
+	SignalBus.emit_signal("changeScore", 300)
 	if GameAudio.isPlaying == false and Manager.current_scene != "0":
 		GameAudio.playMusic()
 	else:
 		playAmbience()
+	SignalBus.emit_signal("playerReady")
 	SignalBus.finishing.connect(finishing)
 	SignalBus.paused.connect(paused)
 	SignalBus.unPaused.connect(unPaused)
@@ -36,8 +38,19 @@ func _ready() -> void:
 	$shader.material.set_shader_parameter("myOpaq", 0.0)
 	if Manager.playerRespawnPos != Vector2.ZERO:
 		position = Manager.playerRespawnPos
-	if Manager.gunType != 0:
-		weaponGrabbed(Manager.gunType, Manager.ammoCount)
+
+	var camNode = ""
+	match Manager.current_scene:
+		"0":
+			camNode = "/root/tutorial/theCam"
+		"1_1":
+			camNode = "/root/Lvl1/theCam"
+		"2":
+			camNode = "/root/Lvl2/theCam"
+		"3":
+			camNode = "/root/Lvl3/theCam"
+
+	cam = get_node(camNode)
 
 func _notification(_what):
 	return
@@ -62,13 +75,13 @@ func pauseAmbience():
 
 
 func unPaused():
+	$Signora.paused = false
 	if Manager.current_scene == "0":
 		gamePaused = false
 		Manager.gamePaused = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		cameFollow = true
 		cam.setCam(0)
-		$hun.unStop()
 		return
 		
 	gamePaused = false
@@ -77,7 +90,6 @@ func unPaused():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	cameFollow = true
 	cam.setCam(0)
-	$hun.unStop()
 
 
 func finishing(value: Vector2, enemy: CharacterBody2D):
@@ -109,6 +121,7 @@ func die() -> void:
 
 func paused():
 	gamePaused = true
+	$Signora.paused = true
 	GameAudio.pauseMusic()
 	Manager.gamePaused = true
 
@@ -119,14 +132,14 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		cameFollow = false
 		cam.setCam(1)
-		$hun.stop()
+		$Signora.paused = true
 		SignalBus.emit_signal("paused")
 		
 	elif event.is_action_pressed("esc") and !cameFollow:
 		#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 		cameFollow = true
+		$Signora.paused = false
 		cam.setCam(0)
-		$hun.unStop()
 		SignalBus.emit_signal("unPaused")
 
 	if event.is_action_pressed("extendCam") and cameFollow and !camExt:
@@ -156,17 +169,15 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
 func makeHunSave():
-	$hun.saveWeapon()
+	$Signora.saveWeapon()
 
 func loading():
 	gamePaused = true
 	await get_tree().create_timer(.2).timeout
 	gamePaused = false
 
-	
-func weaponGrabbed(which: int, currentAmmo: int) -> void:
-	$hun.update_values(which, currentAmmo)
-	SignalBus.updateAmmo.emit(currentAmmo)
-	gunPickedUp = true
+func weaponGrabbed(_which: int, currentAmmo: int) -> void:
+	if currentAmmo > 5:
+		currentAmmo = 5
+	$Signora.moreAmmo(currentAmmo)

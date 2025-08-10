@@ -21,17 +21,13 @@ func _ready() -> void:
 	if character != null:
 		character.name = "Player"
 		get_parent().add_child.call_deferred(character)
-		print("Shoulda worked")
-	else:
-		print("Character stayed null big bro")
-			
 	
+			
 	MenuMusic.pauseMusic()
 	GameAudio.levelBeat = false
 	set_State(Manager.levelState)
 	
 func getPlayer():
-	print("Yer")
 	player = get_node("/root/Lvl1/Player")
 
 func _physics_process(_delta: float) -> void:

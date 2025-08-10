@@ -8,14 +8,33 @@ var levelBeat = false
 var doneArray = [0, 0, 0, 0]
 var fadeInTime = 4.5
 
+var francis: PackedScene = load("res://scenes/player.tscn")
+var claire: PackedScene = load("res://scenes/claire.tscn")
+
 func _ready() -> void:
 	MenuMusic.pauseMusic()
+	SignalBus.playerReady.connect(getPlayer)
+	var character = null
+	match Manager.chosenChar:
+		0:
+			character = francis.instantiate()
+		1:
+			character = claire.instantiate()
+
+	if character != null:
+		character.name = "Player"
+		get_parent().add_child.call_deferred(character)
+	
+			
 	GameAudio.isPlaying = true
 	GameAudio.pauseMusic()
 	$textContainer.position = Vector2(2869.0, 55.0)
 	set_State(Manager.levelState)
 	top.modulate.a = 0.0
 	bottom.modulate.a = 0.0
+
+func getPlayer():
+	player = get_node("/root/tutorial/Player")
 
 func _physics_process(_delta: float) -> void:
 	if state == 4:

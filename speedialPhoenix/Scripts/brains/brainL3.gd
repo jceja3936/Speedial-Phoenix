@@ -5,11 +5,30 @@ var state = 1
 var levelBeat = false
 var stage = [0]
 
+var francis: PackedScene = load("res://scenes/player.tscn")
+var claire: PackedScene = load("res://scenes/claire.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.playerReady.connect(getPlayer)
+	var character = null
+	match Manager.chosenChar:
+		0:
+			character = francis.instantiate()
+		1:
+			character = claire.instantiate()
+
+	if character != null:
+		character.name = "Player"
+		get_parent().add_child.call_deferred(character)
+	
+			
 	MenuMusic.pauseMusic()
 	GameAudio.levelBeat = false
 	set_State(Manager.levelState)
+
+func getPlayer():
+	player = get_node("/root/Lvl3/Player")
 
 func set_State(newState: int):
 	state = newState

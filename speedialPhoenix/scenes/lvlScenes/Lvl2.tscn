@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=4 uid="uid://buw4jt5dw8ikn"]
+[gd_scene load_steps=19 format=4 uid="uid://buw4jt5dw8ikn"]
 
 [ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="1_vt376"]
 [ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_h4xcu"]
-[ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="2_qiuxg"]
 [ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://Scripts/ActiveScripts/camera_2d.gd" id="3_22ig8"]
 [ext_resource type="TileSet" uid="uid://bdhuawh88bvlx" path="res://assets/finalTileSet.tres" id="3_tjqha"]
 [ext_resource type="Texture2D" uid="uid://didtkpnuwu263" path="res://assets/img/Cursor2 - Copy.png" id="4_v6vmh"]
@@ -42,10 +41,6 @@ tile_map_data = PackedByteArray("AAABAP7/AAAFAAIAAAACAP7/AAAFAAIAAAADAPz/AAAAAAI
 tile_set = ExtResource("3_tjqha")
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("2_qiuxg")]
-z_index = 4
-position = Vector2(271, 756)
-
 [node name="theCam" type="Camera2D" parent="."]
 z_index = 5
 script = ExtResource("3_22ig8")
@@ -66,7 +61,7 @@ metadata/_edit_lock_ = true
 
 [node name="brain" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("9_msb3r")
-player = NodePath("../Player")
+player = NodePath("")
 
 [node name="start" type="Area2D" parent="brain"]
 position = Vector2(469, 767)
