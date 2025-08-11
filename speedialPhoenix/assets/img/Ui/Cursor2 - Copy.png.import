@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfa0dje3erdk3"
-path="res://.godot/imported/redTop.png-11bb320683f89a4719f7df6fd76838fb.ctex"
+uid="uid://didtkpnuwu263"
+path="res://.godot/imported/Cursor2 - Copy.png-9b7984fd9c898a8cdd0e5871e7cc0727.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/redTop.png"
-dest_files=["res://.godot/imported/redTop.png-11bb320683f89a4719f7df6fd76838fb.ctex"]
+source_file="res://assets/img/Ui/Cursor2 - Copy.png"
+dest_files=["res://.godot/imported/Cursor2 - Copy.png-9b7984fd9c898a8cdd0e5871e7cc0727.ctex"]
 
 [params]
 

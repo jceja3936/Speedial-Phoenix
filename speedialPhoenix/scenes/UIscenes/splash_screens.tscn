@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2ujw5qdwbsfi"]
 
-[ext_resource type="Texture2D" uid="uid://dqn8pafh1o8sn" path="res://assets/img/icon-dark.png" id="1_5cq4l"]
+[ext_resource type="Texture2D" uid="uid://dqn8pafh1o8sn" path="res://assets/img/Ui/icon-dark.png" id="1_5cq4l"]
 [ext_resource type="Script" uid="uid://cdilhhuk0xjx1" path="res://Scripts/uiScript/splash_screens.gd" id="1_vlwtv"]
-[ext_resource type="Texture2D" uid="uid://oehwg0qnnjum" path="res://assets/img/logoExperiments.png" id="2_ikrj0"]
+[ext_resource type="Texture2D" uid="uid://oehwg0qnnjum" path="res://assets/img/Ui/logoExperiments.png" id="2_ikrj0"]
 
 [node name="splashScreens" type="Control"]
 layout_mode = 3

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://didtkpnuwu263"
-path="res://.godot/imported/Cursor2 - Copy.png-fc6a9b210bcc0757901fea514a93cec5.ctex"
+uid="uid://dat0thkqujbf3"
+path="res://.godot/imported/pointsFlavor.png-15bc6450474ddb98b0ccadb8e2d770f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/Cursor2 - Copy.png"
-dest_files=["res://.godot/imported/Cursor2 - Copy.png-fc6a9b210bcc0757901fea514a93cec5.ctex"]
+source_file="res://assets/img/Ui/pointsFlavor.png"
+dest_files=["res://.godot/imported/pointsFlavor.png-15bc6450474ddb98b0ccadb8e2d770f1.ctex"]
 
 [params]
 

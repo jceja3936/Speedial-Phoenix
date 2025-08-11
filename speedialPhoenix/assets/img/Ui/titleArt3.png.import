@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5ux84c7d48oa"
-path="res://.godot/imported/l2Hover.png-138c57ec4bd5c9cd8a764c591445a5ff.ctex"
+uid="uid://cn40ryebn3yyv"
+path="res://.godot/imported/titleArt3.png-7231e381c1ee04075df880e6ad597fa7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/l2Hover.png"
-dest_files=["res://.godot/imported/l2Hover.png-138c57ec4bd5c9cd8a764c591445a5ff.ctex"]
+source_file="res://assets/img/Ui/titleArt3.png"
+dest_files=["res://.godot/imported/titleArt3.png-7231e381c1ee04075df880e6ad597fa7.ctex"]
 
 [params]
 

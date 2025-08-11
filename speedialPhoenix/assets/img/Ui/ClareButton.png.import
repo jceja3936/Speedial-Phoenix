@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6ouk4lcp3c3d"
-path="res://.godot/imported/musicIcon.png-88a7688be8221fefa6195a9d8e5449ba.ctex"
+uid="uid://cn5ggmdib8ept"
+path="res://.godot/imported/ClareButton.png-1d65dfbff59574846c7572a12cc5d288.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/musicIcon.png"
-dest_files=["res://.godot/imported/musicIcon.png-88a7688be8221fefa6195a9d8e5449ba.ctex"]
+source_file="res://assets/img/Ui/ClareButton.png"
+dest_files=["res://.godot/imported/ClareButton.png-1d65dfbff59574846c7572a12cc5d288.ctex"]
 
 [params]
 

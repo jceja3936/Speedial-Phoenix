@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq3csjmirjlm5"
-path="res://.godot/imported/blueTop.png-32b3891e648acdeb0fe8f0ae66ec889c.ctex"
+uid="uid://bsg4dj8hwy0vn"
+path="res://.godot/imported/l1hover.png-8edf79d94a4bff99e7396a7de21b5335.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/blueTop.png"
-dest_files=["res://.godot/imported/blueTop.png-32b3891e648acdeb0fe8f0ae66ec889c.ctex"]
+source_file="res://assets/img/Ui/l1hover.png"
+dest_files=["res://.godot/imported/l1hover.png-8edf79d94a4bff99e7396a7de21b5335.ctex"]
 
 [params]
 

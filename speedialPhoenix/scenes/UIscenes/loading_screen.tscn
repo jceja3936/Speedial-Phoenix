@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfomt0a3m057p"]
 
 [ext_resource type="Script" uid="uid://d0215sh6xviag" path="res://Scripts/uiScript/loading_screen.gd" id="1_ep5rh"]
-[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="2_i6gi2"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="2_i6gi2"]
 
 [node name="Loading Screen" type="Control"]
 layout_mode = 3

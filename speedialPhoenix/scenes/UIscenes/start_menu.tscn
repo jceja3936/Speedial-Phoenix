@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bd6et5gd1uwm7"]
 
 [ext_resource type="Script" uid="uid://clkbpj3uj5u2d" path="res://Scripts/uiScript/start_menu.gd" id="1_t600c"]
-[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="2_l82ty"]
-[ext_resource type="Texture2D" uid="uid://cn40ryebn3yyv" path="res://assets/img/titleArt3.png" id="2_nuoxx"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="2_l82ty"]
+[ext_resource type="Texture2D" uid="uid://cn40ryebn3yyv" path="res://assets/img/Ui/titleArt3.png" id="2_nuoxx"]
 [ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/shaders/start_menu.gdshader" id="3_l82ty"]
 [ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="4_nuoxx"]
 

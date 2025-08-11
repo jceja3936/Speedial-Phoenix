@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bak0bku7ej6bi"]
 
-[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="1_t7hm7"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="1_t7hm7"]
 [ext_resource type="Script" uid="uid://ctltma5wk5dxx" path="res://Scripts/uiScript/pause_menu.gd" id="1_wnmk1"]
 [ext_resource type="Texture2D" uid="uid://ce65y263ajct3" path="res://assets/img/Icon.png" id="3_wnmk1"]
 [ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="4_1dfcm"]

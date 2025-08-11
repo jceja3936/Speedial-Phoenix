@@ -40,7 +40,7 @@ func _ready() -> void:
 	seconds = ogTime
 	$Main/vert/time/timeNum.text = str(minutes) + ":" + str(int(seconds)).pad_zeros(2)
 	$Main/vert/Combo/combNum.text = str(Manager.mult)
-	$Main/vert/Deaths/deathNum.text = str(Manager.deaths * -100)
+	$Main/vert/Deaths/deathNum.text = str(Manager.deaths * -500)
 
 	var theScore = Manager.score + (Manager.wallsBroke * 100) + (Manager.deaths * -100) + (Manager.mult * 500)
 

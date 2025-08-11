@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cshlmk0l0egby"
-path="res://.godot/imported/newBg.png-44c85f81199372678993c478f1a5839a.ctex"
+uid="uid://c5ux84c7d48oa"
+path="res://.godot/imported/l2Hover.png-9e506890d72e00dc2a567e9e44b6d2f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/newBg.png"
-dest_files=["res://.godot/imported/newBg.png-44c85f81199372678993c478f1a5839a.ctex"]
+source_file="res://assets/img/Ui/l2Hover.png"
+dest_files=["res://.godot/imported/l2Hover.png-9e506890d72e00dc2a567e9e44b6d2f8.ctex"]
 
 [params]
 

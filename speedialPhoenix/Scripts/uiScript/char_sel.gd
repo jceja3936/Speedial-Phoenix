@@ -1,8 +1,42 @@
 extends Control
 
+var francisTween = 1.0
+var clareTween = 1.0
+
+var francisFocus = false
+var clareFocus = true
+
 func _ready():
 	$francis.grab_focus()
 
+func _physics_process(_delta: float) -> void:
+	francisTweener(francisFocus)
+	clareTweener(clareFocus)
+	$francis/Sprite2D.material.set_shader_parameter("myOpaq", francisTween)
+	$Claire/Sprite2D2.material.set_shader_parameter("myOpaq", clareTween)
+
+
+func clareTweener(up: bool):
+	match up:
+		true:
+			if clareTween < .8:
+				clareTween += .05
+		false:
+			if clareTween > 0.0:
+				clareTween -= .05
+	await get_tree().create_timer(.05).timeout
+
+func francisTweener(up: bool):
+	match up:
+		true:
+			if francisTween < .8:
+				francisTween += .05
+		false:
+			if francisTween > 0.0:
+				francisTween -= .05
+	await get_tree().create_timer(.05).timeout
+	
+		
 func _on_claire_pressed() -> void:
 	Manager.chosenChar = 1
 	Manager.startNextScene()
@@ -10,3 +44,24 @@ func _on_claire_pressed() -> void:
 func _on_francis_pressed() -> void:
 	Manager.chosenChar = 0
 	Manager.startNextScene()
+
+
+func _on_back_pressed() -> void:
+	Manager.next_scene = "res://scenes/UIscenes/lvl_select.tscn"
+	Manager.startNextScene()
+
+
+func _on_claire_focus_exited() -> void:
+	clareFocus = true
+
+
+func _on_claire_focus_entered() -> void:
+	clareFocus = false
+
+
+func _on_francis_focus_exited() -> void:
+	francisFocus = true
+
+
+func _on_francis_focus_entered() -> void:
+	francisFocus = false

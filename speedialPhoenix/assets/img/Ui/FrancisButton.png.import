@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmqfnbhfxe1vb"
-path="res://.godot/imported/pts.png-ad5490ad6ebeeafdf9876a1473ea1bca.ctex"
+uid="uid://cj24f40isj7o7"
+path="res://.godot/imported/FrancisButton.png-61c7fe895a7d7d7bc5b8ecac57ba6fe9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/pts.png"
-dest_files=["res://.godot/imported/pts.png-ad5490ad6ebeeafdf9876a1473ea1bca.ctex"]
+source_file="res://assets/img/Ui/FrancisButton.png"
+dest_files=["res://.godot/imported/FrancisButton.png-61c7fe895a7d7d7bc5b8ecac57ba6fe9.ctex"]
 
 [params]
 

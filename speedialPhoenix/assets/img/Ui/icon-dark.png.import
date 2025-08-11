@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnhycb8qr2y24"
-path="res://.godot/imported/yelTop.png-9df6731636c4937abaa6031b92da4c6b.ctex"
+uid="uid://dqn8pafh1o8sn"
+path="res://.godot/imported/icon-dark.png-23e2d6d3e1f72cc4df29dd3db814bbcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/yelTop.png"
-dest_files=["res://.godot/imported/yelTop.png-9df6731636c4937abaa6031b92da4c6b.ctex"]
+source_file="res://assets/img/Ui/icon-dark.png"
+dest_files=["res://.godot/imported/icon-dark.png-23e2d6d3e1f72cc4df29dd3db814bbcf.ctex"]
 
 [params]
 

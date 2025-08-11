@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://ocp8w11aa8y4"]
 
 [ext_resource type="Script" uid="uid://yq6cibctkpsd" path="res://Scripts/uiScript/options.gd" id="1_bfhvm"]
-[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="1_s44rm"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="1_s44rm"]
 [ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="2_drvp4"]
-[ext_resource type="Texture2D" uid="uid://c6ouk4lcp3c3d" path="res://assets/img/musicIcon.png" id="3_tuiq6"]
+[ext_resource type="Texture2D" uid="uid://c6ouk4lcp3c3d" path="res://assets/img/Ui/musicIcon.png" id="3_tuiq6"]
 [ext_resource type="Texture2D" uid="uid://cbr2wu8vfb831" path="res://assets/img/soundIcon.png" id="4_bfhvm"]
 
 [node name="Options" type="Control"]

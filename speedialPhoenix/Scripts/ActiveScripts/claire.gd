@@ -56,7 +56,6 @@ func _ready() -> void:
 
 func speedBoost(_bruh):
 	speed += 200
-	print(speed)
 	speedCooldown()
 
 func speedCooldown():

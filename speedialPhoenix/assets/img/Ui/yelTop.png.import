@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hkee4m0e3u31"
-path="res://.godot/imported/l1.png-8b1ad4a82d769e4d4dd569b9bbbbbfed.ctex"
+uid="uid://dnhycb8qr2y24"
+path="res://.godot/imported/yelTop.png-aa29001103d5cf0778dee9905fc8e937.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/l1.png"
-dest_files=["res://.godot/imported/l1.png-8b1ad4a82d769e4d4dd569b9bbbbbfed.ctex"]
+source_file="res://assets/img/Ui/yelTop.png"
+dest_files=["res://.godot/imported/yelTop.png-aa29001103d5cf0778dee9905fc8e937.ctex"]
 
 [params]
 

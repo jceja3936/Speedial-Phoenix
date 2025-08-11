@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dat0thkqujbf3"
-path="res://.godot/imported/pointsFlavor.png-2f3d2b7a8060ae98f08f5b406dd9c2d6.ctex"
+uid="uid://c6ouk4lcp3c3d"
+path="res://.godot/imported/musicIcon.png-e6a5d20f0f9678f668040081fdc1bcea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/pointsFlavor.png"
-dest_files=["res://.godot/imported/pointsFlavor.png-2f3d2b7a8060ae98f08f5b406dd9c2d6.ctex"]
+source_file="res://assets/img/Ui/musicIcon.png"
+dest_files=["res://.godot/imported/musicIcon.png-e6a5d20f0f9678f668040081fdc1bcea.ctex"]
 
 [params]
 

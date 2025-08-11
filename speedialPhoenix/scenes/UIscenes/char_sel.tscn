@@ -1,11 +1,57 @@
-[gd_scene load_steps=7 format=3 uid="uid://cc6vpam1d5p0k"]
+[gd_scene load_steps=9 format=3 uid="uid://cc6vpam1d5p0k"]
 
-[ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/arrow.png" id="1_6562m"]
 [ext_resource type="Script" uid="uid://bea3b727w804r" path="res://Scripts/uiScript/char_sel.gd" id="1_ipvkv"]
-[ext_resource type="Texture2D" uid="uid://bdna8muuq72hi" path="res://assets/img/enemySleep.png" id="2_fb04m"]
-[ext_resource type="Texture2D" uid="uid://d13e8mw3hml3r" path="res://assets/img/Francis.png" id="3_4gbu2"]
-[ext_resource type="Texture2D" uid="uid://cay8gmlx7jxgn" path="res://assets/img/Clare.png" id="5_4ssqh"]
-[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="6_4ssqh"]
+[ext_resource type="Texture2D" uid="uid://dskk03af4rypp" path="res://assets/img/Ui/characterSelectIdea.png" id="2_4ssqh"]
+[ext_resource type="Texture2D" uid="uid://cj24f40isj7o7" path="res://assets/img/Ui/FrancisButton.png" id="3_6grv7"]
+[ext_resource type="Texture2D" uid="uid://cn5ggmdib8ept" path="res://assets/img/Ui/ClareButton.png" id="5_mjrj5"]
+
+[sub_resource type="Shader" id="Shader_tj6pv"]
+code = "shader_type canvas_item;
+
+uniform vec4 myColor : source_color;
+uniform float myOpaq = 1.0;
+
+void fragment() {
+
+	COLOR.rgb = myColor.rgb;
+	COLOR.a = myOpaq * texture(TEXTURE, UV).a;
+
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ssqh"]
+shader = SubResource("Shader_tj6pv")
+shader_parameter/myColor = Color(0, 0, 0, 1)
+shader_parameter/myOpaq = 0.8
+
+[sub_resource type="Shader" id="Shader_4gbu2"]
+code = "shader_type canvas_item;
+
+uniform vec4 myColor : source_color;
+uniform float myOpaq = 1.0;
+
+void fragment() {
+
+	COLOR.rgb = myColor.rgb;
+	COLOR.a = myOpaq * texture(TEXTURE, UV).a;
+
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6grv7"]
+shader = SubResource("Shader_4gbu2")
+shader_parameter/myColor = Color(0, 0, 0, 1)
+shader_parameter/myOpaq = 0.8
 
 [node name="charSel" type="Control"]
 layout_mode = 3
@@ -18,25 +64,49 @@ script = ExtResource("1_ipvkv")
 
 [node name="bg" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-texture = ExtResource("6_4ssqh")
+texture = ExtResource("2_4ssqh")
 
 [node name="francis" type="TextureButton" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 432.0
-offset_top = 422.0
-offset_right = 560.0
-offset_bottom = 550.0
-texture_normal = ExtResource("1_6562m")
-texture_focused = ExtResource("3_4gbu2")
+offset_left = 192.0
+offset_top = 154.0
+offset_right = 654.0
+offset_bottom = 896.0
+texture_normal = ExtResource("3_6grv7")
+
+[node name="Sprite2D" type="Sprite2D" parent="francis"]
+material = SubResource("ShaderMaterial_4ssqh")
+position = Vector2(231, 371)
+texture = ExtResource("3_6grv7")
 
 [node name="Claire" type="TextureButton" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 1172.0
-offset_top = 444.0
-offset_right = 1371.0
-offset_bottom = 536.0
-texture_normal = ExtResource("2_fb04m")
-texture_focused = ExtResource("5_4ssqh")
+offset_left = 832.0
+offset_top = 156.0
+offset_right = 1294.0
+offset_bottom = 896.0
+texture_normal = ExtResource("5_mjrj5")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Claire"]
+material = SubResource("ShaderMaterial_6grv7")
+position = Vector2(231, 371)
+texture = ExtResource("3_6grv7")
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 988.0
+offset_right = 149.0
+offset_bottom = 1065.0
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[connection signal="focus_entered" from="francis" to="." method="_on_francis_focus_entered"]
+[connection signal="focus_exited" from="francis" to="." method="_on_francis_focus_exited"]
 [connection signal="pressed" from="francis" to="." method="_on_francis_pressed"]
+[connection signal="focus_entered" from="Claire" to="." method="_on_claire_focus_entered"]
+[connection signal="focus_exited" from="Claire" to="." method="_on_claire_focus_exited"]
 [connection signal="pressed" from="Claire" to="." method="_on_claire_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
