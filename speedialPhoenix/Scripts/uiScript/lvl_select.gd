@@ -1,5 +1,7 @@
 extends Control
 
+var charSelect: PackedScene = preload("res://scenes/UIscenes/char_sel.tscn")
+
 func _ready():
 	Manager.reset()
 	$GridContainer/lel1.grab_focus()
@@ -37,8 +39,7 @@ func _on_tut_pressed() -> void:
 	showCharSel()
 
 func showCharSel():
-	$charSel.show()
-	modulate.a = 0.5
+	get_tree().change_scene_to_packed(charSelect)
 
 func hideShowCharSel():
 	print("TO DO LOL")

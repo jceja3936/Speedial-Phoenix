@@ -1,5 +1,7 @@
 extends Control
 
+func _ready():
+	$francis.grab_focus()
 
 func _on_claire_pressed() -> void:
 	Manager.chosenChar = 1

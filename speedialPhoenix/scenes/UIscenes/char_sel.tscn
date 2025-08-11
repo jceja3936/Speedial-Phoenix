@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cc6vpam1d5p0k"]
+[gd_scene load_steps=7 format=3 uid="uid://cc6vpam1d5p0k"]
 
 [ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/arrow.png" id="1_6562m"]
 [ext_resource type="Script" uid="uid://bea3b727w804r" path="res://Scripts/uiScript/char_sel.gd" id="1_ipvkv"]
 [ext_resource type="Texture2D" uid="uid://bdna8muuq72hi" path="res://assets/img/enemySleep.png" id="2_fb04m"]
+[ext_resource type="Texture2D" uid="uid://d13e8mw3hml3r" path="res://assets/img/Francis.png" id="3_4gbu2"]
+[ext_resource type="Texture2D" uid="uid://cay8gmlx7jxgn" path="res://assets/img/Clare.png" id="5_4ssqh"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="6_4ssqh"]
 
 [node name="charSel" type="Control"]
 layout_mode = 3
@@ -13,6 +16,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ipvkv")
 
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("6_4ssqh")
+
 [node name="francis" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 432.0
@@ -20,6 +27,7 @@ offset_top = 422.0
 offset_right = 560.0
 offset_bottom = 550.0
 texture_normal = ExtResource("1_6562m")
+texture_focused = ExtResource("3_4gbu2")
 
 [node name="Claire" type="TextureButton" parent="."]
 layout_mode = 0
@@ -28,6 +36,7 @@ offset_top = 444.0
 offset_right = 1371.0
 offset_bottom = 536.0
 texture_normal = ExtResource("2_fb04m")
+texture_focused = ExtResource("5_4ssqh")
 
 [connection signal="pressed" from="francis" to="." method="_on_francis_pressed"]
 [connection signal="pressed" from="Claire" to="." method="_on_claire_pressed"]

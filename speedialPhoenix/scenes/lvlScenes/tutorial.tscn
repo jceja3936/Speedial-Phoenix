@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=4 uid="uid://ccm3bfo311cwa"]
+[gd_scene load_steps=17 format=4 uid="uid://ccm3bfo311cwa"]
 
 [ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="1_1xhgp"]
 [ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_ptb6j"]
 [ext_resource type="TileSet" uid="uid://bdhuawh88bvlx" path="res://assets/finalTileSet.tres" id="3_i5npi"]
-[ext_resource type="PackedScene" uid="uid://drhq6gxwrpafr" path="res://scenes/player.tscn" id="4_ovh2w"]
 [ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://Scripts/ActiveScripts/camera_2d.gd" id="5_vr8ad"]
 [ext_resource type="Texture2D" uid="uid://didtkpnuwu263" path="res://assets/img/Cursor2 - Copy.png" id="6_i7eql"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/newBg.png" id="8_185hf"]
@@ -28,7 +27,7 @@ size = Vector2(254, 448)
 
 [node name="brain" type="Node" parent="." node_paths=PackedStringArray("player", "top", "bottom")]
 script = ExtResource("10_abf0q")
-player = NodePath("../Player")
+player = NodePath("")
 top = NodePath("textContainer/Top")
 bottom = NodePath("textContainer/Bottom")
 
@@ -110,9 +109,6 @@ tile_map_data = PackedByteArray("AAAJAAIAAAAFAAAAAAAJAAMAAAAFAAAAAAAKAAIAAAAFAAA
 tile_set = ExtResource("3_i5npi")
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("4_ovh2w")]
-position = Vector2(1409, 383)
-
 [node name="theCam" type="Camera2D" parent="."]
 z_index = 5
 position = Vector2(5944, -478)
@@ -135,14 +131,14 @@ metadata/_edit_lock_ = true
 
 [node name="tutEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_185hf")]
 position = Vector2(2869, 391)
-player = NodePath("../Player")
+player = NodePath("")
 
 [node name="shotgun" parent="." instance=ExtResource("11_50kau")]
 position = Vector2(4418, 393)
 
 [node name="tutEnemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_185hf")]
 position = Vector2(5935, 408)
-player = NodePath("../Player")
+player = NodePath("")
 
 [node name="Hammer" parent="." instance=ExtResource("14_bxin3")]
 position = Vector2(5952, -486)

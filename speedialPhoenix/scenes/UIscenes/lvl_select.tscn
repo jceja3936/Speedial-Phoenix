@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2iuhlyf7jyo4"]
+[gd_scene load_steps=13 format=3 uid="uid://d2iuhlyf7jyo4"]
 
 [ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/shaders/start_menu.gdshader" id="1_ad1sg"]
 [ext_resource type="Script" uid="uid://jkkk7k73jskj" path="res://Scripts/uiScript/lvl_select.gd" id="1_yekil"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c5ux84c7d48oa" path="res://assets/img/l2Hover.png" id="6_4rkwe"]
 [ext_resource type="Texture2D" uid="uid://gurke28648cp" path="res://assets/img/l3.png" id="7_uj6vy"]
 [ext_resource type="Texture2D" uid="uid://bkf8dloofbgmh" path="res://assets/img/l3Hover.png" id="8_2tji1"]
-[ext_resource type="PackedScene" uid="uid://cc6vpam1d5p0k" path="res://scenes/UIscenes/char_sel.tscn" id="12_1kbd8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yekil"]
 shader = ExtResource("1_ad1sg")
@@ -131,10 +130,6 @@ offset_right = 1826.0
 offset_bottom = 1006.0
 theme_override_font_sizes/font_size = 50
 text = "Tutorial"
-
-[node name="charSel" parent="." instance=ExtResource("12_1kbd8")]
-visible = false
-layout_mode = 1
 
 [connection signal="pressed" from="GridContainer/lel1" to="." method="_on_lel_1_pressed"]
 [connection signal="pressed" from="GridContainer/l2" to="." method="_on_l_2_pressed"]

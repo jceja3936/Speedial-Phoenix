@@ -72,7 +72,7 @@ func _physics_process(_delta: float) -> void:
 	var dir = Input.get_vector("rStickleft", "riStickRight", "rStickUp", "rStickDown")
 	if dir:
 		var center = Vector2(get_viewport().size / 2)
-		var target = center + (dir * 400)
+		var target = center + (dir * 600)
 		Input.warp_mouse(target)
 	var player_pos = player.global_position
 

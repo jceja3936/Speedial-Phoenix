@@ -8,10 +8,10 @@ radius = 4.0
 height = 106.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83dcw"]
-size = Vector2(24.5, 130)
+size = Vector2(16, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egh6x"]
-size = Vector2(24.25, 131)
+size = Vector2(14, 131)
 
 [node name="vertDoor" type="Node2D"]
 
@@ -53,7 +53,7 @@ collision_mask = 45
 metadata/_edit_group_ = true
 
 [node name="size" type="CollisionShape2D" parent="door/right"]
-position = Vector2(5.75, -3)
+position = Vector2(10, -3)
 shape = SubResource("RectangleShape2D_83dcw")
 
 [node name="left" type="Area2D" parent="door"]
@@ -63,7 +63,7 @@ collision_mask = 45
 metadata/_edit_group_ = true
 
 [node name="size" type="CollisionShape2D" parent="door/left"]
-position = Vector2(-6.875, -2.5)
+position = Vector2(-12, -2.5)
 shape = SubResource("RectangleShape2D_egh6x")
 
 [connection signal="body_entered" from="door/right" to="door" method="_on_right_body_entered"]
