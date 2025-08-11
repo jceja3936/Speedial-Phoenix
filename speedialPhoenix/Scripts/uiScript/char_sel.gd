@@ -10,6 +10,12 @@ func _ready():
 	$francis.grab_focus()
 
 func _physics_process(_delta: float) -> void:
+	if $francis.is_hovered():
+		francisFocus = false
+		clareFocus = true
+	elif $Claire.is_hovered():
+		clareFocus = false
+		francisFocus = true
 	francisTweener(francisFocus)
 	clareTweener(clareFocus)
 	$francis/Sprite2D.material.set_shader_parameter("myOpaq", francisTween)

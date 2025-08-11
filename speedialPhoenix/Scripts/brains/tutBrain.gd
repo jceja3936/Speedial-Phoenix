@@ -8,8 +8,8 @@ var levelBeat = false
 var doneArray = [0, 0, 0, 0]
 var fadeInTime = 4.5
 
-var francis: PackedScene = load("res://scenes/player.tscn")
-var claire: PackedScene = load("res://scenes/claire.tscn")
+var francis: PackedScene = load("res://scenes/Characters/player.tscn")
+var claire: PackedScene = load("res://scenes/Characters/claire.tscn")
 
 func _ready() -> void:
 	MenuMusic.pauseMusic()

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c8rrc3lvlk3wq" path="res://scenes/UIscenes/bg_shader.tscn" id="8_qv1ty"]
 [ext_resource type="Script" uid="uid://dwrju5r6407rv" path="res://Scripts/brains/brainL3.gd" id="9_qv1ty"]
 [ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/Ui/arrow.png" id="10_m4c3p"]
-[ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/enemy.tscn" id="11_6rhij"]
+[ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/Characters/enemy.tscn" id="11_6rhij"]
 [ext_resource type="PackedScene" uid="uid://03lxyxx3lv78" path="res://scenes/gunScenes/hammer.tscn" id="12_nh6i2"]
 [ext_resource type="PackedScene" uid="uid://dvwmxjcseecq7" path="res://scenes/vertDoor.tscn" id="13_pf5d3"]
 [ext_resource type="PackedScene" uid="uid://cw1s7il08t6q8" path="res://scenes/hDoor.tscn" id="14_13836"]

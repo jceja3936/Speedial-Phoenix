@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="7_tjqha"]
 [ext_resource type="PackedScene" uid="uid://c8rrc3lvlk3wq" path="res://scenes/UIscenes/bg_shader.tscn" id="8_vjsey"]
 [ext_resource type="Script" uid="uid://dh26tcfwf7wjv" path="res://Scripts/brains/brainL2.gd" id="9_msb3r"]
-[ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/enemy.tscn" id="9_vjsey"]
+[ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/Characters/enemy.tscn" id="9_vjsey"]
 [ext_resource type="PackedScene" uid="uid://bfkltf78e2mmp" path="res://scenes/gunScenes/rifle.tscn" id="10_u3u1i"]
 [ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/Ui/arrow.png" id="10_wb6gm"]
 [ext_resource type="PackedScene" uid="uid://03lxyxx3lv78" path="res://scenes/gunScenes/hammer.tscn" id="12_c2p4a"]

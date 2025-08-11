@@ -9,8 +9,8 @@ var levelBeat = false
 var stage = [0, 0]
 var jankyBugFix = false
 
-var francis: PackedScene = load("res://scenes/player.tscn")
-var claire: PackedScene = load("res://scenes/claire.tscn")
+var francis: PackedScene = load("res://scenes/Characters/player.tscn")
+var claire: PackedScene = load("res://scenes/Characters/claire.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
