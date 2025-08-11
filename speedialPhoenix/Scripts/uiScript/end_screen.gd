@@ -1,17 +1,26 @@
 extends Control
 
 var bsTweener = 0.0
-var dTier = 0
-var cTier = 0
-var bTier = 0
-var aTier = 0
-var sTier = 0
+var ogMenuMusic = 0.0
 
 var tiers = [0, 0, 0, 0, 0]
 
+func tweenAudio():
+	if MenuMusic.musicSound < ogMenuMusic:
+		MenuMusic.musicSound += 1
+		MenuMusic.setMusicSound()
+		await get_tree().create_timer(.05).timeout
+		tweenAudio()
+
+
 func _ready() -> void:
+	ogMenuMusic = MenuMusic.musicSound
+	MenuMusic.musicSound = -20.0
+	MenuMusic.setMusicSound()
+	MenuMusic.play()
 	$Next.grab_focus()
 	cutScene()
+	tweenAudio()
 
 	match Manager.current_scene:
 		"1_1":

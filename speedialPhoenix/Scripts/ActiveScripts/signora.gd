@@ -46,7 +46,7 @@ func fire():
 		ammo -= 1
 		wait()
 		canFire = false
-		Manager.playSound("pSound", global_position, -5.0)
+		Manager.playSound("Deagle", global_position, 15.0)
 		var bull = bullet.instantiate()
 		bull.dir = get_parent().rotation + rng.randf_range(-.1, .1)
 		bull.pos = global_position

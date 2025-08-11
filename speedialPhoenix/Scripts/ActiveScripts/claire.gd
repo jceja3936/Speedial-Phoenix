@@ -18,6 +18,7 @@ var camExt = false
 var finish = false
 var gamePaused = false
 
+var ambiencePlaying = false
 
 var moved = false
 
@@ -66,7 +67,8 @@ func cutScenePlaying():
 	finish = true
 
 func playAmbience():
-	if GameAudio.canPlay:
+	if GameAudio.canPlay and !ambiencePlaying:
+		ambiencePlaying = true
 		$sound.play()
 		$sound.volume_db = GameAudio.musicSound
 
@@ -111,6 +113,7 @@ func hit(damage: int, id: int) -> void:
 		health -= damage
 		lastGuy = id
 	if health <= 0 and !dead:
+		$Signora.paused = true
 		die()
 
 func die() -> void:

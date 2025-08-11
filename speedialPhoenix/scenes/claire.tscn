@@ -177,9 +177,9 @@ texture = ExtResource("6_8uypp")
 
 [node name="Signora" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(47, -42)
+position = Vector2(44, -23)
 rotation = 3.14159
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.4, 1.4)
 texture = ExtResource("5_m1op8")
 offset = Vector2(-15, 0)
 script = ExtResource("5_8uypp")
@@ -187,7 +187,7 @@ script = ExtResource("5_8uypp")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 rotation = -1.5708
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("7_m1op8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -59,8 +59,9 @@ metadata/_edit_lock_ = true
 [node name="bgShader" parent="ParallaxBackground" instance=ExtResource("8_vjsey")]
 metadata/_edit_lock_ = true
 
-[node name="brain" type="Node" parent="."]
+[node name="brain" type="Node" parent="." node_paths=PackedStringArray("currentMap")]
 script = ExtResource("9_msb3r")
+currentMap = NodePath("../Floor")
 
 [node name="start" type="Area2D" parent="brain"]
 position = Vector2(469, 767)
@@ -147,7 +148,7 @@ myFloor = 2
 melee = true
 
 [node name="Enemy2" parent="ENEM2" instance=ExtResource("9_vjsey")]
-position = Vector2(935, 5187)
+position = Vector2(953, 5184)
 pat = true
 myFloor = 2
 
@@ -321,7 +322,7 @@ position = Vector2(1265, -507)
 position = Vector2(1528, 4091)
 
 [node name="Hammer" parent="." instance=ExtResource("12_c2p4a")]
-position = Vector2(2843, 778)
+position = Vector2(2830, 779)
 
 [node name="shotgun2" parent="." instance=ExtResource("12_fcmif")]
 position = Vector2(935, 6785)

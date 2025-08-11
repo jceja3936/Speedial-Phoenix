@@ -1,5 +1,8 @@
 extends Node
-@export var player: CharacterBody2D
+
+@export var currentMap: TileMapLayer
+
+var player: CharacterBody2D
 var endPosition = Vector2.ZERO
 var state = 1
 var levelBeat = false
@@ -19,7 +22,17 @@ func _ready() -> void:
 			character = francis.instantiate()
 		1:
 			character = claire.instantiate()
+			var tileCoords = currentMap.local_to_map(Vector2(3018, 700))
+			currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
+			tileCoords = currentMap.local_to_map(Vector2(3012, 827))
+			currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
 
+			tileCoords = currentMap.local_to_map(Vector2(320.0, 5318.0))
+			currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
+			tileCoords = currentMap.local_to_map(Vector2(326.0, 5425.0))
+			currentMap.set_cell(tileCoords, 0, Vector2i(5, 0), 0)
+			
+			
 	if character != null:
 		character.name = "Player"
 		get_parent().add_child.call_deferred(character)

@@ -59,6 +59,7 @@ func reset():
 	enemyAmount = 0
 
 var item_sounds = {
+	"Deagle": preload("res://assets/aud/Deagle.wav"),
 	"pSound": preload("res://assets/aud/revolv.mp3"),
 	"sSound": preload("res://assets/aud/shotgun.wav"),
 	"dSound": preload("res://assets/aud/wallBreak1.wav"),
@@ -66,7 +67,7 @@ var item_sounds = {
 	"swing": preload("res://assets/aud/swing.wav"),
 	"bLand": preload("res://assets/aud/bullLand.wav"),
 	"floorBeat": preload("res://assets/aud/floorBeat.wav"),
-	"levelBeat": preload("res://assets/aud/LevelBeat.wav"),
+	"levelBeat": preload("res://assets/aud/KAKAWW.wav"),
 	"doorOpen1": preload("res://assets/aud/doorOpen1.mp3"),
 	"doorOpen2": preload("res://assets/aud/doorOpen2.wav"),
 	"doorOpen3": preload("res://assets/aud/doorOpen3.wav")

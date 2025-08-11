@@ -18,6 +18,8 @@ var camExt = false
 var finish = false
 var gamePaused = false
 
+var ambiencePlaying = false
+
 var moved = false
 
 
@@ -68,7 +70,8 @@ func cutScenePlaying():
 	finish = true
 
 func playAmbience():
-	if GameAudio.canPlay:
+	if GameAudio.canPlay and !ambiencePlaying:
+		ambiencePlaying = true
 		$sound.play()
 		$sound.volume_db = GameAudio.musicSound
 
@@ -106,7 +109,6 @@ func finishing(value: Vector2, enemy: CharacterBody2D):
 		if enemy:
 			enemy.call("hit", 290)
 		finish = false
-
 
 var lastGuy = 0
 func hit(damage: int, id: int) -> void:
