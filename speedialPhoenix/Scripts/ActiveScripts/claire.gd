@@ -35,6 +35,7 @@ func _ready() -> void:
 	SignalBus.unPaused.connect(unPaused)
 	SignalBus.levelBeat.connect(playAmbience)
 	SignalBus.playCutscene.connect(cutScenePlaying)
+	SignalBus.updateScore.connect(speedBoost)
 	SignalBus.updateResp.emit(false)
 	$shader.material.set_shader_parameter("myOpaq", 0.0)
 	if Manager.playerRespawnPos != Vector2.ZERO:
@@ -52,6 +53,16 @@ func _ready() -> void:
 			camNode = "/root/Lvl3/theCam"
 
 	cam = get_node(camNode)
+
+func speedBoost(_bruh):
+	speed += 200
+	print(speed)
+	speedCooldown()
+
+func speedCooldown():
+	await get_tree().create_timer(.7).timeout
+	speed -= 200
+
 
 func _notification(_what):
 	return
@@ -181,6 +192,6 @@ func loading():
 	gamePaused = false
 
 func weaponGrabbed(_which: int, currentAmmo: int) -> void:
-	if currentAmmo > 2:
-		currentAmmo = 2
+	if currentAmmo > 3:
+		currentAmmo = 3
 	$Signora.moreAmmo(currentAmmo)
