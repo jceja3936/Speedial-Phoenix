@@ -178,6 +178,6 @@ func loading():
 	gamePaused = false
 
 func weaponGrabbed(_which: int, currentAmmo: int) -> void:
-	if currentAmmo > 5:
-		currentAmmo = 5
+	if currentAmmo > 2:
+		currentAmmo = 2
 	$Signora.moreAmmo(currentAmmo)

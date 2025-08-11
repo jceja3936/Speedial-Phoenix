@@ -1,13 +1,13 @@
 [gd_scene load_steps=33 format=3 uid="uid://bwhb5mr6trupy"]
 
-[ext_resource type="Texture2D" uid="uid://c5n0jq48txjum" path="res://assets/img/FrancisOutlined.png" id="1_4rddl"]
 [ext_resource type="Script" uid="uid://c1xiy6o57q2sk" path="res://Scripts/ActiveScripts/claire.gd" id="1_k6g3q"]
 [ext_resource type="Shader" uid="uid://bhb832wfoa81a" path="res://assets/shaders/player.gdshader" id="4_wng3l"]
 [ext_resource type="Script" uid="uid://chtd2xr3ffg4" path="res://Scripts/ActiveScripts/signora.gd" id="5_8uypp"]
 [ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="5_g6f4p"]
-[ext_resource type="Texture2D" uid="uid://b5kvowi7y7ev5" path="res://assets/img/weapons/pistolTop.png" id="5_m1op8"]
+[ext_resource type="Texture2D" uid="uid://b3hjh8fk4ctwn" path="res://assets/img/Signora.png" id="5_m1op8"]
 [ext_resource type="Texture2D" uid="uid://d13e8mw3hml3r" path="res://assets/img/Francis.png" id="6_8uypp"]
 [ext_resource type="AudioStream" uid="uid://bmo37tv2nrb2b" path="res://assets/aud/AirCondition.wav" id="7_g6f4p"]
+[ext_resource type="Texture2D" uid="uid://cay8gmlx7jxgn" path="res://assets/img/Clare.png" id="7_m1op8"]
 [ext_resource type="Texture2D" uid="uid://ba3kbuqrt6rkq" path="res://assets/img/finalSpriteSheet.png" id="8_8uypp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m1op8"]
@@ -177,14 +177,17 @@ texture = ExtResource("6_8uypp")
 
 [node name="Signora" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(64, 1)
+position = Vector2(78, -33)
+rotation = 3.14159
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_m1op8")
 script = ExtResource("5_8uypp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 rotation = -1.5708
-texture = ExtResource("1_4rddl")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_m1op8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

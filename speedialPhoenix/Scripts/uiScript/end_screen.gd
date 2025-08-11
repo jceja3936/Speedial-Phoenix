@@ -88,8 +88,8 @@ func _on_next_pressed() -> void:
 			Manager.score = 0
 			Manager.mult = 1
 			Manager.enemyAmount = 0
-			Manager.playerRespawnPos = Vector2.ZERO
 
+			Manager.playerRespawnPos = Vector2(418.0, 145.0)
 			Manager.current_scene = "1_1"
 			Manager.next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
 			Manager.startNextScene()
@@ -103,8 +103,8 @@ func _on_next_pressed() -> void:
 			Manager.score = 0
 			Manager.mult = 1
 			Manager.enemyAmount = 0
-			Manager.playerRespawnPos = Vector2.ZERO
 
+			Manager.playerRespawnPos = Vector2(271.0, 756.0)
 			Manager.current_scene = "2"
 			Manager.next_scene = "res://scenes/lvlScenes/Lvl2.tscn"
 			Manager.startNextScene()
@@ -117,8 +117,8 @@ func _on_next_pressed() -> void:
 			Manager.score = 0
 			Manager.mult = 1
 			Manager.enemyAmount = 0
-			Manager.playerRespawnPos = Vector2.ZERO
-
+			
+			Manager.playerRespawnPos = Vector2(714.0, 136.0)
 			Manager.current_scene = "3"
 			Manager.next_scene = "res://scenes/lvlScenes/Lvl3.tscn"
 			Manager.startNextScene()

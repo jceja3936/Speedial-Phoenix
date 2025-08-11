@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var ammo = 10
+var ammo = 6
 var fireRate = .5
 var canFire = true
 var canVault = true

@@ -59,9 +59,8 @@ metadata/_edit_lock_ = true
 [node name="bgShader" parent="ParallaxBackground" instance=ExtResource("8_vjsey")]
 metadata/_edit_lock_ = true
 
-[node name="brain" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="brain" type="Node" parent="."]
 script = ExtResource("9_msb3r")
-player = NodePath("")
 
 [node name="start" type="Area2D" parent="brain"]
 position = Vector2(469, 767)
