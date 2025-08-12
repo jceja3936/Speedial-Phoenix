@@ -54,7 +54,7 @@ func l3Tweener(up: int):
 	await get_tree().create_timer(.05).timeout
 
 func _on_back_pressed() -> void:
-	Manager.next_scene = "res://scenes/UIscenes/start_menu.tscn"
+	Manager.next_scene = "res://scenes/UIscenes/ChapSel.tscn"
 	Manager.startNextScene()
 
 

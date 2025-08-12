@@ -9,7 +9,7 @@ func _on_exit_pressed() -> void:
 
 
 func _on_continue_pressed() -> void:
-	Manager.next_scene = "res://scenes/UIscenes/lvl_select.tscn"
+	Manager.next_scene = "res://scenes/UIscenes/ChapSel.tscn"
 	Manager.startNextScene()
 
 

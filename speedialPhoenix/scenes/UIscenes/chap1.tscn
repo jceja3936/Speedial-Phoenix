@@ -1,16 +1,16 @@
 [gd_scene load_steps=17 format=3 uid="uid://d2iuhlyf7jyo4"]
 
-[ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/shaders/start_menu.gdshader" id="1_ad1sg"]
-[ext_resource type="Script" uid="uid://jkkk7k73jskj" path="res://Scripts/uiScript/lvl_select.gd" id="1_yekil"]
-[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="2_r8adp"]
-[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="3_em7jy"]
-[ext_resource type="Texture2D" uid="uid://hkee4m0e3u31" path="res://assets/img/Ui/l1.png" id="3_rvjn2"]
-[ext_resource type="Texture2D" uid="uid://bsg4dj8hwy0vn" path="res://assets/img/Ui/l1hover.png" id="4_1kbd8"]
-[ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="5_b22jk"]
-[ext_resource type="Texture2D" uid="uid://cccg3eonm51qt" path="res://assets/img/Ui/l2.png" id="5_s00of"]
-[ext_resource type="Texture2D" uid="uid://c5ux84c7d48oa" path="res://assets/img/Ui/l2Hover.png" id="6_4rkwe"]
-[ext_resource type="Texture2D" uid="uid://gurke28648cp" path="res://assets/img/Ui/l3.png" id="7_uj6vy"]
-[ext_resource type="Texture2D" uid="uid://bkf8dloofbgmh" path="res://assets/img/Ui/l3Hover.png" id="8_2tji1"]
+[ext_resource type="Script" uid="uid://jkkk7k73jskj" path="res://Scripts/uiScript/lvl_select.gd" id="1_vhoje"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="2_n7ix5"]
+[ext_resource type="Texture2D" uid="uid://hkee4m0e3u31" path="res://assets/img/Ui/l1.png" id="3_qs5wj"]
+[ext_resource type="Texture2D" uid="uid://bsg4dj8hwy0vn" path="res://assets/img/Ui/l1hover.png" id="4_kpqqw"]
+[ext_resource type="Texture2D" uid="uid://cccg3eonm51qt" path="res://assets/img/Ui/l2.png" id="5_qaquj"]
+[ext_resource type="Texture2D" uid="uid://c5ux84c7d48oa" path="res://assets/img/Ui/l2Hover.png" id="6_g1wnh"]
+[ext_resource type="Texture2D" uid="uid://gurke28648cp" path="res://assets/img/Ui/l3.png" id="7_kx2gb"]
+[ext_resource type="Texture2D" uid="uid://bkf8dloofbgmh" path="res://assets/img/Ui/l3Hover.png" id="8_55kwf"]
+[ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="9_mojjb"]
+[ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/shaders/start_menu.gdshader" id="10_letpl"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="11_k08og"]
 
 [sub_resource type="Shader" id="Shader_rvjn2"]
 code = "shader_type canvas_item;
@@ -34,36 +34,36 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1kbd8"]
 shader = SubResource("Shader_rvjn2")
 shader_parameter/myColor = Color(0, 0, 0, 1)
-shader_parameter/myOpaq = 1.0
+shader_parameter/myOpaq = 0.8
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rvjn2"]
 shader = SubResource("Shader_rvjn2")
 shader_parameter/myColor = Color(0, 0, 0, 1)
-shader_parameter/myOpaq = 1.0
+shader_parameter/myOpaq = 0.8
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s00of"]
 shader = SubResource("Shader_rvjn2")
 shader_parameter/myColor = Color(0, 0, 0, 1)
-shader_parameter/myOpaq = 1.0
+shader_parameter/myOpaq = 0.8
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yekil"]
-shader = ExtResource("1_ad1sg")
-shader_parameter/noise_img = ExtResource("2_r8adp")
+shader = ExtResource("10_letpl")
+shader_parameter/noise_img = ExtResource("11_k08og")
 shader_parameter/myColor = Color(1, 0, 0, 1)
 shader_parameter/myOpaq = 0.5
 
-[node name="lvlSelect" type="Control"]
+[node name="Chap1" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yekil")
+script = ExtResource("1_vhoje")
 
 [node name="bg" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-texture = ExtResource("3_em7jy")
+texture = ExtResource("2_n7ix5")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -85,8 +85,8 @@ columns = 3
 [node name="lel1" type="TextureButton" parent="GridContainer"]
 custom_minimum_size = Vector2(248, 248)
 layout_mode = 2
-texture_normal = ExtResource("3_rvjn2")
-texture_focused = ExtResource("4_1kbd8")
+texture_normal = ExtResource("3_qs5wj")
+texture_focused = ExtResource("4_kpqqw")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -94,13 +94,13 @@ stretch_mode = 5
 material = SubResource("ShaderMaterial_1kbd8")
 position = Vector2(123.75, 123.75)
 scale = Vector2(0.0808369, 0.0803804)
-texture = ExtResource("3_rvjn2")
+texture = ExtResource("3_qs5wj")
 
 [node name="l2" type="TextureButton" parent="GridContainer"]
 custom_minimum_size = Vector2(248, 248)
 layout_mode = 2
-texture_normal = ExtResource("5_s00of")
-texture_focused = ExtResource("6_4rkwe")
+texture_normal = ExtResource("5_qaquj")
+texture_focused = ExtResource("6_g1wnh")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -108,13 +108,13 @@ stretch_mode = 5
 material = SubResource("ShaderMaterial_rvjn2")
 position = Vector2(123.875, 123.75)
 scale = Vector2(0.0808369, 0.0803804)
-texture = ExtResource("3_rvjn2")
+texture = ExtResource("3_qs5wj")
 
 [node name="l3" type="TextureButton" parent="GridContainer"]
 custom_minimum_size = Vector2(248, 248)
 layout_mode = 2
-texture_normal = ExtResource("7_uj6vy")
-texture_focused = ExtResource("8_2tji1")
+texture_normal = ExtResource("7_kx2gb")
+texture_focused = ExtResource("8_55kwf")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -122,18 +122,18 @@ stretch_mode = 5
 material = SubResource("ShaderMaterial_s00of")
 position = Vector2(124, 123.75)
 scale = Vector2(0.0808369, 0.0803804)
-texture = ExtResource("3_rvjn2")
+texture = ExtResource("3_qs5wj")
 
 [node name="Warm Ups" type="Label" parent="GridContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_b22jk")
+theme_override_fonts/font = ExtResource("9_mojjb")
 theme_override_font_sizes/font_size = 21
 text = "Warm Ups"
 horizontal_alignment = 1
 
 [node name="BREACH" type="Label" parent="GridContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_b22jk")
+theme_override_fonts/font = ExtResource("9_mojjb")
 theme_override_font_sizes/font_size = 21
 text = "BREACH"
 horizontal_alignment = 1
@@ -141,7 +141,7 @@ uppercase = true
 
 [node name="Finale" type="Label" parent="GridContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_b22jk")
+theme_override_fonts/font = ExtResource("9_mojjb")
 theme_override_font_sizes/font_size = 21
 text = "Finale"
 horizontal_alignment = 1
@@ -152,14 +152,14 @@ offset_left = 64.0
 offset_top = 64.0
 offset_right = 746.0
 offset_bottom = 183.0
-theme_override_fonts/font = ExtResource("5_b22jk")
+theme_override_fonts/font = ExtResource("9_mojjb")
 theme_override_font_sizes/font_size = 87
 text = "Choose A Scene:"
 
 [node name="shader" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yekil")
 position = Vector2(960, 540)
-texture = ExtResource("3_em7jy")
+texture = ExtResource("2_n7ix5")
 metadata/_edit_lock_ = true
 
 [node name="Back" type="Button" parent="."]
