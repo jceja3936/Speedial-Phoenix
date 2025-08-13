@@ -20,27 +20,27 @@ func wait():
 
 func _physics_process(_delta):
 	$Main.position.x = positionCurve.sample(x)
-	if Input.is_action_just_pressed("Right") and canMove:
+	if (Input.is_action_just_pressed("Right") or Input.is_action_just_pressed("Up")) and canMove:
 		if levelPos < 1.0:
 			canMove = false
 			levelPos += 1.0
 			set_process_input(false)
 			wait()
-	elif Input.is_action_just_pressed("Left") and canMove:
+	elif (Input.is_action_just_pressed("Left") or Input.is_action_just_pressed("Down")) and canMove:
 		if levelPos > -1.0:
 			canMove = false
 			levelPos -= 1.0
 			set_process_input(false)
 			wait()
 
-	if Input.is_action_just_pressed("Respawn") and !selected:
-		print(levelPos)
+	if (Input.is_action_just_pressed("Respawn") or Input.is_action_just_pressed("ui_accept")) and !selected:
 		match levelPos:
 			-1.0:
 				selected = true
 				Manager.next_scene = "res://scenes/UIscenes/start_menu.tscn"
 				Manager.startNextScene()
 			0.0:
+				Manager.chosenChapter = "res://scenes/UIscenes/chap1.tscn"
 				selected = true
 				Manager.next_scene = "res://scenes/UIscenes/chap1.tscn"
 				Manager.startNextScene()
@@ -50,6 +50,7 @@ func _physics_process(_delta):
 				selected = true
 				Manager.next_scene = "res://scenes/UIscenes/chap1.tscn"
 				Manager.startNextScene()
+		print(Manager.chosenChapter)
 	
 func xGlide():
 	if selected:
@@ -61,13 +62,3 @@ func xGlide():
 		x = lerp(x, 0.0, .05)
 		await get_tree().create_timer(.01).timeout
 	xGlide()
-
-
-func _on_back_pressed() -> void:
-	Manager.next_scene = "res://scenes/UIscenes/start_menu.tscn"
-	Manager.startNextScene()
-
-
-func _on_chap_1_pressed() -> void:
-	Manager.next_scene = "res://scenes/UIscenes/chap1.tscn"
-	Manager.startNextScene()

@@ -53,7 +53,8 @@ func _on_francis_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
-	Manager.next_scene = "res://scenes/UIscenes/Chap1.tscn"
+	print(Manager.chosenChapter)
+	Manager.next_scene = Manager.chosenChapter
 	Manager.startNextScene()
 
 

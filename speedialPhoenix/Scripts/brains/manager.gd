@@ -1,5 +1,8 @@
 extends Node2D
 
+@warning_ignore("integer_division")
+@warning_ignore("integer_division")
+
 var pistol: PackedScene = load("res://scenes/gunScenes/pistol.tscn")
 var rifle: PackedScene = load("res://scenes/gunScenes/rifle.tscn")
 var shotgun: PackedScene = load("res://scenes/gunScenes/shotgun.tscn")
@@ -13,6 +16,8 @@ var gamePaused = true
 var score = -1
 var wallsBroke = 0
 
+var chosenChapter = "0"
+
 var chosenChar = 0
 
 var sfx = 0.0
@@ -24,8 +29,49 @@ var ammoCount = 0
 var mult = 1
 var deaths = 0
 
-var enemyAmount = 0
+var francisLevels = ["0", "0", "0"]
+var clareLevels = ["0", "0", "0"]
 
+var enemyAmount = 0
+const SAVEFILE = "res://Savegame.txt"
+
+func _ready():
+	if !FileAccess.file_exists(SAVEFILE):
+		print("No save file!")
+		return
+	var theFile = FileAccess.open(SAVEFILE, FileAccess.READ)
+	var lineCounter = 0
+	while theFile.get_position() < theFile.get_length():
+		var letterCounter = 0
+		var line = theFile.get_line()
+		for letter in line:
+			if lineCounter == 0:
+				francisLevels[letterCounter] = letter
+			elif lineCounter == 1:
+				clareLevels[letterCounter] = letter
+			letterCounter += 1
+		lineCounter += 1
+	
+
+func printAll():
+	print(francisLevels)
+	print(clareLevels)
+
+func save():
+	var saveLine = ""
+	var thefile = FileAccess.open(SAVEFILE, FileAccess.WRITE)
+
+	for boolean in francisLevels:
+		saveLine += str(boolean)
+	thefile.store_line(saveLine)
+
+	saveLine = ""
+
+	for boolean in clareLevels:
+		saveLine += str(boolean)
+	thefile.store_line(saveLine)
+
+	
 func _physics_process(delta: float):
 	if !gamePaused:
 		timer += delta
@@ -33,19 +79,19 @@ func _physics_process(delta: float):
 func reset():
 	match current_scene:
 		"0":
-			next_scene = "res://scenes/lvlScenes/tutorial.tscn"
+			next_scene = "res: / / scenes / lvlScenes / tutorial.tscn"
 			current_scene = "0"
 
 		"1_1":
-			next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
+			next_scene = "res: / / scenes / lvlScenes / Lvl1.tscn"
 			current_scene = "1_1"
 			playerRespawnPos = Vector2(418.0, 145.0)
 		"2":
 			current_scene = "2"
-			next_scene = "res://scenes/lvlScenes/Lvl2.tscn"
+			next_scene = "res: / / scenes / lvlScenes / Lvl2.tscn"
 		"3":
 			current_scene = "3"
-			next_scene = "res://scenes/lvlScenes/Lvl3.tscn"
+			next_scene = "res: / / scenes / lvlScenes / Lvl3.tscn"
 
 			
 	gamePaused = false

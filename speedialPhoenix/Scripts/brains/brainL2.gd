@@ -76,6 +76,8 @@ func playOnce():
 		
 	elif stage[1] == 0 and state == 2:
 		stage[1] = 1
+		Manager.francisLevels[1] = 1
+		Manager.save()
 		Manager.playSound("levelBeat", player.global_position, 10.5)
 
 func set_State(newState: int):

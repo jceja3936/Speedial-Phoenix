@@ -7,6 +7,13 @@ var tweeners = [1.0, 1.0, 1.0]
 
 func _ready():
 	Manager.reset()
+
+	if Manager.francisLevels[0] == "0":
+		$GridContainer/l2.disabled = true
+	if Manager.francisLevels[1] == "0":
+		$GridContainer/l3.disabled = true
+
+
 	$GridContainer/lel1.grab_focus()
 
 func _physics_process(_delta: float) -> void:

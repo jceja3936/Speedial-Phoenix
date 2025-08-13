@@ -30,12 +30,14 @@ theme_override_constants/separation = 600
 
 [node name="Chap1" type="TextureButton" parent="Main"]
 layout_mode = 2
+button_mask = 0
 texture_normal = ExtResource("3_yinla")
 
 [node name="Chap2" type="TextureButton" parent="Main"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Chap1")
 focus_neighbor_bottom = NodePath("../Chap1")
+button_mask = 0
 texture_normal = ExtResource("4_wvir2")
 
 [node name="Label" type="Label" parent="."]
@@ -57,6 +59,3 @@ offset_bottom = 1044.0
 theme_override_fonts/font = ExtResource("4_yinla")
 theme_override_font_sizes/font_size = 50
 text = "Back"
-
-[connection signal="pressed" from="Main/Chap1" to="." method="_on_chap_1_pressed"]
-[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
