@@ -45,10 +45,9 @@ func _physics_process(_delta):
 				Manager.next_scene = "res://scenes/UIscenes/chap1.tscn"
 				Manager.startNextScene()
 			1.0:
-				print("Not made yet")
-				return
 				selected = true
-				Manager.next_scene = "res://scenes/UIscenes/chap1.tscn"
+				Manager.chosenChapter = "res://scenes/UIscenes/chap2.tscn"
+				Manager.next_scene = "res://scenes/UIscenes/chap2.tscn"
 				Manager.startNextScene()
 		print(Manager.chosenChapter)
 	

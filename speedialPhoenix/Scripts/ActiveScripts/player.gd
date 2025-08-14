@@ -53,6 +53,8 @@ func _ready() -> void:
 			camNode = "/root/Lvl2/theCam"
 		"3":
 			camNode = "/root/Lvl3/theCam"
+		"4":
+			camNode = "/root/Lvl4/theCam"
 
 	cam = get_node(camNode)
 	

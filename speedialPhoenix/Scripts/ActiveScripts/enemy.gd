@@ -56,6 +56,8 @@ func getPlayer():
 			playerNode = "/root/Lvl2/Player"
 		"3":
 			playerNode = "/root/Lvl3/Player"
+		"4":
+			playerNode = "/root/Lvl4/Player"
 
 	player = get_node(playerNode)
 	gamePaused = false

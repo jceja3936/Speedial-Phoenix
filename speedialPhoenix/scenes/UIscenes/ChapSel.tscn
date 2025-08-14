@@ -58,4 +58,5 @@ offset_right = 184.0
 offset_bottom = 1044.0
 theme_override_fonts/font = ExtResource("4_yinla")
 theme_override_font_sizes/font_size = 50
+button_mask = 0
 text = "Back"

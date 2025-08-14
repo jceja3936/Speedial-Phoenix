@@ -1,0 +1,199 @@
+[gd_scene load_steps=15 format=3 uid="uid://8ghwugw3yv2w"]
+
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="1_sduf4"]
+[ext_resource type="Script" uid="uid://dxrd52xbkj28t" path="res://Scripts/uiScript/chap_2.gd" id="1_xwscs"]
+[ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/shaders/start_menu.gdshader" id="2_xwscs"]
+[ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="3_8nq1d"]
+[ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="5_8nq1d"]
+[ext_resource type="Texture2D" uid="uid://hkee4m0e3u31" path="res://assets/img/Ui/l1.png" id="6_cpu08"]
+[ext_resource type="Texture2D" uid="uid://df674wucg1eya" path="res://assets/img/lockedLevel2.png" id="7_ajbub"]
+[ext_resource type="Texture2D" uid="uid://cccg3eonm51qt" path="res://assets/img/Ui/l2.png" id="8_i4tyh"]
+[ext_resource type="Texture2D" uid="uid://gurke28648cp" path="res://assets/img/Ui/l3.png" id="9_mmbul"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6i74"]
+shader = ExtResource("2_xwscs")
+shader_parameter/noise_img = ExtResource("3_8nq1d")
+shader_parameter/myColor = Color(1, 0, 0, 1)
+shader_parameter/myOpaq = 0.5
+
+[sub_resource type="Shader" id="Shader_rvjn2"]
+code = "shader_type canvas_item;
+
+uniform vec4 myColor : source_color;
+uniform float myOpaq = 1.0;
+
+void fragment() {
+
+	COLOR.rgb = myColor.rgb;
+	COLOR.a = myOpaq * texture(TEXTURE, UV).a;
+
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_exgtc"]
+shader = SubResource("Shader_rvjn2")
+shader_parameter/myColor = Color(0, 0, 0, 1)
+shader_parameter/myOpaq = 0.8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14x14"]
+shader = SubResource("Shader_rvjn2")
+shader_parameter/myColor = Color(0, 0, 0, 1)
+shader_parameter/myOpaq = 0.8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sp62w"]
+shader = SubResource("Shader_rvjn2")
+shader_parameter/myColor = Color(0, 0, 0, 1)
+shader_parameter/myOpaq = 0.8
+
+[node name="chap2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xwscs")
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_sduf4")
+
+[node name="shader" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_c6i74")
+position = Vector2(960, 540)
+texture = ExtResource("1_sduf4")
+metadata/_edit_lock_ = true
+
+[node name="sel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 746.0
+offset_bottom = 183.0
+theme_override_fonts/font = ExtResource("5_8nq1d")
+theme_override_font_sizes/font_size = 87
+text = "Choose A Scene:"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -151.0
+offset_right = 109.0
+offset_bottom = -120.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+button_mask = 0
+text = "Back"
+
+[node name="tut" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1629.0
+offset_top = 929.0
+offset_right = 1826.0
+offset_bottom = 1006.0
+theme_override_font_sizes/font_size = 50
+button_mask = 0
+text = "Tutorial"
+
+[node name="main" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -833.0
+offset_top = -282.0
+offset_right = 211.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.6, 1.6)
+theme_override_constants/h_separation = 150
+columns = 3
+
+[node name="lel1" type="TextureButton" parent="main"]
+custom_minimum_size = Vector2(248, 248)
+layout_mode = 2
+button_mask = 0
+texture_normal = ExtResource("6_cpu08")
+texture_disabled = ExtResource("7_ajbub")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Node2D" type="Sprite2D" parent="main/lel1"]
+material = SubResource("ShaderMaterial_exgtc")
+position = Vector2(123.75, 123.75)
+scale = Vector2(0.0808369, 0.0803804)
+texture = ExtResource("6_cpu08")
+
+[node name="l2" type="TextureButton" parent="main"]
+custom_minimum_size = Vector2(248, 248)
+layout_mode = 2
+button_mask = 0
+texture_normal = ExtResource("8_i4tyh")
+texture_disabled = ExtResource("7_ajbub")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Node2D" type="Sprite2D" parent="main/l2"]
+material = SubResource("ShaderMaterial_14x14")
+position = Vector2(123.875, 123.75)
+scale = Vector2(0.0808369, 0.0803804)
+texture = ExtResource("6_cpu08")
+
+[node name="l3" type="TextureButton" parent="main"]
+custom_minimum_size = Vector2(248, 248)
+layout_mode = 2
+button_mask = 0
+texture_normal = ExtResource("9_mmbul")
+texture_disabled = ExtResource("7_ajbub")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Node2D" type="Sprite2D" parent="main/l3"]
+material = SubResource("ShaderMaterial_sp62w")
+position = Vector2(124.137, 123.638)
+scale = Vector2(0.0808369, 0.0803804)
+texture = ExtResource("6_cpu08")
+
+[node name="Warm Ups" type="Label" parent="main"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8nq1d")
+theme_override_font_sizes/font_size = 21
+text = "Secret Agent"
+horizontal_alignment = 1
+
+[node name="BREACH" type="Label" parent="main"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8nq1d")
+theme_override_font_sizes/font_size = 21
+text = "na"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Finale" type="Label" parent="main"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8nq1d")
+theme_override_font_sizes/font_size = 21
+text = "na"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="focus_entered" from="main/lel1" to="." method="_on_lel_1_focus_entered"]
+[connection signal="focus_exited" from="main/lel1" to="." method="_on_lel_1_focus_exited"]
+[connection signal="pressed" from="main/lel1" to="." method="_on_lel_1_pressed"]
+[connection signal="focus_entered" from="main/l2" to="." method="_on_l_2_focus_entered"]
+[connection signal="focus_exited" from="main/l2" to="." method="_on_l_2_focus_exited"]
+[connection signal="pressed" from="main/l2" to="." method="_on_l_2_pressed"]
+[connection signal="focus_entered" from="main/l3" to="." method="_on_l_3_focus_entered"]
+[connection signal="focus_exited" from="main/l3" to="." method="_on_l_3_focus_exited"]
+[connection signal="pressed" from="main/l3" to="." method="_on_l_3_pressed"]
