@@ -12,6 +12,7 @@ var francis: PackedScene = load("res://scenes/Characters/player.tscn")
 var claire: PackedScene = load("res://scenes/Characters/claire.tscn")
 
 func _ready() -> void:
+	Manager.gamePaused = false
 	MenuMusic.pauseMusic()
 	SignalBus.playerReady.connect(getPlayer)
 	var character = null

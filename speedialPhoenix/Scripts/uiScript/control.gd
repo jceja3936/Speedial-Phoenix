@@ -90,9 +90,14 @@ func beatPretty():
 
 
 func playFFanim():
+	wait()
 	if tweener == 1.0:
 		tweener = 0.0
 		finisher()
+
+func wait():
+	await get_tree().create_timer(10).timeout
+	tweener = 1.0
 
 func finisher():
 	if $FloorBeat:

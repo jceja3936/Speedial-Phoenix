@@ -22,7 +22,6 @@ var chosenChar = 0
 
 var sfx = 0.0
 
-
 var levelState = 1
 var gunType = 0
 var ammoCount = 0
@@ -73,28 +72,34 @@ func save():
 
 	
 func _physics_process(delta: float):
+	print(gamePaused)
 	if !gamePaused:
 		timer += delta
 
 func reset():
 	match current_scene:
 		"0":
-			next_scene = "res: / / scenes / lvlScenes / tutorial.tscn"
+			next_scene = "res://scenes/lvlScenes/tutorial.tscn"
 			current_scene = "0"
 
 		"1_1":
-			next_scene = "res: / / scenes / lvlScenes / Lvl1.tscn"
+			next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
 			current_scene = "1_1"
 			playerRespawnPos = Vector2(418.0, 145.0)
 		"2":
 			current_scene = "2"
-			next_scene = "res: / / scenes / lvlScenes / Lvl2.tscn"
+			next_scene = "res://scenes/lvlScenes/Lvl2.tscn"
+			playerRespawnPos = Vector2(271.0, 756.0)
 		"3":
 			current_scene = "3"
-			next_scene = "res: / / scenes / lvlScenes / Lvl3.tscn"
+			next_scene = "res://scenes/lvlScenes/Lvl3.tscn"
+			playerRespawnPos = Vector2(714.0, 136.0)
+		"4":
+			current_scene = "4"
+			next_scene = "res://scenes/lvlScenes/Lvl4.tscn"
+			playerRespawnPos = Vector2(287.0, 97.0)
 
-			
-	gamePaused = false
+	gamePaused = true
 	timer = 0
 	levelState = 1
 	gunType = 0

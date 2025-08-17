@@ -4,6 +4,10 @@ var player: CharacterBody2D
 var cameFollow = 0
 var camPos = Vector2.ZERO
 var cursOffset = Vector2.ZERO
+var leaveDirection = 0
+
+func goLeft(value):
+	leaveDirection = value
 
 func getPlayer():
 	var playerNode = ""
@@ -26,6 +30,7 @@ func _ready() -> void:
 		position = Manager.playerRespawnPos
 	SignalBus.playerReady.connect(getPlayer)
 	SignalBus.playCutscene.connect(leave)
+	SignalBus.makeCamPoint.connect(goLeft)
 	SignalBus.tutorialCutscens.connect(tutScene)
 	setCam(0)
 	for node in get_tree().root.get_children():
@@ -48,7 +53,6 @@ func reset(time):
 func leave():
 	speed = .8
 	cameFollow = -1
-
 func setCam(type: int):
 	cameFollow = type
 	match type:
@@ -80,7 +84,7 @@ func _physics_process(_delta: float) -> void:
 
 	match cameFollow:
 		-1:
-			position = lerp(position, player_pos + Vector2(0, -3000), 1.0 - exp(- speed * _delta))
+			position = lerp(position, player_pos + Vector2(0, 3000).rotated(deg_to_rad(leaveDirection)), 1.0 - exp(- speed * _delta))
 			return
 		-2:
 			position = lerp(position, Vector2(2865.0, 396.0), 1.0 - exp(- speed * _delta))

@@ -15,6 +15,7 @@ var claire: PackedScene = load("res://scenes/Characters/claire.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Manager.gamePaused = false
 	SignalBus.playerReady.connect(getPlayer)
 	var character = null
 	match Manager.chosenChar:
@@ -65,6 +66,7 @@ func _physics_process(_delta: float) -> void:
 				$arrow.look_at($end.global_position)
 			3:
 				SignalBus.emit_signal("levelBeat")
+				Manager.gamePaused = true
 				$arrow.look_at($start.global_position)
 	else:
 		$arrow.hide()
@@ -117,6 +119,7 @@ func _on_start_body_entered(body: Node2D) -> void:
 		$blocker.position = Vector2(10000, 10000)
 
 	if Manager.levelState == 3 and jankyBugFix == true:
+		SignalBus.emit_signal("makeCamPoint", 90)
 		SignalBus.emit_signal("playCutscene")
 		SignalBus.emit_signal("saveScore")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

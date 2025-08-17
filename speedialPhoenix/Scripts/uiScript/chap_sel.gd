@@ -20,13 +20,13 @@ func wait():
 
 func _physics_process(_delta):
 	$Main.position.x = positionCurve.sample(x)
-	if (Input.is_action_just_pressed("Right") or Input.is_action_just_pressed("Up")) and canMove:
+	if (Input.is_action_just_pressed("Right") or Input.is_action_just_pressed("Up") or Input.is_action_just_pressed("ui_right")) and canMove:
 		if levelPos < 1.0:
 			canMove = false
 			levelPos += 1.0
 			set_process_input(false)
 			wait()
-	elif (Input.is_action_just_pressed("Left") or Input.is_action_just_pressed("Down")) and canMove:
+	elif (Input.is_action_just_pressed("Left") or Input.is_action_just_pressed("Down") or Input.is_action_just_pressed("ui_left")) and canMove:
 		if levelPos > -1.0:
 			canMove = false
 			levelPos -= 1.0

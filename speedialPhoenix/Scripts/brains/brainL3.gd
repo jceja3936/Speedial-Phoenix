@@ -10,6 +10,7 @@ var claire: PackedScene = load("res://scenes/Characters/claire.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Manager.gamePaused = false
 	SignalBus.playerReady.connect(getPlayer)
 	var character = null
 	match Manager.chosenChar:
@@ -73,6 +74,7 @@ func playOnce():
 func _on_start_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		if levelBeat and player.get("moved") == true:
+			SignalBus.emit_signal("makeCamPoint", 180)
 			SignalBus.emit_signal("playCutscene")
 			SignalBus.emit_signal("saveScore")
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

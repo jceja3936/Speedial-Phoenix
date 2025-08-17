@@ -22,9 +22,9 @@ func _ready() -> void:
 		character.name = "Player"
 		add_child.call_deferred(character)
 	
-			
 	MenuMusic.pauseMusic()
 	GameAudio.levelBeat = false
+	Manager.gamePaused = false
 	set_State(Manager.levelState)
 	
 func getPlayer():
@@ -49,6 +49,7 @@ func _physics_process(_delta: float) -> void:
 			3:
 				playOnce()
 				GameAudio.pauseMusic()
+				levelBeat = true
 				GameAudio.levelBeat = true
 				Manager.gamePaused = true
 				SignalBus.emit_signal("levelBeat")
@@ -118,4 +119,11 @@ func _on_warp_zone_body_entered(body: Node2D) -> void:
 					set_State(3)
 					Manager.playSound("floorBeat", Vector2(1678.0, 2821.0), 10.5)
 				3:
-					print("Aye bruh what the hell u doing ere?")
+					if levelBeat == true:
+						SignalBus.emit_signal("makeCamPoint", 90)
+						SignalBus.emit_signal("playCutscene")
+						SignalBus.emit_signal("saveScore")
+						Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+						await get_tree().create_timer(2).timeout
+						Manager.next_scene = "res://scenes/UIscenes/end_screen.tscn"
+						Manager.startNextScene()

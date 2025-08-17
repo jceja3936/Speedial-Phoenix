@@ -10,9 +10,9 @@ func _ready():
 	$francis.grab_focus()
 	$Claire.disabled = false
 	$francis.disabled = false
-	if Manager.chosenChapter == "res://scenes/UIscenes/chap1.tscn" and Manager.clareLevels[2] == "0":
+	if Manager.chosenChapter == "res://scenes/UIscenes/chap1.tscn" and Manager.francisLevels[2] == "0":
 		$Claire.disabled = true
-	if Manager.chosenChapter == "res://scenes/UIscenes/chap2.tscn" and Manager.francisLevels[2] == "0":
+	if Manager.chosenChapter == "res://scenes/UIscenes/chap2.tscn" and Manager.clareLevels[2] == "0":
 		$francis.disabled = true
 	
 func _physics_process(_delta: float) -> void:
