@@ -63,7 +63,7 @@ func _on_back_pressed() -> void:
 func _on_lel_1_pressed() -> void:
 	Manager.next_scene = "res://scenes/lvlScenes/Lvl4.tscn"
 	Manager.current_scene = "4"
-	Manager.playerRespawnPos = Vector2(418.0, 145.0)
+	Manager.playerRespawnPos = Vector2(287.0, 97.0)
 	get_tree().change_scene_to_packed(charSelect)
 
 

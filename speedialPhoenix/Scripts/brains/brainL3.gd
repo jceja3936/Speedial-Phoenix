@@ -63,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 
 func playOnce():
 	if stage[0] == 0:
-		Manager.francisLevels[2] = 1
+		Manager.francisLevels[2] = "1"
 		Manager.save()
 		stage[0] = 1
 		SignalBus.emit_signal("saveScore")
