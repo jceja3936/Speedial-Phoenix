@@ -8,7 +8,7 @@ var rifle: PackedScene = load("res://scenes/gunScenes/rifle.tscn")
 var shotgun: PackedScene = load("res://scenes/gunScenes/shotgun.tscn")
 
 var next_scene: String = "res://scenes/lvlScenes/Lvl1.tscn"
-var current_scene: String = "1_1"
+var current_scene: String = "1"
 var loadingScreen = preload("res://scenes/UIscenes/loading_screen.tscn")
 var playerRespawnPos = Vector2.ZERO
 var timer = 0.0
@@ -77,13 +77,13 @@ func _physics_process(delta: float):
 
 func reset():
 	match current_scene:
-		"0":
+		"tutorial":
 			next_scene = "res://scenes/lvlScenes/tutorial.tscn"
-			current_scene = "0"
+			current_scene = "tutorial"
 
-		"1_1":
+		"1":
 			next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
-			current_scene = "1_1"
+			current_scene = "1"
 			playerRespawnPos = Vector2(418.0, 145.0)
 		"2":
 			current_scene = "2"

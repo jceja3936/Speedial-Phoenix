@@ -75,14 +75,14 @@ func _on_l_2_pressed() -> void:
 
 func _on_lel_1_pressed() -> void:
 	Manager.next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
-	Manager.current_scene = "1_1"
+	Manager.current_scene = "1"
 	Manager.playerRespawnPos = Vector2(418.0, 145.0)
 	showCharSel()
 
 
 func _on_tut_pressed() -> void:
 	Manager.next_scene = "res://scenes/lvlScenes/tutorial.tscn"
-	Manager.current_scene = "0"
+	Manager.current_scene = "tutorial"
 	Manager.playerRespawnPos = Vector2(1409.0, 383.0)
 	showCharSel()
 

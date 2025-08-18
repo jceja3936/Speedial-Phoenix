@@ -23,7 +23,7 @@ func _ready() -> void:
 	tweenAudio()
 
 	match Manager.current_scene:
-		"1_1":
+		"1":
 			tiers = [2500, 3000, 3500, 4000, 4500]
 		"2":
 			tiers = [4000, 6000, 8000, 10000, 12000]
@@ -91,7 +91,7 @@ func _on_exit_pressed() -> void:
 
 func _on_next_pressed() -> void:
 	match Manager.current_scene:
-		"0":
+		"tutorial":
 			Manager.gamePaused = false
 			Manager.timer = 0
 			Manager.levelState = 1
@@ -102,11 +102,11 @@ func _on_next_pressed() -> void:
 			Manager.enemyAmount = 0
 
 			Manager.playerRespawnPos = Vector2(418.0, 145.0)
-			Manager.current_scene = "1_1"
+			Manager.current_scene = "1"
 			Manager.next_scene = "res://scenes/lvlScenes/Lvl1.tscn"
 			Manager.startNextScene()
 
-		"1_1":
+		"1":
 			Manager.gamePaused = false
 			Manager.timer = 0
 			Manager.levelState = 1

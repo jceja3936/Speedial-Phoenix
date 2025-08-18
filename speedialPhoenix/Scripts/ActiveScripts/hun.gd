@@ -45,17 +45,10 @@ func _ready() -> void:
 	SignalBus.saveWB.connect(saveWB)
 	
 
-	match Manager.current_scene:
-		"0":
-			cmNode = "/root/tutorial/floor"
-		"1_1":
-			cmNode = "/root/Lvl1/floor1"
-		"2":
-			cmNode = "/root/Lvl2/Floor"
-		"3":
-			cmNode = "/root/Lvl3/Floor"
-		"4":
-			cmNode = "/root/Lvl4/Floor"
+	if Manager.current_scene != "tutorial":
+		cmNode = "/root/" + "Lvl" + Manager.current_scene + "/Floor"
+	else:
+		cmNode = "/root/" + Manager.current_scene + "/Floor"
 
 	currentMap = get_node(cmNode)
 

@@ -18,17 +18,11 @@ func _ready():
 
 func getPlayer():
 	var playerNode = ""
-	match Manager.current_scene:
-		"0":
-			playerNode = "/root/tutorial/Player"
-		"1_1":
-			playerNode = "/root/Lvl1/Player"
-		"2":
-			playerNode = "/root/Lvl2/Player"
-		"3":
-			playerNode = "/root/Lvl3/Player"
-		"4":
-			playerNode = "/root/Lvl4/Player"
+
+	if Manager.current_scene != "tutorial":
+		playerNode = "/root/" + "Lvl" + Manager.current_scene + "/Player"
+	else:
+		playerNode = "/root/" + Manager.current_scene + "/Player"
 
 	player = get_node(playerNode)
 

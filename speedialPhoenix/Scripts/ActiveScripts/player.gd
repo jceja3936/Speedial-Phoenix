@@ -27,7 +27,7 @@ func _ready() -> void:
 	if Manager.playerRespawnPos != Vector2.ZERO:
 		position = Manager.playerRespawnPos
 	SignalBus.emit_signal("playerReady")
-	if GameAudio.isPlaying == false and Manager.current_scene != "0":
+	if GameAudio.isPlaying == false and Manager.current_scene != "tutorial":
 		GameAudio.playMusic()
 	else:
 		playAmbience()
@@ -44,17 +44,10 @@ func _ready() -> void:
 		weaponGrabbed(Manager.gunType, Manager.ammoCount)
 
 	var camNode = ""
-	match Manager.current_scene:
-		"0":
-			camNode = "/root/tutorial/theCam"
-		"1_1":
-			camNode = "/root/Lvl1/theCam"
-		"2":
-			camNode = "/root/Lvl2/theCam"
-		"3":
-			camNode = "/root/Lvl3/theCam"
-		"4":
-			camNode = "/root/Lvl4/theCam"
+	if Manager.current_scene != "tutorial":
+		camNode = "/root/" + "Lvl" + Manager.current_scene + "/theCam"
+	else:
+		camNode = "/root/" + Manager.current_scene + "/theCam"
 
 	cam = get_node(camNode)
 	
@@ -82,7 +75,7 @@ func pauseAmbience():
 
 
 func unPaused():
-	if Manager.current_scene == "0":
+	if Manager.current_scene == "tutorial":
 		gamePaused = false
 		Manager.gamePaused = false
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)

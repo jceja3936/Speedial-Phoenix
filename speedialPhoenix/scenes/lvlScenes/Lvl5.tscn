@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dv5lblp3mjh1s"]
+
+[ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="1_u81b8"]
+[ext_resource type="PackedScene" uid="uid://bak0bku7ej6bi" path="res://scenes/UIscenes/pause_menu.tscn" id="2_rutpj"]
+[ext_resource type="TileSet" uid="uid://bdhuawh88bvlx" path="res://assets/finalTileSet.tres" id="3_luqhp"]
+[ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://Scripts/ActiveScripts/camera_2d.gd" id="4_ivqy4"]
+[ext_resource type="Texture2D" uid="uid://didtkpnuwu263" path="res://assets/img/Ui/Cursor2 - Copy.png" id="5_yffk4"]
+[ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="6_d0lhx"]
+[ext_resource type="PackedScene" uid="uid://c8rrc3lvlk3wq" path="res://scenes/UIscenes/bg_shader.tscn" id="7_40ewd"]
+[ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/Ui/arrow.png" id="8_s844d"]
+
+[node name="Lvl5" type="Node2D"]
+
+[node name="MainUI" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="Control" parent="MainUI" instance=ExtResource("1_u81b8")]
+offset_top = -1.0
+offset_bottom = -1.0
+
+[node name="pauseMenu" parent="MainUI" instance=ExtResource("2_rutpj")]
+visible = false
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_set = ExtResource("3_luqhp")
+metadata/_edit_lock_ = true
+
+[node name="theCam" type="Camera2D" parent="."]
+z_index = 5
+position = Vector2(4494, 1767)
+script = ExtResource("4_ivqy4")
+
+[node name="Cursors" type="Sprite2D" parent="theCam"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_yffk4")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="bg" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(960, 540)
+texture = ExtResource("6_d0lhx")
+metadata/_edit_lock_ = true
+
+[node name="bgShader" parent="ParallaxBackground" instance=ExtResource("7_40ewd")]
+metadata/_edit_lock_ = true
+
+[node name="arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(419, 283)
+scale = Vector2(0.762188, 0.592289)
+texture = ExtResource("8_s844d")
