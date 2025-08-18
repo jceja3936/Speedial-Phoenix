@@ -1,7 +1,7 @@
 extends Control
 
-var francisTween = 1.0
-var clareTween = 1.0
+var francisTween = .8
+var clareTween = .8
 
 var francisFocus = false
 var clareFocus = true

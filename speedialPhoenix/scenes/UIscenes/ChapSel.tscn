@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cm6d45faqvv8d" path="res://Scripts/uiScript/chap_sel.gd" id="1_q0va3"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="2_f2d1m"]
-[ext_resource type="Texture2D" uid="uid://cj24f40isj7o7" path="res://assets/img/Ui/FrancisButton.png" id="3_yinla"]
-[ext_resource type="Texture2D" uid="uid://cn5ggmdib8ept" path="res://assets/img/Ui/ClareButton.png" id="4_wvir2"]
+[ext_resource type="Texture2D" uid="uid://1pb66aq3bw2x" path="res://assets/img/francisChapter.png" id="3_wvir2"]
+[ext_resource type="Texture2D" uid="uid://nvt8wmw0ijv7" path="res://assets/img/clareChapter.png" id="4_wobi0"]
 [ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="4_yinla"]
 
 [node name="ChapSel" type="Control"]
@@ -31,14 +31,14 @@ theme_override_constants/separation = 600
 [node name="Chap1" type="TextureButton" parent="Main"]
 layout_mode = 2
 button_mask = 0
-texture_normal = ExtResource("3_yinla")
+texture_normal = ExtResource("3_wvir2")
 
 [node name="Chap2" type="TextureButton" parent="Main"]
 layout_mode = 2
 focus_neighbor_left = NodePath("../Chap1")
 focus_neighbor_bottom = NodePath("../Chap1")
 button_mask = 0
-texture_normal = ExtResource("4_wvir2")
+texture_normal = ExtResource("4_wobi0")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
