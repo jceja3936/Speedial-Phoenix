@@ -74,6 +74,7 @@ func _physics_process(_delta: float) -> void:
 func playOnce():
 	if stage[0] == 0:
 		stage[0] = 1
+		SignalBus.emit_signal("floorBeat")
 		Manager.playSound("floorBeat", player.global_position, 10.5)
 		
 	elif stage[1] == 0 and state == 2:

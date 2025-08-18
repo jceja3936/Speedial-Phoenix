@@ -29,6 +29,9 @@ func _ready() -> void:
 			tiers = [4000, 6000, 8000, 10000, 12000]
 		"3":
 			tiers = [5000, 7000, 9000, 11000, 13000]
+		"4":
+			tiers = [5000, 7000, 9000, 11000, 13000]
+
 	$Main/vert/wbroke/wNum.text = str(Manager.wallsBroke)
 	var ogTime = Manager.timer
 	var minutes = 0

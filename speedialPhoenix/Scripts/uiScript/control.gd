@@ -28,6 +28,7 @@ func _ready():
 	SignalBus.teleporting.connect(scutScene)
 	$AmAm.hide()
 	$resp.hide()
+	$FloorBeat.hide()
 	if Manager.score != -1:
 		score = Manager.score
 		prevScore = score
@@ -90,6 +91,7 @@ func beatPretty():
 
 
 func playFFanim():
+	$FloorBeat.show()
 	wait()
 	if tweener == 1.0:
 		tweener = 0.0
@@ -98,6 +100,7 @@ func playFFanim():
 func wait():
 	await get_tree().create_timer(10).timeout
 	tweener = 1.0
+	$FloorBeat.hide()
 
 func finisher():
 	if $FloorBeat:

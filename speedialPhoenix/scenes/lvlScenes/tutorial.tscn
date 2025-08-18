@@ -25,9 +25,8 @@ size = Vector2(254, 448)
 
 [node name="tutorial" type="Node2D"]
 
-[node name="brain" type="Node" parent="." node_paths=PackedStringArray("player", "top", "bottom")]
+[node name="brain" type="Node" parent="." node_paths=PackedStringArray("top", "bottom")]
 script = ExtResource("10_abf0q")
-player = NodePath("")
 top = NodePath("textContainer/Top")
 bottom = NodePath("textContainer/Bottom")
 
@@ -115,7 +114,6 @@ position = Vector2(5944, -478)
 script = ExtResource("5_vr8ad")
 
 [node name="Cursors" type="Sprite2D" parent="theCam"]
-visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_i7eql")
 
@@ -129,16 +127,14 @@ metadata/_edit_lock_ = true
 [node name="bgShader" parent="ParallaxBackground" instance=ExtResource("9_tbs6h")]
 metadata/_edit_lock_ = true
 
-[node name="tutEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_185hf")]
+[node name="tutEnemy" parent="." instance=ExtResource("9_185hf")]
 position = Vector2(2869, 391)
-player = NodePath("")
 
 [node name="shotgun" parent="." instance=ExtResource("11_50kau")]
 position = Vector2(4418, 393)
 
-[node name="tutEnemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_185hf")]
+[node name="tutEnemy2" parent="." instance=ExtResource("9_185hf")]
 position = Vector2(5935, 408)
-player = NodePath("")
 
 [node name="Hammer" parent="." instance=ExtResource("14_bxin3")]
 position = Vector2(5952, -486)

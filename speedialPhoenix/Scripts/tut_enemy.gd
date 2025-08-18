@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var player: CharacterBody2D
+var player: CharacterBody2D
 
 var curve: Curve = load("res://assets/prac.tres")
 var deathTexture: Texture = preload("res://assets/img/enemySleep.png")
@@ -13,6 +13,24 @@ var health = 200
 var dead = false
 var enemy = true
 
+func _ready():
+	SignalBus.playerReady.connect(getPlayer)
+
+func getPlayer():
+	var playerNode = ""
+	match Manager.current_scene:
+		"0":
+			playerNode = "/root/tutorial/Player"
+		"1_1":
+			playerNode = "/root/Lvl1/Player"
+		"2":
+			playerNode = "/root/Lvl2/Player"
+		"3":
+			playerNode = "/root/Lvl3/Player"
+		"4":
+			playerNode = "/root/Lvl4/Player"
+
+	player = get_node(playerNode)
 
 func _physics_process(_delta: float) -> void:
 	if falling:

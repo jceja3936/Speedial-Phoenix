@@ -49,7 +49,6 @@ func _physics_process(_delta):
 				Manager.chosenChapter = "res://scenes/UIscenes/chap2.tscn"
 				Manager.next_scene = "res://scenes/UIscenes/chap2.tscn"
 				Manager.startNextScene()
-		print(Manager.chosenChapter)
 	
 func xGlide():
 	if selected:

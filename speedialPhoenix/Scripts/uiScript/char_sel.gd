@@ -53,7 +53,6 @@ func _on_francis_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
-	print(Manager.chosenChapter)
 	Manager.next_scene = Manager.chosenChapter
 	Manager.startNextScene()
 

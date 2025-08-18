@@ -72,7 +72,6 @@ func save():
 
 	
 func _physics_process(delta: float):
-	print(gamePaused)
 	if !gamePaused:
 		timer += delta
 

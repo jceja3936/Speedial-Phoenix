@@ -37,12 +37,10 @@ func _physics_process(_delta: float) -> void:
 
 		match state:
 			1:
-				SignalBus.emit_signal("floorBeat")
 				playOnce()
 				$arrow.look_at($warpZone.global_position)
 
 			2:
-				SignalBus.emit_signal("floorBeat")
 				playOnce()
 				$arrow.look_at($warpZone.global_position)
 	
@@ -60,9 +58,11 @@ func _physics_process(_delta: float) -> void:
 func playOnce():
 	if stage[0] == 0:
 		stage[0] = 1
+		SignalBus.emit_signal("floorBeat")
 		Manager.playSound("floorBeat", player.global_position, 10.5)
 	elif stage[1] == 0 and state == 2:
 		stage[1] = 1
+		SignalBus.emit_signal("floorBeat")
 		Manager.playSound("floorBeat", player.global_position, 10.5)
 	elif stage[2] == 0 and state == 3:
 		stage[2] = 1
