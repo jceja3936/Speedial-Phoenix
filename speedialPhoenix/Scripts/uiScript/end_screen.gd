@@ -124,3 +124,8 @@ func _on_next_pressed() -> void:
 			Manager.current_scene = "5"
 			Manager.next_scene = "res://scenes/lvlScenes/Lvl5.tscn"
 			Manager.startNextScene()
+		"5":
+			Manager.current_scene = "6"
+			Manager.playerRespawnPos = Vector2(1828.0, 245.0)
+			Manager.next_scene = "res://scenes/lvlScenes/Lvl6.tscn"
+			Manager.startNextScene()

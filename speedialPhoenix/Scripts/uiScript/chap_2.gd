@@ -75,7 +75,10 @@ func _on_l_2_pressed() -> void:
 
 
 func _on_l_3_pressed() -> void:
-	print("Doesn't exist")
+	Manager.next_scene = "res://scenes/lvlScenes/Lvl6.tscn"
+	Manager.current_scene = "6"
+	Manager.playerRespawnPos = Vector2(1828.0, 245.0)
+	get_tree().change_scene_to_packed(charSelect)
 
 func _on_lel_1_focus_entered() -> void:
 	focuses = [1, 0, 0]
