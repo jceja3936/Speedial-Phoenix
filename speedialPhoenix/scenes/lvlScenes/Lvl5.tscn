@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://caa70mr70aoo4"]
+[gd_scene load_steps=14 format=4 uid="uid://caa70mr70aoo4"]
 
 [ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="1_jtxew"]
 [ext_resource type="Script" uid="uid://cyhf8kybllqid" path="res://Scripts/brains/brainL5.gd" id="1_luqhp"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://c8rrc3lvlk3wq" path="res://scenes/UIscenes/bg_shader.tscn" id="6_m6mha"]
 [ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/Characters/enemy.tscn" id="9_vk0o6"]
 [ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/Ui/arrow.png" id="11_40y67"]
+[ext_resource type="PackedScene" uid="uid://dvwmxjcseecq7" path="res://scenes/vertDoor.tscn" id="11_yffk4"]
+[ext_resource type="PackedScene" uid="uid://cw1s7il08t6q8" path="res://scenes/hDoor.tscn" id="12_d0lhx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1eji2"]
 size = Vector2(266.5, 259)
@@ -168,5 +170,95 @@ rotation = 6.26505
 type = 2
 pat = true
 myFloor = 3
+
+[node name="DoorStuff" type="Node" parent="."]
+
+[node name="vD" type="Node" parent="DoorStuff"]
+
+[node name="vertDoor2" parent="DoorStuff/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(1274, 450)
+
+[node name="vertDoor3" parent="DoorStuff/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(634, 449)
+
+[node name="vertDoor4" parent="DoorStuff/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(1274, 1089)
+
+[node name="vertDoor5" parent="DoorStuff/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(1274, 3265)
+
+[node name="vertDoor6" parent="DoorStuff/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(762, 4417)
+
+[node name="hD" type="Node" parent="DoorStuff"]
+
+[node name="hDoor4" parent="DoorStuff/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(958, 762)
+
+[node name="hDoor" parent="DoorStuff/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(959, 3718)
+
+[node name="hDoor2" parent="DoorStuff/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(447, 4602)
+
+[node name="hDoor3" parent="DoorStuff/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(447, 4090)
+
+[node name="hDoor5" parent="DoorStuff/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(831, 262)
+
+[node name="doors" type="Node" parent="."]
+
+[node name="vD" type="Node" parent="doors"]
+
+[node name="vertDoor" parent="doors/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(5894, 833)
+
+[node name="vertDoor2" parent="doors/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(5626, 2369)
+
+[node name="vertDoor3" parent="doors/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(5894, 2369)
+
+[node name="vertDoor6" parent="doors/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(5626, 1217)
+
+[node name="vertDoor7" parent="doors/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(5894, 1217)
+
+[node name="vertDoor9" parent="doors/vD" instance=ExtResource("11_yffk4")]
+position = Vector2(5626, 833)
+
+[node name="hD" type="Node" parent="doors"]
+
+[node name="hDoor" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(6719, 634)
+
+[node name="hDoor2" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(6463, 634)
+
+[node name="hDoor3" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(5055, 634)
+
+[node name="hDoor4" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(4799, 634)
+
+[node name="hDoor5" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(6719, 1414)
+
+[node name="hDoor6" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(6335, 1414)
+
+[node name="hDoor7" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(4799, 1414)
+
+[node name="hDoor8" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(5055, 1414)
+
+[node name="hDoor9" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(6719, 2426)
+
+[node name="hDoor10" parent="doors/hD" instance=ExtResource("12_d0lhx")]
+position = Vector2(4799, 2426)
 
 [connection signal="body_entered" from="warpZone" to="." method="_on_warp_zone_body_entered"]

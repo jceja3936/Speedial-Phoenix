@@ -39,7 +39,7 @@ func set_State(newState: int):
 			$warpZone.position = Vector2(1331.0, 843.0)
 		2:
 			Manager.setEnemyAmount(16)
-			$warpZone.position = Vector2(1073.0, 4270.0)
+			$warpZone.position = Vector2(1073.0, 5817.0)
 		3:
 			$warpZone.position = Vector2(1366.0, 1915.0)
 		_:
@@ -90,15 +90,15 @@ func _on_warp_zone_body_entered(body: Node2D) -> void:
 				1:
 					player.makeHunSave()
 					SignalBus.emit_signal("saveScore")
-					Manager.playerRespawnPos = Vector2(1139.0, 4366.0)
+					Manager.playerRespawnPos = Vector2(1139.0, 5913.0)
 					SignalBus.emit_signal("teleporting")
 					player.set("finish", true)
 					await get_tree().create_timer(.15).timeout
 					player.set("finish", false)
-					player.position = Vector2(1139.0, 4366.0)
+					player.position = Vector2(1139.0, 5913.0)
 					Manager.levelState = 2
 					set_State(2)
-					Manager.playSound("floorBeat", Vector2(1139.0, 4366.0), 10.5)
+					Manager.playSound("floorBeat", Vector2(1139.0, 5913.0), 10.5)
 				2:
 					set_State(3)
 					player.makeHunSave()

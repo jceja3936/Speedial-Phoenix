@@ -98,8 +98,8 @@ func reset():
 			next_scene = "res://scenes/lvlScenes/Lvl4.tscn"
 			playerRespawnPos = Vector2(1391.0, 1901.0)
 		"5":
-			current_scene = "4"
-			next_scene = "res://scenes/lvlScenes/Lvl4.tscn"
+			current_scene = "5"
+			next_scene = "res://scenes/lvlScenes/Lvl5.tscn"
 			playerRespawnPos = Vector2(287.0, 97.0)
 
 	gamePaused = true
