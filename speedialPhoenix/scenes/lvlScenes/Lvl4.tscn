@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dv5lblp3mjh1s"]
+[gd_scene load_steps=15 format=4 uid="uid://dv5lblp3mjh1s"]
 
 [ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="1_jtxew"]
 [ext_resource type="Script" uid="uid://cnivwfqd8d5y4" path="res://Scripts/brains/brainL4.gd" id="1_vk0o6"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c8rrc3lvlk3wq" path="res://scenes/UIscenes/bg_shader.tscn" id="6_m6mha"]
 [ext_resource type="PackedScene" uid="uid://cv60myid72qvl" path="res://scenes/Characters/enemy.tscn" id="10_i7f62"]
 [ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/Ui/arrow.png" id="11_40y67"]
+[ext_resource type="PackedScene" uid="uid://03lxyxx3lv78" path="res://scenes/gunScenes/hammer.tscn" id="13_w5i4v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vk0o6"]
 size = Vector2(266.5, 259)
@@ -276,5 +277,11 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="warpZone"]
 position = Vector2(60.25, 0)
 shape = SubResource("RectangleShape2D_vk0o6")
+
+[node name="Hammer" parent="." instance=ExtResource("13_w5i4v")]
+position = Vector2(2694, 1403)
+
+[node name="Hammer2" parent="." instance=ExtResource("13_w5i4v")]
+position = Vector2(864, 6659)
 
 [connection signal="body_entered" from="warpZone" to="." method="_on_warp_zone_body_entered"]

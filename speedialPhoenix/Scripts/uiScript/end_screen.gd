@@ -33,6 +33,8 @@ func _ready() -> void:
 			tiers = [16000, 18000, 20000, 23000, 25000]
 		"5":
 			tiers = [3500, 4000, 5000, 6000, 8000]
+		"6":
+			tiers = [8000, 10000, 12000, 14000, 16000]
 
 
 	$Main/vert/wbroke/wNum.text = str(Manager.wallsBroke)
@@ -48,7 +50,7 @@ func _ready() -> void:
 	$Main/vert/Combo/combNum.text = str(Manager.mult)
 	$Main/vert/Deaths/deathNum.text = str(Manager.deaths * -500)
 
-	var theScore = Manager.score + (Manager.wallsBroke * 100) + (Manager.deaths * -100) + (Manager.mult * 500)
+	var theScore = Manager.score + (Manager.wallsBroke * 100) + (Manager.deaths * -500) + (Manager.mult * 500)
 
 	var yourTier = 0
 
@@ -70,7 +72,7 @@ func _ready() -> void:
 
 	$Main/vert/score/scoreNum.text = str(theScore)
 
-	if Manager.current_scene == "3":
+	if Manager.current_scene == "3" or Manager.current_scene == "6":
 		$Next.disabled = true
 	
 	

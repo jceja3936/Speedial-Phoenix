@@ -3,15 +3,24 @@ extends Control
 func _ready():
 	$slide.mouse_filter = Control.MOUSE_FILTER_STOP
 	$exit.grab_focus()
+	$main/Sounds/sound.value = Manager.sfx
+	$main/Music/music.value = Manager.music
+
+func setSounds():
+	$main/Sounds/sound.value = Manager.sfx
+	$main/Music/music.value = Manager.music
 
 func _on_sound_drag_ended(_value_changed: bool) -> void:
 	Manager.sfx = $main/Sounds/sound.value
+	Manager.save()
     
 func _on_music_drag_ended(_value_changed: bool) -> void:
 	GameAudio.musicSound = $main/Music/music.value
 	GameAudio.setMusicSound()
 	MenuMusic.musicSound = $main/Music/music.value
 	MenuMusic.setMusicSound()
+	Manager.music = MenuMusic.musicSound
+	Manager.save()
     
 func _on_exit_pressed() -> void:
 	Manager.next_scene = "res://scenes/UIscenes/start_menu.tscn"
@@ -36,3 +45,17 @@ func _on_slide_toggled(toggled_on: bool) -> void:
 		Finish                          Space
 		Look Far                     RMB (Hold)
 		"
+
+
+func _on_music_value_changed(value: float) -> void:
+	GameAudio.musicSound = $main/Music/music.value
+	GameAudio.setMusicSound()
+	MenuMusic.musicSound = $main/Music/music.value
+	MenuMusic.setMusicSound()
+	Manager.music = MenuMusic.musicSound
+	Manager.save()
+
+
+func _on_sound_value_changed(value: float) -> void:
+	Manager.save()
+	Manager.sfx = $main/Sounds/sound.value

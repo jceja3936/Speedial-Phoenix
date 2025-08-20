@@ -141,6 +141,8 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_drvp4")
 
 [connection signal="drag_ended" from="main/Music/music" to="." method="_on_music_drag_ended"]
+[connection signal="value_changed" from="main/Music/music" to="." method="_on_music_value_changed"]
 [connection signal="drag_ended" from="main/Sounds/sound" to="." method="_on_sound_drag_ended"]
+[connection signal="value_changed" from="main/Sounds/sound" to="." method="_on_sound_value_changed"]
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
 [connection signal="toggled" from="slide" to="." method="_on_slide_toggled"]

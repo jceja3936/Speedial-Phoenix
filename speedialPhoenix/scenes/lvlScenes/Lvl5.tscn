@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://caa70mr70aoo4"]
+[gd_scene load_steps=15 format=4 uid="uid://caa70mr70aoo4"]
 
 [ext_resource type="PackedScene" uid="uid://dewgjpt1wbtm4" path="res://scenes/UIscenes/mainUI.tscn" id="1_jtxew"]
 [ext_resource type="Script" uid="uid://cyhf8kybllqid" path="res://Scripts/brains/brainL5.gd" id="1_luqhp"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dpqcp36cgcgdn" path="res://assets/img/Ui/arrow.png" id="11_40y67"]
 [ext_resource type="PackedScene" uid="uid://dvwmxjcseecq7" path="res://scenes/vertDoor.tscn" id="11_yffk4"]
 [ext_resource type="PackedScene" uid="uid://cw1s7il08t6q8" path="res://scenes/hDoor.tscn" id="12_d0lhx"]
+[ext_resource type="PackedScene" uid="uid://03lxyxx3lv78" path="res://scenes/gunScenes/hammer.tscn" id="13_d0lhx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1eji2"]
 size = Vector2(266.5, 259)
@@ -260,5 +261,14 @@ position = Vector2(6719, 2426)
 
 [node name="hDoor10" parent="doors/hD" instance=ExtResource("12_d0lhx")]
 position = Vector2(4799, 2426)
+
+[node name="Hammer" parent="." instance=ExtResource("13_d0lhx")]
+position = Vector2(1372, 3100)
+
+[node name="Hammer2" parent="." instance=ExtResource("13_d0lhx")]
+position = Vector2(4737, 1541)
+
+[node name="Hammer3" parent="." instance=ExtResource("13_d0lhx")]
+position = Vector2(6716, 2877)
 
 [connection signal="body_entered" from="warpZone" to="." method="_on_warp_zone_body_entered"]

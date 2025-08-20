@@ -21,6 +21,7 @@ var chosenChapter = "0"
 var chosenChar = 0
 
 var sfx = 0.0
+var music = 0.0
 
 var levelState = 1
 var gunType = 0
@@ -39,6 +40,17 @@ func _ready():
 		print("No save file!")
 		return
 	var theFile = FileAccess.open(SAVEFILE, FileAccess.READ)
+
+	sfx = theFile.get_line().to_float()
+	music = theFile.get_line().to_float()
+
+	GameAudio.musicSound = music
+	MenuMusic.musicSound = music
+
+	MenuMusic.justSetMusic()
+	GameAudio.setMusicSound()
+	
+
 	var lineCounter = 0
 	while theFile.get_position() < theFile.get_length():
 		var letterCounter = 0
@@ -59,6 +71,9 @@ func printAll():
 func save():
 	var saveLine = ""
 	var thefile = FileAccess.open(SAVEFILE, FileAccess.WRITE)
+
+	thefile.store_line(str(sfx))
+	thefile.store_line(str(music))
 
 	for boolean in francisLevels:
 		saveLine += str(boolean)
