@@ -7,7 +7,6 @@ var canPlay = true
 
 
 func setMusicSound():
-    print("Main Music", musicSound)
     volume_db = musicSound
     if musicSound == -20.0:
         canPlay = false

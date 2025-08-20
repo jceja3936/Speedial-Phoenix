@@ -6,14 +6,16 @@ var canPlay = true
 
 
 func setMusicSound():
-    print("Menu", musicSound)
     volume_db = musicSound
     if musicSound == -20.0:
         canPlay = false
         pauseMusic()
-    else:
+    elif isPlaying:
         canPlay = true
         resumeMusic()
+    else:
+        canPlay = true
+        playMusic()
 
 func justSetMusic():
     volume_db = musicSound
@@ -28,6 +30,7 @@ func playMusic():
         isPlaying = true
     elif isPlaying:
         resumeMusic()
+        
 func pauseMusic():
     stream_paused = true
     isPlaying = false

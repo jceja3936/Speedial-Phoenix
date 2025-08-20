@@ -9,6 +9,8 @@ var curve: Curve = load("res://assets/prac.tres")
 var randDeg
 var randDir
 
+var bulletImage: Texture = load("res://assets/img/ammoPack.png")
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	closeEnough = true
 	lastEntered = body
@@ -21,6 +23,9 @@ func _on_area_2d_body_exited(_body: Node2D) -> void:
 	pass # Replace with function body.
 
 func _ready():
+	if Manager.chosenChar == 1:
+		$Sprite2D.texture = bulletImage
+
 	if dropped:
 		bugFix()
 	else:

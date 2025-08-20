@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://dxrd52xbkj28t" path="res://Scripts/uiScript/chap_2.gd" id="1_xwscs"]
 [ext_resource type="Shader" uid="uid://cdi3w8gyl7r60" path="res://assets/shaders/start_menu.gdshader" id="2_xwscs"]
 [ext_resource type="Texture2D" uid="uid://b0iemuhoii4dd" path="res://assets/shaders/noise_combined.png" id="3_8nq1d"]
-[ext_resource type="FontFile" uid="uid://niw013swj2th" path="res://assets/Bauhaus 93 Regular.ttf" id="5_8nq1d"]
 [ext_resource type="Texture2D" uid="uid://cf300slhst7yn" path="res://assets/img/Ui/L4.png" id="6_ajbub"]
 [ext_resource type="Texture2D" uid="uid://hkee4m0e3u31" path="res://assets/img/Ui/l1.png" id="6_cpu08"]
 [ext_resource type="Texture2D" uid="uid://df674wucg1eya" path="res://assets/img/lockedLevel2.png" id="7_ajbub"]
 [ext_resource type="Texture2D" uid="uid://d2fbv3x474bj3" path="res://assets/img/Ui/l5.png" id="9_ajbub"]
 [ext_resource type="Texture2D" uid="uid://vxgusnjtrmy1" path="res://assets/img/Ui/l6.png" id="10_i4tyh"]
+[ext_resource type="FontFile" uid="uid://70nohtdmmcy6" path="res://assets/BlackOpsOne-Regular.ttf" id="11_i4tyh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c6i74"]
 shader = ExtResource("2_xwscs")
@@ -76,7 +76,7 @@ offset_left = 64.0
 offset_top = 64.0
 offset_right = 746.0
 offset_bottom = 183.0
-theme_override_fonts/font = ExtResource("5_8nq1d")
+theme_override_fonts/font = ExtResource("11_i4tyh")
 theme_override_font_sizes/font_size = 87
 text = "Choose A Scene:"
 
@@ -168,24 +168,23 @@ texture = ExtResource("6_cpu08")
 
 [node name="Warm Ups" type="Label" parent="main"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_8nq1d")
+theme_override_fonts/font = ExtResource("11_i4tyh")
 theme_override_font_sizes/font_size = 21
-text = "Secret Agent"
+text = "Scene of the Crime"
 horizontal_alignment = 1
 
 [node name="BREACH" type="Label" parent="main"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_8nq1d")
+theme_override_fonts/font = ExtResource("11_i4tyh")
 theme_override_font_sizes/font_size = 21
-text = "na"
+text = "Closing In"
 horizontal_alignment = 1
-uppercase = true
 
 [node name="Finale" type="Label" parent="main"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_8nq1d")
+theme_override_fonts/font = ExtResource("11_i4tyh")
 theme_override_font_sizes/font_size = 21
-text = "na"
+text = "Liars"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

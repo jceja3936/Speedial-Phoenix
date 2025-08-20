@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Respawn") and canVault:
 		canVault = false
 		get_parent().set_collision_mask_value(2, false)
+		Manager.playSound("clareJump", global_position, 5.0)
 		wait(1)
 		await get_tree().create_timer(.25).timeout
 		get_parent().set_collision_mask_value(2, true)

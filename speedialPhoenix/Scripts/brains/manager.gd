@@ -143,7 +143,8 @@ var item_sounds = {
 	"levelBeat": preload("res://assets/aud/KAKAWW.wav"),
 	"doorOpen1": preload("res://assets/aud/doorOpen1.mp3"),
 	"doorOpen2": preload("res://assets/aud/doorOpen2.wav"),
-	"doorOpen3": preload("res://assets/aud/doorOpen3.wav")
+	"doorOpen3": preload("res://assets/aud/doorOpen3.wav"),
+	"clareJump": preload("res://assets/aud/clareJump.wav")
 	# Add more as needed or load dynamically
 }
 

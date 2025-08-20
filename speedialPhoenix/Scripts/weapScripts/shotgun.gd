@@ -9,7 +9,11 @@ var randDeg
 var x = 0.0
 var randDir
 
+var bulletImage: Texture = load("res://assets/img/ammoPack.png")
+
 func _ready():
+	if Manager.chosenChar == 1:
+		$Sprite2D.texture = bulletImage
 	if dropped:
 		bugFix()
 	else:
