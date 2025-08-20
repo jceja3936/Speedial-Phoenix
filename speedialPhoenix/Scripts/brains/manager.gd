@@ -130,6 +130,7 @@ func reset():
 	mult = 1
 	deaths = 0
 	enemyAmount = 0
+	wallsBroke = 0
 
 var item_sounds = {
 	"Deagle": preload("res://assets/aud/Deagle.wav"),
