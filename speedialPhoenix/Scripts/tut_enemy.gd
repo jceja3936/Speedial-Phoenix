@@ -27,6 +27,8 @@ func getPlayer():
 	player = get_node(playerNode)
 
 func _physics_process(_delta: float) -> void:
+	if player == null:
+		return
 	if falling:
 		$birds.show()
 		$birds.rotation_degrees += 5

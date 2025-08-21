@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://chkhd3dmd1eha" path="res://Scripts/ActiveScripts/camera_2d.gd" id="5_vr8ad"]
 [ext_resource type="Texture2D" uid="uid://didtkpnuwu263" path="res://assets/img/Ui/Cursor2 - Copy.png" id="6_i7eql"]
 [ext_resource type="Texture2D" uid="uid://cshlmk0l0egby" path="res://assets/img/Ui/newBg.png" id="8_185hf"]
-[ext_resource type="PackedScene" uid="uid://dhdonfjjwt10f" path="res://scenes/tut_enemy.tscn" id="9_185hf"]
+[ext_resource type="PackedScene" uid="uid://dhdonfjjwt10f" path="res://scenes/Characters/tut_enemy.tscn" id="9_185hf"]
 [ext_resource type="PackedScene" uid="uid://c8rrc3lvlk3wq" path="res://scenes/UIscenes/bg_shader.tscn" id="9_tbs6h"]
 [ext_resource type="Script" uid="uid://b5wevoal42bsa" path="res://Scripts/brains/tutBrain.gd" id="10_abf0q"]
 [ext_resource type="PackedScene" uid="uid://dowe60l1v3rl6" path="res://scenes/gunScenes/shotgun.tscn" id="11_50kau"]

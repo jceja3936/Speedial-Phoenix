@@ -51,3 +51,6 @@ func _on_area_2d_body_exited(_body: Node2D) -> void:
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	closeEnough = true
 	lastEntered = _body
+	if Manager.chosenChar == 1 and lastEntered.has_method("weaponGrabbed"):
+		lastEntered.call("weaponGrabbed", 1, currentAmmo)
+		queue_free()

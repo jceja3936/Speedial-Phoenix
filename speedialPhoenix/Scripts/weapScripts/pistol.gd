@@ -14,6 +14,9 @@ var bulletImage: Texture = load("res://assets/img/ammoPack.png")
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	closeEnough = true
 	lastEntered = body
+	if Manager.chosenChar == 1 and lastEntered.has_method("weaponGrabbed"):
+		lastEntered.call("weaponGrabbed", 1, currentAmmo)
+		queue_free()
 	pass # Replace with function body.
 
 

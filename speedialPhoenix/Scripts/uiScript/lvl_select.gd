@@ -84,7 +84,8 @@ func _on_tut_pressed() -> void:
 	Manager.next_scene = "res://scenes/lvlScenes/tutorial.tscn"
 	Manager.current_scene = "tutorial"
 	Manager.playerRespawnPos = Vector2(1409.0, 383.0)
-	showCharSel()
+	Manager.chosenChar = 0
+	Manager.startNextScene()
 
 func showCharSel():
 	get_tree().change_scene_to_packed(charSelect)

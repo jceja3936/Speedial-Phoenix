@@ -30,14 +30,12 @@ func _ready() -> void:
 	else:
 		playAmbience()
 	SignalBus.emit_signal("playerReady")
-	SignalBus.finishing.connect(finishing)
 	SignalBus.paused.connect(paused)
 	SignalBus.unPaused.connect(unPaused)
 	SignalBus.levelBeat.connect(playAmbience)
 	SignalBus.playCutscene.connect(cutScenePlaying)
 	SignalBus.updateScore.connect(speedBoost)
 	SignalBus.updateResp.emit(false)
-	$shader.material.set_shader_parameter("myOpaq", 0.0)
 	if Manager.playerRespawnPos != Vector2.ZERO:
 		position = Manager.playerRespawnPos
 
@@ -55,7 +53,7 @@ func speedBoost(_bruh):
 	speedCooldown()
 
 func speedCooldown():
-	await get_tree().create_timer(.7).timeout
+	await get_tree().create_timer(1).timeout
 	speed -= 200
 
 
@@ -100,19 +98,6 @@ func unPaused():
 	cam.setCam(0)
 
 
-func finishing(value: Vector2, enemy: CharacterBody2D):
-	if enemy and enemy.get("imHit") == true and !finish:
-		finish = true
-		position = value
-		await get_tree().create_timer(.15).timeout
-		Manager.playSound("punched", global_position, -5.0)
-		await get_tree().create_timer(.15).timeout
-		Manager.playSound("punched", global_position, -5.0)
-		if enemy:
-			enemy.call("hit", 290)
-		finish = false
-
-
 var lastGuy = 0
 func hit(damage: int, id: int) -> void:
 	if id != lastGuy:
@@ -126,7 +111,6 @@ func die() -> void:
 	SignalBus.updateResp.emit(true)
 	Manager.deaths += 1
 	dead = true
-	$shader.material.set_shader_parameter("myOpaq", 8.0)
 
 func paused():
 	gamePaused = true

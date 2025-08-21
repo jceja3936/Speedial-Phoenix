@@ -100,3 +100,11 @@ func _on_l_2_focus_exited() -> void:
 
 func _on_l_3_focus_exited() -> void:
 	focuses = [0, 0, 0]
+
+
+func _on_tut_pressed() -> void:
+	Manager.next_scene = "res://scenes/lvlScenes/Lvl-2.tscn"
+	Manager.current_scene = "-2"
+	Manager.playerRespawnPos = Vector2(1409.0, 383.0)
+	Manager.chosenChar = 1
+	Manager.startNextScene()

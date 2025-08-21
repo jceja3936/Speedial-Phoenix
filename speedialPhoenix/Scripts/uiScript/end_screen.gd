@@ -59,6 +59,8 @@ func _ready() -> void:
 			yourTier += 1
 
 	match yourTier:
+		0:
+			$Results.text = "Results: Yikes"
 		1:
 			$Results.text = "Results: D rank"
 		2:

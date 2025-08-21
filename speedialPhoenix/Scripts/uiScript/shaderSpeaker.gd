@@ -4,7 +4,14 @@ var tweener = 2.0
 
 func _ready() -> void:
 	SignalBus.updateScore.connect(makePretty)
-	pass # Replace with function body.
+	setColor()
+
+func setColor():
+	if Manager.chosenChar == 1:
+		material.set_shader_parameter("myColor", Color8(0, 156, 0, 255))
+	else:
+		material.set_shader_parameter("myColor", Color8(255, 0, 0, 255))
+
 
 func makePretty(_g: int):
 	tweener = 2.0
