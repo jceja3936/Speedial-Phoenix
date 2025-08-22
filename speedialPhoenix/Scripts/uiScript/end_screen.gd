@@ -107,6 +107,12 @@ func _on_next_pressed() -> void:
 	Manager.enemyAmount = 0
 	
 	match Manager.current_scene:
+		"-2":
+			Manager.next_scene = "res://scenes/lvlScenes/Lvl4.tscn"
+			Manager.current_scene = "4"
+			Manager.playerRespawnPos = Vector2(1391.0, 1901.0)
+			Manager.startNextScene()
+
 		"tutorial":
 			Manager.playerRespawnPos = Vector2(418.0, 145.0)
 			Manager.current_scene = "1"

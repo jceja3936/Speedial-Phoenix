@@ -5,6 +5,7 @@ extends CharacterBody2D
 var cam: Camera2D
 
 var bullet: PackedScene = preload("res://scenes/bullet.tscn")
+var deathSprite: Texture = load("res://assets/img/ClareHit.png")
 
 var dead = false
 var canFire = false
@@ -108,6 +109,8 @@ func hit(damage: int, id: int) -> void:
 		die()
 
 func die() -> void:
+	$Sprite2D.texture = deathSprite
+	$Sprite2D.rotation_degrees = 0
 	SignalBus.updateResp.emit(true)
 	Manager.deaths += 1
 	dead = true
