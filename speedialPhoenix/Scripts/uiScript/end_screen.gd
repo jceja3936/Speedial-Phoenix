@@ -30,7 +30,7 @@ func _ready() -> void:
 		"3":
 			tiers = [5000, 7000, 9000, 11000, 13000]
 		"4":
-			tiers = [16000, 18000, 20000, 23000, 25000]
+			tiers = [16000, 17000, 18000, 20000, 22000]
 		"5":
 			tiers = [3500, 4000, 5000, 6000, 8000]
 		"6":
@@ -105,6 +105,8 @@ func _on_next_pressed() -> void:
 	Manager.score = 0
 	Manager.mult = 1
 	Manager.enemyAmount = 0
+	Manager.deaths = 0
+	Manager.wallsBroke = 0
 	
 	match Manager.current_scene:
 		"-2":

@@ -101,6 +101,7 @@ func _on_end_body_entered(body: Node2D) -> void:
 					$block.position = Vector2.ZERO
 					set_State(4)
 				4:
+					SignalBus.emit_signal("makeCamPoint", 180)
 					SignalBus.emit_signal("playCutscene")
 					SignalBus.emit_signal("saveWB")
 					SignalBus.emit_signal("saveScore")

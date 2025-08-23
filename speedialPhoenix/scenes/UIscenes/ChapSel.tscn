@@ -37,6 +37,7 @@ texture_normal = ExtResource("3_wvir2")
 layout_mode = 2
 focus_neighbor_left = NodePath("../Chap1")
 focus_neighbor_bottom = NodePath("../Chap1")
+focus_next = NodePath("../Chap1")
 button_mask = 0
 texture_normal = ExtResource("4_wobi0")
 
